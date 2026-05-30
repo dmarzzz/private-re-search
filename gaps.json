@@ -1,0 +1,526 @@
+{
+  "generated": "2026-05-30",
+  "confirmed_count": 52,
+  "gaps": [
+    {
+      "name": "Crowds: Anonymity for Web Transactions",
+      "category": "anonymous communication / obfuscation-based private browsing",
+      "year": "1998",
+      "url": "https://dl.acm.org/doi/10.1145/290163.290168",
+      "one_line": "Seminal 1998 system (Reiter & Rubin, ACM TISSEC) that anonymizes web/HTTP requests by routing each through a random chain of peer crowd members so the destination server cannot tell which member originated the request, introducing the formal \"degrees of anonymity\" notion.",
+      "importance": "med",
+      "why_relevant": "Foundational system specifically for anonymizing WEB requests (HTTP GETs, including search queries) by forwarding each request through a random chain of peer users, so a web/search server cannot tell which crowd member originated a query. Directly the 'hide your IP from a search engine' threat model, with the formal 'degrees of anonymity' notion that later query-privacy work cites.",
+      "why_missing": "Corpus covers Tor/onion routing and mixnets but not the peer-forwarding 'blending into a crowd' family. Crowds is the canonical non-Tor probabilistic-forwarding design and is absent."
+    },
+    {
+      "name": "Tarzan: A Peer-to-Peer Anonymizing Network Layer",
+      "category": "anonymous communication / P2P overlay (mixnet-style)",
+      "year": "2002",
+      "url": "https://www.freehaven.net/anonbib/cache/tarzan:ccs02.pdf",
+      "one_line": "Freedman and Morris's CCS 2002 paper on a decentralized peer-to-peer IP overlay that anonymizes client traffic via layered encryption, pseudo-random multi-hop relay tunnels over a restricted topology, and cover traffic, transparently hiding the client IP for arbitrary apps including web search.",
+      "importance": "med",
+      "why_relevant": "Peer-to-peer anonymizing IP overlay that transparently hides client IP for existing apps like web browsing, so search queries leave via a tunnel of relays rather than the client's address. Uses layered encryption + cover traffic over a restricted topology; a primary alternative architecture to Tor for IP unlinkability.",
+      "why_missing": "Corpus has Tor and named mixnets (Loopix/Nym/etc.) but not the P2P-overlay anonymity branch; Tarzan is the seminal P2P IP-anonymizer and is not listed."
+    },
+    {
+      "name": "MorphMix: Peer-to-Peer based Anonymous Internet Usage with Collusion Detection",
+      "category": "anonymous communication / P2P mixnet",
+      "year": "2002",
+      "url": "https://dl.acm.org/doi/10.1145/644527.644537",
+      "one_line": "Rennhard & Plattner's WPES 2002 design for a low-latency peer-to-peer mix network where every node is a mix and clients build relay paths through peers to anonymize their source IP for general Internet use, with a collusion-detection mechanism to identify compromised paths.",
+      "importance": "med",
+      "why_relevant": "Low-latency P2P circuit-based mix for anonymous Internet access (web browsing/search) for the masses, where every node is a mix and clients build relay paths to hide their source IP. Adds a collusion-detection mechanism to keep query origins unlinkable against malicious relays.",
+      "why_missing": "Same P2P-anonymity gap as Tarzan; MorphMix is the other canonical scalable P2P mix design and is absent from the corpus."
+    },
+    {
+      "name": "I2P (Invisible Internet Project)",
+      "category": "deployed anonymous network / mixnet-style overlay",
+      "year": "2003-present",
+      "url": "https://geti2p.net/en/docs/how/tech-intro",
+      "one_line": "A widely deployed, fully decentralized anonymity overlay network using garlic routing over unidirectional volunteer-relay tunnels that hides a client's IP for traffic (including HTTP/web via eepsites and outproxies), so a server cannot link queries to the user's address.",
+      "importance": "med",
+      "why_relevant": "Major deployed garlic-routing anonymity network (a Tor alternative) that hides client IP via unidirectional tunnels through volunteer routers; can carry HTTP/search traffic to eepsites or out-proxies so a server cannot link queries to the user's address. Real-world counterpart to the academic onion/mix designs in the corpus.",
+      "why_missing": "Corpus lists Tor as the deployed onion network and various academic mixnets, but not I2P, the other widely deployed anonymity overlay with a different (garlic/tunnel) design."
+    },
+    {
+      "name": "Freenet / Hyphanet: A Distributed Anonymous Information Storage and Retrieval System",
+      "category": "anonymous communication / private retrieval over P2P store",
+      "year": "2001 (paper); Hyphanet ongoing",
+      "url": "https://link.springer.com/chapter/10.1007/3-540-44702-4_4",
+      "one_line": "Foundational 2001 P2P system (Clarke, Sandberg, Wiley, Hong; ongoing as Hyphanet) whose core operation is anonymous keyed retrieval \u2014 routing content requests so no node or observer can link who requested or stored an item.",
+      "importance": "med",
+      "why_relevant": "Anonymity system whose core operation is anonymous RETRIEVAL: nodes route content requests by key so that no node (and no observer) can tell who requested or stored a given item. This is exactly query/lookup unlinkability for a content store, the search-adjacent retrieval-privacy case, via a routing/obfuscation approach distinct from PIR.",
+      "why_missing": "Corpus covers PIR for private retrieval and Tor/mixnets for transport, but not the Freenet/Hyphanet routed-distributed-store model of anonymous lookup; it is a distinct, foundational retrieval-anonymity design."
+    },
+    {
+      "name": "Pung: Unobservable Communication over Fully Untrusted Infrastructure",
+      "category": "PIR-based metadata-private retrieval system",
+      "year": "2016",
+      "url": "https://www.usenix.org/system/files/conference/osdi16/osdi16-angel.pdf",
+      "one_line": "An OSDI'16 metadata-private key-value messaging system (Angel & Setty) built on computational PIR with novel private multi-retrieval and batch-code techniques, letting clients fetch records without the untrusted server learning which record.",
+      "importance": "med",
+      "why_relevant": "Builds a private key-value retrieval service on computational PIR (with batch codes and private multi-retrieval) so clients fetch records without the server learning WHICH record, i.e. query-content unlinkability against a fully untrusted server. The batch/multi-retrieval techniques are directly applicable to private search/lookup over an index.",
+      "why_missing": "Corpus enumerates many PIR systems (Tiptoe, FrodoPIR, OnionPIR, Wally, RESPIRE, etc.) and even SealPIR via a benchmark, but not Pung, the seminal PIR-messaging system whose multi-query/batch-code techniques underpin later private-search PIR."
+    },
+    {
+      "name": "HORNET: High-speed Onion Routing at the Network Layer",
+      "category": "anonymous communication / network-layer onion routing",
+      "year": "2015",
+      "url": "https://arxiv.org/abs/1507.05724",
+      "one_line": "A network-layer onion-routing architecture (Chen, Asoni, Barrera, Danezis, Perrig; CCS 2015) that hides client IP for arbitrary traffic at >93 Gb/s using only symmetric crypto and per-packet headers, requiring no per-flow router state.",
+      "importance": "med",
+      "why_relevant": "Stateless, high-throughput (>93 Gb/s) onion routing at the network layer that hides client IP for arbitrary traffic including web/search, using symmetric crypto and per-packet headers instead of per-flow circuit state. A scalability-oriented alternative architecture to Tor for IP unlinkability of queries.",
+      "why_missing": "Corpus onion-routing coverage is Tor + Sphinx; HORNET is a distinct network-layer onion-routing design (the line continued by TARANET) and is not listed."
+    },
+    {
+      "name": "Private Information Retrieval (Chor, Goldreich, Kushilevitz, Sudan)",
+      "category": "PIR system (foundational, multi-server)",
+      "year": "1995",
+      "url": "https://dl.acm.org/doi/10.1145/293347.293350",
+      "one_line": "The foundational 1995 FOCS / 1998 JACM paper that defines Private Information Retrieval: a user retrieves a database item from replicated servers without any server learning which item was requested.",
+      "importance": "high",
+      "why_relevant": "The original PIR paper that defines the entire field: lets a user retrieve a database item without the server(s) learning which item, i.e. unlinking the query content from the user. Every private-search/PIR system in the corpus descends from this.",
+      "why_missing": "Corpus has many modern PIR implementations (Tiptoe, FrodoPIR, Piano, etc.) but not the 1995 FOCS/JACM foundational definition. Explicitly requested."
+    },
+    {
+      "name": "Replication Is Not Needed: Single Database, Computationally-Private Information Retrieval (Kushilevitz, Ostrovsky)",
+      "category": "PIR system (foundational, single-server cPIR)",
+      "year": "1997",
+      "url": "https://ieeexplore.ieee.org/document/646125/",
+      "one_line": "The 1997 FOCS paper by Kushilevitz and Ostrovsky introducing single-server computational PIR, proving one (non-replicated) database suffices to hide which record a client retrieves.",
+      "importance": "med",
+      "why_relevant": "First single-server computational PIR; established that one server suffices to hide which record a client fetches. This is the theoretical basis for all single-server private-search systems (SimplePIR, Spiral, Tiptoe) used to query without revealing the query.",
+      "why_missing": "Corpus lists modern single-server PIR but not the 1997 FOCS origin of single-server cPIR. Explicitly requested."
+    },
+    {
+      "name": "SealPIR / XPIR (PIR with Compressed Queries and Amortized Query Processing)",
+      "category": "PIR system (single-server, FHE, batch)",
+      "year": "2018",
+      "url": "https://eprint.iacr.org/2017/1142",
+      "one_line": "Foundational single-server FHE/RLWE PIR system (Angel, Chen, Laine, Setty; IEEE S&P 2018) introducing query compression into one RLWE ciphertext (up to 274x smaller queries) and probabilistic batch codes for amortized multi-query retrieval, enabling private index lookups without revealing the requested item.",
+      "importance": "med",
+      "why_relevant": "Foundational practical single-server PIR: query compression (one RLWE ciphertext) plus probabilistic batch codes for amortized multi-query retrieval. Directly used for private lookups/search without revealing the requested index.",
+      "why_missing": "Corpus only mentions SealPIR/Spiral indirectly via the turanzv/pir-comparison benchmark, not as a primary source. Explicitly requested."
+    },
+    {
+      "name": "Spiral: Fast, High-Rate Single-Server PIR via FHE Composition (Menon, Wu)",
+      "category": "PIR system (single-server, FHE)",
+      "year": "2022",
+      "url": "https://eprint.iacr.org/2022/368",
+      "one_line": "A single-server PIR family (IEEE S&P 2022) that composes Regev and GSW lattice FHE schemes with new ciphertext-translation techniques to cut query/response size and boost server throughput (up to 1.9 GB/s), enabling private database/web queries where the server learns nothing about the query.",
+      "importance": "high",
+      "why_relevant": "High-throughput single-server PIR via Regev+GSW composition; a leading building block for private web/database queries where the server must not learn the query. Underlies several private-search stacks.",
+      "why_missing": "Corpus references Spiral only secondhand through the pir-comparison benchmark, not the actual paper. Explicitly requested."
+    },
+    {
+      "name": "One Server for the Price of Two: SimplePIR and DoublePIR (Henzinger et al.)",
+      "category": "PIR system (single-server, LWE, with hint preprocessing)",
+      "year": "2022",
+      "url": "https://www.usenix.org/conference/usenixsecurity23/presentation/henzinger",
+      "one_line": "USENIX Security 2023 paper introducing SimplePIR and DoublePIR, the fastest LWE-based single-server private information retrieval schemes with an offline preprocessed hint, letting a client query a database without revealing which entry it wants.",
+      "importance": "high",
+      "why_relevant": "Fastest single-server PIR (LWE-based) with an offline hint; the direct cryptographic engine behind private-search systems like Tiptoe. Lets a client query a server without revealing which entry it wants.",
+      "why_missing": "Corpus names SimplePIR/DoublePIR only via the pir-comparison benchmark, not the primary paper/repo. Explicitly requested."
+    },
+    {
+      "name": "Private Information Retrieval with Sublinear Online Time (Corrigan-Gibbs, Kogan)",
+      "category": "PIR system (offline/online preprocessing)",
+      "year": "2020",
+      "url": "https://eprint.iacr.org/2019/1075",
+      "one_line": "The foundational Eurocrypt 2020 paper by Henry Corrigan-Gibbs and Dmitry Kogan introducing the offline/online PIR model that achieves sublinear online lookup time without increasing server storage.",
+      "importance": "high",
+      "why_relevant": "Introduces the offline/online PIR model giving sublinear online lookups, the paradigm that makes interactive private search feasible at scale (basis for Checklist, Piano, Wally-style designs). Core to hiding which record a repeat client queries.",
+      "why_missing": "Corpus lists downstream systems (Piano, Wally) but not the foundational sublinear-preprocessing PIR paper. Explicitly requested."
+    },
+    {
+      "name": "Private Stateful Information Retrieval (Patel, Persiano, Yeo)",
+      "category": "PIR system (stateful, single-server, preprocessing)",
+      "year": "2018",
+      "url": "https://eprint.iacr.org/2018/1083",
+      "one_line": "A CCS 2018 single-server PIR primitive that lets clients keep state across queries so repeated private retrievals incur sublinear online cost, cutting server CPU and network by up to ~10x over prior single-server PIR.",
+      "importance": "med",
+      "why_relevant": "PSIR lets a client keep state across queries so each online private query touches only a sublinear number of records, improving practicality of repeated private searches against a single server.",
+      "why_missing": "Not in corpus; a distinct stateful-PIR primitive explicitly requested in the brief."
+    },
+    {
+      "name": "Private Blocklist Lookups with Checklist (Kogan, Corrigan-Gibbs)",
+      "category": "PIR system (two-server, applied to URL/blocklist lookups)",
+      "year": "2021",
+      "url": "https://www.usenix.org/conference/usenixsecurity21/presentation/kogan",
+      "one_line": "A two-server PIR system using a novel offline/online PIR scheme to let clients check URLs against a Safe Browsing blocklist without leaking the queried URL-hash prefix to the server; integrated into Firefox.",
+      "importance": "high",
+      "why_relevant": "Applies sublinear-time PIR to private blocklist (Safe Browsing) lookups, eliminating leakage of URL-hash prefixes from the client; a concrete private-query-without-revealing-the-query system, modified into Firefox.",
+      "why_missing": "Corpus covers Google Safe Browsing over OHTTP but not the Checklist PIR-based approach to the same private-lookup problem. Explicitly requested."
+    },
+    {
+      "name": "Coeus: A System for Oblivious Document Ranking and Retrieval (Ahmad et al.)",
+      "category": "PIR system (private search engine over a document corpus)",
+      "year": "2021",
+      "url": "https://dl.acm.org/doi/10.1145/3477132.3483586",
+      "one_line": "SOSP '21 system for end-to-end oblivious keyword search over a public document corpus, composing secure matrix-vector product for tf-idf ranking with PIR for retrieval so the server learns nothing about the query.",
+      "importance": "med",
+      "why_relevant": "End-to-end oblivious search: private tf-idf ranking (secure matrix-vector product) plus PIR retrieval, letting a user rank and fetch the top documents for a keyword query without the server learning the query. This is exactly private search.",
+      "why_missing": "Not in corpus; a full oblivious search-engine system distinct from Tiptoe/Wally. Explicitly requested."
+    },
+    {
+      "name": "Splinter: Practical Private Queries on Public Data (Wang et al., NSDI 2017)",
+      "category": "PIR-adjacent system (Function Secret Sharing, multi-server private DB queries)",
+      "year": "2017",
+      "url": "https://www.usenix.org/conference/nsdi17/technical-sessions/presentation/wang-frank",
+      "one_line": "A multi-provider system that hides a user's queries on public datasets (Yelp-style reviews, flight search, map routing) by splitting each query across non-colluding providers using Function Secret Sharing, an order-of-magnitude faster alternative to PIR/garbled-circuit private search.",
+      "importance": "med",
+      "why_relevant": "Hides users' queries (maps, flights, reviews, search-style lookups) on public datasets by splitting them across non-colluding providers using Function Secret Sharing, an alternative to PIR for private search-type queries.",
+      "why_missing": "Not in corpus; FSS-based private-query system distinct from all listed PIR/mixnet work. Explicitly requested."
+    },
+    {
+      "name": "GooPIR / TrackMeNot (obfuscation-based private web search)",
+      "category": "obfuscation-based private search",
+      "year": "2009/2009",
+      "url": "https://nissenbaum.tech.cornell.edu/papers/D.Howe_TrackMehot.pdf",
+      "one_line": "Obfuscation-based private web search: TrackMeNot (Howe/Nissenbaum/Toubiana) hides a user's real queries in a cloud of randomized decoy queries, and GooPIR (Domingo-Ferrer et al.) adds OR'd dummy keywords to achieve h(k)-private information retrieval against the search engine.",
+      "importance": "med",
+      "why_relevant": "The canonical obfuscation approach to private search: hide the real query among machine-generated decoy queries (h(k)-PIR for GooPIR; randomized decoys for TrackMeNot) so the engine cannot link a user to their true intent. Distinct paradigm from cryptographic PIR.",
+      "why_missing": "Corpus has cryptographic PIR and proxy/relay systems but no obfuscation/decoy-query line of work. GooPIR explicitly requested."
+    },
+    {
+      "name": "Pantheon: Private Retrieval from Public Key-Value Store (Ahmad et al.)",
+      "category": "PIR system (keyword/key-value PIR, single-round)",
+      "year": "2023",
+      "url": "https://www.vldb.org/pvldb/vol16/p643-ahmad.pdf",
+      "one_line": "A single-round keyword/key-value PIR system (VLDB '22/'23, Ahmad-Agrawal-El Abbadi-Gupta, UCSB) that lets a client fetch the value for a key from a public store while the server learns neither the queried key nor the result, claiming ~93x lower server-side latency than prior work.",
+      "importance": "med",
+      "why_relevant": "Single-round private retrieval from a large public key-value store, the keyword-PIR shape underlying private search over web-scale corpora; server learns neither the queried key nor result.",
+      "why_missing": "Not in corpus; recent keyword/KV-store PIR system explicitly requested."
+    },
+    {
+      "name": "Constant-weight PIR: Single-round Keyword PIR (Mahdavi, Kerschbaum)",
+      "category": "PIR system (single-server keyword PIR)",
+      "year": "2022",
+      "url": "https://www.usenix.org/conference/usenixsecurity22/presentation/mahdavi",
+      "one_line": "USENIX Security 2022 paper introducing constant-weight equality operators to build the first practical single-round single-server keyword PIR, letting a client privately look up records by keyword rather than index.",
+      "importance": "med",
+      "why_relevant": "First practical single-round single-server keyword PIR; lets a client privately look up records by keyword (rather than index), which is the natural interface for private search.",
+      "why_missing": "Not in corpus; constant-weight keyword PIR explicitly requested."
+    },
+    {
+      "name": "Vectorized Batch PIR (Mughees, Ren)",
+      "category": "PIR system (single-server batch PIR)",
+      "year": "2023",
+      "url": "https://eprint.iacr.org/2022/1262",
+      "one_line": "A single-server batch PIR protocol (IEEE S&P 2023) using vectorized RLWE homomorphic encryption that retrieves many entries per query with 7.5x-98.5x lower communication than prior batch-PIR, lowering amortized cost for multi-lookup private-search workloads.",
+      "importance": "med",
+      "why_relevant": "Efficient single-server batch PIR (retrieve many entries per query) via vectorized RLWE, lowering amortized cost of the multi-lookup workloads typical of private search.",
+      "why_missing": "Corpus mentions batch concepts only via SealPIR's PBCs secondhand; this distinct single-server batch-PIR paper is not listed. Covers the requested keyword/batch-PIR gap."
+    },
+    {
+      "name": "Scalable and Private Media Consumption with Popcorn (Gupta et al.)",
+      "category": "PIR system (applied, hybrid multi/single-server)",
+      "year": "2016",
+      "url": "https://www.usenix.org/conference/nsdi16/technical-sessions/presentation/gupta-trinabh",
+      "one_line": "NSDI 2016 applied PIR media-delivery system (Gupta, Crooks, Mulhern, Setty, Alvisi, Walfish) that hides which item a client retrieves from a content provider at Netflix-library scale by combining multi-server ITPIR for encrypted objects with single-server CPIR for decryption keys, plus request batching over media streams.",
+      "importance": "med",
+      "why_relevant": "Applied PIR system that hides which item a client retrieves from a content provider at Netflix-library scale, combining multi-server and single-server PIR with batching, the practical-deployment angle of private retrieval.",
+      "why_missing": "Not in corpus; explicitly requested (Popcorn) as an applied PIR retrieval system."
+    },
+    {
+      "name": "TrackMeNot (Howe, Nissenbaum, Toubiana) \u2014 browser add-on + \"Resisting Surveillance in Web Search\"",
+      "category": "obfuscation-based private search",
+      "year": "2006",
+      "url": "https://github.com/vtoubiana/TrackMeNot",
+      "one_line": "A Firefox/Chrome browser extension that protects web-search privacy by injecting programmatically generated decoy queries into the user's search stream so the real query cannot be linked to the user's interests, with the accompanying book chapter \"TrackMeNot: Resisting Surveillance in Web Search\" (Howe & Nissenbaum, 2009).",
+      "importance": "high",
+      "why_relevant": "The canonical client-side query-obfuscation tool: injects programmatically generated decoy queries into the search stream so a real query cannot be linked to the user's interests/identity. This is the defining artifact of the entire noise-injection category and is referenced by every later attack paper.",
+      "why_missing": "The corpus has Tor, mixnets, PIR, OHTTP and private search engines, but no query-obfuscation/decoy-query tool at all. TrackMeNot is the foundational system of the category the lens asks for and is entirely absent."
+    },
+    {
+      "name": "GooPIR \u2014 \"h(k)-private Information Retrieval from Privacy-uncooperative Queryable Databases\" (Domingo-Ferrer, Solanas, Castell\u00e0-Roca)",
+      "category": "obfuscation-based private search",
+      "year": "2009",
+      "url": "https://www.emerald.com/insight/content/doi/10.1108/14684520910985693/full/html",
+      "one_line": "GooPIR is a client-side query-obfuscation scheme that masks a real search query by OR-ing it with k-1 dictionary-generated dummy keywords (achieving h(k)-PIR indistinguishability) and re-ranks results locally, defending query privacy against an uncooperative search engine like Google.",
+      "importance": "med",
+      "why_relevant": "GooPIR masks a real Google query by OR-ing it with k-1 dictionary-generated dummy keywords (giving h(k)-PIR / indistinguishability) and re-ranks results locally. It is the canonical 'obfuscate the query itself' approach against an uncooperative search engine, distinct from PIR-with-server-cooperation.",
+      "why_missing": "None of the corpus PIR entries (Tiptoe, FrodoPIR, SealPIR, Spiral, etc.) cover obfuscation/indistinguishability PIR against a non-cooperating engine. GooPIR / h(k)-PIR is a separate plausible-deniability line not represented."
+    },
+    {
+      "name": "Private Web Search (Saint-Jean, Johnson, Boneh, Feigenbaum), WPES'07",
+      "category": "obfuscation-based private search / unlinkability",
+      "year": "2007",
+      "url": "https://crypto.stanford.edu/~dabo/pubs/abstracts/privwebsearch.html",
+      "one_line": "A 2007 WPES paper by Saint-Jean, Johnson, Boneh, and Feigenbaum describing PWS, a client-side Firefox plugin acting as an HTTP proxy and Tor client that filters identifying query/response components to unlink web-search queries from the user's identity and IP.",
+      "importance": "med",
+      "why_relevant": "The canonical academic 'Private Web Search' system and Firefox add-on: combines Tor-style anonymization with query handling to unlink search queries from identity/IP. Explicitly named in the lens; defines the unlinkability-for-search problem statement cited downstream.",
+      "why_missing": "Corpus covers Tor primitives generically but not this specific search-focused system that pairs anonymization with query privacy; it is the named Saint-Jean/Boneh/Feigenbaum work the lens calls out."
+    },
+    {
+      "name": "OB-PWS: Obfuscation-Based Private Web Search (Balsa, Troncoso, D\u00edaz), IEEE S&P 2012",
+      "category": "attack / evaluation framework",
+      "year": "2012",
+      "url": "https://oaklandsok.github.io/papers/balsa2012.pdf",
+      "one_line": "An IEEE S&P 2012 paper providing an abstract model and analysis framework that systematically evaluates obfuscation-based private web search systems (dummy/decoy-query defenses like TrackMeNot and GooPIR) and exposes vulnerabilities in their privacy guarantees.",
+      "importance": "high",
+      "why_relevant": "Provides the formal evaluation framework for obfuscation-based private web search (TrackMeNot, GooPIR, etc.) and shows how/when these defenses fail to provide privacy. This is the canonical systematization-of-knowledge critique of the whole noise-injection category.",
+      "why_missing": "Corpus has no critique/SoK of obfuscation defenses for search; this is the standard reference establishing their limitations."
+    },
+    {
+      "name": "On the Privacy of Web Search Based on Query Obfuscation: A Case Study of TrackMeNot (Peddinti, Saxena), PETS 2010",
+      "category": "attack",
+      "year": "2010",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-14527-8_2",
+      "one_line": "PETS 2010 attack paper showing a search engine with only a short query history can use off-the-shelf ML classifiers to separate a user's real queries from TrackMeNot's decoy queries, breaking query-obfuscation search privacy.",
+      "importance": "high",
+      "why_relevant": "Demonstrates that an adversarial search engine with only a short query history can separate real TrackMeNot queries from decoys using off-the-shelf ML classifiers \u2014 the foundational attack showing decoy-query obfuscation fails. Directly satisfies the 'academic critiques showing these defenses fail' part of the lens.",
+      "why_missing": "No attack literature on query-obfuscation search privacy exists in the corpus; this is the canonical TMN-breaking paper."
+    },
+    {
+      "name": "SimAttack: private web search under fire (Petit, Cerqueus, Boutet, Ben Mokhtar, Coquil, Brunie), JISA 2016",
+      "category": "attack",
+      "year": "2016",
+      "url": "https://jisajournal.springeropen.com/articles/10.1186/s13174-016-0044-x",
+      "one_line": "A scalable similarity-based de-anonymization attack that links queries back to users despite Tor-based unlinkability, TrackMeNot, and GooPIR defenses (de-anonymizing up to ~36.7% / 45.3% / 51.6% of queries respectively).",
+      "importance": "med",
+      "why_relevant": "A single similarity-based attack that de-anonymizes queries protected by Tor-based unlinkability, TrackMeNot, AND GooPIR (up to ~36-52%), unifying critiques of both the unlinkability and indistinguishability families of private search. Strong, recent evidence the obfuscation defenses fail.",
+      "why_missing": "Corpus lacks any cross-cutting de-anonymization attack on private-search defenses; SimAttack is the canonical scalable attack spanning all three tool families."
+    },
+    {
+      "name": "Optimized Query Forgery for Private Information Retrieval (Rebollo-Monedero, Forn\u00e9), IEEE Trans. Information Theory 2010",
+      "category": "obfuscation-based private search (theory)",
+      "year": "2010",
+      "url": "https://doi.org/10.1109/TIT.2010.2054471",
+      "one_line": "Information-theoretic formulation that optimally generates forged/dummy queries to minimize the KL divergence between a user's apparent query profile and the population profile under a fixed traffic-overhead budget \u2014 the canonical theory behind profile-obfuscation/dummy-query search privacy (TrackMeNot-style).",
+      "importance": "med",
+      "why_relevant": "Gives the information-theoretic optimization of query forgery \u2014 how to generate dummy/forged queries to minimize the privacy risk (KL divergence from a target profile) for a fixed traffic overhead. The formal underpinning of profile-obfuscation / dummy-query schemes for search.",
+      "why_missing": "Corpus has no theory of noise-injection/query-forgery; this is the canonical optimal-forgery formulation distinct from cryptographic PIR."
+    },
+    {
+      "name": "X-Search: Revisiting Private Web Search using Intel SGX (Mokhtar et al., Middleware 2017)",
+      "category": "TEE-based private search proxy",
+      "year": "2017",
+      "url": "https://arxiv.org/abs/1805.01742",
+      "one_line": "An Intel SGX enclave-based private web search proxy that aggregates and obfuscates queries inside a trusted enclave to unlink them from users, positioned as a faster, stronger-adversarial-model fix for the failures of TrackMeNot/GooPIR/Tor-based PWS exposed by re-identification attacks.",
+      "importance": "med",
+      "why_relevant": "A trusted-hardware (SGX) proxy that unlinks queries from users by aggregating and obfuscating them inside an enclave, explicitly positioned as a fix for the failures of TrackMeNot/GooPIR/Tor-based PWS shown by SimAttack. Bridges the obfuscation and TEE approaches for search specifically.",
+      "why_missing": "Corpus has no TEE/enclave-based private-search system; X-Search is the canonical SGX answer in the private-web-search line."
+    },
+    {
+      "name": "Castell\u00e0-Roca, Viejo, Herrera-Joancomart\u00ed \u2014 \"Preserving user's privacy in web search engines\" (Computer Communications, 2009)",
+      "category": "P2P group-query unlinkability for search",
+      "year": "2009",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S014036640900125X",
+      "one_line": "A group/collaborative scheme where users exchange and submit each other's queries so the search engine can only build a shared \"group profile\" rather than link a query to its originating user \u2014 the canonical user-private information retrieval (UPIR) approach to search unlinkability.",
+      "importance": "med",
+      "why_relevant": "A peer-to-peer / user-collaboration scheme where members of a group submit each other's queries so the search engine cannot link a query to the originating user \u2014 the canonical Crowds-style group-shuffling approach to search unlinkability (a distinct mechanism from decoy injection).",
+      "why_missing": "Corpus mixnets cover relay-based anonymity but not user-group query-exchange for search; this UPC/CRISES line (user-private information retrieval) is unrepresented."
+    },
+    {
+      "name": "MASQUE: Proxying IP in HTTP (RFC 9484, CONNECT-IP) + Proxying UDP in HTTP (RFC 9298, CONNECT-UDP)",
+      "category": "standard",
+      "year": "2023",
+      "url": "https://datatracker.ietf.org/doc/rfc9484/",
+      "one_line": "IETF MASQUE working group standards for tunneling client IP packets (RFC 9484, CONNECT-IP) and UDP (RFC 9298, CONNECT-UDP) through an HTTP proxy to hide the client's real IP from the destination.",
+      "importance": "high",
+      "why_relevant": "MASQUE is the IETF framework for tunneling client traffic (IP packets via CONNECT-IP, UDP/QUIC via CONNECT-UDP) through an HTTP proxy to hide the client's real IP from the destination. It is the protocol substrate underneath modern multi-hop IP-hiding proxies (Apple Private Relay, Google IP Protection) used to anonymize all client traffic including search queries.",
+      "why_missing": "Corpus covers OHTTP (RFC 9458) and ODoH (RFC 9230) but not the MASQUE working group / CONNECT-IP / CONNECT-UDP RFCs, which are the lower-layer IP-tunneling standard distinct from OHTTP's oblivious request relaying."
+    },
+    {
+      "name": "The MASQUE Architecture (draft-schinazi-masque-proxy)",
+      "category": "standard",
+      "year": "2024",
+      "url": "https://datatracker.ietf.org/doc/draft-schinazi-masque-proxy/",
+      "one_line": "David Schinazi's active IETF Internet-Draft (latest -08, March 2026) describing the MASQUE proxying architecture, including nested/multi-hop CONNECT-UDP/IP proxy chains where non-colluding proxies split client IP from destination to hide where a request originates.",
+      "importance": "med",
+      "why_relevant": "Describes how MASQUE proxies are composed into multi-hop chains to split client identity (IP) from destination, the exact pattern used to anonymize where a search request originates. Explains the architectural rationale connecting CONNECT-IP/UDP to deployed IP-hiding relays.",
+      "why_missing": "Not in corpus; it is the architectural companion to the RFCs and the primary reference for how MASQUE proxying is assembled for IP anonymization, separate from any Tor/mixnet/PIR material listed."
+    },
+    {
+      "name": "Privacy Pass: Architecture (RFC 9576) + HTTP Authentication Scheme (RFC 9577) + Issuance Protocols (RFC 9578)",
+      "category": "standard",
+      "year": "2024",
+      "url": "https://www.rfc-editor.org/info/rfc9576/",
+      "one_line": "IETF standard suite (June 2024) for privacy-preserving authorization: clients redeem blind-signature tokens to prove they are entitled to a service without revealing which client they are, providing generation-redemption unlinkability.",
+      "importance": "high",
+      "why_relevant": "Privacy Pass lets a client prove it is authorized (e.g. a paying subscriber) to a server without revealing which client it is, via blind-signature tokens. This is the mechanism that unlinks individual queries from a user's identity/account even when the IP or session would otherwise identify them. It is the cryptographic primitive behind Apple Private Relay tokens and Kagi's anonymous search.",
+      "why_missing": "Corpus lists OHTTP/relays and PIR but not the Privacy Pass RFC suite, which addresses the 'unlink queries from identity' half of the problem (authorization without identification) rather than IP routing."
+    },
+    {
+      "name": "Kagi Privacy Pass (deployed anonymous search authentication)",
+      "category": "deployed product",
+      "year": "2025",
+      "url": "https://blog.kagi.com/kagi-privacy-pass",
+      "one_line": "A Feb 2025 production deployment of the IETF Privacy Pass protocol (RFCs 9576-9578) in the Kagi search engine: subscribers mint blind/VOPRF tokens so Kagi can verify entitlement while being unable to link redemptions to an account or to each other, shipped alongside a new Tor onion service.",
+      "importance": "high",
+      "why_relevant": "A live, shipped deployment (Feb 2025) of Privacy Pass in a commercial search engine: subscribers generate blind tokens so Kagi can verify entitlement but cannot link two searches to the same user or to the account. Directly the 'query unlinkability from identity' problem for search, in production, paired with a new Tor onion service.",
+      "why_missing": "Corpus mentions Brave/DuckDuckGo/Startpage as private search engines but not Kagi, and does not cover any deployed Privacy-Pass-based query-unlinking for search."
+    },
+    {
+      "name": "Google IP Protection (Privacy Sandbox / Chrome two-hop proxy)",
+      "category": "deployed product",
+      "year": "2025",
+      "url": "https://github.com/GoogleChrome/ip-protection",
+      "one_line": "Google Chrome's deployed IP Protection feature masks a user's IP from third-party/tracking domains in Incognito via a two-hop proxy (Google ingress sees IP but not destination; CDN egress sees destination but not IP), with RSA blind-signature auth tokens so neither proxy can link traffic to the user's Google account.",
+      "importance": "high",
+      "why_relevant": "Browser-level deployed tech that hides the client IP from third-party domains in Incognito via a two-hop proxy (Google ingress + CDN egress) with RSA blind-signature tokens so neither proxy can link traffic to the user's account. Same IP-masking and query-unlinking goal applied at browser scale, including search-adjacent requests.",
+      "why_missing": "Corpus has Apple iCloud Private Relay and Cloudflare/Fastly OHTTP relays but not Google's IP Protection / Privacy Sandbox proxy (formerly Gnatcatcher); it is a distinct deployed two-hop system with its own primary repo/explainer."
+    },
+    {
+      "name": "Investigating Traffic Analysis Attacks on Apple iCloud Private Relay (ASIA CCS '23) + Apple PR technical whitepaper",
+      "category": "deployed product",
+      "year": "2021",
+      "url": "https://dl.acm.org/doi/10.1145/3579856.3595793",
+      "one_line": "A peer-reviewed ASIA CCS '23 study (Zohaib, Sheffey, Houmansadr, UMass) building a traffic-analysis threat model against iCloud Private Relay's two-hop IP-hiding proxy architecture and evaluating flow-correlation and website-fingerprinting de-anonymization attacks, bundled with Apple's Dec 2021 technical whitepaper on the ingress/egress split and RSA blind-signature one-time tokens.",
+      "importance": "med",
+      "why_relevant": "Apple's own technical whitepaper detailing the dual-hop ingress/egress proxy split with RSA blind-signature one-time tokens and double-spend prevention, plus a peer-reviewed traffic-analysis attack paper (ACM, 2023) evaluating de-anonymization. Goes beyond a marketing overview into the actual IP-hiding mechanism and its limits.",
+      "why_missing": "Corpus lists 'Apple iCloud Private Relay' only at overview level; the technical whitepaper internals and the adversarial traffic-analysis evaluation (https://dl.acm.org/doi/fullHtml/10.1145/3579856.3595793) are not captured."
+    },
+    {
+      "name": "DNS over QUIC (DoQ, RFC 9250)",
+      "category": "standard",
+      "year": "2022",
+      "url": "https://datatracker.ietf.org/doc/rfc9250/",
+      "one_line": "IETF standard (RFC 9250, May 2022) specifying DNS over dedicated QUIC connections, providing TLS-1.3-grade transport confidentiality so on-path observers cannot read which names a client resolves.",
+      "importance": "low",
+      "why_relevant": "Encrypted DNS transport over QUIC that conceals which sites/search endpoints a client resolves from on-path observers, complementing IP-hiding for query privacy. Relevant alongside the corpus's DoH/ODoH coverage as the QUIC-based encrypted-DNS standard.",
+      "why_missing": "Corpus covers DNS leaks and ODoH but not DoQ (RFC 9250) or DoT/DoH/DoH3 as a distinct standardized transport; DoQ is now deployed (Quad9, AdGuard) and not listed."
+    },
+    {
+      "name": "Whoogle Search (self-hosted Google-result proxy that strips client IP)",
+      "category": "obfuscation-based private search",
+      "year": "2020",
+      "url": "https://github.com/benbusby/whoogle-search",
+      "one_line": "A self-hostable privacy proxy that fetches Google (now Mullvad Leta) results so the user's IP never reaches the upstream search engine, unlinking individual identity from queries via a shared relay you control.",
+      "importance": "low",
+      "why_relevant": "A self-hostable proxy that fetches Google results so the user's IP never reaches Google; every user's queries egress from one shared server, unlinking individual identity/IP from the upstream search engine. Classic IP-anonymization-for-search via a relay you control.",
+      "why_missing": "Corpus lists SearXNG and generic listicles but not Whoogle specifically; it is a distinct primary-source self-hosted search proxy (notably its final release after Google's JS blocking, a relevant deployment caveat)."
+    },
+    {
+      "name": "Mojeek (independent-crawl non-tracking search engine)",
+      "category": "deployed product",
+      "year": "2004",
+      "url": "https://www.mojeek.com/about/",
+      "one_line": "UK independent search engine (founded 2004) that runs its own crawler/index (MojeekBot, 5B+ pages) and has a no-tracking, no-IP-logging, no-profiling privacy policy (first such policy, 2006).",
+      "importance": "low",
+      "why_relevant": "A privacy search engine with its OWN independent crawler/index (not a metasearch front-end), which does not track, profile, or log query-to-identity links. Different threat-model coverage than the proxy/metasearch options already in the corpus.",
+      "why_missing": "Corpus lists DuckDuckGo/Startpage/Brave/MetaGer but not Mojeek, the main fully-independent-index non-profiling engine."
+    },
+    {
+      "name": "Presearch (decentralized node-network metasearch)",
+      "category": "obfuscation-based private search",
+      "year": "2017",
+      "url": "https://en.wikipedia.org/wiki/Presearch_(search_engine)",
+      "one_line": "A decentralized metasearch engine (launched 2017) that routes user queries through a network of tens of thousands of community-run nodes via an anonymizing gateway that strips IP/PII, so no single operator sees a user's full query stream.",
+      "importance": "med",
+      "why_relevant": "A decentralized search where queries are routed through a community-run node network so no single operator sees a user's full query stream or links queries to identity/IP, an alternative architectural approach to query unlinking for search.",
+      "why_missing": "Not in corpus; distinct decentralized/DePIN node-routing model for distributing search queries to avoid centralized profiling, separate from mixnets and PIR."
+    },
+    {
+      "name": "Deep Fingerprinting: Undermining Website Fingerprinting Defenses with Deep Learning (Sirinam et al., CCS 2018)",
+      "category": "attack \u2014 website fingerprinting",
+      "year": "2018",
+      "url": "https://arxiv.org/abs/1801.02265",
+      "one_line": "A CNN-based website-fingerprinting attack that lets a local passive eavesdropper identify which site a Tor user visits at >98% accuracy from packet-direction sequences, defeating the WTF-PAD defense (Walkie-Talkie holds it to 49.7%).",
+      "importance": "high",
+      "why_relevant": "Canonical CNN-based website-fingerprinting attack: a passive local eavesdropper (e.g. the guard/ISP) recovers which site a Tor user visits with >98% accuracy from packet direction sequences, and defeats WTF-PAD/WT defenses. Directly attacks the 'hide what you search/browse' guarantee.",
+      "why_missing": "Corpus has Tor mechanisms/defenses but no website-fingerprinting attack paper. This is the de-facto baseline WF attack everything since is measured against."
+    },
+    {
+      "name": "Users Get Routed: Traffic Correlation on Tor by Realistic Adversaries (Johnson, Wacek, Jansen, Sherr, Syverson, CCS 2013)",
+      "category": "attack \u2014 end-to-end traffic correlation / AS-IXP adversary",
+      "year": "2013",
+      "url": "https://dl.acm.org/doi/10.1145/2508859.2516651",
+      "one_line": "CCS 2013 paper that models realistic relay + AS + IXP + IXP-group adversaries against Tor and shows users are deanonymized via end-to-end traffic correlation far faster than prior work suggested, introducing the TorPS path simulator and time-to-compromise metrics.",
+      "importance": "high",
+      "why_relevant": "Foundational analysis showing Tor users are deanonymized far faster than prior work suggested once relay + AS + IXP + IXP-group adversaries are modeled; introduces TorPS path simulator and time-to-first-compromise metrics. The canonical 'how bad is end-to-end correlation in practice' paper.",
+      "why_missing": "Corpus covers Tor best-practices and Sphinx but contains no end-to-end correlation / realistic-adversary threat-model paper."
+    },
+    {
+      "name": "RAPTOR: Routing Attacks on Privacy in Tor (Sun, Edmundson, Vanbever, Li, Rexford, Chiang, Mittal, USENIX Security 2015)",
+      "category": "attack \u2014 AS-level / BGP routing adversary",
+      "year": "2015",
+      "url": "https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-sun.pdf",
+      "one_line": "A suite of AS-level routing attacks (asymmetric-traffic correlation, BGP churn, and active BGP hijack/interception) that let an autonomous-system adversary observe both ends of a Tor circuit and deanonymize users.",
+      "importance": "high",
+      "why_relevant": "The explicitly-named RAPTOR suite: asymmetric-routing correlation, BGP churn, and active BGP hijack/interception to position an AS adversary at both ends of a Tor circuit. The reference AS-level attack the prompt calls out.",
+      "why_missing": "Named in the lens as a target; not present in the corpus, which has no network-layer/BGP routing-attack source."
+    },
+    {
+      "name": "DeepCorr: Strong Flow Correlation Attacks on Tor Using Deep Learning (Nasr, Bahramali, Houmansadr, CCS 2018)",
+      "category": "attack \u2014 traffic confirmation / flow correlation",
+      "year": "2018",
+      "url": "https://arxiv.org/abs/1808.07285",
+      "one_line": "A deep-learning flow-correlation attack that links Tor entry and exit flows with ~96% accuracy from ~900 packets, deanonymizing low-latency anonymous routing.",
+      "importance": "high",
+      "why_relevant": "Learns a Tor-specific flow-correlation function from inter-packet delays and sizes, reaching 96% correlation accuracy (vs ~4% for RAPTOR's statistical correlation) on ~900 packets, confirming entry-guard and exit flows belong to the same user. Core deanonymization primitive for low-latency anonymous search.",
+      "why_missing": "No flow-correlation/traffic-confirmation attack is in the corpus; this is the canonical deep-learning escalation beyond RAPTOR."
+    },
+    {
+      "name": "DeepCoFFEA: Improved Flow Correlation Attacks on Tor via Metric Learning and Amplification (Oh, Yang, Hopper, et al., IEEE S&P 2022)",
+      "category": "attack \u2014 scalable traffic confirmation / flow correlation",
+      "year": "2022",
+      "url": "https://ieeexplore.ieee.org/document/9833801/",
+      "one_line": "A deep-learning flow-correlation (end-to-end traffic-confirmation) attack on Tor that uses paired feature-embedding networks plus an amplification step to defeat the O(N^2) base-rate problem, reaching ~93% TPR at high precision with two orders of magnitude speedup over prior work.",
+      "importance": "med",
+      "why_relevant": "Solves the O(N^2) pairwise scaling problem of prior flow-correlation attacks via feature-embedding networks + amplification, hitting 93% TPR at high precision and showing lightweight defenses don't stop it. State-of-the-art end-to-end correlation threat for anonymous-search traffic.",
+      "why_missing": "Modern (post-DeepCorr) confirmation attack absent from corpus; demonstrates current feasibility, not just historical."
+    },
+    {
+      "name": "A Face Is Exposed for AOL Searcher No. 4417749 (Barbaro & Zeller, New York Times, 2006)",
+      "category": "attack \u2014 query-log deanonymization",
+      "year": "2006",
+      "url": "https://www.nytimes.com/2006/08/09/technology/09aol.html",
+      "one_line": "The 2006 NYT story reidentifying AOL searcher No. 4417749 as Thelma Arnold from her pseudonymized query logs, proving query content alone is a fingerprint even when IP/identity is stripped.",
+      "importance": "high",
+      "why_relevant": "The landmark real-world query-log reidentification: pseudonymized AOL search logs were linked to named individual Thelma Arnold in days. Shows that unlinking IP is insufficient \u2014 query content itself is a fingerprint, motivating query-unlinkability threat models.",
+      "why_missing": "Corpus has search-engine mechanisms but no query-log deanonymization case (the prompt explicitly asks for it)."
+    },
+    {
+      "name": "Statistical Disclosure Attacks (George Danezis, SEC/IFIP 2003)",
+      "category": "attack \u2014 mixnet intersection / statistical disclosure",
+      "year": "2003",
+      "url": "http://www0.cs.ucl.ac.uk/staff/G.Danezis/papers/StatDisclosure.pdf",
+      "one_line": "Danezis's 2003 statistical disclosure attack is a computationally efficient long-term intersection attack that statistically links a persistent user to their correspondents by observing mix-system sender/recipient activity across many rounds.",
+      "importance": "med",
+      "why_relevant": "Founding long-term intersection attack on mix-based anonymity: by intersecting the sets of senders active when a recipient gets messages over many rounds, the adversary statistically links a persistent user to their correspondents \u2014 directly attacks mixnet unlinkability over repeated queries.",
+      "why_missing": "Corpus lists mixnet mechanisms (Loopix, Nym, Karaoke, anonbib) but no intersection/statistical-disclosure attack paper, which the prompt explicitly requests."
+    },
+    {
+      "name": "Online Website Fingerprinting: Evaluating Website Fingerprinting Attacks on Tor in the Real World (Cherubin, Jansen, Troncoso, USENIX Security 2022)",
+      "category": "attack \u2014 real-world website fingerprinting evaluation",
+      "year": "2022",
+      "url": "https://www.usenix.org/conference/usenixsecurity22/presentation/cherubin",
+      "one_line": "The first website-fingerprinting attack evaluation on genuine Tor traffic with real ground truth in a true open world, recalibrating how dangerous WF actually is against live Tor browsing/search.",
+      "importance": "high",
+      "why_relevant": "First WF evaluation on genuine Tor traffic with real ground truth in a true open world, recalibrating how dangerous WF actually is for live Tor browsing/search. Critical threat-model correction to lab-optimistic WF claims.",
+      "why_missing": "Corpus lacks any WF attack and especially its realistic real-world evaluation; complements the Deep Fingerprinting lab result with field measurement."
+    },
+    {
+      "name": "Tik-Tok: The Utility of Packet Timing in Website Fingerprinting Attacks (Rahman, Sirinam, Mathews, Gangadhara, Wright, PETS 2020)",
+      "category": "attack \u2014 timing-based website fingerprinting",
+      "year": "2020",
+      "url": "https://petsymposium.org/popets/2020/popets-2020-0043.pdf",
+      "one_line": "A deep-learning website-fingerprinting attack on Tor that isolates packet-timing/burst features, showing timing alone yields 98.4% accuracy on undefended and 93.5% on WTF-PAD-defended Tor traffic.",
+      "importance": "med",
+      "why_relevant": "Shows packet-timing/burst features (long dismissed) materially boost WF, raising accuracy on defended (WTF-PAD) Tor traffic \u2014 directly relevant to whether timing leakage survives padding defenses, which is exactly the OHTTP/relay timing-leakage concern generalized.",
+      "why_missing": "No timing-channel WF attack in corpus; isolates timing (vs size/direction) as an independent leakage axis the corpus does not address."
+    },
+    {
+      "name": "Snoopy: Surpassing the Scalability Bottleneck of Oblivious Storage",
+      "category": "TEE/ORAM (scalable oblivious object store, SOSP'21)",
+      "year": "2021",
+      "url": "https://eprint.iacr.org/2021/1280",
+      "one_line": "A horizontally scalable oblivious (ORAM-style) object store from UC Berkeley/UCSC (SOSP'21, Dauterman, Fang, Demertzis, Crooks, Popa) that uses trusted enclaves plus distributed oblivious load balancing to hide which object a client fetches at high throughput (92K req/s, 13.7x over Obladi).",
+      "importance": "med",
+      "why_relevant": "A horizontally scalable oblivious storage system (uses enclaves + distributed oblivious load balancing) that hides access patterns, i.e. which object a client fetches. The substrate that makes oblivious query/retrieval backends scale to high throughput.",
+      "why_missing": "Corpus has no oblivious-storage scalability work. Snoopy is the state-of-the-art scalable oblivious store underpinning private retrieval and is not listed."
+    },
+    {
+      "name": "Tinfoil (verifiably private AI inference in hardware enclaves)",
+      "category": "deployed product (confidential-computing private LLM/inference + private retrieval)",
+      "year": "2025",
+      "url": "https://tinfoil.sh/technology",
+      "one_line": "A deployed YC-backed service that runs LLM inference and web search inside attested confidential-computing TEEs (AMD SEV-SNP / Intel TDX + NVIDIA confidential GPUs), with a private-web-search design where all users share an enclave-held API key so the search provider sees only the enclave IP, not the user's, plus remote-attestation transparency logs.",
+      "importance": "med",
+      "why_relevant": "A deployed service running LLM inference (and retrieval/search over user data) inside attested confidential-computing enclaves so neither the provider nor cloud sees the query, with remote-attestation proofs. Represents the productized private-search/private-RAG-over-enclaves direction the lens calls out.",
+      "why_missing": "Corpus lists private search engines and OHTTP relays but no TEE/enclave private-inference product. Tinfoil is the most prominent deployed enclave-based private query/inference product and is absent."
+    }
+  ]
+}
