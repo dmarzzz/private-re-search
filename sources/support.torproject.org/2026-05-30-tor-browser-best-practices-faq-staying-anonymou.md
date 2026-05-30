@@ -1,0 +1,43 @@
+---
+url: https://support.torproject.org/faq/staying-anonymous
+title: Tor Browser best practices
+fetched_at: 2026-05-30T15:33:28
+content_hash: sha1:ff35ed06f79485e511b006eca1c3c867f1cef5c3
+extractor: trafilatura
+---
+
+# Am I totally anonymous if I use Tor Browser?
+
+Tor Browser includes many privacy protections, but it cannot guarantee perfect anonymity. Follow these best practices to reduce risks and stay safer online.
+
+Generally it is impossible to have perfect anonymity, even with Tor. Though there are some things you can practice to improve your anonymity while using Tor and offline.
+
+### Use Tor Browser and software specifically configured for Tor
+
+Tor does not protect all of your computer's Internet traffic when you run it. Tor only protects applications that are properly configured to send their Internet traffic through Tor.
+
+### Control what information you provide through web forms
+
+If you visit a website using Tor Browser, they don't know who you are or your true location. Unfortunately many sites ask for more personal information than they need through web forms. If you sign in to that website, they still don't know your location but they know who you are. Further, if you provide: name, email, address, phone number, or any other personal information, you are no longer anonymous to that website. The best defense is to be vigilant and extremely cautious when filling out web forms.
+
+### Don't torrent over Tor
+
+Torrent file-sharing applications have been observed to ignore proxy settings and make direct connections even when they are told to use Tor. Even if your torrent application connects only through Tor, you will often send out your real IP address in the tracker GET request, because that's how torrents work. Not only do you [deanonymize your torrent traffic and your other simultaneous Tor web traffic](https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea) this way, you also slow down the entire Tor network for everyone else.
+
+### Don't enable or install browser plugins
+
+Tor Browser will block browser plugins such as Flash, RealPlayer, Quicktime, and others: they can be manipulated into revealing your IP address. Similarly, we do not recommend installing additional addons or plugins into Tor Browser, as these may bypass Tor or otherwise harm your anonymity and privacy.
+
+### Use HTTPS versions of websites
+
+Tor will encrypt your traffic to and within the Tor network, but the encryption of your traffic to the final destination website depends on that website. To help ensure private encryption to websites, Tor Browser includes [HTTPS-Only Mode](https://support.torproject.org/features/secure-connections/) to force the use of HTTPS encryption with websites that support it. However, you should still watch the browser URL bar to ensure that websites you provide sensitive information to display a [padlock](https://support.mozilla.org/en-US/kb/how-do-i-tell-if-my-connection-is-secure) or [onion icon](https://support.torproject.org/features/onion-services/#onion-icon) in the address bar, include **https://** in the URL, and display the proper expected name for the website. Also see EFF's interactive graphic explaining [how Tor and HTTPS relate](https://support.torproject.org/about-tor/security/https-encryption-and-tor/).
+
+### Don't open documents downloaded through Tor while online
+
+Tor Browser will warn you before automatically opening documents that are handled by external applications. **DO NOT IGNORE THIS WARNING**. You should be very careful when downloading documents via Tor (especially DOC and PDF files, unless you use the PDF viewer that's built into Tor Browser) as these documents can contain Internet resources that will be downloaded outside of Tor by the application that opens them. This will reveal your non-Tor IP address. If you must work with files downloaded via Tor, we strongly recommend either using a disconnected computer, or using [dangerzone](https://github.com/firstlookmedia/dangerzone) to create safe PDF files that you can open. Under no circumstances is it safe to use [BitTorrent and Tor](https://blog.torproject.org/blog/bittorrent-over-tor-isnt-good-idea) together, however.
+
+### Find company
+
+Tor tries to prevent attackers from learning what destination websites you connect to. However, by default, it does not prevent somebody watching your Internet traffic from learning that you're using Tor. If this matters to you, you can reduce this risk by configuring Tor to use a bridge rather than connecting directly to the Tor network. Ultimately the best protection is a social approach: the more Tor users there are near you and the more diverse their interests, the less dangerous it will be that you are one of them. Convince other people to use Tor, too!
+
+Be smart and learn more. Understand what Tor does and does not offer. This list of pitfalls isn't complete, and we need your help [identifying and documenting all the issues](https://community.torproject.org/).
