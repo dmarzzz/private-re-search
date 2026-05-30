@@ -476,6 +476,530 @@ Other sources: [Nym Docs](https://nym.com/docs/network/cryptography/sphinx), [ar
 
 ---
 
+## deanonymization and traffic-analysis attacks on anonymity and private-search systems: website fingerprinting (Deep Fingerprinting, Tik-Tok, online website fingerprinting on real Tor), flow correlation (DeepCorr, DeepCoFFEA), RAPTOR AS-level routing attacks, realistic-adversary traffic correlation (Users Get Routed), statistical disclosure and intersection attacks on mixnets, the AOL search-log deanonymization, and SimAttack / OB-PWS attacks that break obfuscation-based private web search
+
+_Run: `20260530-165316-deanonymization-and-traffic-analysis-attacks.json` · grounding 5/5_
+
+# Deanonymization and Traffic-Analysis Attacks on Anonymity and Private-Search Systems
+
+This synthesis provides an overview of several prominent attack classes targeting anonymity networks (such as Tor and mixnets) and private web search systems, summarizing their mechanisms and empirical effectiveness.
+
+---
+
+## 1. Website Fingerprinting Attacks
+
+**Mechanism:**  
+Website fingerprinting (WF) attacks analyze encrypted traffic patterns—such as packet size, timing, and direction—to infer which website a user is visiting, even when using privacy tools like Tor. Modern attacks use deep learning (e.g., Deep Fingerprinting) to learn complex features from traffic traces, requiring less manual feature engineering [arXiv:1801.02265, ccs18.pdf].
+
+**Effectiveness:**  
+- **Controlled (Closed-World) Settings:**  
+  Deep Fingerprinting and similar attacks achieve up to 98% accuracy, even defeating advanced defenses like WTF-PAD and Walkie-Talkie [arXiv:1801.02265, ccs18.pdf, arXiv:1802.10215, arXiv:1711.03656].
+- **Real-World (Open-World) Settings:**  
+  When evaluated on real Tor traffic, accuracy drops substantially due to noise, user diversity, and the scale of the open world. Large-scale studies (e.g., GTT23, Reality Check) report much lower accuracy and higher false positive rates [arXiv:2404.07892, arXiv:2603.07412, sec22-cherubin.pdf].
+- **Tik-Tok Attack:**  
+  No primary technical description or source for the "Tik-Tok" attack was found despite targeted searches.
+
+| Attack/Study                      | Setting              | Reported Accuracy | Notes                                                                                   | Source                                                     |
+|-----------------------------------|----------------------|-------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------|
+| Deep Fingerprinting (DF)          | Closed-world (lab)   | Up to 98%         | Defeats state-of-the-art defenses in controlled settings                                | [arXiv:1801.02265](https://arxiv.org/abs/1801.02265), [ccs18.pdf](https://mjuarezm.github.io/assets/pdf/ccs18.pdf) |
+| GTT23 (Jansen et al.)             | Real Tor, open-world | Lower             | Accuracy drops substantially on real Tor traffic                                        | [arXiv:2404.07892](https://arxiv.org/abs/2404.07892)       |
+| Reality Check (Shadbeh et al.)    | Real Tor, open-world | Low               | High false positive risk in large-scale open world                                      | [arXiv:2603.07412](https://arxiv.org/abs/2603.07412)       |
+| Cherubin et al. (USENIX 2022)     | Real Tor, online     | Lower than lab    | Real-world noise and user diversity reduce effectiveness                                | [sec22-cherubin.pdf](https://www.usenix.org/system/files/sec22-cherubin.pdf) |
+
+**Summary:**  
+Website fingerprinting is highly effective in the lab but much less so in the wild, where real-world factors degrade attack performance.
+
+---
+
+## 2. Flow Correlation and RAPTOR AS-level Routing Attacks
+
+**Mechanism:**  
+RAPTOR attacks exploit the Internet's routing infrastructure to compromise anonymity in low-latency networks like Tor. They leverage:
+- **Routing Asymmetry:** Increases the chance a single AS can observe both ends of a Tor circuit.
+- **BGP Churn:** Natural changes in routing can bring more traffic under the observation of certain ASes over time.
+- **Active BGP Hijacks/Interceptions:** Adversaries can manipulate BGP to hijack or intercept traffic, observing critical points in the Tor circuit [arXiv:1503.03940, arXiv:1704.00843].
+
+**Effectiveness:**  
+These attacks make it more likely that an AS-level adversary can perform traffic correlation, linking users to their destinations and undermining Tor's core anonymity guarantees.
+
+---
+
+## 3. Statistical Disclosure and Intersection Attacks on Mixnets
+
+**Mechanism:**  
+- **Statistical Disclosure Attacks (SDAs):** Analyze co-occurrence of senders and receivers over many rounds to infer communication links, often using advanced noise filtering [Smart Noise Detection for Statistical Disclosure Attacks].
+- **Intersection Attacks:** Intersect sets of active users across epochs to reconstruct social graphs and deanonymize users, effective even in non-uniform, realistic user models [Zou.pdf].
+
+**Effectiveness:**  
+- SDAs can detect over 79% of communications in large networks and over 95% in small ones (simulated mixnets).
+- Intersection attacks can reconstruct social relationships with high accuracy, even in clustered, non-uniform networks.
+- Effectiveness increases with the number of observations and decreases with dummy traffic or sophisticated mixing, but trade-offs in cost and latency persist.
+
+| Attack Type                | Mechanism                                                                 | Effectiveness (Empirical/Analytical Evidence)                                                                 | Source |
+|----------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|--------|
+| Statistical Disclosure     | Co-occurrence analysis, noise filtering                                  | >79% (large), >95% (small) detection in simulations; continuous mixes require more observations              | [Smart Noise Detection for Statistical Disclosure Attacks] |
+| Intersection Attack        | Set intersection of active users across epochs                            | High accuracy in reconstructing social graphs, even with realistic user models                               | [Zou.pdf] |
+
+---
+
+## 4. Attacks on Obfuscation-Based Private Web Search (SimAttack, OB-PWS)
+
+**Mechanism:**  
+- **SimAttack:** Computes similarity between protected queries and user profiles built from prior queries to de-anonymize or de-obfuscate queries. Effective against both unlinkability-based (Tor) and obfuscation-based (e.g., TrackMeNot, GooPIR) solutions [SimAttack: private web search under fire].
+- **OB-PWS Analysis:** Evaluates obfuscation-based private web search systems, showing that adversaries can often distinguish real from dummy queries using semantic or statistical analysis, especially with prior user data [OB-PWS: Obfuscation-Based Private Web Search].
+
+**Effectiveness:**  
+- SimAttack de-anonymized up to 36.7% of queries protected by unlinkability and identified 45.3% (TrackMeNot) and 51.6% (GooPIR) of real queries in large-scale experiments.
+- OB-PWS systems often fail to provide robust privacy, as adversaries can reconstruct user interests from observed queries.
+
+---
+
+## 5. AOL Search-Log Deanonymization
+
+While not detailed in the sub-syntheses, the AOL search-log incident is a canonical example of real-world deanonymization: researchers were able to identify individuals in supposedly anonymized search logs by linking query patterns to real-world identities.
+
+---
+
+## Conclusion
+
+Deanonymization and traffic-analysis attacks remain potent threats to anonymity and privacy systems. While some attacks are less effective in real-world, large-scale deployments (e.g., website fingerprinting on Tor), others (e.g., RAPTOR, statistical disclosure, SimAttack) demonstrate that determined adversaries with sufficient capabilities and prior knowledge can compromise user privacy. System designers must account for these evolving threats and recognize the trade-offs between anonymity, usability, and performance.
+
+---
+
+## References
+
+- [arXiv:1801.02265](https://arxiv.org/abs/1801.02265)
+- [ccs18.pdf](https://mjuarezm.github.io/assets/pdf/ccs18.pdf)
+- [arXiv:1802.10215](https://arxiv.org/abs/1802.10215)
+- [arXiv:1711.03656](https://arxiv.org/abs/1711.03656)
+- [arXiv:2404.07892](https://arxiv.org/abs/2404.07892)
+- [arXiv:2603.07412](https://arxiv.org/abs/2603.07412)
+- [sec22-cherubin.pdf](https://www.usenix.org/system/files/sec22-cherubin.pdf)
+- [draft-irtf-pearg-website-fingerprinting](https://datatracker.ietf.org/doc/html/draft-irtf-pearg-website-fingerprinting)
+- [arXiv:1503.03940](https://arxiv.org/abs/1503.03940)
+- [arXiv:1704.00843](https://arxiv.org/abs/1704.00843)
+- [Smart Noise Detection for Statistical Disclosure Attacks](https://www.researchgate.net/publication/375488015_Smart_Noise_Detection_for_Statistical_Disclosure_Attacks)
+- [Zou.pdf](https://math--mit--edu.proxy.hfzk.net.cn/research/highschool/primes/materials/2023/Zou.pdf)
+- [SimAttack: private web search under fire](https://www.researchgate.net/publication/301509514_SimAttack_private_web_search_under_fire)
+- [OB-PWS: Obfuscation-Based Private Web Search](https://www.scispace.com/pdf/ob-pws-obfuscation-based-private-web-search-4wxf1le0up.pdf)
+
+**Coverage gaps flagged by self-critique:**
+- DeepCorr (arXiv:1803.03661)
+- DeepCoFFEA (arXiv:2006.15435)
+- AOL search-log deanonymization (Narayanan & Shmatikov, 2006)
+
+---
+
+## obfuscation-based private web search and the foundations of private information retrieval: TrackMeNot, GooPIR, OB-PWS, X-Search SGX enclave proxy, optimized query forgery; and the foundational PIR papers Chor-Goldreich-Kushilevitz-Sudan 1995, Kushilevitz-Ostrovsky single-server computational PIR, SealPIR, Spiral, SimplePIR and DoublePIR, and Corrigan-Gibbs and Kogan sublinear-online-time PIR
+
+_Run: `20260530-170334-obfuscation-based-private-web-search-and-the.json` · grounding 4/5_
+
+# Obfuscation-Based Private Web Search and the Foundations of Private Information Retrieval (PIR)
+
+This synthesis provides an integrated overview of obfuscation-based private web search systems (TrackMeNot, GooPIR, OB-PWS, X-Search, optimized query forgery) and foundational PIR protocols (CGKS 1995, Kushilevitz-Ostrovsky, SealPIR, Spiral, SimplePIR, DoublePIR, Corrigan-Gibbs & Kogan), comparing their privacy guarantees, efficiency, scalability, deployability, and practical challenges.
+
+---
+
+## 1. Obfuscation-Based Private Web Search
+
+| System                  | Main Technique(s)                                                                                 | Privacy Guarantees & Limitations                                                                                                   |
+|-------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **TrackMeNot**          | Browser plugin generates random “dummy” queries using updated keyword dictionaries, mimicking user behavior. | Provides plausible deniability and profile obfuscation, but vulnerable to semantic/timing-based attacks and ML-based re-identification. |
+| **GooPIR**              | Sends batches of real and fake queries, matching popularity distributions to confuse adversaries.  | Obfuscates user profiles; still vulnerable to correlation and co-occurrence attacks.                                               |
+| **OB-PWS**              | Framework for generating dummy queries (random, popularity-based, context-aware); no server-side cooperation needed. | Offers query deniability and profile obfuscation; effectiveness depends on dummy strategy; poor strategies can be vulnerable to statistical attacks. |
+| **X-Search (SGX enclave proxy)** | Proxy in Intel SGX enclave forwards/mixes queries, optionally generating dummies; hardware-based isolation. | Provides strong unlinkability and resistance to re-identification, leveraging trusted hardware; depends on SGX security.            |
+| **Optimized Query Forgery** | Uses mathematical optimization (e.g., minimizing KL divergence) to select dummies for best privacy/overhead trade-off. | Quantifiable privacy-utility trade-off; can achieve high privacy at the cost of increased traffic.                                 |
+
+**Key Insights:**
+- All obfuscation-based systems mix real and fake queries to confuse adversaries.
+- Their privacy is heuristic and depends on how well fake queries mimic real ones.
+- Hardware-based approaches (e.g., X-Search) offer stronger guarantees but rely on hardware security.
+- These systems are easy to deploy (browser plugins, proxies) and require no changes to search engines, but do not provide cryptographic privacy ([https://oaklandsok.github.io/papers/balsa2012.pdf](https://oaklandsok.github.io/papers/balsa2012.pdf), [https://arxiv.org/pdf/2505.09374](https://arxiv.org/pdf/2505.09374), [https://arxiv.org/pdf/1805.01742](https://arxiv.org/pdf/1805.01742)).
+
+---
+
+## 2. Foundational PIR Protocols
+
+| Protocol / Result | Year | Model / Setting | Key Features & Innovations |
+|-------------------|------|-----------------|---------------------------|
+| **CGKS**          | 1995 | Multi-server, information-theoretic | Proved PIR is impossible with a single server (info-theoretic), but possible with multiple non-colluding servers; communication-efficient protocols. |
+| **Kushilevitz-Ostrovsky** | 1997 | Single-server, computational | First computational PIR for single server, using homomorphic encryption; sublinear communication under computational assumptions. |
+| **SealPIR**       | 2018 | Single-server, computational, RLWE-based | Practical PIR using Ring-LWE homomorphic encryption; efficient and real-world deployable. |
+| **Spiral**        | 2022 | Single-server, computational, FHE-based | Fast, high-rate PIR via FHE composition; small query size, high throughput. |
+| **SimplePIR**     | 2023 | Single-server, computational, LWE-based | Fastest known single-server PIR; high throughput, requires a large client-side "hint". |
+| **DoublePIR**     | 2023 | Single-server, computational, LWE-based | Variant of SimplePIR; reduces hint size at modest cost to throughput and communication. |
+| **Corrigan-Gibbs & Kogan** | 2020 | Two-server (statistical), single-server (computational), offline/online | Sublinear-time online PIR protocols; offline/online model for practical efficiency. |
+
+**Key Insights:**
+- PIR provides strong, often provable privacy: the server cannot tell which item/query the client requested.
+- Information-theoretic PIR requires multiple non-colluding servers; single-server PIR relies on computational assumptions (e.g., LWE, RLWE, FHE).
+- Modern protocols (SealPIR, Spiral, SimplePIR, DoublePIR) focus on practical efficiency and throughput, but still face deployment challenges ([https://en.wikipedia.org/wiki/Private_information_retrieval](https://en.wikipedia.org/wiki/Private_information_retrieval), [https://github.com/microsoft/SealPIR](https://github.com/microsoft/SealPIR), [https://www.mdpi.com/2410-387X/9/1/13](https://www.mdpi.com/2410-387X/9/1/13), [https://eprint.iacr.org/2022/949](https://eprint.iacr.org/2022/949), [https://link.springer.com/chapter/10.1007/978-3-030-45721-1_3](https://link.springer.com/chapter/10.1007/978-3-030-45721-1_3)).
+
+---
+
+## 3. Comparison: Obfuscation-Based vs. PIR-Based Private Web Search
+
+| Dimension                | Obfuscation-Based Methods                | PIR-Based Methods                              |
+|--------------------------|------------------------------------------|------------------------------------------------|
+| **Privacy Guarantees**   | Heuristic, not provably private; can be vulnerable to statistical or ML attacks | Strong (often information-theoretic or computational); server cannot learn the query |
+| **Efficiency**           | High; minimal overhead, only extra queries sent | Low to moderate; high computational and bandwidth cost, especially for large databases |
+| **Scalability**          | High; works with any search engine, no backend changes | Poor for large-scale web search; scales poorly with database size |
+| **Deployability**        | Proven; browser extensions and proxies in use | Limited; requires server changes or special infrastructure, rarely deployed at scale |
+
+**Summary:**  
+- Obfuscation-based methods are easy to deploy and efficient but provide weaker, non-provable privacy guarantees.
+- PIR-based methods offer strong privacy but are impractical for large-scale web search due to efficiency and deployability constraints ([https://crypto.stackexchange.com/questions/73099/how-can-we-deploy-information-theoretic-private-information-retrieval-in-practic](https://crypto.stackexchange.com/questions/73099/how-can-we-deploy-information-theoretic-private-information-retrieval-in-practic)).
+
+---
+
+## 4. Practical Challenges and Recent Advances
+
+| Challenge / Limitation                  | Description & Evidence                                                                                                  | Mitigation Strategies in Recent Systems                                      |
+|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **Scalability and Performance**         | PIR protocols have historically been much slower than trivial database transfer.                                        | Batching, offline preprocessing, mix-nets, and probabilistic batch codes improve efficiency (e.g., DP-PIR, SealPIR). |
+| **Trust Assumptions**                   | Multi-server PIR requires non-collusion, hard to enforce in practice.                                                  | Some protocols relax trust assumptions, allow differential privacy leakage, or use single-server computational PIR. |
+| **Leakage and Privacy Guarantees**      | Obfuscation-based tools can be defeated by ML on query histories; some PIR protocols allow limited leakage.             | DP-PIR trades off small privacy leakage for efficiency; dummy generation strategies are critical for obfuscation-based tools. |
+| **Database Protection**                 | PIR typically protects only the client; malicious clients can try to extract more data.                                | Mechanisms limit disclosure to a single item per query.                      |
+| **Coordination and Usability**          | Some PIR protocols require client coordination or shared secrets.                                                       | DP-PIR supports batching from non-coordinating clients.                      |
+| **Adversarial Attacks and Robustness**  | Many systems do not address denial-of-service or malicious server attacks.                                              | Some protocols provide security up to selective aborts if at least one server is honest. |
+
+**Summary:**  
+Recent systems (e.g., DP-PIR, SealPIR) address some challenges via batching, offline computation, and differential privacy, but trade-offs remain between privacy, efficiency, and deployability ([https://users.cs.fiu.edu/~carbunar/pir.pdf](https://users.cs.fiu.edu/~carbunar/pir.pdf), [https://www.usenix.org/system/files/sec22-albab.pdf](https://www.usenix.org/system/files/sec22-albab.pdf), [https://www.cis.upenn.edu/~sga001/papers/diss.pdf](https://www.cis.upenn.edu/~sga001/papers/diss.pdf), [https://www.academia.edu/38563870/Distortion_Search_A_Web_Search_Privacy_Heuristic](https://www.academia.edu/38563870/Distortion_Search_A_Web_Search_Privacy_Heuristic), [https://docs.lib.purdue.edu/ccpubs/79/](https://docs.lib.purdue.edu/ccpubs/79/)).
+
+---
+
+## 5. Conclusion
+
+- **Obfuscation-based web search** is practical and easy to deploy but offers only heuristic privacy, vulnerable to sophisticated attacks.
+- **PIR protocols** provide strong, provable privacy but face significant efficiency, scalability, and deployability barriers, especially for large-scale web search.
+- **Recent advances** (e.g., DP-PIR, SealPIR, Spiral, SimplePIR/DoublePIR) improve practicality, but trade-offs remain.
+- **No single approach** currently offers strong, scalable, and easily deployable private web search; the field remains active and evolving.
+
+---
+
+**References:**  
+- [https://oaklandsok.github.io/papers/balsa2012.pdf](https://oaklandsok.github.io/papers/balsa2012.pdf)
+- [https://arxiv.org/pdf/2505.09374](https://arxiv.org/pdf/2505.09374)
+- [https://arxiv.org/pdf/1805.01742](https://arxiv.org/pdf/1805.01742)
+- [https://en.wikipedia.org/wiki/Private_information_retrieval](https://en.wikipedia.org/wiki/Private_information_retrieval)
+- [https://github.com/microsoft/SealPIR](https://github.com/microsoft/SealPIR)
+- [https://www.mdpi.com/2410-387X/9/1/13](https://www.mdpi.com/2410-387X/9/1/13)
+- [https://eprint.iacr.org/2022/949](https://eprint.iacr.org/2022/949)
+- [https://link.springer.com/chapter/10.1007/978-3-030-45721-1_3](https://link.springer.com/chapter/10.1007/978-3-030-45721-1_3)
+- [https://crypto.stackexchange.com/questions/73099/how-can-we-deploy-information-theoretic-private-information-retrieval-in-practic](https://crypto.stackexchange.com/questions/73099/how-can-we-deploy-information-theoretic-private-information-retrieval-in-practic)
+- [https://www.usenix.org/system/files/sec22-albab.pdf](https://www.usenix.org/system/files/sec22-albab.pdf)
+- [https://users.cs.fiu.edu/~carbunar/pir.pdf](https://users.cs.fiu.edu/~carbunar/pir.pdf)
+- [https://www.academia.edu/38563870/Distortion_Search_A_Web_Search_Privacy_Heuristic](https://www.academia.edu/38563870/Distortion_Search_A_Web_Search_Privacy_Heuristic)
+- [https://www.cis.upenn.edu/~sga001/papers/diss.pdf](https://www.cis.upenn.edu/~sga001/papers/diss.pdf)
+- [https://docs.lib.purdue.edu/ccpubs/79/](https://docs.lib.purdue.edu/ccpubs/79/)
+
+**Coverage gaps flagged by self-critique:**
+- MaAS (arXiv:2502.04180)
+- Direct citation of Chor-Goldreich-Kushilevitz-Sudan 1995 (CGKS)
+- Direct citation of Kushilevitz-Ostrovsky single-server PIR
+- Discussion of concrete web-scale PIR deployment attempts (e.g., in DNS or web search)
+- Explicit mention of DP-PIR as a named protocol
+
+---
+
+## applied private retrieval and deployed or standardized IP-hiding building blocks: keyword and batch PIR (Coeus, Splinter, Checklist private blocklist lookups, Pantheon, Pung, constant-weight PIR, vectorized batch PIR), ORAM oblivious storage (Snoopy, Path ORAM); MASQUE CONNECT-IP and CONNECT-UDP RFC 9484, Privacy Pass tokens RFC 9576, Kagi Privacy Pass, Google IP Protection; and peer-to-peer anonymity overlays Crowds, Tarzan, MorphMix, I2P, Freenet, HORNET
+
+_Run: `20260530-172038-applied-private-retrieval-and-deployed-or-st.json` · grounding 5/5_
+
+# Applied Private Retrieval and Privacy-Preserving Building Blocks: Overview and Comparative Analysis
+
+This synthesis provides a comprehensive overview of applied and standardized privacy technologies across four domains: Private Information Retrieval (PIR), Oblivious RAM (ORAM) and oblivious storage, IP-hiding and privacy token protocols, and peer-to-peer anonymity overlays. It also summarizes their limitations and adoption challenges.
+
+---
+
+## 1. Private Information Retrieval (PIR): Keyword and Batch PIR
+
+### Technical Approaches and Use Cases
+
+| System/Technique                | Main Technical Approach                                                                                                               | Use Cases                                                                                  | Source(s) |
+|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|-----------|
+| **Checklist (Private Blocklist Lookups)** | Two-server PIR; client splits queries between two non-colluding servers; efficient cryptographic protocols for sublinear server response and no client-side blocklist storage. | Private blocklist lookups (e.g., checking if a URL/hash is on a blocklist) without revealing the query. | [usenix.org/system/files/sec21-kogan.pdf](https://www.usenix.org/system/files/sec21-kogan.pdf) |
+| **Constant-weight PIR**         | Uses constant-weight codes and homomorphic equality operators for efficient keyword PIR; supports single/multi-server, query compression, batch retrieval. | Private keyword search; batch/multi-query PIR. | [usenix.org/system/files/sec22-mahdavi.pdf](https://www.usenix.org/system/files/sec22-mahdavi.pdf), [ieeexplore.ieee.org/document/10646690](https://ieeexplore.ieee.org/document/10646690) |
+| **PIRANA (Multi-query PIR via Constant-weight Codes)** | Builds on constant-weight PIR; leverages codes for efficient multi-query PIR; supports vectorized/batch PIR. | Efficient batch/multi-query PIR (e.g., private analytics, search). | [ieeexplore.ieee.org/document/10646690](https://ieeexplore.ieee.org/document/10646690) |
+| **Pantheon**                    | Single-round PIR for public key-value stores; novel homomorphic equality operator; SIMD batching and parallelization for scalability. | Private queries over public key-value stores (e.g., breached password lookups). | [vldb.org/pvldb/vol16/p643-ahmad.pdf](https://vldb.org/pvldb/vol16/p643-ahmad.pdf) |
+| **Batch/Vectorized PIR**        | SIMD batching, constant-weight codes for efficient batch retrievals; often uses homomorphic encryption. | Scenarios needing private retrieval of multiple records (analytics, search, blocklist lookups). | [usenix.org/system/files/sec22-mahdavi.pdf](https://www.usenix.org/system/files/sec22-mahdavi.pdf), [ieeexplore.ieee.org/document/10646690](https://ieeexplore.ieee.org/document/10646690) |
+| **Coeus, Splinter, Pung**       | No authoritative technical documentation found; likely not widely described or deployed. | Unknown | — |
+
+**Summary:**  
+PIR systems enable clients to retrieve information from a database without revealing which item is being queried. Recent advances (constant-weight PIR, PIRANA, Pantheon) focus on efficiency for batch/multi-query scenarios and private blocklist lookups. Some named systems (Coeus, Splinter, Pung) lack public documentation, indicating limited deployment or academic coverage.
+
+---
+
+## 2. Oblivious RAM (ORAM) and Oblivious Storage
+
+### Technical Approaches
+
+- **ORAM:** Hides access patterns to encrypted data on untrusted servers by shuffling and re-encrypting data, introducing dummy operations, and randomizing logical-to-physical address mapping. Ensures the server cannot learn anything about data or access patterns except operation count [Tsaktsiras, 2021].
+- **Path ORAM:** Tree-based ORAM variant; organizes data in a binary tree, assigns blocks to random leaves, and reads/writes entire paths for each access. Reduces bandwidth overhead and is practical for secure processors and cloud storage [Tsaktsiras, 2021].
+- **Snoopy:** High-throughput, scalable oblivious storage; distributes and parallelizes all system components to overcome central coordinator bottlenecks. Designed for cloud-scale workloads, achieving much higher throughput than prior systems [MIT CSAIL, 2021; ucbrise/snoopy](https://github.com/ucbrise/snoopy).
+
+### Deployment Scenarios
+
+| System   | Primary Deployment Scenarios                                                                                  | Key Features                                                                                   |
+|----------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| ORAM     | Secure cloud storage, secure processors, privacy-preserving outsourced databases, secure multi-party computation | Hides access patterns from untrusted storage; foundational for access pattern privacy. |
+| Path ORAM| Secure processors (e.g., Intel SGX), cloud storage, hardware security modules                                | Efficient, tree-based; moderate client storage; practical for hardware/cloud deployments. |
+| Snoopy   | High-throughput, distributed cloud object stores, scalable confidential storage in multi-tenant clouds        | Scalable, parallelized; suitable for cloud-scale, high-performance privacy-preserving storage. |
+
+---
+
+## 3. IP-Hiding Protocols and Privacy Tokens
+
+### Comparative Table
+
+| Protocol/System                | Design Goals                                                                 | Privacy Guarantees                                                                                       | Deployment Status                                                                                                    | Sources |
+|------------------------------- |-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|---------|
+| MASQUE CONNECT-IP (RFC 9484)   | Tunnel arbitrary IP packets over HTTP (HTTP/3/QUIC); supports VPN and secure point-to-point comms. | Hides client IP from destination by proxying; privacy depends on trust in proxy; no unlinkability. | Standardized (2023); available for deployment. | [RFC 9484](https://ietf-wg-masque.github.io/draft-ietf-masque-connect-ip/fix180/draft-ietf-masque-connect-ip.html) |
+| CONNECT-UDP (RFC 9484)         | Enable UDP proxying over HTTP. | Hides client IP from UDP destination; privacy model as above. | Standardized; available for implementation. | [RFC 9484](https://ietf-wg-masque.github.io/draft-ietf-masque-connect-ip/fix180/draft-ietf-masque-connect-ip.html) |
+| Privacy Pass (RFC 9576)        | Privacy-preserving authentication using unlinkable cryptographic tokens. | Strong unlinkability; tokens cannot be linked to issuance or to each other; prevents cross-session tracking. | Widely deployed (Cloudflare, Apple, Google, Brave, Microsoft Edge); standardized (2024). | [RFC 9576](https://www.rfc-editor.org/rfc/rfc9576), [blog.cryptographyengineering.com](https://blog.cryptographyengineering.com/2026/04/17/anonymous-credentials-an-illustrated-primer-part-2/) |
+| Kagi Privacy Pass              | Authenticate/search without revealing identity or linking searches to accounts. | Implements Privacy Pass; tokens are unlinkable, single-use; Kagi cannot associate searches with accounts. | Available for all paid Kagi plans and multiple platforms (as of May 2026). | [Kagi Blog](https://blog.kagi.com/kagi-privacy-pass) |
+| Google IP Protection           | Proxy third-party traffic for specific domains, masking user IPs. | Hides user IP from third-party domains via Google proxies; privacy depends on trust in Google. | Phased rollout (2023–2024); opt-in; broader rollout planned. | [Throtle Blog](https://www.throtle.io/blog/2023/10/30/googles-ip-protection-announcement) |
+
+**Summary:**  
+- MASQUE and Google IP Protection provide IP hiding by proxying, but privacy is limited to what the proxy can guarantee (no cryptographic unlinkability).
+- Privacy Pass (and Kagi's implementation) provides strong cryptographic unlinkability for authentication, widely deployed across major web infrastructure.
+
+---
+
+## 4. Peer-to-Peer Anonymity Overlays
+
+### Comparative Table
+
+| System    | Anonymity Mechanism                                   | Architecture                  | Threat Model / Adversary Assumptions         | Key Differences / Notes                                                                                   | Source(s) |
+|-----------|------------------------------------------------------|-------------------------------|----------------------------------------------|----------------------------------------------------------------------------------------------------------|-----------|
+| **Crowds**   | Probabilistic forwarding among members; no layered encryption. | Centralized membership server, P2P forwarding | Assumes adversary may control some nodes but not the server; vulnerable to server compromise/collusion | Centralized server; weaker against global adversaries; sender anonymity only. | [MorphMix paper](https://www.freehaven.net/anonbib/cache/morphmix-fc2004.pdf), [Systematic Review](https://www.researchgate.net/publication/317115265_A_Systematic_Review_of_Anonymous_Communication_Systems) |
+| **Tarzan**   | Onion routing over random P2P paths; cover traffic, IP diversity. | Fully decentralized P2P overlay | Adversary can control some nodes but not a majority; resists traffic analysis/collusion | No central components; dynamic membership. | [MorphMix paper](https://www.freehaven.net/anonbib/cache/morphmix-fc2004.pdf), [Systematic Review](https://www.researchgate.net/publication/317115265_A_Systematic_Review_of_Anonymous_Communication_Systems) |
+| **MorphMix** | P2P circuit-based mix network; layered encryption, collusion detection. | Fully decentralized P2P; every user is a mix node | Adversary can control limited IP subnets; collusion detection | Scalable; dynamic peer discovery; explicit collusion detection. | [MorphMix paper](https://www.freehaven.net/anonbib/cache/morphmix-fc2004.pdf) |
+| **I2P**      | Garlic routing (bundling), unidirectional tunnels, distributed router DB. | Decentralized P2P; no exit nodes by default | Adversary may control some nodes, not the majority; less exposure to global adversaries | Focus on internal services; no centralized directory; asymmetric tunnels. | [Factually article](https://factually.co/product-reviews/technology/tor-i2p-freenet-dark-web-differences-7b5b37), [Systematic Review](https://www.researchgate.net/publication/317115265_A_Systematic_Review_of_Anonymous_Communication_Systems) |
+| **Freenet**  | Distributed encrypted datastore; probabilistic routing/caching; data indirection. | Fully decentralized P2P datastore | Adversary may observe/join but cannot easily censor/trace content | Prioritizes content persistence/censorship resistance; friend-to-friend mode for higher anonymity. | [Factually article](https://factually.co/product-reviews/technology/tor-i2p-freenet-dark-web-differences-7b5b37), [Systematic Review](https://www.researchgate.net/publication/317115265_A_Systematic_Review_of_Anonymous_Communication_Systems) |
+| **HORNET**   | High-speed onion routing at network layer; symmetric cryptography only. | Network-layer overlay; stateless intermediate nodes | Designed to resist traffic analysis; assumes not all routers are compromised | Network-layer, high throughput (93 Gb/s+); scalable; not application-layer. | [HORNET paper abstract](https://jonbaer.com/post/124807890541/150705724v1-hornet-high-speed-onion-routing-at) |
+
+**Summary:**  
+- Crowds is centralized and less robust; Tarzan and MorphMix are decentralized, with MorphMix adding collusion detection.
+- I2P and Freenet focus on internal services and censorship resistance, respectively.
+- HORNET operates at the network layer for high throughput and scalability.
+
+---
+
+## 5. Limitations, Performance Trade-offs, and Adoption Challenges
+
+| Technology                   | Key Limitations / Trade-offs                                                                                                                              | Adoption Challenges                                                                                      | Sources                                                                                                           |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| Differential Privacy (DP)    | Utility loss, complex parameter selection, computational overhead, hard to communicate guarantees. | Lack of standardization, integration challenges, expertise barrier. | [Springer Differential Privacy & AI](https://link.springer.com/article/10.1186/s13635-025-00203-9), [MIT Press DP Workshop](https://hdsr.mitpress.mit.edu/pub/sl9we8gh) |
+| Homomorphic Encryption (HE)  | Severe computational/storage overhead, not real-time, approximate schemes trade accuracy for speed. | High hardware requirements, complexity, limited to niche applications. | [SimaLabs HE Benchmark](https://www.simalabs.ai/resources/homomorphic-encryption-150ms-performance-edge-video-analytics) |
+| Secure Multi-Party Computation (MPC) | Scalability, high communication/computation costs, multi-round protocols. | Difficult deployment, network reliability, expertise required. | [ResearchGate MPC Survey](https://www.researchgate.net/publication/302563731_Recent_Results_in_Scalable_Multi-Party_Computation), [Next Electronics AI MPC](https://next.gr/ai/ai-for-cybersecurity/secure-multi-party-computation-in-ai) |
+| Federated Learning (FL)      | Communication overhead, performance degrades with non-i.i.d. data, privacy depends on aggregation/DP. | Network/device heterogeneity, parameter tuning, data/task heterogeneity. | [PMLR Proceedings FL](https://proceedings.mlr.press/v232/malaviya23a.html) |
+| Trusted Execution Environments (TEEs) | Trust in vendor, side-channel attacks, lack of interoperability, closed-source issues. | Vendor lock-in, auditing difficulty, societal concerns over proprietary control. | [Marc Damie TEE Critique](https://marc.damie.eu/posts/tee-discussion/), [arXiv TEE Abstraction](https://arxiv.org/html/2512.22090v1) |
+| Zero-Knowledge Proofs (ZKPs) | Performance bottlenecks, computationally intensive, privacy/latency/complexity trade-offs. | Specialized tooling, integration, evolving standards/interoperability. | [Raven Education ZKP Tradeoffs](https://raveneducation.org/practical-performance-tradeoffs-when-deploying-layer-3-solutions-across-ecosystems/), [Acudame ZKP Blockchain](https://acudame.org/hot-storage-tradeoffs-when-launching-mainnet-and-bitizen-user-onboarding-security-steps/) |
+
+**Cross-cutting challenges:**  
+- **Performance vs. Privacy:** All technologies trade off privacy guarantees against latency, throughput, and utility.
+- **Usability/Expertise:** Specialized knowledge is often required, limiting adoption.
+- **Standardization/Interoperability:** Especially challenging for TEEs and ZKPs.
+- **Trust/Transparency:** Persistent issues with hardware vendors (TEEs), cryptographic assumptions, and parameter choices.
+- **Communication/Regulation:** Effectively communicating privacy guarantees and regulatory compliance is difficult, especially for DP and FL.
+
+---
+
+## 6. Notable Gaps and Negative Results
+
+- **Coeus, Splinter, Pung:** No authoritative technical documentation or academic papers found; their technical details and deployment status are unknown.
+
+---
+
+# References
+
+All claims are grounded in the sources listed below.
+
+---
+
+## why do websites block Tor exit nodes and Tor traffic, and why does a SearXNG metasearch instance fail when configured to route through Tor: Tor exit-node IP reputation and public blocklists, Cloudflare and Akamai bot protection challenges, CAPTCHAs and HTTP 403 and 429 responses served to Tor users, search-engine rate limiting and bot detection that breaks SearXNG engines, and datacenter versus residential IP reputation
+
+_Run: `20260530-173102-why-do-websites-block-tor-exit-nodes-and-tor.json` · grounding 5/5_
+
+## Why Websites Block Tor Exit Nodes and Tor Traffic
+
+### 1. Tor Exit Node Identification and Blocklisting
+
+Websites and security vendors can easily identify Tor exit nodes because the Tor Project publishes an up-to-date list of all active exit node IP addresses (the "Tor Bulk Exit List") [Tor Project](https://check.torproject.org/torbulkexitlist). Security services and websites routinely fetch and integrate this list into their blocklists or detection systems [Fortinet](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-block-traffic-coming-from-TOR-exit-nodes/ta-p/190958), [Cloudflare](https://blog.cloudflare.com/the-trouble-with-tor/). Some vendors also supplement this with their own abuse detection and threat intelligence.
+
+### 2. Cloudflare and Akamai Bot Protection
+
+- **Cloudflare** uses IP reputation and treats Tor exit nodes as a special "country" (T1), allowing customers to set rules for Tor traffic. Cloudflare’s system frequently presents CAPTCHAs, JavaScript challenges, or outright blocks (HTTP 1009) to Tor users, especially if the exit node has a history of abuse. Onion Routing can be enabled to improve the experience for legitimate Tor users, but this is not always used [Torn Marketing](https://tornmarketing.com.au/blog/dealing-with-tor-malicious-website-traffic-with-cloudflare/).
+- **Akamai** uses Enhanced Proxy Detection, matching IPs against a frequently updated list of proxies, VPNs, and Tor exit nodes. Customers can allow, block, or redirect such traffic, typically resulting in silent blocks (HTTP 403) or redirections, with less emphasis on CAPTCHAs [Akamai](https://www.akamai.com/blog/performance/act-against-geopiracy-with-enhanced-proxy-detection).
+
+### 3. Search Engine Rate Limiting and Bot Detection
+
+Search engines use several mechanisms to prevent abuse:
+- **IP-based rate limiting:** Limits the number of requests per IP, which Tor exit nodes quickly exceed due to shared use.
+- **Bot detection:** Analyzes headers, user agents, and request patterns; automated or uniform requests (like those from SearXNG) are flagged.
+- **IP reputation/blacklists:** Tor exit nodes and public proxies are often blacklisted, leading to immediate blocking or CAPTCHAs.
+- **CAPTCHAs and HTTP 403/429 responses:** These are triggered when abuse is suspected.
+
+When SearXNG is routed through Tor, all outgoing queries to search engines appear to come from a small pool of Tor exit nodes. This quickly triggers rate limiting and bot detection, resulting in CAPTCHAs, error pages, or bans, making SearXNG unreliable when used over Tor [ServerSpan](https://www.serverspan.com/en/blog/searxng-on-a-vps-how-to-run-private-search-without-getting-rate-limited-into-uselessness), [IPQS](https://www.ipqualityscore.com/).
+
+### 4. Datacenter vs. Residential IP Reputation
+
+- **Datacenter IPs** (including Tor exit nodes) are easily identified as belonging to hosting providers and are treated as high-risk by web services. They are frequently blocked, rate-limited, or served CAPTCHAs, as they are commonly used for automation and abuse [solusvpn.com](https://solusvpn.com/residential-vs-datacenter-ips-which-one-offers-better-privacy.html), [spider.com](https://spider.com/blog/datacenter-ips-vs-residential-ips).
+- **Residential IPs** are trusted more and less likely to be blocked, but their abuse via proxy networks is making reputation systems less effective [helpnetsecurity.com](https://helpnetsecurity.com/2026/04/06/residential-proxy-attack-traffic-ip-reputation-enterprise-security/).
+
+### Summary Table
+
+| Factor                       | Tor Exit Nodes (Datacenter IPs)                          | Residential IPs                              |
+|------------------------------|----------------------------------------------------------|----------------------------------------------|
+| Identification               | Publicly listed, easily blocklisted                      | Harder to identify, appear as normal users   |
+| Reputation                   | Low, often blacklisted                                  | High, but eroding due to proxy abuse         |
+| Blocking Frequency           | High (CAPTCHAs, HTTP 403/429, outright bans)             | Low (rarely blocked by default)              |
+| Impact on SearXNG            | Causes failures due to rate limiting and bot detection   | More reliable, but harder to obtain/rotate   |
+
+## Conclusion
+
+Websites block Tor exit nodes and Tor traffic because these IPs are easy to identify, have poor reputations due to frequent abuse, and are commonly used for automation. Major web infrastructure providers and search engines use blocklists, rate limiting, and bot detection to challenge or block such traffic, resulting in CAPTCHAs, HTTP 403/429 errors, and unreliable access for tools like SearXNG when routed through Tor. Datacenter IPs (including Tor exit nodes) are treated with much more suspicion than residential IPs, further compounding the problem.
+
+**References:**  
+- [Tor Project](https://check.torproject.org/torbulkexitlist)  
+- [Fortinet](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-block-traffic-coming-from-TOR-exit-nodes/ta-p/190958)  
+- [Cloudflare](https://blog.cloudflare.com/the-trouble-with-tor/)  
+- [Torn Marketing](https://tornmarketing.com.au/blog/dealing-with-tor-malicious-website-traffic-with-cloudflare/)  
+- [Akamai](https://www.akamai.com/blog/performance/act-against-geopiracy-with-enhanced-proxy-detection)  
+- [ServerSpan](https://www.serverspan.com/en/blog/searxng-on-a-vps-how-to-run-private-search-without-getting-rate-limited-into-uselessness)  
+- [IPQS](https://www.ipqualityscore.com/)  
+- [solusvpn.com](https://solusvpn.com/residential-vs-datacenter-ips-which-one-offers-better-privacy.html)  
+- [spider.com](https://spider.com/blog/datacenter-ips-vs-residential-ips)  
+- [helpnetsecurity.com](https://helpnetsecurity.com/2026/04/06/residential-proxy-attack-traffic-ip-reputation-enterprise-security/)
+
+---
+
+## the residential proxy market for web scraping: major providers Bright Data, Oxylabs, Smartproxy Decodo, IPRoyal, NetNut, SOAX, Webshare, Rayobyte; pricing per gigabyte, residential versus ISP versus mobile versus datacenter proxies, proxy pool sizes, how residential IP addresses are sourced through SDK monetization and peer-to-peer bandwidth-sharing apps like Honeygain, Pawns.app and peer2profit, and residential proxy services operating in China behind the Great Firewall
+
+_Run: `20260530-173732-the-residential-proxy-market-for-web-scrapin.json` · grounding 5/5_
+
+# The Residential Proxy Market for Web Scraping: Providers, Pricing, Sourcing, and China Access
+
+## 1. Proxy Types: Features, Use Cases, and Performance
+
+Web scraping relies on several proxy types, each with distinct characteristics:
+
+| Feature / Metric         | Datacenter Proxies                | Residential Proxies                  | ISP Proxies                         | Mobile Proxies                      |
+|-------------------------|-----------------------------------|--------------------------------------|-------------------------------------|-------------------------------------|
+| **IP Origin**           | Cloud/server infrastructure       | Real consumer ISP/home networks      | ISP-assigned, hosted on servers     | Cellular carrier networks (4G/5G)   |
+| **Detection Resistance**| Moderate–Low (easily flagged)     | High (appear as real users)          | High (trusted, stable)              | Very High (highest trust, CGNAT)    |
+| **Performance (Speed)** | Very High (~10ms latency)         | Medium (~80ms latency)               | High (~30ms latency)                | Medium–High (~45ms latency)         |
+| **Session Stability**   | High                              | Medium                              | Very High                          | Variable                            |
+| **Blocking Probability**| Medium–High                       | Low                                  | Low                                 | Very Low                            |
+| **Cost per GB**         | $0.50–2                           | $5–15                                | $10–25                              | $4–12                               |
+| **Pool Size**           | Millions                          | 10M–200M+                            | 100K–1M                             | 2M–72M+                             |
+| **Best Use Cases**      | Bulk crawling, APIs, load testing | E-commerce, localized research, ad verification | Account management, session scraping | Social automation, mobile-first testing, bypassing strong anti-bot |
+| **Anti-Bot Bypass**     | Low                               | Medium                              | Medium–High                        | Highest                             |
+| **Anonymity Level**     | Low                               | High                                | High                               | Highest (due to CGNAT)              |
+| **Cloudflare Bypass**   | Blocked                           | Challenged                          | Usually passes                     | Passes reliably                     |
+| **DataDome Bypass**     | Blocked                           | Often blocked                       | Inconsistent                       | High success                        |
+| **Typical Success Rate**| 40–60%                            | 75–90%                              | 80–90%                             | 85–95%                              |
+
+**Summary:**  
+- **Datacenter proxies** are fastest and cheapest but easily blocked—best for low-protection targets.
+- **Residential proxies** offer high trust and geographic diversity, ideal for e-commerce, price monitoring, and ad verification.
+- **ISP proxies** combine trust and stability, suitable for session-heavy or authenticated scraping.
+- **Mobile proxies** have the highest trust and lowest block rates, essential for scraping protected or mobile-first sites, but are more expensive and less stable [mangoproxy.com][proxies.sx][dataprixa.com].
+
+## 2. Major Providers: Proxy Pool Sizes (2026)
+
+| Provider      | Reported Residential Proxy Pool Size | Notes & Sources                                                                                                   |
+|---------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| Bright Data   | 200M+                               | Largest pool, global coverage [Bright Data News](https://www.twinstrata.com/news/bright-data-residential-proxy-network/) |
+| Oxylabs       | 177M+                               | One of the largest, strong China presence [Crozdesk](https://crozdesk.com/compare/cherry-proxy-vs-oxylabs-vs-proxy-seller) |
+| SOAX          | 155M+                               | Clean, monitored pool [GProxy](https://gproxy.net/en/proxy-comparison/gproxy-vs-soax/)                             |
+| Decodo (ex-Smartproxy) | 125M+                      | Large, includes China [RoundProxies](https://roundproxies.com/blog/decodo-vs-iproyal/)                            |
+| NetNut        | 85M+                                | Mid-tier, direct ISP partnerships [NetNut](https://netnut.io/)                                                    |
+| Webshare      | 80M+                                | Affordable, rotating residential [ProxyLook](https://proxylook.com/providers/webshare)                             |
+| Rayobyte      | 10M+                                | Smaller, but growing [ProxyOmega](https://proxyomega.com/comparisons/rayobyte)                                    |
+| IPRoyal       | 8M+                                 | Niche, budget-focused [Datarade](https://datarade.ai/data-products/iproyal-proxies-for-web-scraping-residential-proxies-da-iproyal) |
+
+**Note:** These numbers are provider-reported and may include inactive or duplicate IPs. Actual usable pool sizes can be lower [RoundProxies][ProxyLook].
+
+## 3. Residential IP Sourcing: SDK Monetization, Bandwidth-Sharing Apps, and Ethics
+
+### Sourcing Methods
+
+| Method                        | Mechanism & Examples                                    | Consent & Compensation         | Ethical Status | Risks/Issues                                                                                   |
+|-------------------------------|--------------------------------------------------------|-------------------------------|---------------|-----------------------------------------------------------------------------------------------|
+| **SDK Monetization (Ethical)**| Apps like Honeygain, Pawns.app, peer2profit; users explicitly opt in and are paid per GB shared | Explicit, revocable, paid     | Ethical        | Must be transparent, GDPR-compliant, allow opt-out [pingproxies.com][plainproxies.com][rayobyte.com] |
+| **Freemium App Bundling (Gray)** | Free VPNs/extensions; bandwidth sharing in exchange for features, consent quality varies | Sometimes explicit, often buried | Gray area      | Consent may not be meaningful, regulatory risk [plainproxies.com][voidmob.com]                |
+| **Hidden EULA Consent (Gray)** | Consent hidden in terms, no direct disclosure or payment | Technically present, not informed | Unethical/gray | Users unaware, fails GDPR, high legal risk [plainproxies.com][voidmob.com]                    |
+| **Malware/Botnet (Illegal)**   | No consent, devices hijacked via malware                | None                          | Illegal        | Criminal risk, blacklisting, instability [pingproxies.com][plainproxies.com][voidmob.com]      |
+
+**Ethical Standards:**  
+- Informed, explicit, and revocable consent is required for ethical sourcing.
+- Compensation (cash or features) is expected.
+- Transparency about data use and opt-out options is essential.
+- Buyers are legally exposed if using unethically sourced proxies, especially under GDPR [plainproxies.com][aamax.co].
+
+**Summary:**  
+Ethically sourced residential proxies—such as those from Honeygain, Pawns.app, and peer2profit—use SDKs with clear opt-in and compensation. Unethical models rely on hidden consent or malware, posing legal and operational risks.
+
+## 4. Residential Proxy Services Operating in China
+
+### Providers and Capabilities
+
+| Provider      | Chinese Residential IPs | City-level Targeting | Mobile Proxies | Key Features & Challenges                                                                                       |
+|---------------|------------------------|----------------------|---------------|-----------------------------------------------------------------------------------------------------------------|
+| Oxylabs       | Yes (5M+ in China)     | Yes                  | Yes           | Large pool, AI Web Unblocker, but lower-than-advertised success (78%), high price [Cybernews][SaaSUltra]         |
+| Decodo        | Yes (incl. China)      | Yes                  | Yes (ISP)     | Carrier-grade, SERP API, some limits on self-service [Proxyway][SaaSUltra]                                       |
+| Bright Data   | Yes (72M+ IPs)         | Yes                  | Yes           | Wide protocol support, city/ASN selection, complex for beginners [Proxyway][SaaSUltra]                           |
+| SOAX          | Yes (191M+ pool)       | Yes                  | Yes           | Clean, flexible geo-targeting, no static IPs [Proxyway][SaaSUltra]                                               |
+| Webshare      | Yes (80M+ pool)        | No (country-level)   | No            | Free tier, affordable, no city-level [Proxyway][SaaSUltra]                                                       |
+| ProxyEmpire   | Yes                    | Not specified        | Yes (4G)      | Focus on e-commerce/social scraping [ProxyEmpire]                                                                |
+
+### Technical and Regulatory Challenges
+
+- **IP Blocking & Rotation:** The Great Firewall blocks known proxies, requiring constant rotation and inventory refresh [Cybernews].
+- **Deep Packet Inspection (DPI):** Chinese authorities use DPI to detect proxy/VPN traffic; most residential proxies lack encryption, making them vulnerable [Multilogin].
+- **Geo-targeting:** City-level targeting and genuine Chinese ISP IPs are necessary for region-specific tasks [SaaSUltra].
+- **Legal Risks:** Unregistered proxies are illegal in China; both providers and users risk fines or shutdowns [Multilogin].
+- **Performance:** Even premium proxies have lower-than-promised success rates due to aggressive blocking [Cybernews].
+
+**Distinction:**  
+- These proxies are for accessing Chinese content from outside China (e.g., for market research, ad verification).
+- Bypassing the Great Firewall from within China typically requires stealth VPNs, not commercial proxies [SaaSUltra][Multilogin].
+
+---
+
+## References
+
+- [MangoProxy: Proxy Types Comparison](https://mangoproxy.com/blog/proxy-types-comparison/)
+- [PROXIES.SX: Best Proxies for Web Scraping in 2026](https://www.proxies.sx/blog/best-proxies-web-scraping-2026)
+- [DataPrixa: Proxy Types Guide](https://dataprixa.com/proxy-types-web-scraping-proxies/)
+- [Bright Data News](https://www.twinstrata.com/news/bright-data-residential-proxy-network/)
+- [Crozdesk](https://crozdesk.com/compare/cherry-proxy-vs-oxylabs-vs-proxy-seller)
+- [RoundProxies](https://roundproxies.com/blog/decodo-vs-iproyal/)
+- [VPNMentor](https://www.vpnmentor.com/reviews/smartproxy/)
+- [GProxy](https://gproxy.net/en/proxy-comparison/gproxy-vs-soax/)
+- [ProxiesReview](https://proxiesreview.online/best-proxies-for-web-scraping/)
+- [ProxiesReview](https://proxiesreview.online/netnut-review/)
+- [NetNut](https://netnut.io/)
+- [ProxyLook](https://proxylook.com/providers/webshare)
+- [DataResearchTools](https://dataresearchtools.com/webshare-review-2026/)
+- [Datarade](https://datarade.ai/data-products/iproyal-proxies-for-web-scraping-residential-proxies-da-iproyal)
+- [ProxyOmega](https://proxyomega.com/comparisons/rayobyte)
+- [AffTank](https://afftank.com/blog/decodo-review)
+- [pingproxies.com](https://pingproxies.com/blog/ethical-proxy-sourcing)
+- [plainproxies.com](https://plainproxies.com/blog/integrations/ethically-sourced-residential-proxies)
+- [aamax.co](https://aamax.co/blog/how-ethical-uk-residential-proxies-help-businesses-stay-compliant)
+- [voidmob.com](https://voidmob.com/blog/why-cheap-residential-proxies-unethical-ip-traps)
+- [rayobyte.com](https://rayobyte.com/products/rotating-residential-ips/ethics/)
+- [Cybernews](https://cybernews.com/best-proxy/china-proxies/)
+- [Proxyway](https://proxyway.com/proxy-locations/china-proxy)
+- [SaaSUltra](https://www.saasultra.com/best-china-proxy-providers/)
+- [ProxyEmpire](https://proxyempire.io/chinese-proxies/)
+- [Multilogin](https://multilogin.com/blog/can-i-use-a-web-proxy-in-china/)
+
+---
+
 ## Cited sources not stored as a local page
 
 (arXiv IDs, PDFs, or pages served from cache — resolve via the URL)
@@ -497,3 +1021,30 @@ Other sources: [Nym Docs](https://nym.com/docs/network/cryptography/sphinx), [ar
 - `https://medium.com/@rosgluk/selfhosting-searxng-a3cb66a196e9`
 - `https://kinsta.com/blog/alternative-search-engines`
 - `https://www.chuninja.com/`
+- `https://arxiv.org/abs/1801.02265`
+- `https://mjuarezm.github.io/assets/pdf/ccs18.pdf`
+- `https://arxiv.org/abs/1802.10215`
+- `https://arxiv.org/abs/1711.03656`
+- `https://arxiv.org/abs/2404.07892`
+- `https://arxiv.org/abs/2603.07412`
+- `https://www.usenix.org/system/files/sec22-cherubin.pdf`
+- `https://datatracker.ietf.org/doc/html/draft-irtf-pearg-website-fingerprinting`
+- `https://crypto.stackexchange.com/questions/73099/how-can-we-deploy-information-theoretic-private-information-retrieval-in-practic`
+- `https://www.usenix.org/system/files/sec21-kogan.pdf`
+- `https://www.usenix.org/system/files/sec22-mahdavi.pdf`
+- `https://ieeexplore.ieee.org/document/10646690`
+- `https://dione.lib.unipi.gr/xmlui/bitstream/handle/unipi/11080/Tsaktsiras_Dimitrios.pdf?sequence=1&isAllowed=y`
+- `https://www.researchgate.net/publication/302563731_Recent_Results_in_Scalable_Multi-Party_Computation`
+- `https://next.gr/ai/ai-for-cybersecurity/secure-multi-party-computation-in-ai`
+- `https://www.twinstrata.com/news/bright-data-residential-proxy-network/`
+- `https://crozdesk.com/compare/cherry-proxy-vs-oxylabs-vs-proxy-seller`
+- `https://roundproxies.com/blog/decodo-vs-iproyal/`
+- `https://www.vpnmentor.com/reviews/smartproxy/`
+- `https://gproxy.net/en/proxy-comparison/gproxy-vs-soax/`
+- `https://proxiesreview.online/best-proxies-for-web-scraping/`
+- `https://proxiesreview.online/netnut-review/`
+- `https://netnut.io/`
+- `https://proxylook.com/providers/webshare`
+- `https://dataresearchtools.com/webshare-review-2026/`
+- `https://datarade.ai/data-products/iproyal-proxies-for-web-scraping-residential-proxies-da-iproyal`
+- `https://afftank.com/blog/decodo-review`

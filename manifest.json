@@ -1,16 +1,43 @@
 {
-  "generated_at": "2026-05-30T20:44:36.650755+00:00",
+  "generated_at": "2026-05-30T21:37:44.630870+00:00",
   "topic": "IP anonymization for search (+ anonymized scraping / residential proxies)",
-  "page_count": 53,
-  "domain_count": 34,
-  "run_count": 4,
+  "page_count": 136,
+  "domain_count": 91,
+  "run_count": 9,
   "runs": [
     "20260530-153935-survey-the-full-design-space-of-ip-anonymiza.json",
     "20260530-154633-oblivious-http-ohttp-and-oblivious-relays-fo.json",
     "20260530-155531-private-information-retrieval-pir-systems-fo.json",
-    "20260530-160428-mixnets-and-anonymous-query-systems-beyond-l.json"
+    "20260530-160428-mixnets-and-anonymous-query-systems-beyond-l.json",
+    "20260530-165316-deanonymization-and-traffic-analysis-attacks.json",
+    "20260530-170334-obfuscation-based-private-web-search-and-the.json",
+    "20260530-172038-applied-private-retrieval-and-deployed-or-st.json",
+    "20260530-173102-why-do-websites-block-tor-exit-nodes-and-tor.json",
+    "20260530-173732-the-residential-proxy-market-for-web-scrapin.json"
   ],
   "pages": [
+    {
+      "domain": "aamax.co",
+      "title": "How Ethical UK Residential Proxies Help Businesses Stay Compliant",
+      "url": "https://aamax.co/blog/how-ethical-uk-residential-proxies-help-businesses-stay-compliant",
+      "fetched_at": "2026-05-30T17:35:22",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:07a42aac843db4e0792dd6400498e40b640c5474",
+      "path": "aamax.co/2026-05-30-how-ethical-uk-residential-proxies-help-business-blog-how-ethical-uk-.md",
+      "words": 1108,
+      "blocked": false
+    },
+    {
+      "domain": "acudame.org",
+      "title": "Hot storage tradeoffs when launching Mainnet and Bitizen user onboarding security steps",
+      "url": "https://acudame.org/hot-storage-tradeoffs-when-launching-mainnet-and-bitizen-user-onboarding-security-steps",
+      "fetched_at": "2026-05-30T17:13:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:df71a8519e48491f562160501607e9fb3098e9aa",
+      "path": "acudame.org/2026-05-30-hot-storage-tradeoffs-when-launching-mainnet-and-hot-storage-tradeoff.md",
+      "words": 952,
+      "blocked": false
+    },
     {
       "domain": "api-dashboard.search.brave.com",
       "title": "Brave Search",
@@ -20,6 +47,17 @@
       "content_hash": "sha1:09b1681b6cad84cb223c098b43f9cd572e631fb7",
       "path": "api-dashboard.search.brave.com/2026-05-30-brave-search-documentation-resour.md",
       "words": 739,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Abstraction of Trusted Execution Environments as the Missing Layer for Broad Confidential Computing Adoption: A Systematization of Knowledge",
+      "url": "https://arxiv.org/html/2512.22090v1",
+      "fetched_at": "2026-05-30T17:12:44",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:3dc6319407db44a31c5b9b39c3a8c246f5935f4b",
+      "path": "arxiv.org/2026-05-30-abstraction-of-trusted-execution-environments-as-html-2512-22090v1.md",
+      "words": 17629,
       "blocked": false
     },
     {
@@ -35,6 +73,17 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "Counter-RAPTOR: Safeguarding Tor Against Active Routing Attacks",
+      "url": "https://arxiv.org/abs/1704.00843",
+      "fetched_at": "2026-05-30T16:46:57",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:92b10faa200e89ccab9d05f7941c0149c6491384",
+      "path": "arxiv.org/2026-05-30-counter-raptor-safeguarding-tor-against-active-r-abs-1704-00843.md",
+      "words": 515,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "Decentralized Reliability Estimation for Low Latency Mixnets",
       "url": "https://arxiv.org/abs/2406.06760",
       "fetched_at": "2026-05-30T15:34:19",
@@ -46,6 +95,28 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "DeepCorr: Strong Flow Correlation Attacks on Tor Using Deep Learning",
+      "url": "https://arxiv.org/abs/1808.07285",
+      "fetched_at": "2026-05-30T16:45:49",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:d361be04a8bdef5dba0b4547acefb43c05523080",
+      "path": "arxiv.org/2026-05-30-deepcorr-strong-flow-correlation-attacks-on-tor--abs-1808-07285.md",
+      "words": 515,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "DNS Query Forgery: A Client-Side Defense Against Mobile App Traffic Profiling",
+      "url": "https://arxiv.org/pdf/2505.09374",
+      "fetched_at": "2026-05-30T16:54:19",
+      "extractor": "jina",
+      "content_hash": "sha1:d127232325687cb9510eec7e7c0f0055d8d105d4",
+      "path": "arxiv.org/2026-05-30-dns-query-forgery-a-client-side-defense-against--pdf-2505-09374.md",
+      "words": 12230,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "IM-PIR: In-Memory Private Information Retrieval",
       "url": "https://arxiv.org/pdf/2509.06514v1",
       "fetched_at": "2026-05-30T16:02:35",
@@ -53,6 +124,17 @@
       "content_hash": "sha1:87b7a39301cd9365ad6a17ada8ea10c119f39db9",
       "path": "arxiv.org/2026-05-30-im-pir-in-memory-private-information-retrieval-pdf-2509-06514v1.md",
       "words": 15687,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Meet the Family of Statistical Disclosure Attacks",
+      "url": "https://arxiv.org/abs/1910.07603",
+      "fetched_at": "2026-05-30T16:47:36",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:065d55abef7cbb9a3da7c918a5b1f94bdf0ff1b5",
+      "path": "arxiv.org/2026-05-30-meet-the-family-of-statistical-disclosure-attack-abs-1910-07603.md",
+      "words": 368,
       "blocked": false
     },
     {
@@ -90,6 +172,28 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "RAPTOR: Routing Attacks on Privacy in Tor",
+      "url": "https://arxiv.org/abs/1503.03940",
+      "fetched_at": "2026-05-30T16:46:46",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:5d1e7811c66da871255e56ae7ff4ed4e2719dd6c",
+      "path": "arxiv.org/2026-05-30-raptor-routing-attacks-on-privacy-in-tor-abs-1503-03940.md",
+      "words": 478,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Scalable Differential Privacy with Certified Robustness in Adversarial Learning",
+      "url": "https://arxiv.org/abs/1903.09822",
+      "fetched_at": "2026-05-30T17:13:18",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:4f70017d75d3b4316fd3fcc4dd64b276e3287023",
+      "path": "arxiv.org/2026-05-30-scalable-differential-privacy-with-certified-rob-abs-1903-09822.md",
+      "words": 501,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "Scalable Private Search with Wally",
       "url": "https://arxiv.org/html/2406.06761v4",
       "fetched_at": "2026-05-30T15:37:32",
@@ -119,6 +223,17 @@
       "content_hash": "sha1:89e24e7ccf62ff11a96417440a0e7cdcf3418a93",
       "path": "arxiv.org/2026-05-30-traceable-mixnets-abs-2305-08138.md",
       "words": 603,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "X-Search: Revisiting Private Web Search using Intel SGX",
+      "url": "https://arxiv.org/pdf/1805.01742",
+      "fetched_at": "2026-05-30T16:55:58",
+      "extractor": "jina",
+      "content_hash": "sha1:2fb005db13fd1c083d7467a446837771e073c4fb",
+      "path": "arxiv.org/2026-05-30-x-search-revisiting-private-web-search-using-int-pdf-1805-01742.md",
+      "words": 10942,
       "blocked": false
     },
     {
@@ -155,6 +270,39 @@
       "blocked": false
     },
     {
+      "domain": "blog.cloudflare.com",
+      "title": "The Trouble with Tor",
+      "url": "https://blog.cloudflare.com/the-trouble-with-tor",
+      "fetched_at": "2026-05-30T17:21:40",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:8cc9f9f83bb568bea6c03a0a1e32234cdc7c25aa",
+      "path": "blog.cloudflare.com/2026-05-30-the-trouble-with-tor-the-trouble-with-tor.md",
+      "words": 2534,
+      "blocked": false
+    },
+    {
+      "domain": "blog.cryptographyengineering.com",
+      "title": "Anonymous credentials: an illustrated primer (Part 2)",
+      "url": "https://blog.cryptographyengineering.com/2026/04/17/anonymous-credentials-an-illustrated-primer-part-2",
+      "fetched_at": "2026-05-30T17:09:30",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:fb1da1fcaf6468ffd8a72a540a57876b1a6cb837",
+      "path": "blog.cryptographyengineering.com/2026-05-30-anonymous-credentials-an-illustrated-primer-part-2026-04-17-anonymous.md",
+      "words": 2443,
+      "blocked": false
+    },
+    {
+      "domain": "blog.kagi.com",
+      "title": "Introducing Privacy Pass authentication for Kagi Search",
+      "url": "https://blog.kagi.com/kagi-privacy-pass",
+      "fetched_at": "2026-05-30T17:10:15",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:e9c8dcd780e2e7a8a27c9cfca48341434ad6bf86",
+      "path": "blog.kagi.com/2026-05-30-introducing-privacy-pass-authentication-for-kagi-kagi-privacy-pass.md",
+      "words": 4212,
+      "blocked": false
+    },
+    {
       "domain": "brave.com",
       "title": "frodo-pir-2023.pdf",
       "url": "https://brave.com/research/files/frodo-pir-2023.pdf",
@@ -163,6 +311,39 @@
       "content_hash": "sha1:45284a66b9aca540bca16595e8de2672b540f7ad",
       "path": "brave.com/2026-05-30-frodo-pir-2023-pdf-research-files-frodo.md",
       "words": 15703,
+      "blocked": false
+    },
+    {
+      "domain": "brightdata.com",
+      "title": "Top-Tier Proxies & Scraping APIs Pricing",
+      "url": "https://brightdata.com/pricing",
+      "fetched_at": "2026-05-30T17:32:02",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:dcb8cda0f109e2bf5b569e1d61824b80bdfb1e7c",
+      "path": "brightdata.com/2026-05-30-top-tier-proxies-scraping-apis-pricing-pricing.md",
+      "words": 209,
+      "blocked": false
+    },
+    {
+      "domain": "check.torproject.org",
+      "title": "/torbulkexitlist",
+      "url": "https://check.torproject.org/torbulkexitlist",
+      "fetched_at": "2026-05-30T17:21:48",
+      "extractor": "jina",
+      "content_hash": "sha1:c9d80e4f827bdca3e2caa15d571f55ad7810fa9d",
+      "path": "check.torproject.org/2026-05-30-torbulkexitlist-torbulkexitlist.md",
+      "words": 20,
+      "blocked": true
+    },
+    {
+      "domain": "community.fortinet.com",
+      "title": "Technical Tip: How to block traffic coming from TOR exit nodes | Community",
+      "url": "https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-block-traffic-coming-from-TOR-exit-nodes/ta-p/190958",
+      "fetched_at": "2026-05-30T17:21:41",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:4cef2c9b241c858dbbc1feb15b207244b24be45f",
+      "path": "community.fortinet.com/2026-05-30-technical-tip-how-to-block-traffic-coming-from-t-t5-fortigate-technic.md",
+      "words": 273,
       "blocked": false
     },
     {
@@ -177,6 +358,39 @@
       "blocked": false
     },
     {
+      "domain": "cybernews.com",
+      "title": "Best China Proxy Providers in 2026",
+      "url": "https://cybernews.com/best-proxy/china-proxies",
+      "fetched_at": "2026-05-30T17:36:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:815c76e0663f4110b25131a1fbd10cabead9de9d",
+      "path": "cybernews.com/2026-05-30-best-china-proxy-providers-in-2026-best-proxy-china-pro.md",
+      "words": 4528,
+      "blocked": false
+    },
+    {
+      "domain": "dataprixa.com",
+      "title": "Proxy Types: Complete Guide to Web Scraping Proxies (2026)",
+      "url": "https://dataprixa.com/proxy-types-web-scraping-proxies",
+      "fetched_at": "2026-05-30T17:32:04",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:86acc82cc1c7c3a0f8ee66ae3a63aee8a626d828",
+      "path": "dataprixa.com/2026-05-30-proxy-types-complete-guide-to-web-scraping-proxi-proxy-types-web-scra.md",
+      "words": 9104,
+      "blocked": false
+    },
+    {
+      "domain": "decodo.com",
+      "title": "Residential Proxy Pricing \u2013 Decodo (formerly Smartproxy)",
+      "url": "https://decodo.com/pricing",
+      "fetched_at": "2026-05-30T17:32:05",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:135aa69745c5821b88b43318a0e4c208780c240c",
+      "path": "decodo.com/2026-05-30-residential-proxy-pricing-decodo-formerly-smartp-pricing.md",
+      "words": 1197,
+      "blocked": false
+    },
+    {
       "domain": "developers.google.com",
       "title": "Overview | Google Safe Browsing | Google for Developers",
       "url": "https://developers.google.com/safe-browsing/ohttp/reference",
@@ -185,6 +399,39 @@
       "content_hash": "sha1:3fc650034c554134ada55593aa9019d1d183812b",
       "path": "developers.google.com/2026-05-30-overview-google-safe-browsing-google-for-develop-safe-browsing-ohttp-.md",
       "words": 1213,
+      "blocked": false
+    },
+    {
+      "domain": "dione.lib.unipi.gr",
+      "title": "Oblivious RAM from Theory to Practice",
+      "url": "https://dione.lib.unipi.gr/xmlui/bitstream/handle/unipi/11080/Tsaktsiras_Dimitrios.pdf?isAllowed=y&sequence=1",
+      "fetched_at": "2026-05-30T17:06:46",
+      "extractor": "jina",
+      "content_hash": "sha1:61c074006f2a08c95ee17035efc1c2e60485d3ea",
+      "path": "dione.lib.unipi.gr/2026-05-30-oblivious-ram-from-theory-to-practice-xmlui-bitstream-hand.md",
+      "words": 51308,
+      "blocked": false
+    },
+    {
+      "domain": "dl.acm.org",
+      "title": "Aquilis: Using Contextual Integrity for Privacy Protection on Mobile Devices: Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies: Vol 4, No 4",
+      "url": "https://dl.acm.org/doi/10.1145/3432205",
+      "fetched_at": "2026-05-30T16:49:53",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:d9b66582826c5ee900c5045096086a294d1a31c4",
+      "path": "dl.acm.org/2026-05-30-aquilis-using-contextual-integrity-for-privacy-p-doi-10-1145-3432205.md",
+      "words": 119,
+      "blocked": false
+    },
+    {
+      "domain": "docs.lib.purdue.edu",
+      "title": "Controlling data disclosure in computational PIR protocols",
+      "url": "https://docs.lib.purdue.edu/ccpubs/79",
+      "fetched_at": "2026-05-30T17:01:57",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:03709fc9e6c1e0c0aba1f5b190987f011c11b8ba",
+      "path": "docs.lib.purdue.edu/2026-05-30-controlling-data-disclosure-in-computational-pir-ccpubs-79.md",
+      "words": 179,
       "blocked": false
     },
     {
@@ -197,6 +444,39 @@
       "path": "docs.searxng.org/2026-05-30-settings-admin-settings-index.md",
       "words": 38,
       "blocked": true
+    },
+    {
+      "domain": "docs.searxng.org",
+      "title": "Welcome to SearXNG\u00b6",
+      "url": "https://docs.searxng.org/",
+      "fetched_at": "2026-05-30T17:22:36",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:84785b3119bd97f48bae215cacbf9da91d2ee113",
+      "path": "docs.searxng.org/2026-05-30-welcome-to-searxng-page.md",
+      "words": 114,
+      "blocked": false
+    },
+    {
+      "domain": "en.wikipedia.org",
+      "title": "Private information retrieval - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Private_information_retrieval",
+      "fetched_at": "2026-05-30T16:55:02",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:03bbbc690c595bdaf96292918f76bca4bfb122e7",
+      "path": "en.wikipedia.org/2026-05-30-private-information-retrieval-wikipedia-wiki-private-informa.md",
+      "words": 3411,
+      "blocked": false
+    },
+    {
+      "domain": "eprint.iacr.org",
+      "title": "One Server for the Price of Two: Simple and Fast Single-Server Private Information Retrieval",
+      "url": "https://eprint.iacr.org/2022/949",
+      "fetched_at": "2026-05-30T16:55:02",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:40abf6a110c59bdacd0c26683e4de262b011eb02",
+      "path": "eprint.iacr.org/2026-05-30-one-server-for-the-price-of-two-simple-and-fast--2022-949.md",
+      "words": 380,
+      "blocked": false
     },
     {
       "domain": "eu.startpage.com",
@@ -218,6 +498,17 @@
       "content_hash": "sha1:69837564e48ab10d6e0478bc9a6d6d8ea2e4e035",
       "path": "factually.co/2026-05-30-does-duckduckgo-store-or-log-ip-addresses-or-sea-fact-checks-technolo.md",
       "words": 922,
+      "blocked": false
+    },
+    {
+      "domain": "factually.co",
+      "title": "What are the main differences between Tor, I2P, and Fr... | Factually",
+      "url": "https://factually.co/product-reviews/technology/tor-i2p-freenet-dark-web-differences-7b5b37",
+      "fetched_at": "2026-05-30T17:12:55",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:3fd72913cffb5b2145c20df477351a219507f036",
+      "path": "factually.co/2026-05-30-what-are-the-main-differences-between-tor-i2p-an-product-reviews-tech.md",
+      "words": 1110,
       "blocked": false
     },
     {
@@ -266,6 +557,17 @@
     },
     {
       "domain": "github.com",
+      "title": "GitHub - microsoft/SealPIR: Example implementation of the SealPIR protocol",
+      "url": "https://github.com/microsoft/SealPIR",
+      "fetched_at": "2026-05-30T16:55:02",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:7248309bc6b40267a3cbb56802235472c97deba1",
+      "path": "github.com/2026-05-30-github-microsoft-sealpir-example-implementation--microsoft-sealpir.md",
+      "words": 646,
+      "blocked": false
+    },
+    {
+      "domain": "github.com",
       "title": "GitHub - searxng/searxng: SearXNG is a free internet metasearch engine which aggregates results from various search services and databases. Users are neither tracked nor profiled.",
       "url": "https://github.com/searxng/searxng",
       "fetched_at": "2026-05-30T15:58:35",
@@ -284,6 +586,17 @@
       "content_hash": "sha1:f5df6ff937c565371cbdb77c0b112821f51d4883",
       "path": "github.com/2026-05-30-github-turanzv-pir-comparison-single-server-pir--turanzv-pir-comparis.md",
       "words": 329,
+      "blocked": false
+    },
+    {
+      "domain": "github.com",
+      "title": "GitHub - ucbrise/snoopy: A high-throughput oblivious storage system",
+      "url": "https://github.com/ucbrise/snoopy",
+      "fetched_at": "2026-05-30T17:07:55",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:c17a8e5af97bc9de681d81c1f52dcbcd810ddfa5",
+      "path": "github.com/2026-05-30-github-ucbrise-snoopy-a-high-throughput-obliviou-ucbrise-snoopy.md",
+      "words": 1468,
       "blocked": false
     },
     {
@@ -309,6 +622,72 @@
       "blocked": false
     },
     {
+      "domain": "hdsr.mitpress.mit.edu",
+      "title": "Advancing Differential Privacy: Where We Are Now and Future Directions for Real-World Deployment",
+      "url": "https://hdsr.mitpress.mit.edu/pub/sl9we8gh",
+      "fetched_at": "2026-05-30T17:12:45",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:10668a9125bf66defc26cce63735556c40b6d9b0",
+      "path": "hdsr.mitpress.mit.edu/2026-05-30-advancing-differential-privacy-where-we-are-now--pub-sl9we8gh.md",
+      "words": 34833,
+      "blocked": false
+    },
+    {
+      "domain": "helpnetsecurity.com",
+      "title": "Residential proxies make a mockery of IP-based defenses - Help Net Security",
+      "url": "https://helpnetsecurity.com/2026/04/06/residential-proxy-attack-traffic-ip-reputation-enterprise-security",
+      "fetched_at": "2026-05-30T17:23:58",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:e609e4d25557a1494cdf1a6febeddb27e85f2483",
+      "path": "helpnetsecurity.com/2026-05-30-residential-proxies-make-a-mockery-of-ip-based-d-2026-04-06-residenti.md",
+      "words": 762,
+      "blocked": false
+    },
+    {
+      "domain": "ietf-wg-masque.github.io",
+      "title": "Proxying IP in HTTP",
+      "url": "https://ietf-wg-masque.github.io/draft-ietf-masque-connect-ip/fix180/draft-ietf-masque-connect-ip.html",
+      "fetched_at": "2026-05-30T17:09:30",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:7fefcfea0ef3feda0ed39ac791e86bf8f65ab478",
+      "path": "ietf-wg-masque.github.io/2026-05-30-proxying-ip-in-http-draft-ietf-masque-co.md",
+      "words": 13251,
+      "blocked": false
+    },
+    {
+      "domain": "iproyal.com",
+      "title": "Buy Premium Proxies (Full Pricing) | IPRoyal",
+      "url": "https://iproyal.com/pricing",
+      "fetched_at": "2026-05-30T17:32:02",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:fb45025181bacca6df50e52f8e08cb43057df3cf",
+      "path": "iproyal.com/2026-05-30-buy-premium-proxies-full-pricing-iproyal-pricing.md",
+      "words": 246,
+      "blocked": false
+    },
+    {
+      "domain": "jonbaer.com",
+      "title": "[1507.05724v1] HORNET: High-speed Onion Routing at the Network Layer",
+      "url": "https://jonbaer.com/post/124807890541/150705724v1-hornet-high-speed-onion-routing-at",
+      "fetched_at": "2026-05-30T17:14:35",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1522d65c28fd2e1128989ea6126a18c0ed7f1ec8",
+      "path": "jonbaer.com/2026-05-30-1507-05724v1-hornet-high-speed-onion-routing-at--post-124807890541-15.md",
+      "words": 103,
+      "blocked": false
+    },
+    {
+      "domain": "link.springer.com",
+      "title": "Differential privacy and artificial intelligence: potentials, challenges, and future avenues - Journal on Information Security",
+      "url": "https://link.springer.com/article/10.1186/s13635-025-00203-9",
+      "fetched_at": "2026-05-30T17:12:44",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:003a4398f4412a14242f970a2b14425c07906e55",
+      "path": "link.springer.com/2026-05-30-differential-privacy-and-artificial-intelligence-article-10-1186-s136.md",
+      "words": 14942,
+      "blocked": false
+    },
+    {
       "domain": "link.springer.com",
       "title": "FlashPIR: low-latency FHE-based single-server PIR with low client overhead - Cybersecurity",
       "url": "https://link.springer.com/article/10.1186/s42400-026-00601-7",
@@ -331,6 +710,50 @@
       "blocked": false
     },
     {
+      "domain": "link.springer.com",
+      "title": "Private Information Retrieval with Sublinear Online Time",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-030-45721-1_3",
+      "fetched_at": "2026-05-30T16:55:04",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:cc0a718fb08f381c9417a03aada6c01ef5089e46",
+      "path": "link.springer.com/2026-05-30-private-information-retrieval-with-sublinear-onl-chapter-10-1007-978-.md",
+      "words": 15686,
+      "blocked": false
+    },
+    {
+      "domain": "mangoproxy.com",
+      "title": "Residential vs Datacenter vs ISP vs Mobile Proxies: Key Differences and Use Cases",
+      "url": "https://mangoproxy.com/blog/proxy-types-comparison",
+      "fetched_at": "2026-05-30T17:32:01",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:7a3365dd38bccff331f59f5474b9d81a9874689e",
+      "path": "mangoproxy.com/2026-05-30-residential-vs-datacenter-vs-isp-vs-mobile-proxi-blog-proxy-types-com.md",
+      "words": 1091,
+      "blocked": false
+    },
+    {
+      "domain": "marc.damie.eu",
+      "title": "My concerns about Trusted Execution Environment",
+      "url": "https://marc.damie.eu/posts/tee-discussion",
+      "fetched_at": "2026-05-30T17:12:43",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:9b8970d87b83bd7cace783f82b03d378f032098f",
+      "path": "marc.damie.eu/2026-05-30-my-concerns-about-trusted-execution-environment-posts-tee-discussion.md",
+      "words": 1399,
+      "blocked": false
+    },
+    {
+      "domain": "math--mit--edu.proxy.hfzk.net.cn",
+      "title": "Zou.pdf",
+      "url": "https://math--mit--edu.proxy.hfzk.net.cn/research/highschool/primes/materials/2023/Zou.pdf",
+      "fetched_at": "2026-05-30T16:49:26",
+      "extractor": "jina",
+      "content_hash": "sha1:abdc8359ebbce0ee5892feb183f0856b659efd48",
+      "path": "math--mit--edu.proxy.hfzk.net.cn/2026-05-30-zou-pdf-research-highschool-.md",
+      "words": 2806,
+      "blocked": false
+    },
+    {
       "domain": "metager.org",
       "title": "Privacy policy",
       "url": "https://metager.org/en-US/datenschutz",
@@ -340,6 +763,39 @@
       "path": "metager.org/2026-05-30-privacy-policy-en-us-datenschutz.md",
       "words": 927,
       "blocked": false
+    },
+    {
+      "domain": "multilogin.com",
+      "title": "Can I Use a Web Proxy in China? Everything You Need to Know",
+      "url": "https://multilogin.com/blog/can-i-use-a-web-proxy-in-china",
+      "fetched_at": "2026-05-30T17:36:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:08c4dcbedfb4bd8ed57bbedef3593eab9800c41f",
+      "path": "multilogin.com/2026-05-30-can-i-use-a-web-proxy-in-china-everything-you-ne-blog-can-i-use-a-web.md",
+      "words": 2086,
+      "blocked": false
+    },
+    {
+      "domain": "nesa.zju.edu.cn",
+      "title": "404 Not Found",
+      "url": "https://nesa.zju.edu.cn/download/OB-WSPES+A+Uniform+Evaluation+System+for+Obfuscation-based+Web+Search+Privacy.pdf",
+      "fetched_at": "2026-05-30T16:54:21",
+      "extractor": "jina",
+      "content_hash": "sha1:90db68fd8da4c4a1d3bcb31cf0f780d767610dcb",
+      "path": "nesa.zju.edu.cn/2026-05-30-404-not-found-download-ob-wspes-a-.md",
+      "words": 55,
+      "blocked": true
+    },
+    {
+      "domain": "netnut.io",
+      "title": "Page not found - netnut.io",
+      "url": "https://netnut.io/pricing",
+      "fetched_at": "2026-05-30T17:32:13",
+      "extractor": "jina",
+      "content_hash": "sha1:f9ce0a29c081f60f22d3ff0c976a21ca1b07fa5c",
+      "path": "netnut.io/2026-05-30-page-not-found-netnut-io-pricing.md",
+      "words": 2357,
+      "blocked": true
     },
     {
       "domain": "nym.com",
@@ -364,6 +820,28 @@
       "blocked": false
     },
     {
+      "domain": "oaklandsok.github.io",
+      "title": "OB-PWS: Obfuscation-Based Private Web Search",
+      "url": "https://oaklandsok.github.io/papers/balsa2012.pdf",
+      "fetched_at": "2026-05-30T16:54:18",
+      "extractor": "jina",
+      "content_hash": "sha1:dff911f88a1166316fc231580503bed34bca5328",
+      "path": "oaklandsok.github.io/2026-05-30-ob-pws-obfuscation-based-private-web-search-papers-balsa2012-pdf.md",
+      "words": 13096,
+      "blocked": false
+    },
+    {
+      "domain": "oxylabs.io",
+      "title": "Buy Premium Proxies and Web Scraper API - Pricing Plans",
+      "url": "https://oxylabs.io/pricing",
+      "fetched_at": "2026-05-30T17:32:02",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:bff8ab8950d9f402903eaebcd2f71c13844d2168",
+      "path": "oxylabs.io/2026-05-30-buy-premium-proxies-and-web-scraper-api-pricing--pricing.md",
+      "words": 129,
+      "blocked": false
+    },
+    {
       "domain": "petsymposium.org",
       "title": "FrodoPIR: Simple, Scalable, Single-Server Private Information Retrieval",
       "url": "https://petsymposium.org/popets/2023/popets-2023-0022.pdf",
@@ -372,6 +850,61 @@
       "content_hash": "sha1:59d6559bc7a968e4bbe27430a0419a5ce5ba48a1",
       "path": "petsymposium.org/2026-05-30-frodopir-simple-scalable-single-server-private-i-popets-2023-popets-2.md",
       "words": 18303,
+      "blocked": false
+    },
+    {
+      "domain": "pingproxies.com",
+      "title": "The Importance of Ethical Proxy Sourcing | Byteful",
+      "url": "https://pingproxies.com/blog/ethical-proxy-sourcing",
+      "fetched_at": "2026-05-30T17:35:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:f0426bfe32246b0ab4bd9a6403e8e7574540db33",
+      "path": "pingproxies.com/2026-05-30-the-importance-of-ethical-proxy-sourcing-byteful-blog-ethical-proxy-s.md",
+      "words": 1347,
+      "blocked": false
+    },
+    {
+      "domain": "plainproxies.com",
+      "title": "Ethically Sourced Residential Proxies for Compliance & Trust",
+      "url": "https://plainproxies.com/blog/integrations/ethically-sourced-residential-proxies",
+      "fetched_at": "2026-05-30T17:35:21",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:93da4374f90cc21ea5fa0fc712544ce73c5fcb63",
+      "path": "plainproxies.com/2026-05-30-ethically-sourced-residential-proxies-for-compli-blog-integrations-et.md",
+      "words": 1578,
+      "blocked": false
+    },
+    {
+      "domain": "proceedings.mlr.press",
+      "title": "Reducing Communication Overhead in Federated Learning for Pre-trained Language Models Using Parameter-Efficient Finetuning",
+      "url": "https://proceedings.mlr.press/v232/malaviya23a.html",
+      "fetched_at": "2026-05-30T17:18:38",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:98b4c57309b25ce90052308ee2cca2ab759b0293",
+      "path": "proceedings.mlr.press/2026-05-30-reducing-communication-overhead-in-federated-lea-v232-malaviya23a-htm.md",
+      "words": 205,
+      "blocked": false
+    },
+    {
+      "domain": "proxyempire.io",
+      "title": "Chinese Proxies: Access Data In China - ProxyEmpire",
+      "url": "https://proxyempire.io/chinese-proxies",
+      "fetched_at": "2026-05-30T17:36:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:7ffffb783dee9feacc18c911bc9e100c769adbe9",
+      "path": "proxyempire.io/2026-05-30-chinese-proxies-access-data-in-china-proxyempire-chinese-proxies.md",
+      "words": 2430,
+      "blocked": false
+    },
+    {
+      "domain": "proxyomega.com",
+      "title": "ProxyOmega vs Rayobyte - Which Proxy Provider is Better? | ProxyOmega",
+      "url": "https://proxyomega.com/comparisons/rayobyte",
+      "fetched_at": "2026-05-30T17:34:13",
+      "extractor": "jina",
+      "content_hash": "sha1:569061cc51db6170fc42b48f6c04d0c551965735",
+      "path": "proxyomega.com/2026-05-30-proxyomega-vs-rayobyte-which-proxy-provider-is-b-comparisons-rayobyte.md",
+      "words": 374,
       "blocked": false
     },
     {
@@ -386,6 +919,83 @@
       "blocked": false
     },
     {
+      "domain": "proxyway.com",
+      "title": "The Best China Proxy Providers",
+      "url": "https://proxyway.com/proxy-locations/china-proxy",
+      "fetched_at": "2026-05-30T17:36:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:de3a3af500078d6dad4cd1ebdff38735c3a43f8c",
+      "path": "proxyway.com/2026-05-30-the-best-china-proxy-providers-proxy-locations-chin.md",
+      "words": 594,
+      "blocked": false
+    },
+    {
+      "domain": "raveneducation.org",
+      "title": "Practical performance tradeoffs when deploying layer 3 solutions across ecosystems - Raven Parthenon Education",
+      "url": "https://raveneducation.org/practical-performance-tradeoffs-when-deploying-layer-3-solutions-across-ecosystems",
+      "fetched_at": "2026-05-30T17:13:21",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1cbaa02a1be0e78e2606d7f66ea9c2023f5d2f96",
+      "path": "raveneducation.org/2026-05-30-practical-performance-tradeoffs-when-deploying-l-practical-performanc.md",
+      "words": 658,
+      "blocked": false
+    },
+    {
+      "domain": "rayobyte.com",
+      "title": "Residential Proxy Ethics | How Rayobyte Sets The Standard",
+      "url": "https://rayobyte.com/products/rotating-residential-ips/ethics",
+      "fetched_at": "2026-05-30T17:35:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:974e533b4c1f5a63ef9d28f241c18f07f444eb9d",
+      "path": "rayobyte.com/2026-05-30-residential-proxy-ethics-how-rayobyte-sets-the-s-products-rotating-re.md",
+      "words": 758,
+      "blocked": false
+    },
+    {
+      "domain": "smartproxy.com",
+      "title": "Residential Proxy Pricing \u2013 Decodo (formerly Smartproxy)",
+      "url": "https://smartproxy.com/pricing",
+      "fetched_at": "2026-05-30T17:32:05",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:135aa69745c5821b88b43318a0e4c208780c240c",
+      "path": "smartproxy.com/2026-05-30-residential-proxy-pricing-decodo-formerly-smartp-pricing.md",
+      "words": 1197,
+      "blocked": false
+    },
+    {
+      "domain": "soax.com",
+      "title": "Access all proxy types and Web Data API with one plan",
+      "url": "https://soax.com/pricing",
+      "fetched_at": "2026-05-30T17:32:02",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:9130bff6c827b297ebd819e5e125c2c63b267396",
+      "path": "soax.com/2026-05-30-access-all-proxy-types-and-web-data-api-with-one-pricing.md",
+      "words": 1610,
+      "blocked": false
+    },
+    {
+      "domain": "solusvpn.com",
+      "title": "Residential vs Datacenter IPs: Which One Offers Better Privacy?",
+      "url": "https://solusvpn.com/residential-vs-datacenter-ips-which-one-offers-better-privacy.html",
+      "fetched_at": "2026-05-30T17:23:58",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:2088eb87f7fc13097e791d3215955bf3908626c7",
+      "path": "solusvpn.com/2026-05-30-residential-vs-datacenter-ips-which-one-offers-b-residential-vs-datac.md",
+      "words": 651,
+      "blocked": false
+    },
+    {
+      "domain": "spider.com",
+      "title": "Datacenter IP\u2019s vs Residential IP\u2019s | Spider Blog",
+      "url": "https://spider.com/blog/datacenter-ips-vs-residential-ips",
+      "fetched_at": "2026-05-30T17:24:00",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:a7e4c0a76cec78beaed263298400e991ac17f431",
+      "path": "spider.com/2026-05-30-datacenter-ip-s-vs-residential-ip-s-spider-blog-blog-datacenter-ips-.md",
+      "words": 1237,
+      "blocked": false
+    },
+    {
       "domain": "support.torproject.org",
       "title": "Tor Browser best practices",
       "url": "https://support.torproject.org/faq/staying-anonymous",
@@ -397,6 +1007,138 @@
       "blocked": false
     },
     {
+      "domain": "tornmarketing.com.au",
+      "title": "Dealing with TOR malicious website traffic with Cloudflare - Torn Marketing",
+      "url": "https://tornmarketing.com.au/blog/dealing-with-tor-malicious-website-traffic-with-cloudflare",
+      "fetched_at": "2026-05-30T17:22:02",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:5328802d04db39d499d347382641aa64d211daf1",
+      "path": "tornmarketing.com.au/2026-05-30-dealing-with-tor-malicious-website-traffic-with--blog-dealing-with-to.md",
+      "words": 611,
+      "blocked": false
+    },
+    {
+      "domain": "users.cs.fiu.edu",
+      "title": "pir.dvi",
+      "url": "https://users.cs.fiu.edu/~carbunar/pir.pdf",
+      "fetched_at": "2026-05-30T17:01:58",
+      "extractor": "jina",
+      "content_hash": "sha1:13ddb4a82fa645a33288bdf4fe7d4cf9481a70ba",
+      "path": "users.cs.fiu.edu/2026-05-30-pir-dvi-carbunar-pir-pdf.md",
+      "words": 8329,
+      "blocked": false
+    },
+    {
+      "domain": "vldb.org",
+      "title": "Pantheon: Private Retrieval from Public Key-Value Store",
+      "url": "https://vldb.org/pvldb/vol16/p643-ahmad.pdf",
+      "fetched_at": "2026-05-30T17:06:59",
+      "extractor": "jina",
+      "content_hash": "sha1:c9bbab6ce31f8c70362f1cb3bd73fb72bcb5102f",
+      "path": "vldb.org/2026-05-30-pantheon-private-retrieval-from-public-key-value-pvldb-vol16-p643-ahm.md",
+      "words": 15969,
+      "blocked": false
+    },
+    {
+      "domain": "voidmob.com",
+      "title": "Why Cheap Residential Proxies Are Often Unethical IP Traps",
+      "url": "https://voidmob.com/blog/why-cheap-residential-proxies-unethical-ip-traps",
+      "fetched_at": "2026-05-30T17:35:21",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:a950ddf8eafaaa03e8ab958169e84643fbe46f6b",
+      "path": "voidmob.com/2026-05-30-why-cheap-residential-proxies-are-often-unethica-blog-why-cheap-resid.md",
+      "words": 1841,
+      "blocked": false
+    },
+    {
+      "domain": "webshare.io",
+      "title": "Proxy Pricing - Check Latest Proxy Price - Webshare",
+      "url": "https://webshare.io/pricing",
+      "fetched_at": "2026-05-30T17:32:03",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:078c8f4efcac0f903957b3be7e995673e033236a",
+      "path": "webshare.io/2026-05-30-proxy-pricing-check-latest-proxy-price-webshare-pricing.md",
+      "words": 786,
+      "blocked": false
+    },
+    {
+      "domain": "www-users.cse.umn.edu",
+      "title": "deepcoffea.pdf",
+      "url": "https://www-users.cse.umn.edu/~hoppernj/deepcoffea.pdf",
+      "fetched_at": "2026-05-30T16:45:53",
+      "extractor": "jina",
+      "content_hash": "sha1:39b6c80cb5653d2935abb3ff8fb6fcb0beb6697a",
+      "path": "www-users.cse.umn.edu/2026-05-30-deepcoffea-pdf-hoppernj-deepcoffea-.md",
+      "words": 16025,
+      "blocked": false
+    },
+    {
+      "domain": "www.academia.edu",
+      "title": "Clickstream tracking of TOR users: may be easier than you think",
+      "url": "https://www.academia.edu/99198673/Clickstream_tracking_of_TOR_users_may_be_easier_than_you_think",
+      "fetched_at": "2026-05-30T17:27:18",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1d124e4bf1ba19c6ce65e9e8ff38de37a896ebf2",
+      "path": "www.academia.edu/2026-05-30-clickstream-tracking-of-tor-users-may-be-easier--99198673-clickstream.md",
+      "words": 8996,
+      "blocked": false
+    },
+    {
+      "domain": "www.academia.edu",
+      "title": "Distortion Search \u2013 A Web Search Privacy Heuristic",
+      "url": "https://www.academia.edu/38563870/Distortion_Search_A_Web_Search_Privacy_Heuristic",
+      "fetched_at": "2026-05-30T17:01:57",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:619a212994b783a171ac23261b269acb493016ff",
+      "path": "www.academia.edu/2026-05-30-distortion-search-a-web-search-privacy-heuristic-38563870-distortion-.md",
+      "words": 2758,
+      "blocked": false
+    },
+    {
+      "domain": "www.academia.edu",
+      "title": "Just a moment...",
+      "url": "https://www.academia.edu/28608338/OB_PWS_Obfuscation_Based_Private_Web_Search",
+      "fetched_at": "2026-05-30T16:50:42",
+      "extractor": "jina",
+      "content_hash": "sha1:1e39dac1dce59c5040522aba053239ed2d4f9d14",
+      "path": "www.academia.edu/2026-05-30-just-a-moment-28608338-ob-pws-obfu.md",
+      "words": 80,
+      "blocked": true
+    },
+    {
+      "domain": "www.academia.edu",
+      "title": "Just a moment...",
+      "url": "https://www.academia.edu/9352247/Recent_Results_in_Scalable_Multi_Party_Computation",
+      "fetched_at": "2026-05-30T17:18:51",
+      "extractor": "jina",
+      "content_hash": "sha1:afcfd69ac583b7e641ea42618c5b92f2a7ffba9d",
+      "path": "www.academia.edu/2026-05-30-just-a-moment-9352247-recent-resul.md",
+      "words": 93,
+      "blocked": true
+    },
+    {
+      "domain": "www.academia.edu",
+      "title": "Why Johnny Can't Blow the Whistle: Identifying and Reducing Usability Issues in Anonymity Systems",
+      "url": "https://www.academia.edu/66144263/Why_Johnny_Cant_Blow_the_Whistle_Identifying_and_Reducing_Usability_Issues_in_Anonymity_Systems",
+      "fetched_at": "2026-05-30T17:27:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:ac08e481f531f9afd4280e4127f6e9a9e24223ce",
+      "path": "www.academia.edu/2026-05-30-why-johnny-can-t-blow-the-whistle-identifying-an-66144263-why-johnny-.md",
+      "words": 12065,
+      "blocked": false
+    },
+    {
+      "domain": "www.akamai.com",
+      "title": "Act Against Geopiracy with Enhanced Proxy Detection",
+      "url": "https://www.akamai.com/blog/performance/act-against-geopiracy-with-enhanced-proxy-detection",
+      "fetched_at": "2026-05-30T17:22:16",
+      "extractor": "jina",
+      "content_hash": "sha1:b63fa31151f090661cfb1b046acdce41e7bec45b",
+      "path": "www.akamai.com/2026-05-30-act-against-geopiracy-with-enhanced-proxy-detect-blog-performance-act.md",
+      "words": 1713,
+      "blocked": false
+    },
+    {
       "domain": "www.apple.com",
       "title": "iCloud Private Relay Overview",
       "url": "https://www.apple.com/icloud/docs/iCloud_Private_Relay_Overview_Dec2021.pdf",
@@ -405,6 +1147,17 @@
       "content_hash": "sha1:8ff2d0ceeca60da715289ee8184e3ff929749de0",
       "path": "www.apple.com/2026-05-30-icloud-private-relay-overview-icloud-docs-icloud-p.md",
       "words": 3190,
+      "blocked": false
+    },
+    {
+      "domain": "www.cis.upenn.edu",
+      "title": "diss.pdf",
+      "url": "https://www.cis.upenn.edu/~sga001/papers/diss.pdf",
+      "fetched_at": "2026-05-30T17:02:00",
+      "extractor": "jina",
+      "content_hash": "sha1:b57a76e8c37624411d04184f36e5c0998c1e33e9",
+      "path": "www.cis.upenn.edu/2026-05-30-diss-pdf-sga001-papers-diss-p.md",
+      "words": 49946,
       "blocked": false
     },
     {
@@ -441,6 +1194,17 @@
       "blocked": false
     },
     {
+      "domain": "www.csail.mit.edu",
+      "title": "Snoopy: Surpassing the Scalability Bottleneck of Oblivious Storage",
+      "url": "https://www.csail.mit.edu/event/snoopy-surpassing-scalability-bottleneck-oblivious-storage",
+      "fetched_at": "2026-05-30T17:07:35",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:648bd4947c48933bdfa7ced0aa4eb8d0d7b71b30",
+      "path": "www.csail.mit.edu/2026-05-30-snoopy-surpassing-the-scalability-bottleneck-of--event-snoopy-surpass.md",
+      "words": 190,
+      "blocked": false
+    },
+    {
       "domain": "www.drivelock.com",
       "title": "The invisible threat: understanding DNS leaks and their impact",
       "url": "https://www.drivelock.com/en/blog/dns-leaks",
@@ -449,6 +1213,17 @@
       "content_hash": "sha1:05c9f90dc8f9b84f6be98c897f624fea34e198d4",
       "path": "www.drivelock.com/2026-05-30-the-invisible-threat-understanding-dns-leaks-and-en-blog-dns-leaks.md",
       "words": 2435,
+      "blocked": false
+    },
+    {
+      "domain": "www.freehaven.net",
+      "title": "camera.dvi",
+      "url": "https://www.freehaven.net/anonbib/cache/morphmix-fc2004.pdf",
+      "fetched_at": "2026-05-30T17:12:57",
+      "extractor": "jina",
+      "content_hash": "sha1:135618bbd1423f9a82e9bd635ba7bb35ea43b82e",
+      "path": "www.freehaven.net/2026-05-30-camera-dvi-anonbib-cache-morphm.md",
+      "words": 9719,
       "blocked": false
     },
     {
@@ -485,6 +1260,39 @@
       "blocked": false
     },
     {
+      "domain": "www.ipqualityscore.com",
+      "title": "Detect Fraud and Cyber Threats With Unmatched Accuracy",
+      "url": "https://www.ipqualityscore.com/",
+      "fetched_at": "2026-05-30T17:22:53",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:a15edf85626b3ecd07c1c39d8d6347e0e17fd25a",
+      "path": "www.ipqualityscore.com/2026-05-30-detect-fraud-and-cyber-threats-with-unmatched-ac-page.md",
+      "words": 721,
+      "blocked": false
+    },
+    {
+      "domain": "www.mdpi.com",
+      "title": "Faster Spiral: Low-Communication, High-Rate Private Information Retrieval",
+      "url": "https://www.mdpi.com/2410-387X/9/1/13",
+      "fetched_at": "2026-05-30T16:57:56",
+      "extractor": "jina",
+      "content_hash": "sha1:d48045c4a22da440b62a7d5d0cfa8dd474c49111",
+      "path": "www.mdpi.com/2026-05-30-faster-spiral-low-communication-high-rate-privat-2410-387x-9-1-13.md",
+      "words": 12380,
+      "blocked": false
+    },
+    {
+      "domain": "www.proxies.sx",
+      "title": "Best Proxies for Web Scraping in 2026",
+      "url": "https://www.proxies.sx/blog/best-proxies-web-scraping-2026",
+      "fetched_at": "2026-05-30T17:32:00",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:19e48f711efb85af0a22efdf4bebd39db716d36c",
+      "path": "www.proxies.sx/2026-05-30-best-proxies-for-web-scraping-in-2026-blog-best-proxies-we.md",
+      "words": 2131,
+      "blocked": false
+    },
+    {
       "domain": "www.researchgate.net",
       "title": "Just a moment...",
       "url": "https://www.researchgate.net/publication/357952605_Relax_the_Non-Collusion_Assumption_for_Multi-Server_PIR",
@@ -494,6 +1302,39 @@
       "path": "www.researchgate.net/2026-05-30-just-a-moment-publication-35795260.md",
       "words": 74,
       "blocked": true
+    },
+    {
+      "domain": "www.researchgate.net",
+      "title": "(PDF) A Systematic Review of Anonymous Communication Systems",
+      "url": "https://www.researchgate.net/publication/317115265_A_Systematic_Review_of_Anonymous_Communication_Systems",
+      "fetched_at": "2026-05-30T17:12:56",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:80a0a7421dd8912f7b14fc7d7b527fbd9972db51",
+      "path": "www.researchgate.net/2026-05-30-pdf-a-systematic-review-of-anonymous-communicati-publication-31711526.md",
+      "words": 5216,
+      "blocked": false
+    },
+    {
+      "domain": "www.researchgate.net",
+      "title": "(PDF) SimAttack: private web search under fire",
+      "url": "https://www.researchgate.net/publication/301509514_SimAttack_private_web_search_under_fire",
+      "fetched_at": "2026-05-30T16:48:58",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:cf4a68383578f6af2b0c133187c1cee0e2217e2c",
+      "path": "www.researchgate.net/2026-05-30-pdf-simattack-private-web-search-under-fire-publication-30150951.md",
+      "words": 13010,
+      "blocked": false
+    },
+    {
+      "domain": "www.researchgate.net",
+      "title": "Smart Noise Detection for Statistical Disclosure Attacks | Request PDF",
+      "url": "https://www.researchgate.net/publication/375488015_Smart_Noise_Detection_for_Statistical_Disclosure_Attacks",
+      "fetched_at": "2026-05-30T16:49:13",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:2eb46eb2dbf3451405cbdfe917e5479af3ae78c7",
+      "path": "www.researchgate.net/2026-05-30-smart-noise-detection-for-statistical-disclosure-publication-37548801.md",
+      "words": 3527,
+      "blocked": false
     },
     {
       "domain": "www.rfc-editor.org",
@@ -518,6 +1359,28 @@
       "blocked": false
     },
     {
+      "domain": "www.rfc-editor.org",
+      "title": "RFC 9576: The Privacy Pass Architecture | RFC Editor",
+      "url": "https://www.rfc-editor.org/rfc/rfc9576",
+      "fetched_at": "2026-05-30T17:09:30",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:4bf4a6ee7e551a8ad86e248aae922d13161a1b66",
+      "path": "www.rfc-editor.org/2026-05-30-rfc-9576-the-privacy-pass-architecture-rfc-edito-rfc-rfc9576.md",
+      "words": 9154,
+      "blocked": false
+    },
+    {
+      "domain": "www.saasultra.com",
+      "title": "7 Best China Proxy Providers 2026 \ud83d\ude80 Best for Market Research & Scraping",
+      "url": "https://www.saasultra.com/best-china-proxy-providers",
+      "fetched_at": "2026-05-30T17:36:21",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:d22ed88f3913d2b4a6514b860695b653c88db30c",
+      "path": "www.saasultra.com/2026-05-30-7-best-china-proxy-providers-2026-best-for-marke-best-china-proxy-pro.md",
+      "words": 1826,
+      "blocked": false
+    },
+    {
       "domain": "www.sciencedirect.com",
       "title": "Just a moment...",
       "url": "https://www.sciencedirect.com/science/article/pii/S1319157823004573",
@@ -527,6 +1390,39 @@
       "path": "www.sciencedirect.com/2026-05-30-just-a-moment-science-article-pii-.md",
       "words": 97,
       "blocked": true
+    },
+    {
+      "domain": "www.scispace.com",
+      "title": "OB-PWS: Obfuscation-Based Private Web Search",
+      "url": "https://www.scispace.com/pdf/ob-pws-obfuscation-based-private-web-search-4wxf1le0up.pdf",
+      "fetched_at": "2026-05-30T16:51:01",
+      "extractor": "jina",
+      "content_hash": "sha1:b187a5fd3270fb04e4d7b7837a82a67ae6544e37",
+      "path": "www.scispace.com/2026-05-30-ob-pws-obfuscation-based-private-web-search-pdf-ob-pws-obfuscati.md",
+      "words": 2278,
+      "blocked": false
+    },
+    {
+      "domain": "www.serverspan.com",
+      "title": "SearXNG on a VPS: how to run private search without getting rate-limited into uselessness - ServerSpan",
+      "url": "https://www.serverspan.com/en/blog/searxng-on-a-vps-how-to-run-private-search-without-getting-rate-limited-into-uselessness",
+      "fetched_at": "2026-05-30T17:22:38",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:e9ab56babad71b7c222cc722cf46c57ce8be32f1",
+      "path": "www.serverspan.com/2026-05-30-searxng-on-a-vps-how-to-run-private-search-witho-en-blog-searxng-on-a.md",
+      "words": 2445,
+      "blocked": false
+    },
+    {
+      "domain": "www.simalabs.ai",
+      "title": "Can Homomorphic Encryption Hit <150 ms? Performance Tests for Secure Edge Video Analytics - My Framer Site",
+      "url": "https://www.simalabs.ai/resources/homomorphic-encryption-150ms-performance-edge-video-analytics",
+      "fetched_at": "2026-05-30T17:18:39",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:4b68341bcbcb47f31f2ca0a76f00c7e5e0ef03e8",
+      "path": "www.simalabs.ai/2026-05-30-can-homomorphic-encryption-hit-150-ms-performanc-resources-homomorphi.md",
+      "words": 9580,
+      "blocked": false
     },
     {
       "domain": "www.simplynode.io",
@@ -551,6 +1447,17 @@
       "blocked": false
     },
     {
+      "domain": "www.throtle.io",
+      "title": "Google's IP Protection Announcement \u2014 Throtle",
+      "url": "https://www.throtle.io/blog/2023/10/30/googles-ip-protection-announcement",
+      "fetched_at": "2026-05-30T17:09:30",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:3cbff1fc989060fe944b20bb57d71f0617931a3e",
+      "path": "www.throtle.io/2026-05-30-google-s-ip-protection-announcement-throtle-blog-2023-10-30-goog.md",
+      "words": 360,
+      "blocked": false
+    },
+    {
       "domain": "www.usenix.org",
       "title": "Karaoke: Distributed Private Messaging Immune to Passive Traffic Analysis",
       "url": "https://www.usenix.org/conference/osdi18/presentation/lazar",
@@ -570,6 +1477,17 @@
       "content_hash": "sha1:2f523f981f98448abb458982a240312dba968b0c",
       "path": "www.usenix.org/2026-05-30-sec20-edalatnejad-0-pdf-system-files-sec20-e.md",
       "words": 14276,
+      "blocked": false
+    },
+    {
+      "domain": "www.usenix.org",
+      "title": "sec22-albab.pdf",
+      "url": "https://www.usenix.org/system/files/sec22-albab.pdf",
+      "fetched_at": "2026-05-30T17:02:00",
+      "extractor": "jina",
+      "content_hash": "sha1:713635ea87fe50516a032de7c67999812638d79b",
+      "path": "www.usenix.org/2026-05-30-sec22-albab-pdf-system-files-sec22-a.md",
+      "words": 15033,
       "blocked": false
     },
     {
@@ -651,7 +1569,97 @@
     "https://arxiv.org/pdf/2509.06514v1",
     "https://github.com/ahenzinger/tiptoe",
     "https://link.springer.com/article/10.1186/s42400-026-00601-7",
-    "https://www.chuninja.com/"
+    "https://www.chuninja.com/",
+    "https://arxiv.org/abs/1801.02265",
+    "https://mjuarezm.github.io/assets/pdf/ccs18.pdf",
+    "https://arxiv.org/abs/1802.10215",
+    "https://arxiv.org/abs/1711.03656",
+    "https://arxiv.org/abs/2404.07892",
+    "https://arxiv.org/abs/2603.07412",
+    "https://www.usenix.org/system/files/sec22-cherubin.pdf",
+    "https://datatracker.ietf.org/doc/html/draft-irtf-pearg-website-fingerprinting",
+    "https://arxiv.org/abs/1503.03940",
+    "https://arxiv.org/abs/1704.00843",
+    "https://www.researchgate.net/publication/375488015_Smart_Noise_Detection_for_Statistical_Disclosure_Attacks",
+    "https://math--mit--edu.proxy.hfzk.net.cn/research/highschool/primes/materials/2023/Zou.pdf",
+    "https://www.researchgate.net/publication/301509514_SimAttack_private_web_search_under_fire",
+    "https://www.scispace.com/pdf/ob-pws-obfuscation-based-private-web-search-4wxf1le0up.pdf",
+    "https://oaklandsok.github.io/papers/balsa2012.pdf",
+    "https://arxiv.org/pdf/2505.09374",
+    "https://arxiv.org/pdf/1805.01742",
+    "https://en.wikipedia.org/wiki/Private_information_retrieval",
+    "https://github.com/microsoft/SealPIR",
+    "https://www.mdpi.com/2410-387X/9/1/13",
+    "https://eprint.iacr.org/2022/949",
+    "https://link.springer.com/chapter/10.1007/978-3-030-45721-1_3",
+    "https://crypto.stackexchange.com/questions/73099/how-can-we-deploy-information-theoretic-private-information-retrieval-in-practic",
+    "https://www.usenix.org/system/files/sec22-albab.pdf",
+    "https://users.cs.fiu.edu/~carbunar/pir.pdf",
+    "https://www.academia.edu/38563870/Distortion_Search_A_Web_Search_Privacy_Heuristic",
+    "https://www.cis.upenn.edu/~sga001/papers/diss.pdf",
+    "https://docs.lib.purdue.edu/ccpubs/79/",
+    "https://www.usenix.org/system/files/sec21-kogan.pdf",
+    "https://www.usenix.org/system/files/sec22-mahdavi.pdf",
+    "https://ieeexplore.ieee.org/document/10646690",
+    "https://vldb.org/pvldb/vol16/p643-ahmad.pdf",
+    "https://dione.lib.unipi.gr/xmlui/bitstream/handle/unipi/11080/Tsaktsiras_Dimitrios.pdf?sequence=1&isAllowed=y",
+    "https://www.csail.mit.edu/event/snoopy-surpassing-scalability-bottleneck-oblivious-storage",
+    "https://github.com/ucbrise/snoopy",
+    "https://ietf-wg-masque.github.io/draft-ietf-masque-connect-ip/fix180/draft-ietf-masque-connect-ip.html",
+    "https://www.rfc-editor.org/rfc/rfc9576",
+    "https://blog.cryptographyengineering.com/2026/04/17/anonymous-credentials-an-illustrated-primer-part-2/",
+    "https://blog.kagi.com/kagi-privacy-pass",
+    "https://www.throtle.io/blog/2023/10/30/googles-ip-protection-announcement",
+    "https://www.freehaven.net/anonbib/cache/morphmix-fc2004.pdf",
+    "https://www.researchgate.net/publication/317115265_A_Systematic_Review_of_Anonymous_Communication_Systems",
+    "https://factually.co/product-reviews/technology/tor-i2p-freenet-dark-web-differences-7b5b37",
+    "https://jonbaer.com/post/124807890541/150705724v1-hornet-high-speed-onion-routing-at",
+    "https://link.springer.com/article/10.1186/s13635-025-00203-9",
+    "https://hdsr.mitpress.mit.edu/pub/sl9we8gh",
+    "https://www.simalabs.ai/resources/homomorphic-encryption-150ms-performance-edge-video-analytics",
+    "https://www.researchgate.net/publication/302563731_Recent_Results_in_Scalable_Multi-Party_Computation",
+    "https://next.gr/ai/ai-for-cybersecurity/secure-multi-party-computation-in-ai",
+    "https://proceedings.mlr.press/v232/malaviya23a.html",
+    "https://marc.damie.eu/posts/tee-discussion/",
+    "https://arxiv.org/html/2512.22090v1",
+    "https://raveneducation.org/practical-performance-tradeoffs-when-deploying-layer-3-solutions-across-ecosystems/",
+    "https://acudame.org/hot-storage-tradeoffs-when-launching-mainnet-and-bitizen-user-onboarding-security-steps/",
+    "https://check.torproject.org/torbulkexitlist",
+    "https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-block-traffic-coming-from-TOR-exit-nodes/ta-p/190958",
+    "https://blog.cloudflare.com/the-trouble-with-tor/",
+    "https://tornmarketing.com.au/blog/dealing-with-tor-malicious-website-traffic-with-cloudflare/",
+    "https://www.akamai.com/blog/performance/act-against-geopiracy-with-enhanced-proxy-detection",
+    "https://www.serverspan.com/en/blog/searxng-on-a-vps-how-to-run-private-search-without-getting-rate-limited-into-uselessness",
+    "https://www.ipqualityscore.com/",
+    "https://solusvpn.com/residential-vs-datacenter-ips-which-one-offers-better-privacy.html",
+    "https://spider.com/blog/datacenter-ips-vs-residential-ips",
+    "https://helpnetsecurity.com/2026/04/06/residential-proxy-attack-traffic-ip-reputation-enterprise-security/",
+    "https://mangoproxy.com/blog/proxy-types-comparison/",
+    "https://www.proxies.sx/blog/best-proxies-web-scraping-2026",
+    "https://dataprixa.com/proxy-types-web-scraping-proxies/",
+    "https://www.twinstrata.com/news/bright-data-residential-proxy-network/",
+    "https://crozdesk.com/compare/cherry-proxy-vs-oxylabs-vs-proxy-seller",
+    "https://roundproxies.com/blog/decodo-vs-iproyal/",
+    "https://www.vpnmentor.com/reviews/smartproxy/",
+    "https://gproxy.net/en/proxy-comparison/gproxy-vs-soax/",
+    "https://proxiesreview.online/best-proxies-for-web-scraping/",
+    "https://proxiesreview.online/netnut-review/",
+    "https://netnut.io/",
+    "https://proxylook.com/providers/webshare",
+    "https://dataresearchtools.com/webshare-review-2026/",
+    "https://datarade.ai/data-products/iproyal-proxies-for-web-scraping-residential-proxies-da-iproyal",
+    "https://proxyomega.com/comparisons/rayobyte",
+    "https://afftank.com/blog/decodo-review",
+    "https://pingproxies.com/blog/ethical-proxy-sourcing",
+    "https://plainproxies.com/blog/integrations/ethically-sourced-residential-proxies",
+    "https://aamax.co/blog/how-ethical-uk-residential-proxies-help-businesses-stay-compliant",
+    "https://voidmob.com/blog/why-cheap-residential-proxies-unethical-ip-traps",
+    "https://rayobyte.com/products/rotating-residential-ips/ethics/",
+    "https://cybernews.com/best-proxy/china-proxies/",
+    "https://proxyway.com/proxy-locations/china-proxy",
+    "https://www.saasultra.com/best-china-proxy-providers/",
+    "https://proxyempire.io/chinese-proxies/",
+    "https://multilogin.com/blog/can-i-use-a-web-proxy-in-china/"
   ],
   "cited_not_fetched_as_file": [
     "arXiv:2307.02429",
@@ -670,6 +1678,33 @@
     "https://docs.searxng.org/own-instance.html",
     "https://medium.com/@rosgluk/selfhosting-searxng-a3cb66a196e9",
     "https://kinsta.com/blog/alternative-search-engines",
-    "https://www.chuninja.com/"
+    "https://www.chuninja.com/",
+    "https://arxiv.org/abs/1801.02265",
+    "https://mjuarezm.github.io/assets/pdf/ccs18.pdf",
+    "https://arxiv.org/abs/1802.10215",
+    "https://arxiv.org/abs/1711.03656",
+    "https://arxiv.org/abs/2404.07892",
+    "https://arxiv.org/abs/2603.07412",
+    "https://www.usenix.org/system/files/sec22-cherubin.pdf",
+    "https://datatracker.ietf.org/doc/html/draft-irtf-pearg-website-fingerprinting",
+    "https://crypto.stackexchange.com/questions/73099/how-can-we-deploy-information-theoretic-private-information-retrieval-in-practic",
+    "https://www.usenix.org/system/files/sec21-kogan.pdf",
+    "https://www.usenix.org/system/files/sec22-mahdavi.pdf",
+    "https://ieeexplore.ieee.org/document/10646690",
+    "https://dione.lib.unipi.gr/xmlui/bitstream/handle/unipi/11080/Tsaktsiras_Dimitrios.pdf?sequence=1&isAllowed=y",
+    "https://www.researchgate.net/publication/302563731_Recent_Results_in_Scalable_Multi-Party_Computation",
+    "https://next.gr/ai/ai-for-cybersecurity/secure-multi-party-computation-in-ai",
+    "https://www.twinstrata.com/news/bright-data-residential-proxy-network/",
+    "https://crozdesk.com/compare/cherry-proxy-vs-oxylabs-vs-proxy-seller",
+    "https://roundproxies.com/blog/decodo-vs-iproyal/",
+    "https://www.vpnmentor.com/reviews/smartproxy/",
+    "https://gproxy.net/en/proxy-comparison/gproxy-vs-soax/",
+    "https://proxiesreview.online/best-proxies-for-web-scraping/",
+    "https://proxiesreview.online/netnut-review/",
+    "https://netnut.io/",
+    "https://proxylook.com/providers/webshare",
+    "https://dataresearchtools.com/webshare-review-2026/",
+    "https://datarade.ai/data-products/iproyal-proxies-for-web-scraping-residential-proxies-da-iproyal",
+    "https://afftank.com/blog/decodo-review"
   ]
 }
