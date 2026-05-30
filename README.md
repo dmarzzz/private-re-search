@@ -18,6 +18,7 @@ that archive filtered to this topic, plus a generated index.
 | [`GAPS.md`](GAPS.md) | What the swarm missed: 52 verified gaps found by a Claude deep + parallel research pass, grouped and ranked |
 | [`gaps.json`](gaps.json) | Machine-readable version of the gap analysis |
 | [`anonymized-scraping-residential-proxies-privacy.md`](anonymized-scraping-residential-proxies-privacy.md) | Deep-research report: why SearXNG-over-Tor gets blocked, the residential-proxy market + sourcing, the China angle, and whether residential proxies kill your privacy guarantees |
+| [`the-search-problem-formalization.md`](the-search-problem-formalization.md) | Literature review + formalization: a unified model of the search problem (AI state-space + decision-theoretic optimal stopping + IR relevance), then a formal contrast of human vs AI-agent searchers. 71 verified references |
 | [`manifest.json`](manifest.json) | Machine-readable index (one record per page: url, title, hash, local path, word count, blocked flag) |
 | [`sources/`](sources/) | Raw fetched pages as markdown (`<domain>/<date>-<slug>.md`, with YAML frontmatter) |
 | [`traces/`](traces/) | Raw agent run traces (question, synthesis, sources, self-critique) |
