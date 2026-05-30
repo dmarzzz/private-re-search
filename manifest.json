@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-30T21:37:44.630870+00:00",
+  "generated_at": "2026-05-30T23:40:25.523912+00:00",
   "topic": "IP anonymization for search (+ anonymized scraping / residential proxies)",
-  "page_count": 136,
-  "domain_count": 91,
-  "run_count": 9,
+  "page_count": 197,
+  "domain_count": 137,
+  "run_count": 14,
   "runs": [
     "20260530-153935-survey-the-full-design-space-of-ip-anonymiza.json",
     "20260530-154633-oblivious-http-ohttp-and-oblivious-relays-fo.json",
@@ -13,9 +13,25 @@
     "20260530-170334-obfuscation-based-private-web-search-and-the.json",
     "20260530-172038-applied-private-retrieval-and-deployed-or-st.json",
     "20260530-173102-why-do-websites-block-tor-exit-nodes-and-tor.json",
-    "20260530-173732-the-residential-proxy-market-for-web-scrapin.json"
+    "20260530-173732-the-residential-proxy-market-for-web-scrapin.json",
+    "20260530-190306-formal-foundations-of-information-retrieval.json",
+    "20260530-191408-decision-theoretic-and-economic-theory-of-se.json",
+    "20260530-192045-search-as-problem-solving-in-artificial-inte.json",
+    "20260530-192753-human-information-seeking-behavior-and-cogni.json",
+    "20260530-194017-retrieval-augmented-generation-and-agentic-l.json"
   ],
   "pages": [
+    {
+      "domain": "2016.berlinbuzzwords.de",
+      "title": "bm25_final.key",
+      "url": "https://2016.berlinbuzzwords.de/sites/2016.berlinbuzzwords.de/files/media/documents/bm25_buzzwords_britta_weber.pdf",
+      "fetched_at": "2026-05-30T18:56:53",
+      "extractor": "jina",
+      "content_hash": "sha1:23c891905c67a53988703d769df0a62d539dbc93",
+      "path": "2016.berlinbuzzwords.de/2026-05-30-bm25-final-key-sites-2016-berlinbuz.md",
+      "words": 2341,
+      "blocked": false
+    },
     {
       "domain": "aamax.co",
       "title": "How Ethical UK Residential Proxies Help Businesses Stay Compliant",
@@ -28,6 +44,17 @@
       "blocked": false
     },
     {
+      "domain": "act-r.psy.cmu.edu",
+      "title": "Microsoft Word - PRP_PARC_040601_ProximalInfoScent.doc",
+      "url": "http://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/515uir-2004-07-pirolli.pdf",
+      "fetched_at": "2026-05-30T19:21:56",
+      "extractor": "jina",
+      "content_hash": "sha1:59237c0276ad57ec21ad3ea3c36ae46cfe4807d6",
+      "path": "act-r.psy.cmu.edu/2026-05-30-microsoft-word-prp-parc-040601-proximalinfoscent-wordpress-wp-content.md",
+      "words": 13079,
+      "blocked": false
+    },
+    {
       "domain": "acudame.org",
       "title": "Hot storage tradeoffs when launching Mainnet and Bitizen user onboarding security steps",
       "url": "https://acudame.org/hot-storage-tradeoffs-when-launching-mainnet-and-bitizen-user-onboarding-security-steps",
@@ -36,6 +63,17 @@
       "content_hash": "sha1:df71a8519e48491f562160501607e9fb3098e9aa",
       "path": "acudame.org/2026-05-30-hot-storage-tradeoffs-when-launching-mainnet-and-hot-storage-tradeoff.md",
       "words": 952,
+      "blocked": false
+    },
+    {
+      "domain": "aima.cs.berkeley.edu",
+      "title": "newchap03.pdf",
+      "url": "https://aima.cs.berkeley.edu/4th-ed/pdfs/newchap03.pdf",
+      "fetched_at": "2026-05-30T19:16:51",
+      "extractor": "jina",
+      "content_hash": "sha1:d5a5dcf889e3ca285b22bad31e81c6eca0211303",
+      "path": "aima.cs.berkeley.edu/2026-05-30-newchap03-pdf-4th-ed-pdfs-newchap0.md",
+      "words": 16856,
       "blocked": false
     },
     {
@@ -62,6 +100,17 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "An Empirical Study on Reinforcement Learning for Reasoning-Search Interleaved LLM Agents",
+      "url": "https://arxiv.org/abs/2505.15117",
+      "fetched_at": "2026-05-30T19:35:31",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:bf85c1c2fe3afc26b2b2f421c32979b8e3d00ee4",
+      "path": "arxiv.org/2026-05-30-an-empirical-study-on-reinforcement-learning-for-abs-2505-15117.md",
+      "words": 459,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "Are we collaborative yet? A Usability Perspective on Mixnet Latency for Real-Time Applications",
       "url": "https://arxiv.org/abs/2601.17845",
       "fetched_at": "2026-05-30T16:02:31",
@@ -69,6 +118,28 @@
       "content_hash": "sha1:c2b903916aaeede9110f964434a5adec0b05e0ab",
       "path": "arxiv.org/2026-05-30-are-we-collaborative-yet-a-usability-perspective-abs-2601-17845.md",
       "words": 462,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Atlas: Few-shot Learning with Retrieval Augmented Language Models",
+      "url": "https://arxiv.org/abs/2208.03299",
+      "fetched_at": "2026-05-30T19:33:23",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:cd579636c8b67149d206586dcc296a971960f31d",
+      "path": "arxiv.org/2026-05-30-atlas-few-shot-learning-with-retrieval-augmented-abs-2208-03299.md",
+      "words": 488,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Chain-of-Retrieval Augmented Generation",
+      "url": "https://arxiv.org/html/2501.14342v3",
+      "fetched_at": "2026-05-30T19:38:16",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:9332ea9c74eb4b60f41064047643490641b34795",
+      "path": "arxiv.org/2026-05-30-chain-of-retrieval-augmented-generation-html-2501-14342v3.md",
+      "words": 13330,
       "blocked": false
     },
     {
@@ -106,6 +177,17 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "Discovering the curriculum with AI: A proof-of-concept demonstration with an intelligent tutoring system for teaching project selection",
+      "url": "https://arxiv.org/html/2406.04082v2",
+      "fetched_at": "2026-05-30T19:17:57",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:19ac28e2535130b56e11d9a5096d4f58b70b673e",
+      "path": "arxiv.org/2026-05-30-discovering-the-curriculum-with-ai-a-proof-of-co-html-2406-04082v2.md",
+      "words": 11632,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "DNS Query Forgery: A Client-Side Defense Against Mobile App Traffic Profiling",
       "url": "https://arxiv.org/pdf/2505.09374",
       "fetched_at": "2026-05-30T16:54:19",
@@ -117,6 +199,17 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "Ideal Partition of Resources for Metareasoning",
+      "url": "https://arxiv.org/abs/2110.09624",
+      "fetched_at": "2026-05-30T19:18:11",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:0ec4380c547a08415225eb825f8fa301a2c3b871",
+      "path": "arxiv.org/2026-05-30-ideal-partition-of-resources-for-metareasoning-abs-2110-09624.md",
+      "words": 400,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "IM-PIR: In-Memory Private Information Retrieval",
       "url": "https://arxiv.org/pdf/2509.06514v1",
       "fetched_at": "2026-05-30T16:02:35",
@@ -124,6 +217,17 @@
       "content_hash": "sha1:87b7a39301cd9365ad6a17ada8ea10c119f39db9",
       "path": "arxiv.org/2026-05-30-im-pir-in-memory-private-information-retrieval-pdf-2509-06514v1.md",
       "words": 15687,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "InfoDeepSeek: Benchmarking Agentic Information Seeking for Retrieval-Augmented Generation",
+      "url": "https://arxiv.org/abs/2505.15872",
+      "fetched_at": "2026-05-30T19:35:18",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:983f3b6b7fb0203508e45ce7be4a5d5d2b4204f9",
+      "path": "arxiv.org/2026-05-30-infodeepseek-benchmarking-agentic-information-se-abs-2505-15872.md",
+      "words": 513,
       "blocked": false
     },
     {
@@ -146,6 +250,17 @@
       "content_hash": "sha1:e3a884a717fb59a6f4c02886e2dbc0fa775ba0b7",
       "path": "arxiv.org/2026-05-30-on-the-information-leakage-in-private-informatio-abs-1909-11605.md",
       "words": 479,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Pandora's Box Problem with Order Constraints",
+      "url": "https://arxiv.org/abs/2002.06968",
+      "fetched_at": "2026-05-30T19:07:39",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1ed5f41be28f8a4db688f30deb57ea6179fbf67a",
+      "path": "arxiv.org/2026-05-30-pandora-s-box-problem-with-order-constraints-abs-2002-06968.md",
+      "words": 541,
       "blocked": false
     },
     {
@@ -179,6 +294,28 @@
       "content_hash": "sha1:5d1e7811c66da871255e56ae7ff4ed4e2719dd6c",
       "path": "arxiv.org/2026-05-30-raptor-routing-attacks-on-privacy-in-tor-abs-1503-03940.md",
       "words": 478,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "fetched_at": "2026-05-30T19:30:19",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:3dc2cf74a80d4de7615ad1eda17c556328b4f1ab",
+      "path": "arxiv.org/2026-05-30-react-synergizing-reasoning-and-acting-in-langua-abs-2210-03629.md",
+      "words": 585,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Recent Developments in Pandora's Box Problem: Variants and Applications",
+      "url": "https://arxiv.org/abs/2308.12242",
+      "fetched_at": "2026-05-30T19:07:27",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:25ce8a24e556e88c76b171b19ec5bf0681284ae3",
+      "path": "arxiv.org/2026-05-30-recent-developments-in-pandora-s-box-problem-var-abs-2308-12242.md",
+      "words": 334,
       "blocked": false
     },
     {
@@ -303,6 +440,28 @@
       "blocked": false
     },
     {
+      "domain": "blogs.nvidia.com",
+      "title": "What Is Retrieval-Augmented Generation aka RAG?",
+      "url": "https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation",
+      "fetched_at": "2026-05-30T19:36:09",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:d9ad612709a79b92df546d2c68dd2f27b9d5b468",
+      "path": "blogs.nvidia.com/2026-05-30-what-is-retrieval-augmented-generation-aka-rag-blog-what-is-retriev.md",
+      "words": 1983,
+      "blocked": false
+    },
+    {
+      "domain": "bradlove.org",
+      "title": "BBS1000313 169..231",
+      "url": "https://bradlove.org/papers/JonesLove2011all.pdf",
+      "fetched_at": "2026-05-30T19:03:57",
+      "extractor": "jina",
+      "content_hash": "sha1:92a5ac751bb1b0974839f18beec0fbafd05c3371",
+      "path": "bradlove.org/2026-05-30-bbs1000313-169-231-papers-joneslove2011.md",
+      "words": 73416,
+      "blocked": false
+    },
+    {
       "domain": "brave.com",
       "title": "frodo-pir-2023.pdf",
       "url": "https://brave.com/research/files/frodo-pir-2023.pdf",
@@ -325,6 +484,17 @@
       "blocked": false
     },
     {
+      "domain": "cdn.openai.com",
+      "title": "WebGPT.pdf",
+      "url": "https://cdn.openai.com/WebGPT.pdf",
+      "fetched_at": "2026-05-30T19:33:51",
+      "extractor": "jina",
+      "content_hash": "sha1:77055c3fc529f7930bcc1dfed6d2e375dc8ffcff",
+      "path": "cdn.openai.com/2026-05-30-webgpt-pdf-webgpt-pdf.md",
+      "words": 14914,
+      "blocked": false
+    },
+    {
       "domain": "check.torproject.org",
       "title": "/torbulkexitlist",
       "url": "https://check.torproject.org/torbulkexitlist",
@@ -334,6 +504,28 @@
       "path": "check.torproject.org/2026-05-30-torbulkexitlist-torbulkexitlist.md",
       "words": 20,
       "blocked": true
+    },
+    {
+      "domain": "christine-braun.github.io",
+      "title": "The Economics of Information",
+      "url": "https://christine-braun.github.io/Papers/Stigler1961.pdf",
+      "fetched_at": "2026-05-30T19:04:05",
+      "extractor": "jina",
+      "content_hash": "sha1:2adf101936583d46ab140bbcc567bb51b3d51424",
+      "path": "christine-braun.github.io/2026-05-30-the-economics-of-information-papers-stigler1961-p.md",
+      "words": 7647,
+      "blocked": false
+    },
+    {
+      "domain": "colab.research.google.com",
+      "title": "Google Colab",
+      "url": "https://colab.research.google.com/github/QuantEcon/lecture-python.notebooks/blob/main/wald_friedman.ipynb",
+      "fetched_at": "2026-05-30T19:10:01",
+      "extractor": "jina",
+      "content_hash": "sha1:d88a8a13055e4e1b2b3a25a0b45c8bac1e3cae02",
+      "path": "colab.research.google.com/2026-05-30-google-colab-github-quantecon-lec.md",
+      "words": 8741,
+      "blocked": false
     },
     {
       "domain": "community.fortinet.com",
@@ -358,6 +550,28 @@
       "blocked": false
     },
     {
+      "domain": "cseweb.ucsd.edu",
+      "title": "Probability Ranking Principle",
+      "url": "https://cseweb.ucsd.edu/~rik/foa/l2h/foa-5-5-1.html",
+      "fetched_at": "2026-05-30T18:56:50",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:34541d9391573a347d4e65e74934da6de53104b0",
+      "path": "cseweb.ucsd.edu/2026-05-30-probability-ranking-principle-rik-foa-l2h-foa-5-5-.md",
+      "words": 578,
+      "blocked": false
+    },
+    {
+      "domain": "cw.fel.cvut.cz",
+      "title": "seqanal-slides_en.pdf",
+      "url": "https://cw.fel.cvut.cz/old/_media/courses/ae3m33ui/lectures/seqanal-slides_en.pdf",
+      "fetched_at": "2026-05-30T19:09:55",
+      "extractor": "jina",
+      "content_hash": "sha1:0abfe70989c6a93810f5782a10004f7f3875f0fa",
+      "path": "cw.fel.cvut.cz/2026-05-30-seqanal-slides-en-pdf-old-media-courses-ae.md",
+      "words": 2949,
+      "blocked": false
+    },
+    {
       "domain": "cybernews.com",
       "title": "Best China Proxy Providers in 2026",
       "url": "https://cybernews.com/best-proxy/china-proxies",
@@ -366,6 +580,17 @@
       "content_hash": "sha1:815c76e0663f4110b25131a1fbd10cabead9de9d",
       "path": "cybernews.com/2026-05-30-best-china-proxy-providers-in-2026-best-proxy-china-pro.md",
       "words": 4528,
+      "blocked": false
+    },
+    {
+      "domain": "datahacker.rs",
+      "title": "dH #020: Introduction to Retrieval Augmented Language Modeling - Master Data Science 28.11.2025",
+      "url": "https://datahacker.rs/dh-020-introduction-to-retrieval-augmented-language-modeling",
+      "fetched_at": "2026-05-30T19:29:12",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:963ebd3fdc329801c65740e6e459c8eed0b71904",
+      "path": "datahacker.rs/2026-05-30-dh-020-introduction-to-retrieval-augmented-langu-dh-020-introduction-.md",
+      "words": 6040,
       "blocked": false
     },
     {
@@ -388,6 +613,28 @@
       "content_hash": "sha1:135aa69745c5821b88b43318a0e4c208780c240c",
       "path": "decodo.com/2026-05-30-residential-proxy-pricing-decodo-formerly-smartp-pricing.md",
       "words": 1197,
+      "blocked": false
+    },
+    {
+      "domain": "deepwiki.com",
+      "title": "Tool Integration | anildukkipatty/ai-agents-examples | DeepWiki",
+      "url": "https://deepwiki.com/anildukkipatty/ai-agents-examples/3.3-tool-integration",
+      "fetched_at": "2026-05-30T19:31:07",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1f33545521f53d940d1389604be95e28fd166b6f",
+      "path": "deepwiki.com/2026-05-30-tool-integration-anildukkipatty-ai-agents-exampl-anildukkipatty-ai-ag.md",
+      "words": 1188,
+      "blocked": false
+    },
+    {
+      "domain": "developer.nvidia.com",
+      "title": "Building Your First LLM Agent Application | NVIDIA Technical Blog",
+      "url": "https://developer.nvidia.com/blog/building-your-first-llm-agent-application",
+      "fetched_at": "2026-05-30T19:31:09",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:beefebd06c0820f4aa258614e45be09b3d0004f2",
+      "path": "developer.nvidia.com/2026-05-30-building-your-first-llm-agent-application-nvidia-blog-building-your-f.md",
+      "words": 1942,
       "blocked": false
     },
     {
@@ -421,6 +668,17 @@
       "content_hash": "sha1:d9b66582826c5ee900c5045096086a294d1a31c4",
       "path": "dl.acm.org/2026-05-30-aquilis-using-contextual-integrity-for-privacy-p-doi-10-1145-3432205.md",
       "words": 119,
+      "blocked": false
+    },
+    {
+      "domain": "docs.getdynamiq.ai",
+      "title": "Guide to Implementing LLM Agents: ReAct and Simple Agents | Dynamiq Docs",
+      "url": "https://docs.getdynamiq.ai/low-code-builder/llm-agents/guide-to-implementing-llm-agents-react-and-simple-agents",
+      "fetched_at": "2026-05-30T19:31:07",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:c9966445258e74316fddd7ec0d85e8bb0e97abe5",
+      "path": "docs.getdynamiq.ai/2026-05-30-guide-to-implementing-llm-agents-react-and-simpl-low-code-builder-llm.md",
+      "words": 1057,
       "blocked": false
     },
     {
@@ -458,6 +716,17 @@
     },
     {
       "domain": "en.wikipedia.org",
+      "title": "A* search algorithm - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/A*_search_algorithm",
+      "fetched_at": "2026-05-30T19:15:23",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:bcc1544c083d5ff3c01c69d9245eeb44f28e049a",
+      "path": "en.wikipedia.org/2026-05-30-a-search-algorithm-wikipedia-wiki-a-search-algori.md",
+      "words": 7418,
+      "blocked": false
+    },
+    {
+      "domain": "en.wikipedia.org",
       "title": "Private information retrieval - Wikipedia",
       "url": "https://en.wikipedia.org/wiki/Private_information_retrieval",
       "fetched_at": "2026-05-30T16:55:02",
@@ -465,6 +734,50 @@
       "content_hash": "sha1:03bbbc690c595bdaf96292918f76bca4bfb122e7",
       "path": "en.wikipedia.org/2026-05-30-private-information-retrieval-wikipedia-wiki-private-informa.md",
       "words": 3411,
+      "blocked": false
+    },
+    {
+      "domain": "en.wikipedia.org",
+      "title": "Ranking (information retrieval) - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ranking_(information_retrieval)",
+      "fetched_at": "2026-05-30T18:54:05",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:679e69e3c718e3a5f0caba3289cef57f46094379",
+      "path": "en.wikipedia.org/2026-05-30-ranking-information-retrieval-wikipedia-wiki-ranking-informa.md",
+      "words": 3142,
+      "blocked": false
+    },
+    {
+      "domain": "en.wikipedia.org",
+      "title": "Satisficing - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Satisficing",
+      "fetched_at": "2026-05-30T19:19:34",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:abb16d0269f3ac4e91e0130b549ff5b652ad9ff2",
+      "path": "en.wikipedia.org/2026-05-30-satisficing-wikipedia-wiki-satisficing.md",
+      "words": 5465,
+      "blocked": false
+    },
+    {
+      "domain": "en.wikipedia.org",
+      "title": "Sequential analysis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Sequential_analysis",
+      "fetched_at": "2026-05-30T19:09:51",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:04f16455b1d76ec4013f80c25489606e179b2684",
+      "path": "en.wikipedia.org/2026-05-30-sequential-analysis-wikipedia-wiki-sequential-anal.md",
+      "words": 2681,
+      "blocked": false
+    },
+    {
+      "domain": "en.wikiversity.org",
+      "title": "Information retrieval/History - Wikiversity",
+      "url": "https://en.wikiversity.org/wiki/Information_retrieval/History",
+      "fetched_at": "2026-05-30T18:54:05",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:9479c0c684be48f6cb407a6696326b23337eb317",
+      "path": "en.wikiversity.org/2026-05-30-information-retrieval-history-wikiversity-wiki-information-ret.md",
+      "words": 2791,
       "blocked": false
     },
     {
@@ -512,6 +825,17 @@
       "blocked": false
     },
     {
+      "domain": "faculty.georgetown.edu",
+      "title": "404 Not Found",
+      "url": "https://faculty.georgetown.edu/albrecht/SJE+Survey.pdf",
+      "fetched_at": "2026-05-30T19:05:48",
+      "extractor": "jina",
+      "content_hash": "sha1:544ecb175f0b434118543ac5ea85f944bb5ef94f",
+      "path": "faculty.georgetown.edu/2026-05-30-404-not-found-albrecht-sje-survey-.md",
+      "words": 38,
+      "blocked": true
+    },
+    {
       "domain": "fastly.quic.co",
       "title": "Fastly and Google partner to enhance your privacy while protecting Chrome users from online threats in real-time | Fastly",
       "url": "https://fastly.quic.co/blog/fastly-and-google-partner-to-enhance-your-privacy-while-protecting-chrome",
@@ -520,6 +844,17 @@
       "content_hash": "sha1:895108d36df8b7b5571690023315cb000d4a3a71",
       "path": "fastly.quic.co/2026-05-30-fastly-and-google-partner-to-enhance-your-privac-blog-fastly-and-goog.md",
       "words": 900,
+      "blocked": false
+    },
+    {
+      "domain": "fourweekmba.com",
+      "title": "Bounded Rationality Theory: Herbert Simon's 2026 Guide - FourWeekMBA",
+      "url": "https://fourweekmba.com/bounded-rationality",
+      "fetched_at": "2026-05-30T19:19:39",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:e36eb945a1bc7b00d8ffee080e8e8c090277ea27",
+      "path": "fourweekmba.com/2026-05-30-bounded-rationality-theory-herbert-simon-s-2026--bounded-rationality.md",
+      "words": 6762,
       "blocked": false
     },
     {
@@ -677,6 +1012,17 @@
       "blocked": false
     },
     {
+      "domain": "lfaidata.foundation",
+      "title": "Advanced Open Source Retrieval Augmented Generation (RAG) Techniques",
+      "url": "https://lfaidata.foundation/communityblog/2025/01/20/advanced-open-source-retrieval-augmented-generation-rag-techniques",
+      "fetched_at": "2026-05-30T19:31:08",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1aa0abeeb82a5a6f1c5e2caa2467e252c69225cf",
+      "path": "lfaidata.foundation/2026-05-30-advanced-open-source-retrieval-augmented-generat-communityblog-2025-0.md",
+      "words": 2185,
+      "blocked": false
+    },
+    {
       "domain": "link.springer.com",
       "title": "Differential privacy and artificial intelligence: potentials, challenges, and future avenues - Journal on Information Security",
       "url": "https://link.springer.com/article/10.1186/s13635-025-00203-9",
@@ -721,6 +1067,17 @@
       "blocked": false
     },
     {
+      "domain": "liswiki.org",
+      "title": "Information behavior theories - LISWiki",
+      "url": "https://liswiki.org/wiki/Information_behavior_theories",
+      "fetched_at": "2026-05-30T19:25:26",
+      "extractor": "jina",
+      "content_hash": "sha1:efc17f59aa574dfeed88c5faad4f59ac788a553d",
+      "path": "liswiki.org/2026-05-30-information-behavior-theories-liswiki-wiki-information-beh.md",
+      "words": 1839,
+      "blocked": false
+    },
+    {
       "domain": "mangoproxy.com",
       "title": "Residential vs Datacenter vs ISP vs Mobile Proxies: Key Differences and Use Cases",
       "url": "https://mangoproxy.com/blog/proxy-types-comparison",
@@ -754,6 +1111,28 @@
       "blocked": false
     },
     {
+      "domain": "mbrenndoerfer.com",
+      "title": "Retrieval-Augmented Training: RETRO Architecture and Context Integration - Interactive | Michael Brenndoerfer",
+      "url": "https://mbrenndoerfer.com/writing/retrieval-augmented-training-retro-architecture-context-integration",
+      "fetched_at": "2026-05-30T19:29:13",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:29a1bc48ab722f58d18a5f4a3993fb3600ccdeb7",
+      "path": "mbrenndoerfer.com/2026-05-30-retrieval-augmented-training-retro-architecture--writing-retrieval-au.md",
+      "words": 7785,
+      "blocked": false
+    },
+    {
+      "domain": "medium.com",
+      "title": "Just a moment...",
+      "url": "https://medium.com/syncedreview/deepminds-retro-retrieval-enhanced-transformer-retrieves-from-trillions-of-tokens-achieving-c54313fec51d",
+      "fetched_at": "2026-05-30T19:29:17",
+      "extractor": "jina",
+      "content_hash": "sha1:fcee6ba9eb8ab783d3e28a78532c7bc2c482cc7d",
+      "path": "medium.com/2026-05-30-just-a-moment-syncedreview-deepmin.md",
+      "words": 87,
+      "blocked": true
+    },
+    {
       "domain": "metager.org",
       "title": "Privacy policy",
       "url": "https://metager.org/en-US/datenschutz",
@@ -763,6 +1142,17 @@
       "path": "metager.org/2026-05-30-privacy-policy-en-us-datenschutz.md",
       "words": 927,
       "blocked": false
+    },
+    {
+      "domain": "mobility.mit.edu",
+      "title": "Not Found",
+      "url": "https://mobility.mit.edu/sites/default/files/Value_of_Information.pdf",
+      "fetched_at": "2026-05-30T19:11:05",
+      "extractor": "jina",
+      "content_hash": "sha1:bbb4f8791c0db50d0537b03ab9cb6cd050bcd516",
+      "path": "mobility.mit.edu/2026-05-30-not-found-sites-default-files-.md",
+      "words": 43,
+      "blocked": true
     },
     {
       "domain": "multilogin.com",
@@ -796,6 +1186,28 @@
       "path": "netnut.io/2026-05-30-page-not-found-netnut-io-pricing.md",
       "words": 2357,
       "blocked": true
+    },
+    {
+      "domain": "nlp.stanford.edu",
+      "title": "Language models for information retrieval",
+      "url": "https://nlp.stanford.edu/IR-book/html/htmledition/language-models-for-information-retrieval-1.html",
+      "fetched_at": "2026-05-30T19:00:48",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:4daaff46b121589567779fbdc7a3359acd0b25e1",
+      "path": "nlp.stanford.edu/2026-05-30-language-models-for-information-retrieval-ir-book-html-htmledi.md",
+      "words": 451,
+      "blocked": false
+    },
+    {
+      "domain": "nlp.stanford.edu",
+      "title": "References and further reading",
+      "url": "https://nlp.stanford.edu/IR-book/html/htmledition/references-and-further-reading-12.html",
+      "fetched_at": "2026-05-30T19:01:05",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:0af0ff70c098ee4c138001db48fa8b1cb164be15",
+      "path": "nlp.stanford.edu/2026-05-30-references-and-further-reading-ir-book-html-htmledi.md",
+      "words": 621,
+      "blocked": false
     },
     {
       "domain": "nym.com",
@@ -842,6 +1254,28 @@
       "blocked": false
     },
     {
+      "domain": "pages.gseis.ucla.edu",
+      "title": "The Design of Browsing and Berrypicking Techniques",
+      "url": "https://pages.gseis.ucla.edu/faculty/bates/berrypicking.html",
+      "fetched_at": "2026-05-30T19:21:57",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:58c14a6b5b705df7ddcc7a946178cfa0e43fbf6c",
+      "path": "pages.gseis.ucla.edu/2026-05-30-the-design-of-browsing-and-berrypicking-techniqu-faculty-bates-berryp.md",
+      "words": 5898,
+      "blocked": false
+    },
+    {
+      "domain": "people.eecs.berkeley.edu",
+      "title": "Stuart Russell -- Foundations: Rationality and Intelligence",
+      "url": "https://people.eecs.berkeley.edu/~russell/research-bo.html",
+      "fetched_at": "2026-05-30T19:17:56",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:77eabaa4feed2f16e878c0f4c3cb1a0e84b82e01",
+      "path": "people.eecs.berkeley.edu/2026-05-30-stuart-russell-foundations-rationality-and-intel-russell-research-bo-.md",
+      "words": 1566,
+      "blocked": false
+    },
+    {
       "domain": "petsymposium.org",
       "title": "FrodoPIR: Simple, Scalable, Single-Server Private Information Retrieval",
       "url": "https://petsymposium.org/popets/2023/popets-2023-0022.pdf",
@@ -872,6 +1306,17 @@
       "content_hash": "sha1:93da4374f90cc21ea5fa0fc712544ce73c5fcb63",
       "path": "plainproxies.com/2026-05-30-ethically-sourced-residential-proxies-for-compli-blog-integrations-et.md",
       "words": 1578,
+      "blocked": false
+    },
+    {
+      "domain": "plato.stanford.edu",
+      "title": "Embodied Cognition",
+      "url": "https://plato.stanford.edu/entries/embodied-cognition",
+      "fetched_at": "2026-05-30T19:15:00",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:2d57998bdfa11432f00c2f8a82b17b86f1aa46cd",
+      "path": "plato.stanford.edu/2026-05-30-embodied-cognition-entries-embodied-cog.md",
+      "words": 16565,
       "blocked": false
     },
     {
@@ -930,6 +1375,28 @@
       "blocked": false
     },
     {
+      "domain": "python.elitedev.in",
+      "title": "How to Build Multi-Agent LLM Systems with Tool Integration and Memory in Python",
+      "url": "https://python.elitedev.in/large_language_model/how-to-build-multi-agent-llm-systems-with-tool-integration-and-memory-in-python-b538abb1",
+      "fetched_at": "2026-05-30T19:31:07",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:3d2c657c8803a8fa5415ea55b6f44af784acfb26",
+      "path": "python.elitedev.in/2026-05-30-how-to-build-multi-agent-llm-systems-with-tool-i-large-language-model.md",
+      "words": 591,
+      "blocked": false
+    },
+    {
+      "domain": "python.quantecon.org",
+      "title": "Job Search I: The McCall Search Model",
+      "url": "https://python.quantecon.org/mccall_model.html",
+      "fetched_at": "2026-05-30T19:05:49",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:110971c7adaf3e7129d18339405031ea7bc5f6c2",
+      "path": "python.quantecon.org/2026-05-30-job-search-i-the-mccall-search-model-mccall-model-html.md",
+      "words": 708,
+      "blocked": false
+    },
+    {
       "domain": "raveneducation.org",
       "title": "Practical performance tradeoffs when deploying layer 3 solutions across ecosystems - Raven Parthenon Education",
       "url": "https://raveneducation.org/practical-performance-tradeoffs-when-deploying-layer-3-solutions-across-ecosystems",
@@ -949,6 +1416,17 @@
       "content_hash": "sha1:974e533b4c1f5a63ef9d28f241c18f07f444eb9d",
       "path": "rayobyte.com/2026-05-30-residential-proxy-ethics-how-rayobyte-sets-the-s-products-rotating-re.md",
       "words": 758,
+      "blocked": false
+    },
+    {
+      "domain": "scispace.com",
+      "title": "Search-Theoretic Models of the Labor Market: A Survey",
+      "url": "https://scispace.com/pdf/search-theoretic-models-of-the-labor-market-a-survey-1vd8x5tbbs.pdf",
+      "fetched_at": "2026-05-30T19:05:49",
+      "extractor": "jina",
+      "content_hash": "sha1:c55dd139fbc01cec145b8fb72c311fcab7da1881",
+      "path": "scispace.com/2026-05-30-search-theoretic-models-of-the-labor-market-a-su-pdf-search-theoretic.md",
+      "words": 23739,
       "blocked": false
     },
     {
@@ -996,6 +1474,17 @@
       "blocked": false
     },
     {
+      "domain": "stanford-cs221.github.io",
+      "title": "a-star.pdf",
+      "url": "https://stanford-cs221.github.io/autumn2023-extra/modules/search/a-star.pdf",
+      "fetched_at": "2026-05-30T19:15:25",
+      "extractor": "jina",
+      "content_hash": "sha1:3be2a3b1211b8e0809b548d172f55dcafecb8d85",
+      "path": "stanford-cs221.github.io/2026-05-30-a-star-pdf-autumn2023-extra-mod.md",
+      "words": 2183,
+      "blocked": false
+    },
+    {
       "domain": "support.torproject.org",
       "title": "Tor Browser best practices",
       "url": "https://support.torproject.org/faq/staying-anonymous",
@@ -1015,6 +1504,39 @@
       "content_hash": "sha1:5328802d04db39d499d347382641aa64d211daf1",
       "path": "tornmarketing.com.au/2026-05-30-dealing-with-tor-malicious-website-traffic-with--blog-dealing-with-to.md",
       "words": 611,
+      "blocked": false
+    },
+    {
+      "domain": "training.continuumlabs.ai",
+      "title": "Stanford: Retrieval Augmented Language Models | Continuum Labs",
+      "url": "https://training.continuumlabs.ai/knowledge/retrieval-augmented-generation/stanford-retrieval-augmented-language-models",
+      "fetched_at": "2026-05-30T19:29:12",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:006df16620f4d966deec2c91c30f33129d619292",
+      "path": "training.continuumlabs.ai/2026-05-30-stanford-retrieval-augmented-language-models-con-knowledge-retrieval-.md",
+      "words": 1854,
+      "blocked": false
+    },
+    {
+      "domain": "undsoc.org",
+      "title": "Herbert Simon\u2019s satisficing life",
+      "url": "https://undsoc.org/2011/01/30/herbert-simons-satisficing-life",
+      "fetched_at": "2026-05-30T19:19:35",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:e5c5895ce5f2715da5026a6e38f1bfa22aef3342",
+      "path": "undsoc.org/2026-05-30-herbert-simon-s-satisficing-life-2011-01-30-herbert-s.md",
+      "words": 1569,
+      "blocked": false
+    },
+    {
+      "domain": "uplatz.com",
+      "title": "Beyond RAG: The Paradigm Shift to Native Retrieval-Augmented Training | Uplatz Blog",
+      "url": "https://uplatz.com/blog/beyond-rag-the-paradigm-shift-to-native-retrieval-augmented-training",
+      "fetched_at": "2026-05-30T19:29:13",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1bb01f72329d247bd7fe7c723f607500b90fe992",
+      "path": "uplatz.com/2026-05-30-beyond-rag-the-paradigm-shift-to-native-retrieva-blog-beyond-rag-the-.md",
+      "words": 3443,
       "blocked": false
     },
     {
@@ -1051,6 +1573,17 @@
       "blocked": false
     },
     {
+      "domain": "web.stanford.edu",
+      "title": "lecture12-bm25etc",
+      "url": "https://web.stanford.edu/class/cs276/handouts/lecture12-bm25etc.pdf",
+      "fetched_at": "2026-05-30T18:59:14",
+      "extractor": "jina",
+      "content_hash": "sha1:faf0e5edd67e07c218baa0da4913239f58ae06ec",
+      "path": "web.stanford.edu/2026-05-30-lecture12-bm25etc-class-cs276-handouts.md",
+      "words": 2403,
+      "blocked": false
+    },
+    {
       "domain": "webshare.io",
       "title": "Proxy Pricing - Check Latest Proxy Price - Webshare",
       "url": "https://webshare.io/pricing",
@@ -1059,6 +1592,28 @@
       "content_hash": "sha1:078c8f4efcac0f903957b3be7e995673e033236a",
       "path": "webshare.io/2026-05-30-proxy-pricing-check-latest-proxy-price-webshare-pricing.md",
       "words": 786,
+      "blocked": false
+    },
+    {
+      "domain": "wp.comminfo.rutgers.edu",
+      "title": "Information Search Process",
+      "url": "https://wp.comminfo.rutgers.edu/ckuhlthau/information-search-process",
+      "fetched_at": "2026-05-30T19:24:12",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1034d72fa3b488f7d8b76a727c298581aa186a5e",
+      "path": "wp.comminfo.rutgers.edu/2026-05-30-information-search-process-ckuhlthau-informatio.md",
+      "words": 5555,
+      "blocked": false
+    },
+    {
+      "domain": "www-labs.iro.umontreal.ca",
+      "title": "Making sure you're not a bot!",
+      "url": "https://www-labs.iro.umontreal.ca/~nie/IFT6255/IR-models.pdf",
+      "fetched_at": "2026-05-30T18:54:12",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:2b48169f15977f68e0ecd2048b05f0121fe9f3e6",
+      "path": "www-labs.iro.umontreal.ca/2026-05-30-making-sure-you-re-not-a-bot-nie-ift6255-ir-model.md",
+      "words": 180,
       "blocked": false
     },
     {
@@ -1183,6 +1738,17 @@
       "blocked": false
     },
     {
+      "domain": "www.cs.unibo.it",
+      "title": "LanguageModelApproachIR.pdf",
+      "url": "https://www.cs.unibo.it/~montesi/CBD/Articoli/LanguageModelApproachIR.pdf",
+      "fetched_at": "2026-05-30T19:00:52",
+      "extractor": "jina",
+      "content_hash": "sha1:64a06f8ae9ec8c56da754431b33549715bcec7b4",
+      "path": "www.cs.unibo.it/2026-05-30-languagemodelapproachir-pdf-montesi-cbd-articoli.md",
+      "words": 6805,
+      "blocked": false
+    },
+    {
       "domain": "www.cs.utexas.edu",
       "title": "Respire.pdf",
       "url": "https://www.cs.utexas.edu/~dwu4/papers/Respire.pdf",
@@ -1213,6 +1779,17 @@
       "content_hash": "sha1:05c9f90dc8f9b84f6be98c897f624fea34e198d4",
       "path": "www.drivelock.com/2026-05-30-the-invisible-threat-understanding-dns-leaks-and-en-blog-dns-leaks.md",
       "words": 2435,
+      "blocked": false
+    },
+    {
+      "domain": "www.freecardsort.com",
+      "title": "Information Foraging",
+      "url": "https://www.freecardsort.com/glossary/information-foraging",
+      "fetched_at": "2026-05-30T19:21:54",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:ccf023553a6b26e74697234845c185c99855c08f",
+      "path": "www.freecardsort.com/2026-05-30-information-foraging-glossary-information.md",
+      "words": 778,
       "blocked": false
     },
     {
@@ -1249,6 +1826,17 @@
       "blocked": false
     },
     {
+      "domain": "www.globalprioritiesinstitute.org",
+      "title": "gpi-research-agenda",
+      "url": "https://www.globalprioritiesinstitute.org/wp-content/uploads/gpi-research-agenda.pdf",
+      "fetched_at": "2026-05-30T19:11:05",
+      "extractor": "jina",
+      "content_hash": "sha1:298a5db953c28f49d4e3de4cf38fd30cca8f4316",
+      "path": "www.globalprioritiesinstitute.org/2026-05-30-gpi-research-agenda-wp-content-uploads-g.md",
+      "words": 20961,
+      "blocked": false
+    },
+    {
       "domain": "www.ietf.org",
       "title": "Oblivious HTTP",
       "url": "https://www.ietf.org/rfc/rfc9458.html",
@@ -1257,6 +1845,17 @@
       "content_hash": "sha1:1b458e535ff32d012ade6600581abe2c1f457b59",
       "path": "www.ietf.org/2026-05-30-oblivious-http-rfc-rfc9458-html.md",
       "words": 16836,
+      "blocked": false
+    },
+    {
+      "domain": "www.igi-global.com",
+      "title": "Wilson's Information-Seeking Behavior Models (1981, 1996, 1999)",
+      "url": "https://www.igi-global.com/chapter/wilsons-information-seeking-behavior-models-1981-1996-1999/127125",
+      "fetched_at": "2026-05-30T19:26:45",
+      "extractor": "jina",
+      "content_hash": "sha1:0fae02d26f7f31507c2882aceee247673160fc31",
+      "path": "www.igi-global.com/2026-05-30-wilson-s-information-seeking-behavior-models-198-chapter-wilsons-info.md",
+      "words": 1211,
       "blocked": false
     },
     {
@@ -1282,6 +1881,17 @@
       "blocked": false
     },
     {
+      "domain": "www.meilisearch.com",
+      "title": "14 types of RAG (Retrieval-Augmented Generation)",
+      "url": "https://www.meilisearch.com/blog/rag-types",
+      "fetched_at": "2026-05-30T19:31:08",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:dfc51b3006a4fd7512d40f5427e30a7adf264ed0",
+      "path": "www.meilisearch.com/2026-05-30-14-types-of-rag-retrieval-augmented-generation-blog-rag-types.md",
+      "words": 2728,
+      "blocked": false
+    },
+    {
       "domain": "www.proxies.sx",
       "title": "Best Proxies for Web Scraping in 2026",
       "url": "https://www.proxies.sx/blog/best-proxies-web-scraping-2026",
@@ -1290,6 +1900,17 @@
       "content_hash": "sha1:19e48f711efb85af0a22efdf4bebd39db716d36c",
       "path": "www.proxies.sx/2026-05-30-best-proxies-for-web-scraping-in-2026-blog-best-proxies-we.md",
       "words": 2131,
+      "blocked": false
+    },
+    {
+      "domain": "www.rand.org",
+      "title": "On Relevance, Probabilistic Indexing and Information Retrieval",
+      "url": "https://www.rand.org/pubs/external_publications/EP19600702.html",
+      "fetched_at": "2026-05-30T18:54:53",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:1247e22009a5f05e8e74fe79f97ada13d4ac7214",
+      "path": "www.rand.org/2026-05-30-on-relevance-probabilistic-indexing-and-informat-pubs-external-public.md",
+      "words": 380,
       "blocked": false
     },
     {
@@ -1312,6 +1933,17 @@
       "content_hash": "sha1:80a0a7421dd8912f7b14fc7d7b527fbd9972db51",
       "path": "www.researchgate.net/2026-05-30-pdf-a-systematic-review-of-anonymous-communicati-publication-31711526.md",
       "words": 5216,
+      "blocked": false
+    },
+    {
+      "domain": "www.researchgate.net",
+      "title": "(PDF) Marchionini, G.: Exploratory search: from finding to understanding. Comm. ACM 49(4), 41-46",
+      "url": "https://www.researchgate.net/publication/220422328_Marchionini_G_Exploratory_search_from_finding_to_understanding_Comm_ACM_494_41-46",
+      "fetched_at": "2026-05-30T19:26:41",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:edb61b683eb3102b472087fbdefb472f0f8f4fcb",
+      "path": "www.researchgate.net/2026-05-30-pdf-marchionini-g-exploratory-search-from-findin-publication-22042232.md",
+      "words": 3811,
       "blocked": false
     },
     {
@@ -1381,6 +2013,17 @@
       "blocked": false
     },
     {
+      "domain": "www.salesforce.com",
+      "title": "Poisoning the Well: Search Agents Get Tricked by Maliciously Hosted Content",
+      "url": "https://www.salesforce.com/blog/poisoning-the-well-search-agents",
+      "fetched_at": "2026-05-30T19:35:47",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:66be8027f1b96bdfdb22284365048e5a2fec6f6b",
+      "path": "www.salesforce.com/2026-05-30-poisoning-the-well-search-agents-get-tricked-by--blog-poisoning-the-w.md",
+      "words": 2222,
+      "blocked": false
+    },
+    {
       "domain": "www.sciencedirect.com",
       "title": "Just a moment...",
       "url": "https://www.sciencedirect.com/science/article/pii/S1319157823004573",
@@ -1433,6 +2076,17 @@
       "content_hash": "sha1:424090f783774e622ac2a8d84410426b9d4b4159",
       "path": "www.simplynode.io/2026-05-30-the-best-duckduckgo-proxy-a-simple-setup-guide-f-post-duckduckgo-prox.md",
       "words": 1726,
+      "blocked": false
+    },
+    {
+      "domain": "www.slideshare.net",
+      "title": "Introduction to Information Retrieval & Models",
+      "url": "https://www.slideshare.net/slideshow/introduction-to-information-retrieval-models/11856497",
+      "fetched_at": "2026-05-30T18:54:15",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:457d12cb441613edd3f2ac89f65806cfcd737235",
+      "path": "www.slideshare.net/2026-05-30-introduction-to-information-retrieval-models-slideshow-introducti.md",
+      "words": 8578,
       "blocked": false
     },
     {
@@ -1510,6 +2164,28 @@
       "content_hash": "sha1:94d9ca144ca3b9e087c14516d83c689426a32d43",
       "path": "www.vpnmentor.com/2026-05-30-10-best-private-search-engines-that-don-t-track--blog-online-privacy-.md",
       "words": 4451,
+      "blocked": false
+    },
+    {
+      "domain": "www.worldscientific.com",
+      "title": "Just a moment...",
+      "url": "https://www.worldscientific.com/doi/abs/10.1142/S1793843011000686",
+      "fetched_at": "2026-05-30T19:18:00",
+      "extractor": "jina",
+      "content_hash": "sha1:0e473302c178d6c5facf2133b176941222892ac0",
+      "path": "www.worldscientific.com/2026-05-30-just-a-moment-doi-abs-10-1142-s179.md",
+      "words": 96,
+      "blocked": true
+    },
+    {
+      "domain": "yunus.hacettepe.edu.tr",
+      "title": "doi:10.1016/j.ipm.2007.10.002",
+      "url": "https://yunus.hacettepe.edu.tr/~tonta/courses/spring2008/bby703/thompson-probabilistic-IR-maron-1960.pdf",
+      "fetched_at": "2026-05-30T18:55:00",
+      "extractor": "jina",
+      "content_hash": "sha1:b9fa350478192744aeda98bd7967427f0f231985",
+      "path": "yunus.hacettepe.edu.tr/2026-05-30-doi-10-1016-j-ipm-2007-10-002-tonta-courses-spring.md",
+      "words": 5938,
       "blocked": false
     }
   ],
@@ -1659,7 +2335,60 @@
     "https://proxyway.com/proxy-locations/china-proxy",
     "https://www.saasultra.com/best-china-proxy-providers/",
     "https://proxyempire.io/chinese-proxies/",
-    "https://multilogin.com/blog/can-i-use-a-web-proxy-in-china/"
+    "https://multilogin.com/blog/can-i-use-a-web-proxy-in-china/",
+    "https://www.slideshare.net/slideshow/introduction-to-information-retrieval-models/11856497",
+    "https://www.rand.org/pubs/external_publications/EP19600702.html",
+    "https://yunus.hacettepe.edu.tr/~tonta/courses/spring2008/bby703/thompson-probabilistic-IR-maron-1960.pdf",
+    "https://cseweb.ucsd.edu/~rik/foa/l2h/foa-5-5-1.html",
+    "https://2016.berlinbuzzwords.de/sites/2016.berlinbuzzwords.de/files/media/documents/bm25_buzzwords_britta_weber.pdf",
+    "https://web.stanford.edu/class/cs276/handouts/lecture12-bm25etc.pdf",
+    "https://www.cs.unibo.it/~montesi/CBD/Articoli/LanguageModelApproachIR.pdf",
+    "https://nlp.stanford.edu/IR-book/html/htmledition/references-and-further-reading-12.html",
+    "https://python.quantecon.org/mccall_model.html",
+    "https://scispace.com/pdf/search-theoretic-models-of-the-labor-market-a-survey-1vd8x5tbbs.pdf",
+    "https://arxiv.org/abs/2002.06968",
+    "https://arxiv.org/abs/2308.12242",
+    "https://arxiv.org/abs/2012.02888",
+    "https://arxiv.org/abs/math/0411212",
+    "https://colab.research.google.com/github/QuantEcon/lecture-python.notebooks/blob/main/wald_friedman.ipynb",
+    "https://en.wikipedia.org/wiki/Sequential_analysis",
+    "https://www.globalprioritiesinstitute.org/wp-content/uploads/gpi-research-agenda.pdf",
+    "https://en.wikipedia.org/wiki/A*_search_algorithm",
+    "https://stanford-cs221.github.io/autumn2023-extra/modules/search/a-star.pdf",
+    "https://aima.cs.berkeley.edu/4th-ed/pdfs/newchap03.pdf",
+    "https://people.eecs.berkeley.edu/~russell/research-bo.html",
+    "https://arxiv.org/abs/2110.09624",
+    "https://en.wikipedia.org/wiki/Satisficing",
+    "https://undsoc.org/2011/01/30/herbert-simons-satisficing-life/",
+    "https://fourweekmba.com/bounded-rationality/",
+    "http://act-r.psy.cmu.edu/wordpress/wp-content/uploads/2012/12/515uir-2004-07-pirolli.pdf",
+    "https://www.freecardsort.com/glossary/information-foraging",
+    "https://pages.gseis.ucla.edu/faculty/bates/berrypicking.html",
+    "https://liswiki.org/wiki/Information_behavior_theories",
+    "https://wp.comminfo.rutgers.edu/ckuhlthau/information-search-process/",
+    "https://www.researchgate.net/publication/220422328_Marchionini_G_Exploratory_search_from_finding_to_understanding_Comm_ACM_494_41-46",
+    "https://www.igi-global.com/chapter/wilsons-information-seeking-behavior-models-1981-1996-1999/127125",
+    "https://uplatz.com/blog/beyond-rag-the-paradigm-shift-to-native-retrieval-augmented-training/",
+    "https://datahacker.rs/dh-020-introduction-to-retrieval-augmented-language-modeling/",
+    "https://mbrenndoerfer.com/writing/retrieval-augmented-training-retro-architecture-context-integration",
+    "https://arxiv.org/abs/2208.03299",
+    "https://arxiv.org/abs/2108.06279",
+    "https://arxiv.org/abs/2504.05181",
+    "https://arxiv.org/abs/2604.23396",
+    "https://arxiv.org/abs/2310.07815",
+    "https://arxiv.org/abs/2210.03629",
+    "https://cdn.openai.com/WebGPT.pdf",
+    "https://arxiv.org/html/2501.14342v3",
+    "https://www.meilisearch.com/blog/rag-types",
+    "https://lfaidata.foundation/communityblog/2025/01/20/advanced-open-source-retrieval-augmented-generation-rag-techniques/",
+    "https://python.elitedev.in/large_language_model/how-to-build-multi-agent-llm-systems-with-tool-integration-and-memory-in-python-b538abb1/",
+    "https://deepwiki.com/anildukkipatty/ai-agents-examples/3.3-tool-integration",
+    "https://docs.getdynamiq.ai/low-code-builder/llm-agents/guide-to-implementing-llm-agents-react-and-simple-agents",
+    "https://developer.nvidia.com/blog/building-your-first-llm-agent-application/",
+    "https://arxiv.org/abs/2505.15872",
+    "https://arxiv.org/abs/2505.15117",
+    "https://www.salesforce.com/blog/poisoning-the-well-search-agents/",
+    "https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation/"
   ],
   "cited_not_fetched_as_file": [
     "arXiv:2307.02429",
@@ -1705,6 +2434,12 @@
     "https://proxylook.com/providers/webshare",
     "https://dataresearchtools.com/webshare-review-2026/",
     "https://datarade.ai/data-products/iproyal-proxies-for-web-scraping-residential-proxies-da-iproyal",
-    "https://afftank.com/blog/decodo-review"
+    "https://afftank.com/blog/decodo-review",
+    "https://arxiv.org/abs/2012.02888",
+    "https://arxiv.org/abs/math/0411212",
+    "https://arxiv.org/abs/2108.06279",
+    "https://arxiv.org/abs/2504.05181",
+    "https://arxiv.org/abs/2604.23396",
+    "https://arxiv.org/abs/2310.07815"
   ]
 }
