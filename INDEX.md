@@ -1,12 +1,12 @@
 # Index — IP Anonymization for Search
 
-Corpus pulled from the research-swarm archive on 2026-05-30.
+Corpus pulled from the research-swarm archive (last built 2026-05-30).
 
 - **53** raw pages across **34** domains (4 marked ⚠️ blocked/empty)
 - **4** agent research runs (see [`traces/`](traces/) and [`SYNTHESIS.md`](SYNTHESIS.md))
 - **17** sources cited but not stored as a page (arXiv IDs / cache) — listed in [`SYNTHESIS.md`](SYNTHESIS.md)
 
-Machine-readable version: [`manifest.json`](manifest.json).
+See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](manifest.json) for the machine-readable index.
 
 ---
 
