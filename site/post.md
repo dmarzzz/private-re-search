@@ -80,6 +80,22 @@ This is the mechanism-design layer, and it is the one that makes the residential
 
 Compose all three: OHTTP transport, PIR retrieval, Privacy Pass access. Each closes a different leak. Note one cross-cutting trap: even a PIR-protected stream leaks through timing and volume if the agent does not also regularize its emission schedule, which is exactly why the programmatic-timing control an agent has over its own traffic is load-bearing and not a footnote.
 
+## A performance audit of the search layer (SearXNG)
+
+SearXNG is the obvious self-hostable open metasearch to put in front of agents. Before trusting it as the search layer, I ran a controlled, pre-registered audit of one question people get wrong: does it actually fan out to engines in parallel, or does it serialize them?
+
+It fans out in parallel. Decisively. For one query hitting 32 mock engines with 200 ms of injected upstream latency each, SearXNG returned in 595 ms. A sequential implementation would need 6,400 ms. The slope of latency versus engine count is 12.6 ms/engine (95% CI [12.5, 12.7]), nowhere near the ~200 ms/engine a serial fan-out would show. I confirmed it a second way against the real internet using a max-versus-sum discriminator: time each engine solo, then time the full fan-out. Parallel means fan-out tracks the slowest single engine; sequential means it tracks the sum. Fan-out/sum came out at 0.28, fan-out/max at 0.71. Two independent methods, same verdict.
+
+There is real overhead, and I want to name it honestly. The ideal floor (a bare parallel HTTP client from the same network position) scales at ~1.0 ms/engine. SearXNG scales at 12.6 ms/engine, about 12x the floor. At a handful of engines this is free: under 4 engines, fan-out sits within ~20 ms of the floor. At 32 engines it is 355 ms of pure orchestration, making the search ~2.5x the floor. py-spy profiling during a sustained N=32 run pins the cause precisely. SearXNG dispatches all engine requests onto a single dedicated asyncio event-loop thread, so the I/O waits overlap but the per-engine CPU work serializes under the GIL. And ~82% of that worker CPU is not the search. It is the default Tracker-URL-Remover plugin, which strips tracking params from every result URL and consults a SQLite-backed pattern cache on each call. More engines means more result URLs means more per-URL SQLite round-trips. The "not optimized" complaint is real but mislocated: it is a default plugin's cache, not the fan-out.
+
+On throughput, the concurrency sweep (1 to 64 concurrent users) plateaus around 6.8 req/s by concurrency 16, after which p99 latency climbs steeply (2.8 s at concurrency 16 to 9.2 s at 64) with zero errors. Classic single-worker saturation: it slows, it does not fail. For an agent fleet issuing many concurrent queries, a single SearXNG worker is a bottleneck. Scale it horizontally behind a load balancer rather than expecting one instance to absorb the fleet.
+
+The live run ties straight back to the rest of this post. Against real engines, 3 of 8 blocked immediately: DuckDuckGo timed out, Brave returned 429, only 5 of 8 responded. That is the same bot-detection and rate-limiting phenomenon I have been describing. The point in SearXNG's favor: it degrades gracefully. Even with ~40% of engines blocked, a 150-query live run returned a median of 21 merged results in ~400 ms, and not one query came back empty.
+
+The integrity caveat, stated plainly. Every absolute millisecond here was collected on a contended box (load 6 to 16, shared with a research swarm), and load alone swung the per-engine overhead from 12.6 to 107 ms/engine across runs. So the magnitudes are directional and the verdicts are shape-based: the slope, the max-vs-sum ratio, the saturation curve. A quiet-box re-run is the next step. Methodology in one line: stock SearXNG in Docker, all default engines replaced by mock engines hitting a local mock upstream with known injected latency, plus a reference parallel client as the ideal-floor control, with the design pre-registered before any measurement.
+
+SearXNG handles the fan-out and the graceful degradation. What it does not give you is privacy: the search provider still sees who is asking and what they asked. That is exactly what the OHTTP transport, PIR content, and Privacy Pass access layers wrap around it.
+
 ## Deployable today vs missing
 
 | Layer | Deployable today | Missing / too expensive |
