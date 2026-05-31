@@ -19,6 +19,8 @@ that archive filtered to this topic, plus a generated index.
 | [`gaps.json`](gaps.json) | Machine-readable version of the gap analysis |
 | [`anonymized-scraping-residential-proxies-privacy.md`](anonymized-scraping-residential-proxies-privacy.md) | Deep-research report: why SearXNG-over-Tor gets blocked, the residential-proxy market + sourcing, the China angle, and whether residential proxies kill your privacy guarantees |
 | [`the-search-problem-formalization.md`](the-search-problem-formalization.md) | Literature review + formalization: a unified model of the search problem (AI state-space + decision-theoretic optimal stopping + IR relevance), then a formal contrast of human vs AI-agent searchers. 71 verified references |
+| [`when-to-stop-metareasoning-for-search-agents.md`](when-to-stop-metareasoning-for-search-agents.md) | Deep dive on the agent stopping rule σ: value-of-computation metareasoning, where clean optimal-stopping rules (Weitzman, SPRT, best-arm) exist and why they break for retrieval agents, and whether LLM confidence is calibrated enough to ground a bounded-optimal σ |
+| [`private-search-when-the-searcher-is-an-agent.md`](private-search-when-the-searcher-is-an-agent.md) | Bridges the privacy corpus and the formalization: privacy as a term in the agent objective J, and the latency-tolerance flip (mixnets/PIR/cover-traffic that fail for humans become viable for patient agents) |
 | [`manifest.json`](manifest.json) | Machine-readable index (one record per page: url, title, hash, local path, word count, blocked flag) |
 | [`sources/`](sources/) | Raw fetched pages as markdown (`<domain>/<date>-<slug>.md`, with YAML frontmatter) |
 | [`traces/`](traces/) | Raw agent run traces (question, synthesis, sources, self-critique) |
