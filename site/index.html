@@ -87,6 +87,9 @@
   }
   .cta a:hover { transform: translateY(-1px); background: #d8ab48; }
   .cta .arrow { font-size: 1.1em; }
+  .cta.title-cta { margin-top: 2.2rem; }
+  .cta.title-cta a { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .cta.title-cta a:hover { background: var(--accent); color: var(--bg); }
 
   footer {
     position: fixed; bottom: 0; left: 0; right: 0; display: flex;
@@ -152,6 +155,7 @@
     <div class="kicker">${esc(DATA.kicker || 'a research agenda')}</div>
     <h1>${inl(DATA.title)}</h1>
     ${DATA.subtitle ? `<p class="sub">${inl(DATA.subtitle)}</p>` : ''}
+    <div class="cta title-cta"><a href="/post">Read the full post <span class="arrow">&rarr;</span></a></div>
   </section>`);
   // content slides
   (DATA.slides || []).forEach(s => {
