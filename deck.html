@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>private-re-search — what we did</title>
+<style>
+  :root {
+    --bg: #0e0e10;
+    --fg: #e8e6e1;
+    --dim: #8a877f;
+    --line: #26262a;
+    --accent: #c89b3c;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  .deck { height: 100vh; width: 100vw; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 7vw, 8rem);
+    opacity: 0; transition: opacity .35s ease;
+  }
+  .slide.active { display: flex; opacity: 1; }
+
+  .kicker {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 4.6rem); font-weight: 600;
+    line-height: 1.02; letter-spacing: -.02em; max-width: 18ch;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 3.6vw, 2.7rem); font-weight: 600;
+    line-height: 1.1; letter-spacing: -.015em; max-width: 22ch;
+    margin-bottom: 1.6rem;
+  }
+  p { font-size: clamp(1rem, 1.5vw, 1.3rem); line-height: 1.55; color: var(--fg); max-width: 56ch; }
+  p + p { margin-top: 1rem; }
+  .dim { color: var(--dim); }
+  .lead { color: var(--dim); max-width: 60ch; margin-top: 1.4rem; font-size: clamp(1rem, 1.6vw, 1.35rem); }
+
+  ul { list-style: none; max-width: 60ch; margin-top: .6rem; }
+  li {
+    font-size: clamp(1rem, 1.5vw, 1.28rem); line-height: 1.5;
+    padding: .55rem 0 .55rem 1.6rem; position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+  li:before { content: ""; position: absolute; left: 0; top: 1.15rem; width: .5rem; height: 1px; background: var(--accent); }
+  li b { font-weight: 600; }
+  li .t { font-family: var(--mono); color: var(--dim); font-size: .82em; }
+
+  .stats { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 5vw, 4.5rem); margin-top: 1rem; }
+  .stat .n { font-family: var(--mono); font-size: clamp(2.4rem, 7vw, 5rem); font-weight: 600; letter-spacing: -.03em; }
+  .stat .n em { color: var(--accent); font-style: normal; }
+  .stat .l { font-family: var(--mono); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-top: .3rem; }
+
+  .formula {
+    font-family: var(--mono); font-size: clamp(1.1rem, 2.4vw, 1.9rem);
+    color: var(--fg); margin: 1.6rem 0; padding: 1.2rem 1.5rem;
+    border-left: 2px solid var(--accent); background: #15151a; max-width: max-content;
+  }
+  .formula .c { color: var(--dim); }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); margin-top: .4rem; max-width: 70ch; }
+  .col h3 { font-family: var(--mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+  .col p { font-size: clamp(.95rem, 1.4vw, 1.15rem); color: var(--dim); }
+  .col p b { color: var(--fg); font-weight: 500; }
+
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem; margin-top: 1.6rem; font-family: var(--mono); font-size: clamp(.85rem,1.4vw,1.05rem); }
+  .node { border: 1px solid var(--line); padding: .6rem 1rem; border-radius: 3px; color: var(--fg); }
+  .node.on { border-color: var(--accent); color: var(--accent); }
+  .arrow { color: var(--dim); }
+
+  footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem clamp(2rem, 7vw, 8rem);
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; color: var(--dim);
+    border-top: 1px solid var(--line);
+  }
+  footer a { color: var(--dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .prog { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); transition: width .35s ease; z-index: 10; }
+  .count em { color: var(--fg); font-style: normal; }
+  .hint { opacity: .6; }
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="deck" id="deck">
+
+  <section class="slide">
+    <div class="kicker">private research log</div>
+    <h1>private-re-search</h1>
+    <p class="lead">A corpus and five reports on anonymous search: how you query without revealing who you are, and how that changes when the searcher is an agent.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">01 · the question</div>
+    <h2>One thread, followed all the way down</h2>
+    <p>It started with a private repo and a single question: how do you search the web without handing over your IP or letting your queries be linked to you.</p>
+    <p>That pulled in adjacent questions from there. Why Tor-routed search gets blocked. What the residential-proxy market really is. And what the search problem even is, formally, once an agent is the one searching.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">02 · method</div>
+    <h2>Two engines, different jobs</h2>
+    <div class="cols">
+      <div class="col">
+        <h3>research-swarm</h3>
+        <p>Your <b>rotate research</b> agent. Runs on a separate key, so it works in parallel without competing for budget. It gathers links and archives the <b>raw page contents</b> into the corpus.</p>
+      </div>
+      <div class="col">
+        <h3>claude workflows</h3>
+        <p>Multi-agent fan-out: parallel lenses, then <b>adversarial verification</b> of every claim and citation, then synthesis. This does the gap-finding and the reports.</p>
+      </div>
+    </div>
+    <div class="flow">
+      <span class="node on">gather (swarm)</span><span class="arrow">+</span>
+      <span class="node on">verify + synthesize (claude)</span><span class="arrow">&rarr;</span>
+      <span class="node">corpus + reports</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">03 · the corpus</div>
+    <h2>From a seed to a library</h2>
+    <div class="stats">
+      <div class="stat"><div class="n">53 <span class="c" style="color:var(--dim)">&rarr;</span> <em>234</em></div><div class="l">raw pages</div></div>
+      <div class="stat"><div class="n"><em>160</em></div><div class="l">domains</div></div>
+      <div class="stat"><div class="n"><em>17</em></div><div class="l">research runs</div></div>
+    </div>
+    <p class="lead">Every fetched page mirrored locally with a generated index. The build script is incremental: drop a marker, run more research, rebuild.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">04 · what the swarm missed</div>
+    <h2>A gap analysis on our own work</h2>
+    <p>68 agents across six lenses, every candidate adversarially verified for real, relevant, and genuinely absent.</p>
+    <div class="stats" style="margin-top:1.6rem">
+      <div class="stat"><div class="n"><em>52</em></div><div class="l">verified gaps</div></div>
+    </div>
+    <p class="lead">The blind spots were whole categories: the attack and deanonymization literature, obfuscation-based search, foundational PIR papers, and the peer-to-peer overlay branch.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">05 · the proxy question</div>
+    <h2>Does a residential proxy keep you private?</h2>
+    <p>Three friends, three prompts: SearXNG over Tor got blocked everywhere, industrial scraping buys thousands of residential IPs, and some of those sit in China.</p>
+    <p><b>The answer: no.</b> A residential proxy is a trust-shift, not a privacy gain. You hide your IP from the destination and hand one commercial intermediary full, billing-linked visibility, with none of the cryptographic unlinkability that Tor, OHTTP, or PIR provide.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">06 · the formalization</div>
+    <h2>What the search problem actually is</h2>
+    <p>Three traditions that rarely cite each other: AI state-space search, decision-theoretic search with optimal stopping, and information-retrieval ranking. We showed they are three projections of one frame.</p>
+    <div class="formula">J(&pi;, &sigma;) = E[ U(b<span class="c">&tau;</span>, T) <span class="c">&minus;</span> &Sigma; c ]</div>
+    <p class="dim">Expected terminal value minus accumulated search cost. 71 verified references.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">07 · human vs agent</div>
+    <h2>Same problem, different searcher</h2>
+    <div class="cols">
+      <div class="col">
+        <h3>human</h3>
+        <p>Cost is <b>attention and time</b>. Answers from snippets and scent. Few queries. Stops when it feels good enough.</p>
+      </div>
+      <div class="col">
+        <h3>agent</h3>
+        <p>Cost is <b>tokens, compute, latency</b>. Reads full text. Many parallel queries. Stops on a budget or a confidence gate.</p>
+      </div>
+    </div>
+    <p class="lead">Who is searching becomes a parameter of one problem, not a choice between two unrelated ones.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">08 · the two follow-ons</div>
+    <h2>Closing the open threads</h2>
+    <ul>
+      <li><b>When to stop.</b> <span class="t">metareasoning</span><br>The stopping rule as a value-of-computation threshold. Where clean optimal-stopping rules exist, and why they break for a retrieval agent.</li>
+      <li><b>Private search for agents.</b> <span class="t">the latency flip</span><br>Privacy becomes a term in the objective. Mixnets and PIR that are unusable for impatient humans become viable defaults for a patient agent.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">09 · end state</div>
+    <h2>One connected body of work</h2>
+    <div class="stats">
+      <div class="stat"><div class="n"><em>234</em></div><div class="l">pages</div></div>
+      <div class="stat"><div class="n"><em>5</em></div><div class="l">cited reports</div></div>
+      <div class="stat"><div class="n"><em>9</em></div><div class="l">commits</div></div>
+    </div>
+    <p class="lead">Corpus, gap analysis, the proxy investigation, the formalization, and the two follow-ons. Each report cites the objective J and the corpus, so it reads as one arc.</p>
+    <p class="dim" style="margin-top:1.4rem;font-family:var(--mono);font-size:.85rem">github.com/dmarzzz/private-re-search</p>
+  </section>
+
+</div>
+
+<footer>
+  <span class="count">private-re-search · <em id="cur">1</em>/<em id="tot">10</em></span>
+  <span class="hint">&larr; &rarr; or space to navigate</span>
+</footer>
+
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  let i = 0;
+  const prog = document.getElementById('prog');
+  const cur = document.getElementById('cur');
+  document.getElementById('tot').textContent = slides.length;
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    prog.style.width = ((i + 1) / slides.length * 100) + '%';
+    cur.textContent = i + 1;
+    location.hash = i + 1;
+  }
+  function next() { show(i + 1); }
+  function prev() { show(i - 1); }
+  addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown', 'ArrowDown'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'PageUp', 'ArrowUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+  });
+  addEventListener('click', e => { if (!e.target.closest('a')) next(); });
+  show(parseInt(location.hash.slice(1)) - 1 || 0);
+</script>
+</body>
+</html>
