@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-30T23:40:25.523912+00:00",
+  "generated_at": "2026-05-31T00:46:30.531858+00:00",
   "topic": "IP anonymization for search (+ anonymized scraping / residential proxies)",
-  "page_count": 197,
-  "domain_count": 137,
-  "run_count": 14,
+  "page_count": 234,
+  "domain_count": 160,
+  "run_count": 17,
   "runs": [
     "20260530-153935-survey-the-full-design-space-of-ip-anonymiza.json",
     "20260530-154633-oblivious-http-ohttp-and-oblivious-relays-fo.json",
@@ -18,7 +18,10 @@
     "20260530-191408-decision-theoretic-and-economic-theory-of-se.json",
     "20260530-192045-search-as-problem-solving-in-artificial-inte.json",
     "20260530-192753-human-information-seeking-behavior-and-cogni.json",
-    "20260530-194017-retrieval-augmented-generation-and-agentic-l.json"
+    "20260530-194017-retrieval-augmented-generation-and-agentic-l.json",
+    "20260530-202923-key-works-on-optimal-stopping-and-the-value.json",
+    "20260530-203805-rational-metareasoning-and-the-value-of-comp.json",
+    "20260530-204623-privacy-preserving-retrieval-and-search-for.json"
   ],
   "pages": [
     {
@@ -89,6 +92,28 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "2312.10997v5.pdf",
+      "url": "https://arxiv.org/pdf/2312.10997",
+      "fetched_at": "2026-05-30T20:41:03",
+      "extractor": "jina",
+      "content_hash": "sha1:ad3edbb39713ba1430eab20947919b0a204aee64",
+      "path": "arxiv.org/2026-05-30-2312-10997v5-pdf-pdf-2312-10997.md",
+      "words": 16766,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "2503.02018v1.pdf",
+      "url": "https://arxiv.org/pdf/2503.02018",
+      "fetched_at": "2026-05-30T20:42:21",
+      "extractor": "jina",
+      "content_hash": "sha1:54bac0af42d13f80a39e76c2dfcea1bf1c7aac7a",
+      "path": "arxiv.org/2026-05-30-2503-02018v1-pdf-pdf-2503-02018.md",
+      "words": 5726,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "Abstraction of Trusted Execution Environments as the Missing Layer for Broad Confidential Computing Adoption: A Systematization of Knowledge",
       "url": "https://arxiv.org/html/2512.22090v1",
       "fetched_at": "2026-05-30T17:12:44",
@@ -129,6 +154,17 @@
       "content_hash": "sha1:cd579636c8b67149d206586dcc296a971960f31d",
       "path": "arxiv.org/2026-05-30-atlas-few-shot-learning-with-retrieval-augmented-abs-2208-03299.md",
       "words": 488,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Bounded Conditioning: Flexible Inference for Decisions under Scarce Resources",
+      "url": "https://arxiv.org/abs/1304.1512",
+      "fetched_at": "2026-05-30T20:30:15",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:d29ffb2a9871aa9147c06f19b609e6a0ff887b6b",
+      "path": "arxiv.org/2026-05-30-bounded-conditioning-flexible-inference-for-deci-abs-1304-1512.md",
+      "words": 430,
       "blocked": false
     },
     {
@@ -199,6 +235,17 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "End-to-End Test-Time Training for Long Context",
+      "url": "https://arxiv.org/abs/2512.23675",
+      "fetched_at": "2026-05-30T20:36:29",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:e384140c085ab5499da194375dd76899e53a0565",
+      "path": "arxiv.org/2026-05-30-end-to-end-test-time-training-for-long-context-abs-2512-23675.md",
+      "words": 528,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "Ideal Partition of Resources for Metareasoning",
       "url": "https://arxiv.org/abs/2110.09624",
       "fetched_at": "2026-05-30T19:18:11",
@@ -232,6 +279,17 @@
     },
     {
       "domain": "arxiv.org",
+      "title": "Learning to Discover at Test Time",
+      "url": "https://arxiv.org/abs/2601.16175",
+      "fetched_at": "2026-05-30T20:36:52",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:d1aee2080f4e1311dd509d72993aecfe1db7c890",
+      "path": "arxiv.org/2026-05-30-learning-to-discover-at-test-time-abs-2601-16175.md",
+      "words": 586,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
       "title": "Meet the Family of Statistical Disclosure Attacks",
       "url": "https://arxiv.org/abs/1910.07603",
       "fetched_at": "2026-05-30T16:47:36",
@@ -250,6 +308,17 @@
       "content_hash": "sha1:e3a884a717fb59a6f4c02886e2dbc0fa775ba0b7",
       "path": "arxiv.org/2026-05-30-on-the-information-leakage-in-private-informatio-abs-1909-11605.md",
       "words": 479,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Optimal sequential fingerprinting: Wald vs. Tardos",
+      "url": "https://arxiv.org/abs/1502.03722",
+      "fetched_at": "2026-05-30T20:24:53",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:401788b86e191cc509b649d51c5bc02e48e214c4",
+      "path": "arxiv.org/2026-05-30-optimal-sequential-fingerprinting-wald-vs-tardos-abs-1502-03722.md",
+      "words": 370,
       "blocked": false
     },
     {
@@ -283,6 +352,17 @@
       "content_hash": "sha1:f8d0263a148516683b6201268317dc17cd0be921",
       "path": "arxiv.org/2026-05-30-provable-security-for-the-onion-routing-and-mix--abs-2312-08028.md",
       "words": 419,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Provably Bounded-Optimal Agents",
+      "url": "https://arxiv.org/abs/cs/9505103",
+      "fetched_at": "2026-05-30T20:32:00",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:82f3d0025b720bb057bcc4094c3658c30e6704ee",
+      "path": "arxiv.org/2026-05-30-provably-bounded-optimal-agents-abs-cs-9505103.md",
+      "words": 461,
       "blocked": false
     },
     {
@@ -338,6 +418,17 @@
       "content_hash": "sha1:d03cf0b8f4489dd8eff6b1835bcad06f9a94d58e",
       "path": "arxiv.org/2026-05-30-scalable-private-search-with-wally-html-2406-06761v4.md",
       "words": 12279,
+      "blocked": false
+    },
+    {
+      "domain": "arxiv.org",
+      "title": "Sleep-time Compute: Beyond Inference Scaling at Test-time",
+      "url": "https://arxiv.org/abs/2504.13171",
+      "fetched_at": "2026-05-30T20:35:38",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:e209029f82bcba10d601f51d4a75af28b34d7cf3",
+      "path": "arxiv.org/2026-05-30-sleep-time-compute-beyond-inference-scaling-at-t-abs-2504-13171.md",
+      "words": 512,
       "blocked": false
     },
     {
@@ -770,6 +861,17 @@
       "blocked": false
     },
     {
+      "domain": "en.wikipedia.org",
+      "title": "Vector space model - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Vector_space_model",
+      "fetched_at": "2026-05-30T20:25:58",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:6ffdd362395afe7666703f27e13dcb12f5a8286d",
+      "path": "en.wikipedia.org/2026-05-30-vector-space-model-wikipedia-wiki-vector-space-mo.md",
+      "words": 2031,
+      "blocked": false
+    },
+    {
       "domain": "en.wikiversity.org",
       "title": "Information retrieval/History - Wikiversity",
       "url": "https://en.wikiversity.org/wiki/Information_retrieval/History",
@@ -804,6 +906,17 @@
     },
     {
       "domain": "factually.co",
+      "title": "Can DuckDuckGo be deanonymized by network-level observ...",
+      "url": "https://factually.co/fact-checks/technology/can-duckduckgo-be-deanonymized-by-isps-and-network-observers-b216ff",
+      "fetched_at": "2026-05-30T20:45:11",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:bc0c977556a2555b8e1d9108bbc21fef8c37a3e7",
+      "path": "factually.co/2026-05-30-can-duckduckgo-be-deanonymized-by-network-level--fact-checks-technolo.md",
+      "words": 770,
+      "blocked": false
+    },
+    {
+      "domain": "factually.co",
       "title": "Does DuckDuckGo store or log IP addresses or search qu...",
       "url": "https://factually.co/fact-checks/technology/duckduckgo-ip-logs-encryption-protections-1d9dd7",
       "fetched_at": "2026-05-30T15:57:58",
@@ -833,6 +946,17 @@
       "content_hash": "sha1:544ecb175f0b434118543ac5ea85f944bb5ef94f",
       "path": "faculty.georgetown.edu/2026-05-30-404-not-found-albrecht-sje-survey-.md",
       "words": 38,
+      "blocked": true
+    },
+    {
+      "domain": "fastercapital.com",
+      "title": "Just a moment...",
+      "url": "https://fastercapital.com/content/Deanonymization--Uncovering-Patterns-in-the-Vast-Sea-of-Big-Data.html",
+      "fetched_at": "2026-05-30T20:45:17",
+      "extractor": "jina",
+      "content_hash": "sha1:66711b1d86dcfe74328d7ec1f6692a47cb014611",
+      "path": "fastercapital.com/2026-05-30-just-a-moment-content-deanonymizat.md",
+      "words": 99,
       "blocked": true
     },
     {
@@ -979,6 +1103,17 @@
       "blocked": false
     },
     {
+      "domain": "ieeexplore.ieee.org",
+      "title": "Secure and Anonymous Communications Over Delay Tolerant Networks",
+      "url": "https://ieeexplore.ieee.org/document/9089287",
+      "fetched_at": "2026-05-30T20:40:37",
+      "extractor": "jina",
+      "content_hash": "sha1:c8c51abedda06ab064b2c0c011844120d0832012",
+      "path": "ieeexplore.ieee.org/2026-05-30-secure-and-anonymous-communications-over-delay-t-document-9089287.md",
+      "words": 9375,
+      "blocked": false
+    },
+    {
       "domain": "ietf-wg-masque.github.io",
       "title": "Proxying IP in HTTP",
       "url": "https://ietf-wg-masque.github.io/draft-ietf-masque-connect-ip/fix180/draft-ietf-masque-connect-ip.html",
@@ -1001,6 +1136,39 @@
       "blocked": false
     },
     {
+      "domain": "jakeinsight.com",
+      "title": "\"LLM Deanonymization Is Exposing Real Identities Online\"",
+      "url": "https://jakeinsight.com/tech/2026-02-26-llm-deanonymization-privacy-risk-real-identities-e",
+      "fetched_at": "2026-05-30T20:45:11",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:57b1e057eba3cbfadc1d09c6583b499581ef1de2",
+      "path": "jakeinsight.com/2026-05-30-llm-deanonymization-is-exposing-real-identities--tech-2026-02-26-llm-.md",
+      "words": 1849,
+      "blocked": false
+    },
+    {
+      "domain": "jalon.org",
+      "title": "The Secretary Problem",
+      "url": "http://jalon.org/MAES/SECRETARYv204.pdf",
+      "fetched_at": "2026-05-30T20:23:42",
+      "extractor": "jina",
+      "content_hash": "sha1:e7ea0cbd0787849c177df534141096e82d7d058e",
+      "path": "jalon.org/2026-05-30-the-secretary-problem-maes-secretaryv204-p.md",
+      "words": 1511,
+      "blocked": false
+    },
+    {
+      "domain": "jamesmccaffreyblog.com",
+      "title": "The Secretary Problem - James D. McCaffrey",
+      "url": "https://jamesmccaffreyblog.com/2016/09/07/the-secretary-problem-2",
+      "fetched_at": "2026-05-30T20:23:41",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:0e1ff0ff2db90f6e683a0fd7e06f50ad06a7da5c",
+      "path": "jamesmccaffreyblog.com/2026-05-30-the-secretary-problem-james-d-mccaffrey-2016-09-07-the-secre.md",
+      "words": 504,
+      "blocked": false
+    },
+    {
       "domain": "jonbaer.com",
       "title": "[1507.05724v1] HORNET: High-speed Onion Routing at the Network Layer",
       "url": "https://jonbaer.com/post/124807890541/150705724v1-hornet-high-speed-onion-routing-at",
@@ -1012,6 +1180,28 @@
       "blocked": false
     },
     {
+      "domain": "julia.quantecon.org",
+      "title": "A Problem that Stumped Milton Friedman",
+      "url": "https://julia.quantecon.org/dynamic_programming/wald_friedman.html",
+      "fetched_at": "2026-05-30T20:26:31",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:a07863485e717e479ff0bfa12492168a614a1599",
+      "path": "julia.quantecon.org/2026-05-30-a-problem-that-stumped-milton-friedman-dynamic-programming-.md",
+      "words": 3920,
+      "blocked": false
+    },
+    {
+      "domain": "learnprompting.org",
+      "title": "Self-RAG",
+      "url": "https://learnprompting.org/docs/retrieval_augmented_generation/self-rag",
+      "fetched_at": "2026-05-30T20:34:15",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:83374fe29cebcd17f68e2503c7778eb5316400cd",
+      "path": "learnprompting.org/2026-05-30-self-rag-docs-retrieval-augme.md",
+      "words": 472,
+      "blocked": false
+    },
+    {
       "domain": "lfaidata.foundation",
       "title": "Advanced Open Source Retrieval Augmented Generation (RAG) Techniques",
       "url": "https://lfaidata.foundation/communityblog/2025/01/20/advanced-open-source-retrieval-augmented-generation-rag-techniques",
@@ -1020,6 +1210,17 @@
       "content_hash": "sha1:1aa0abeeb82a5a6f1c5e2caa2467e252c69225cf",
       "path": "lfaidata.foundation/2026-05-30-advanced-open-source-retrieval-augmented-generat-communityblog-2025-0.md",
       "words": 2185,
+      "blocked": false
+    },
+    {
+      "domain": "link.springer.com",
+      "title": "Anonymous Communications over Delay Tolerant Networks",
+      "url": "https://link.springer.com/rwe/10.1007/978-3-030-71522-9_1747",
+      "fetched_at": "2026-05-30T20:40:30",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:54fef0205820dc04c0a8991edb53613606f8b11b",
+      "path": "link.springer.com/2026-05-30-anonymous-communications-over-delay-tolerant-net-rwe-10-1007-978-3-03.md",
+      "words": 472,
       "blocked": false
     },
     {
@@ -1078,6 +1279,17 @@
       "blocked": false
     },
     {
+      "domain": "lrc.perdanauniversity.edu.my",
+      "title": "This page doesn't seem to exist.",
+      "url": "https://lrc.perdanauniversity.edu.my/sdi/pir-rag-a-system-for-private-information-retrieval-in-retrieval-augmented-generation",
+      "fetched_at": "2026-05-30T20:40:41",
+      "extractor": "jina",
+      "content_hash": "sha1:f303b6fb7540ac4d4b81b2c6fe92b3a8ca076bf9",
+      "path": "lrc.perdanauniversity.edu.my/2026-05-30-this-page-doesn-t-seem-to-exist-sdi-pir-rag-a-system.md",
+      "words": 1059,
+      "blocked": false
+    },
+    {
       "domain": "mangoproxy.com",
       "title": "Residential vs Datacenter vs ISP vs Mobile Proxies: Key Differences and Use Cases",
       "url": "https://mangoproxy.com/blog/proxy-types-comparison",
@@ -1111,6 +1323,17 @@
       "blocked": false
     },
     {
+      "domain": "maxwelljon.es",
+      "title": "Secretary Problem Variant Deep Dive",
+      "url": "https://maxwelljon.es/blog/2024/secretaryproblem",
+      "fetched_at": "2026-05-30T20:23:40",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:296de32a46c3d1cf8837729e1e91f2b961cc96dd",
+      "path": "maxwelljon.es/2026-05-30-secretary-problem-variant-deep-dive-blog-2024-secretaryp.md",
+      "words": 2221,
+      "blocked": false
+    },
+    {
       "domain": "mbrenndoerfer.com",
       "title": "Retrieval-Augmented Training: RETRO Architecture and Context Integration - Interactive | Michael Brenndoerfer",
       "url": "https://mbrenndoerfer.com/writing/retrieval-augmented-training-retro-architecture-context-integration",
@@ -1120,6 +1343,17 @@
       "path": "mbrenndoerfer.com/2026-05-30-retrieval-augmented-training-retro-architecture--writing-retrieval-au.md",
       "words": 7785,
       "blocked": false
+    },
+    {
+      "domain": "medium.com",
+      "title": "Just a moment...",
+      "url": "https://medium.com/@datajournal/puppeteer-fingerprinting-guide-4bfb5335e440",
+      "fetched_at": "2026-05-30T20:45:17",
+      "extractor": "jina",
+      "content_hash": "sha1:f5b1efa3c8f6179d6c03c7e543db1bb84a284fc3",
+      "path": "medium.com/2026-05-30-just-a-moment-datajournal-puppetee.md",
+      "words": 92,
+      "blocked": true
     },
     {
       "domain": "medium.com",
@@ -1188,6 +1422,17 @@
       "blocked": true
     },
     {
+      "domain": "news.smol.ai",
+      "title": "Redirecting to: /frozen-issues/24-04-05-ainews-mixture-of-depths-dynamically-allocating-compute-in-transformer-based-language-models.html",
+      "url": "https://news.smol.ai/issues/24-04-05-ainews-mixture-of-depths-dynamically-allocating-compute-in-transformer-based-language-models",
+      "fetched_at": "2026-05-30T20:34:15",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:6cfffe044209223f20db6550af98c9959af10821",
+      "path": "news.smol.ai/2026-05-30-redirecting-to-frozen-issues-24-04-05-ainews-mix-issues-24-04-05-aine.md",
+      "words": 34,
+      "blocked": true
+    },
+    {
       "domain": "nlp.stanford.edu",
       "title": "Language models for information retrieval",
       "url": "https://nlp.stanford.edu/IR-book/html/htmledition/language-models-for-information-retrieval-1.html",
@@ -1243,6 +1488,17 @@
       "blocked": false
     },
     {
+      "domain": "ocw.mit.edu",
+      "title": "14.271 Lecture 20: Bounded Rationality, Part 1",
+      "url": "https://ocw.mit.edu/courses/14-271-industrial-organization-i-fall-2022/mit14_271_f22_lec20slides.pdf",
+      "fetched_at": "2026-05-30T20:30:56",
+      "extractor": "jina",
+      "content_hash": "sha1:6d8853629d64ddfbfff722ddfd22b3477e3f577d",
+      "path": "ocw.mit.edu/2026-05-30-14-271-lecture-20-bounded-rationality-part-1-courses-14-271-indus.md",
+      "words": 3585,
+      "blocked": false
+    },
+    {
       "domain": "oxylabs.io",
       "title": "Buy Premium Proxies and Web Scraper API - Pricing Plans",
       "url": "https://oxylabs.io/pricing",
@@ -1262,6 +1518,17 @@
       "content_hash": "sha1:58c14a6b5b705df7ddcc7a946178cfa0e43fbf6c",
       "path": "pages.gseis.ucla.edu/2026-05-30-the-design-of-browsing-and-berrypicking-techniqu-faculty-bates-berryp.md",
       "words": 5898,
+      "blocked": false
+    },
+    {
+      "domain": "pdfs.semanticscholar.org",
+      "title": "001 SAJLIS 72(3)01 Ikoja-Odongo & MostertFM.fm",
+      "url": "https://pdfs.semanticscholar.org/0df5/92175b7ff0f302cadfaefb644de72f66d733.pdf",
+      "fetched_at": "2026-05-30T20:28:33",
+      "extractor": "jina",
+      "content_hash": "sha1:baba3b46a94d5db2d1201f8ed1d80c55dce2ac82",
+      "path": "pdfs.semanticscholar.org/2026-05-30-001-sajlis-72-3-01-ikoja-odongo-mostertfm-fm-0df5-92175b7ff0f302c.md",
+      "words": 11173,
       "blocked": false
     },
     {
@@ -1375,6 +1642,17 @@
       "blocked": false
     },
     {
+      "domain": "pure.kaist.ac.kr",
+      "title": "MUFFLER: Secure Tor Traffic Obfuscation with Dynamic Connection Shuffling and Splitting",
+      "url": "https://pure.kaist.ac.kr/en/publications/muffler-secure-tor-traffic-obfuscation-with-dynamic-connection-sh-2",
+      "fetched_at": "2026-05-30T20:42:20",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:5a7c04562a144f0a68cdf9d873138699318964a7",
+      "path": "pure.kaist.ac.kr/2026-05-30-muffler-secure-tor-traffic-obfuscation-with-dyna-en-publications-muff.md",
+      "words": 306,
+      "blocked": false
+    },
+    {
       "domain": "python.elitedev.in",
       "title": "How to Build Multi-Agent LLM Systems with Tool Integration and Memory in Python",
       "url": "https://python.elitedev.in/large_language_model/how-to-build-multi-agent-llm-systems-with-tool-integration-and-memory-in-python-b538abb1",
@@ -1417,6 +1695,28 @@
       "path": "rayobyte.com/2026-05-30-residential-proxy-ethics-how-rayobyte-sets-the-s-products-rotating-re.md",
       "words": 758,
       "blocked": false
+    },
+    {
+      "domain": "sbakiras.github.io",
+      "title": "Secure and Anonymous Communications Over Delay Tolerant Networks",
+      "url": "https://sbakiras.github.io/papers/access-dtn.pdf",
+      "fetched_at": "2026-05-30T20:40:29",
+      "extractor": "jina",
+      "content_hash": "sha1:3f035c15a45796763573e539ca58c3a3316340e5",
+      "path": "sbakiras.github.io/2026-05-30-secure-and-anonymous-communications-over-delay-t-papers-access-dtn-pd.md",
+      "words": 10437,
+      "blocked": false
+    },
+    {
+      "domain": "scholar.harvard.edu",
+      "title": "Error",
+      "url": "https://scholar.harvard.edu/files/weitzman/files/optimalsearchbestalternative.pdf",
+      "fetched_at": "2026-05-30T20:23:30",
+      "extractor": "jina",
+      "content_hash": "sha1:4bd58a16174b26a073570d582c750cda6418e36b",
+      "path": "scholar.harvard.edu/2026-05-30-error-files-weitzman-files.md",
+      "words": 43,
+      "blocked": true
     },
     {
       "domain": "scispace.com",
@@ -1694,6 +1994,17 @@
       "blocked": false
     },
     {
+      "domain": "www.analyticsvidhya.com",
+      "title": "Self-RAG: AI That Knows When to Double Check",
+      "url": "https://www.analyticsvidhya.com/blog/2025/01/self-rag",
+      "fetched_at": "2026-05-30T20:34:16",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:55c7b7de8cc2b251944e649b81fccf5fced7e79f",
+      "path": "www.analyticsvidhya.com/2026-05-30-self-rag-ai-that-knows-when-to-double-check-blog-2025-01-self-ra.md",
+      "words": 641,
+      "blocked": false
+    },
+    {
       "domain": "www.apple.com",
       "title": "iCloud Private Relay Overview",
       "url": "https://www.apple.com/icloud/docs/iCloud_Private_Relay_Overview_Dec2021.pdf",
@@ -1702,6 +2013,17 @@
       "content_hash": "sha1:8ff2d0ceeca60da715289ee8184e3ff929749de0",
       "path": "www.apple.com/2026-05-30-icloud-private-relay-overview-icloud-docs-icloud-p.md",
       "words": 3190,
+      "blocked": false
+    },
+    {
+      "domain": "www.capsolver.com",
+      "title": "Cloudflare TLS Fingerprinting: What It Is and How to Solve It",
+      "url": "https://www.capsolver.com/blog/Cloudflare/cloudflare-tls",
+      "fetched_at": "2026-05-30T20:45:13",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:c52b3fa043e99db8b2fd8e97b4782e2ab5a4c0e5",
+      "path": "www.capsolver.com/2026-05-30-cloudflare-tls-fingerprinting-what-it-is-and-how-blog-cloudflare-clou.md",
+      "words": 1231,
       "blocked": false
     },
     {
@@ -1725,6 +2047,28 @@
       "path": "www.cis.upenn.edu/2026-05-30-page-not-found-computer-and-information-science-yipingma-pir-slides-.md",
       "words": 1375,
       "blocked": true
+    },
+    {
+      "domain": "www.classcentral.com",
+      "title": "Free Video: Private Retrieval-Augmented Generation: Secure Search Systems for LLMs from Simons Institute | Class Central",
+      "url": "https://www.classcentral.com/course/youtube-private-retrieval-augmented-generation-354952",
+      "fetched_at": "2026-05-30T20:41:01",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:be4a613e7f14fe1b9c761a9e98e2d01e8b763ed0",
+      "path": "www.classcentral.com/2026-05-30-free-video-private-retrieval-augmented-generatio-course-youtube-priva.md",
+      "words": 190,
+      "blocked": false
+    },
+    {
+      "domain": "www.cmand.org",
+      "title": "Toward Anonymity in Delay Tolerant Networks: Threshold Pivot Scheme",
+      "url": "https://www.cmand.org/papers/tps-milcom10.pdf",
+      "fetched_at": "2026-05-30T20:40:29",
+      "extractor": "jina",
+      "content_hash": "sha1:c9542e8d722acfd9916e06ed062818f87d2295b9",
+      "path": "www.cmand.org/2026-05-30-toward-anonymity-in-delay-tolerant-networks-thre-papers-tps-milcom10-.md",
+      "words": 5501,
+      "blocked": false
     },
     {
       "domain": "www.cs.cmu.edu",
@@ -1779,6 +2123,17 @@
       "content_hash": "sha1:05c9f90dc8f9b84f6be98c897f624fea34e198d4",
       "path": "www.drivelock.com/2026-05-30-the-invisible-threat-understanding-dns-leaks-and-en-blog-dns-leaks.md",
       "words": 2435,
+      "blocked": false
+    },
+    {
+      "domain": "www.emergentmind.com",
+      "title": "Privacy-Preserving Cloud RAG Protocol",
+      "url": "https://www.emergentmind.com/topics/privacy-preserving-cloud-rag-protocol",
+      "fetched_at": "2026-05-30T20:41:01",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:8cd0d87c368cd5bc56e6d3a6cc0b684da25f5352",
+      "path": "www.emergentmind.com/2026-05-30-privacy-preserving-cloud-rag-protocol-topics-privacy-prese.md",
+      "words": 1217,
       "blocked": false
     },
     {
@@ -1837,6 +2192,17 @@
       "blocked": false
     },
     {
+      "domain": "www.ideals.illinois.edu",
+      "title": "The Most Influential Paper Gerard Salton Never Wrote",
+      "url": "https://www.ideals.illinois.edu/items/1790",
+      "fetched_at": "2026-05-30T20:25:58",
+      "extractor": "trafilatura",
+      "content_hash": "sha1:b66c1bd7446df3c88c03f4cd393499e5484e5bbe",
+      "path": "www.ideals.illinois.edu/2026-05-30-the-most-influential-paper-gerard-salton-never-w-items-1790.md",
+      "words": 348,
+      "blocked": false
+    },
+    {
       "domain": "www.ietf.org",
       "title": "Oblivious HTTP",
       "url": "https://www.ietf.org/rfc/rfc9458.html",
@@ -1892,6 +2258,17 @@
       "blocked": false
     },
     {
+      "domain": "www.preprints.org",
+      "title": "Online Traffic Obfuscation Experimental Framework for the Smart Home Privacy Protection",
+      "url": "https://www.preprints.org/manuscript/202507.0772",
+      "fetched_at": "2026-05-30T20:42:25",
+      "extractor": "jina",
+      "content_hash": "sha1:941535c98ad3b9988ccf657d90e1bbcae5c3e79d",
+      "path": "www.preprints.org/2026-05-30-online-traffic-obfuscation-experimental-framewor-manuscript-202507-07.md",
+      "words": 8438,
+      "blocked": false
+    },
+    {
       "domain": "www.proxies.sx",
       "title": "Best Proxies for Web Scraping in 2026",
       "url": "https://www.proxies.sx/blog/best-proxies-web-scraping-2026",
@@ -1912,6 +2289,17 @@
       "path": "www.rand.org/2026-05-30-on-relevance-probabilistic-indexing-and-informat-pubs-external-public.md",
       "words": 380,
       "blocked": false
+    },
+    {
+      "domain": "www.researchgate.net",
+      "title": "Just a moment...",
+      "url": "https://www.researchgate.net/publication/264846903_Metareasoning_for_Monte_Carlo_Tree_Search",
+      "fetched_at": "2026-05-30T20:33:13",
+      "extractor": "jina",
+      "content_hash": "sha1:37326492b5251299375a53e0e8391ec27b49ce18",
+      "path": "www.researchgate.net/2026-05-30-just-a-moment-publication-26484690.md",
+      "words": 72,
+      "blocked": true
     },
     {
       "domain": "www.researchgate.net",
@@ -2026,10 +2414,10 @@
     {
       "domain": "www.sciencedirect.com",
       "title": "Just a moment...",
-      "url": "https://www.sciencedirect.com/science/article/pii/S1319157823004573",
-      "fetched_at": "2026-05-30T15:37:34",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1570870511002150",
+      "fetched_at": "2026-05-30T20:40:32",
       "extractor": "jina",
-      "content_hash": "sha1:fc054974255806d42673a7a4a69a6afb8931d928",
+      "content_hash": "sha1:0df7b562418e230bbbd85b4dc33a512c849edc85",
       "path": "www.sciencedirect.com/2026-05-30-just-a-moment-science-article-pii-.md",
       "words": 97,
       "blocked": true
@@ -2156,6 +2544,17 @@
       "blocked": false
     },
     {
+      "domain": "www.usenix.org",
+      "title": "sec24summer-prepub-465-xue.pdf",
+      "url": "https://www.usenix.org/system/files/sec24summer-prepub-465-xue.pdf",
+      "fetched_at": "2026-05-30T20:42:22",
+      "extractor": "jina",
+      "content_hash": "sha1:9628e04cc1cd7ad15638802d60996d0ddf1128b6",
+      "path": "www.usenix.org/2026-05-30-sec24summer-prepub-465-xue-pdf-system-files-sec24su.md",
+      "words": 14537,
+      "blocked": false
+    },
+    {
       "domain": "www.vpnmentor.com",
       "title": "10 Best Private Search Engines That Don\u2019t Track Data in 2026",
       "url": "https://www.vpnmentor.com/blog/online-privacy/best-private-search-engines-true-no-log-services",
@@ -2176,6 +2575,17 @@
       "path": "www.worldscientific.com/2026-05-30-just-a-moment-doi-abs-10-1142-s179.md",
       "words": 96,
       "blocked": true
+    },
+    {
+      "domain": "www2.eecs.berkeley.edu",
+      "title": "500 Internal Server Error",
+      "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-119.pdf",
+      "fetched_at": "2026-05-30T20:32:57",
+      "extractor": "jina",
+      "content_hash": "sha1:6621878973d8085511f5148597c9ace59b5e4333",
+      "path": "www2.eecs.berkeley.edu/2026-05-30-500-internal-server-error-pubs-techrpts-2011-e.md",
+      "words": 86,
+      "blocked": false
     },
     {
       "domain": "yunus.hacettepe.edu.tr",
@@ -2388,7 +2798,42 @@
     "https://arxiv.org/abs/2505.15872",
     "https://arxiv.org/abs/2505.15117",
     "https://www.salesforce.com/blog/poisoning-the-well-search-agents/",
-    "https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation/"
+    "https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation/",
+    "https://www.econometricsociety.org/publications/econometrica/1979/05/01/optimal-search-best-alternative",
+    "https://www.osti.gov/servlets/purl/6795538",
+    "http://jalon.org/MAES/SECRETARYv204.pdf",
+    "https://jamesmccaffreyblog.com/2016/09/07/the-secretary-problem-2/",
+    "https://maxwelljon.es/blog/2024/secretaryproblem/",
+    "arXiv:math/0411212v1",
+    "https://www.academia.edu/111731059/The_postdoc_variant_of_the_secretary_problem",
+    "https://julia.quantecon.org/dynamic_programming/wald_friedman.html",
+    "https://arxiv.org/abs/1502.03722",
+    "https://en.wikipedia.org/wiki/Vector_space_model",
+    "https://www.ideals.illinois.edu/items/1790",
+    "https://pdfs.semanticscholar.org/0df5/92175b7ff0f302cadfaefb644de72f66d733.pdf",
+    "https://arxiv.org/pdf/2410.05563",
+    "https://arxiv.org/abs/cs/9505103",
+    "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-119.pdf",
+    "https://www.researchgate.net/publication/264846903_Metareasoning_for_Monte_Carlo_Tree_Search",
+    "https://theses.hal.science/tel-00927252v1/document",
+    "https://learnprompting.org/docs/retrieval_augmented_generation/self-rag",
+    "https://arxiv.org/abs/2310.11511",
+    "https://arxiv.org/abs/2504.13171",
+    "https://arxiv.org/abs/2512.23675",
+    "https://arxiv.org/abs/2601.16175",
+    "https://www.emergentmind.com/topics/privacy-preserving-cloud-rag-protocol",
+    "https://www.classcentral.com/course/youtube-private-retrieval-augmented-generation-354952",
+    "https://arxiv.org/pdf/2312.10997",
+    "https://sbakiras.github.io/papers/access-dtn.pdf",
+    "https://ieeexplore.ieee.org/document/9089287",
+    "https://www.cmand.org/papers/tps-milcom10.pdf",
+    "https://www.preprints.org/manuscript/202507.0772",
+    "https://arxiv.org/pdf/2503.02018",
+    "https://pure.kaist.ac.kr/en/publications/muffler-secure-tor-traffic-obfuscation-with-dynamic-connection-sh-2/",
+    "https://www.usenix.org/system/files/sec24summer-prepub-465-xue.pdf",
+    "https://jakeinsight.com/tech/2026-02-26-llm-deanonymization-privacy-risk-real-identities-e/",
+    "https://factually.co/fact-checks/technology/can-duckduckgo-be-deanonymized-by-isps-and-network-observers-b216ff",
+    "https://www.capsolver.com/blog/Cloudflare/cloudflare-tls"
   ],
   "cited_not_fetched_as_file": [
     "arXiv:2307.02429",
@@ -2440,6 +2885,13 @@
     "https://arxiv.org/abs/2108.06279",
     "https://arxiv.org/abs/2504.05181",
     "https://arxiv.org/abs/2604.23396",
-    "https://arxiv.org/abs/2310.07815"
+    "https://arxiv.org/abs/2310.07815",
+    "https://www.econometricsociety.org/publications/econometrica/1979/05/01/optimal-search-best-alternative",
+    "https://www.osti.gov/servlets/purl/6795538",
+    "arXiv:math/0411212v1",
+    "https://www.academia.edu/111731059/The_postdoc_variant_of_the_secretary_problem",
+    "https://arxiv.org/pdf/2410.05563",
+    "https://theses.hal.science/tel-00927252v1/document",
+    "https://arxiv.org/abs/2310.11511"
   ]
 }

@@ -1532,6 +1532,280 @@ While retrieval-augmented and agentic LLMs have advanced factuality, adaptabilit
 
 ---
 
+## key works on optimal stopping and the value of search, including Weitzman 1979 Optimal Search for the Best Alternative (the Pandora's box reservation-value rule), the secretary problem, and Wald sequential analysis; plus foundational information-retrieval and information-seeking works that are often cited: Salton 1975 vector space model for automatic indexing, and Belkin Oddy and Brooks 1982 anomalous state of knowledge (ASK) for information retrieval
+
+_Run: `20260530-202923-key-works-on-optimal-stopping-and-the-value.json` · grounding 5/5_
+
+# Key Works on Optimal Stopping, Value of Search, and Foundational Information Retrieval Models
+
+This synthesis reviews foundational works in optimal stopping/search theory and information retrieval, focusing on:
+
+- Weitzman (1979) and the Pandora's box reservation-value rule
+- The secretary problem
+- Wald's sequential analysis
+- Salton's vector space model (VSM) for automatic indexing
+- The Anomalous State of Knowledge (ASK) model by Belkin, Oddy, and Brooks
+
+---
+
+## 1. Weitzman (1979): Pandora's Box and the Reservation-Value Rule
+
+Weitzman's seminal 1979 paper formalized the **Pandora's box problem**, where a decision-maker sequentially inspects costly alternatives with uncertain values, aiming to maximize the expected value of the best alternative found minus total search costs. The key contribution is the **reservation-value rule**:
+
+- **Reservation-Value Rule:** For each alternative, compute a reservation value (threshold) based on its cost and value distribution. At each step, open the unopened box with the highest reservation value, and stop searching when the best observed value so far exceeds the reservation values of all remaining boxes [https://www.econometricsociety.org/publications/econometrica/1979/05/01/optimal-search-best-alternative], [https://www.osti.gov/servlets/purl/6795538].
+- **Tractability:** Reservation values are easy to calculate and have an intuitive economic interpretation.
+- **Impact:** This framework is foundational in economics, operations research, and computer science, inspiring many variants and applications, including market design and machine learning [arXiv:2308.12242], [arXiv:2002.06968].
+
+---
+
+## 2. The Secretary Problem: A Classic of Optimal Stopping
+
+The **secretary problem** exemplifies optimal stopping: given n candidates interviewed in random order, the goal is to maximize the probability of selecting the best one, with the constraint that each must be accepted or rejected immediately.
+
+- **1/e Rule:** Skip the first n/e candidates, then select the next who is better than all previous ones. This yields a maximum success probability of 1/e (~36.8%) as n grows [http://jalon.org/MAES/SECRETARYv204.pdf], [https://jamesmccaffreyblog.com/2016/09/07/the-secretary-problem-2/].
+- **Variants:** The literature includes extensions with unknown n, maximizing expected rank/value, multiple selections, cardinal payoffs, and matching/game-theoretic settings [arXiv:math/0411212v1], [https://www.academia.edu/111731059/The_postdoc_variant_of_the_secretary_problem].
+- **Significance:** The problem illustrates the trade-off between stopping too early (risking missed opportunities) and waiting too long (risking no options left), making it a foundational case in sequential decision theory.
+
+---
+
+## 3. Wald's Sequential Analysis
+
+**Wald’s sequential analysis** revolutionized statistical inference by allowing data to be evaluated as it is collected, with sampling stopped early according to a pre-defined rule.
+
+- **Sequential Probability Ratio Test (SPRT):** At each stage, compute the likelihood ratio and compare it to thresholds to decide whether to accept/reject a hypothesis or continue sampling. SPRT is mathematically optimal for minimizing expected sample size for given error rates [https://en.wikipedia.org/wiki/Sequential_analysis], [https://julia.quantecon.org/dynamic_programming/wald_friedman.html].
+- **Influence:** Wald's framework formalized optimal stopping in statistics and decision theory, influencing fields from clinical trials to machine learning [arXiv:1502.03722].
+- **Legacy:** The approach is closely related to dynamic programming and remains a gold standard for sequential decision-making under uncertainty.
+
+---
+
+## 4. Salton’s Vector Space Model (VSM) for Information Retrieval
+
+Salton and collaborators introduced the **vector space model (VSM)**, a foundational framework for representing documents and queries as vectors in a high-dimensional space:
+
+- **Vector Representation:** Each document/query is a vector; each dimension is a term [https://en.wikipedia.org/wiki/Vector_space_model].
+- **Term Weighting (tf-idf):** Terms are weighted by their frequency and distinctiveness, improving retrieval relevance.
+- **Similarity Ranking:** Documents are ranked by cosine similarity to the query, enabling partial matching and graded relevance.
+- **Impact:** VSM enabled the shift from Boolean to ranked retrieval, underpinning classic IR algorithms and influencing probabilistic, semantic, and neural models [https://www.ideals.illinois.edu/items/1790].
+- **Historical Note:** The oft-cited "Salton 1975" overview paper is a bibliographic phantom; the VSM's development spanned multiple works, but Salton's contributions are foundational [https://www.ideals.illinois.edu/items/1790].
+
+---
+
+## 5. The Anomalous State of Knowledge (ASK) Model
+
+The **ASK model** (Belkin, Oddy, Brooks, 1982) reframed information seeking as a response to an "anomalous state of knowledge"—a recognized gap or inadequacy in the user's knowledge:
+
+- **User-Centered Focus:** Users often cannot precisely articulate their needs due to incomplete knowledge; information seeking is driven by the need to resolve this anomaly [https://pdfs.semanticscholar.org/0df5/92175b7ff0f302cadfaefb644de72f66d733.pdf].
+- **Foundation for Interactive IR:** The model inspired interactive, iterative IR systems that help users clarify and refine their needs, influencing subsequent models of information behavior.
+
+---
+
+## Summary Table
+
+| Work/Model                | Core Idea/Contribution                                                                 | Key Source(s)                                                                 |
+|--------------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Weitzman (1979)          | Reservation-value rule for optimal sequential search with costly inspections           | [Econometric Society](https://www.econometricsociety.org/publications/econometrica/1979/05/01/optimal-search-best-alternative), [arXiv:2308.12242] |
+| Secretary Problem        | 1/e rule for maximizing probability of selecting best in sequential choices            | [jalon.org](http://jalon.org/MAES/SECRETARYv204.pdf), [arXiv:math/0411212v1]  |
+| Wald’s Sequential Analysis | Sequential Probability Ratio Test (SPRT) for optimal sequential hypothesis testing   | [Wikipedia](https://en.wikipedia.org/wiki/Sequential_analysis), [arXiv:1502.03722] |
+| Salton’s VSM             | Vector-based document/query representation, tf-idf weighting, cosine similarity ranking | [Wikipedia](https://en.wikipedia.org/wiki/Vector_space_model), [IDEALS](https://www.ideals.illinois.edu/items/1790) |
+| ASK Model                | Information seeking as response to an anomalous state of knowledge; user-centered IR   | [Semantic Scholar](https://pdfs.semanticscholar.org/0df5/92175b7ff0f302cadfaefb644de72f66d733.pdf) |
+
+---
+
+## Conclusion
+
+These works collectively established the theoretical and practical foundations for optimal stopping, search, and information retrieval. Weitzman, the secretary problem, and Wald's analysis provide the mathematical backbone for sequential decision-making under uncertainty, while Salton's VSM and the ASK model underpin modern, user-centered information retrieval systems. Their influence persists in contemporary research and applications across economics, statistics, computer science, and information science.
+
+---
+
+## rational metareasoning and the value of computation: Russell and Wefald principles of metareasoning, Horvitz reasoning under bounded resources, Hay and Russell metareasoning for Monte Carlo tree search, bounded optimality (Russell and Subramanian); and when LLM agents should stop searching: FLARE active retrieval, Self-RAG, adaptive and just-in-time retrieval, test-time compute scaling, and confidence calibration / knowing what you know in language models
+
+_Run: `20260530-203805-rational-metareasoning-and-the-value-of-comp.json` · grounding 4/5_
+
+# Rational Metareasoning, Bounded Optimality, and Stopping Criteria in AI Agents
+
+## 1. Russell & Wefald: Principles of Rational Metareasoning
+
+Rational metareasoning treats the process of thinking itself as a subject for decision-theoretic control. Rather than using fixed heuristics, an agent should select computational actions (e.g., which node to expand in a search tree) based on the **expected value of computation (VOC)**—the anticipated improvement in decision quality from that computation. Computation is pursued only if its expected benefit exceeds its cost (e.g., time, resources), leading to a principled allocation of computational effort under constraints. This is formalized as a **metalevel Markov Decision Process (MDP)**, where the agent's state includes both its computational and external environment states.
+
+In practice, this often leads to the use of **anytime algorithms** (which can return a valid answer at any point, improving with more computation) and **metalevel reinforcement learning** when VOC is hard to model analytically. However, perfect metareasoning is itself computationally hard, leading to the concept of **bounded optimality** [Russell & Wefald, 1991; Russell, n.d.; arXiv:2410.05563].
+
+## 2. Bounded Optimality (Russell & Subramanian)
+
+**Bounded optimality** is the property of an agent whose program is the best possible given its architecture and resource constraints. Unlike classical optimality—which assumes unlimited computational power—bounded optimality recognizes that real agents must operate within fixed computational and structural limits. The agent designer's task is to find the best program that can run on a given architecture, making the implementation itself central to the analysis [arXiv:cs/9505103].
+
+| Notion              | Definition                                                                                       | Assumptions about Resources           | Practical Relevance |
+|---------------------|--------------------------------------------------------------------------------------------------|---------------------------------------|--------------------|
+| Classical Optimality| Agent chooses action that maximizes expected utility (perfect rationality)                        | Unlimited (unbounded)                 | Theoretical, often impractical |
+| Bounded Optimality  | Agent's program is the best possible given its architecture and environment constraints           | Explicitly limited (bounded)          | Directly relevant to real-world agents |
+
+## 3. Metareasoning for Monte Carlo Tree Search (Hay & Russell)
+
+Hay and Russell's work is widely cited as foundational for applying metareasoning to **Monte Carlo Tree Search (MCTS)**, particularly in addressing how to allocate computational resources and when to stop searching and act. Their research focuses on search control and resource allocation in tree search algorithms. However, due to lack of access to the full text, the specific stopping strategies or metareasoning policies they propose cannot be detailed here. This remains an open gap pending access to the primary source [UCB/EECS-2011-119; ResearchGate; HAL].
+
+## 4. Adaptive and Just-in-Time Retrieval/Compute in LLMs
+
+Modern LLM agents employ several mechanisms to decide when to stop searching or retrieving information, balancing accuracy and computational cost:
+
+| Method/Framework                | Adaptive Retrieval/Compute Mechanism                                                                 | Stopping/Termination Criteria                                               | Source/Citation                                   |
+|---------------------------------|-----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|--------------------------------------------------|
+| **Self-RAG**                    | Uses a "retrieve token" to decide on-demand whether to retrieve external knowledge. Reflection tokens (ISREL, ISSUP, ISUSE) enable self-assessment of relevance, support, and utility. | Retrieval stops when the model determines (via reflection tokens) that the current output is sufficiently supported, relevant, and useful. Can skip retrieval if parametric knowledge suffices. | [learnprompting.org](https://learnprompting.org/docs/retrieval_augmented_generation/self-rag), [arXiv:2310.11511](https://arxiv.org/abs/2310.11511) |
+| **Sleep-time Compute**          | Pre-computes useful quantities offline, reducing need for expensive test-time computation.           | Stops searching when pre-computed information suffices or further compute yields diminishing returns. | [arXiv:2504.13171](https://arxiv.org/abs/2504.13171)     |
+| **End-to-End Test-Time Training** | Continual learning at inference: adapts weights via next-token prediction on current context.        | Stops adapting when context window is exhausted or output quality is sufficient. | [arXiv:2512.23675](https://arxiv.org/abs/2512.23675)     |
+| **Test-Time RL for Discovery**  | Performs reinforcement learning at test time to optimize for a single, high-quality solution.        | Stops when a reward threshold is met or a compute budget is exhausted.      | [arXiv:2601.16175](https://arxiv.org/abs/2601.16175)     |
+| **FLARE**                       | UNKNOWN                                                                                            | UNKNOWN                                                                    | UNKNOWN                                            |
+
+### Explanation
+
+- **Self-RAG**: Retrieval is adaptive and self-critical, with explicit mechanisms for the model to decide when enough evidence has been gathered or when retrieval can be skipped [learnprompting.org, arXiv:2310.11511].
+- **Sleep-time Compute**: Shifts computation offline, with stopping determined by sufficiency and diminishing returns [arXiv:2504.13171].
+- **End-to-End Test-Time Training**: Adapts continually at inference, stopping based on context or output quality [arXiv:2512.23675].
+- **Test-Time RL for Discovery**: Uses RL at inference, stopping based on reward or compute limits [arXiv:2601.16175].
+- **FLARE**: Mechanisms and stopping criteria remain unknown due to lack of accessible sources.
+
+## 5. Confidence Calibration / Knowing What You Know
+
+While not detailed in the sub-syntheses, confidence calibration is an important aspect of knowing when to stop searching: well-calibrated models can better assess when their current answer is likely to be correct, and thus when further computation or retrieval is unnecessary. This principle is implicit in the design of reflection tokens in Self-RAG and in the use of reward thresholds in test-time RL.
+
+---
+
+## Summary Table: Key Principles and Mechanisms
+
+| Principle/Method                | Description                                                                                          | Stopping/Control Mechanism                          | Source/Citation                        |
+|---------------------------------|------------------------------------------------------------------------------------------------------|-----------------------------------------------------|----------------------------------------|
+| Rational Metareasoning          | Select computations based on expected value in improving decision quality                            | VOC, metalevel MDP, anytime algorithms              | [Russell & Wefald, 1991][1], [arXiv:2410.05563][2] |
+| Bounded Optimality              | Best achievable performance by any program on a given machine                                        | Program-level optimization under constraints         | [arXiv:cs/9505103][3]                  |
+| MCTS Metareasoning (Hay & Russell) | Metareasoning for search control in Monte Carlo Tree Search                                        | Unknown (primary source not accessed)                | [UCB/EECS-2011-119][4]                 |
+| Self-RAG                        | Adaptive retrieval with self-assessment tokens                                                       | Reflection tokens (ISREL, ISSUP, ISUSE)             | [learnprompting.org][7], [arXiv:2310.11511][8] |
+| Sleep-time Compute              | Pre-compute offline to minimize test-time compute                                                    | Sufficiency/diminishing returns                     | [arXiv:2504.13171][9]                  |
+| End-to-End Test-Time Training   | Continual adaptation at inference                                                                    | Context window/output quality                        | [arXiv:2512.23675][10]                 |
+| Test-Time RL for Discovery      | RL at inference for single-instance optimization                                                     | Reward threshold/compute budget                      | [arXiv:2601.16175][11]                 |
+| FLARE                           | UNKNOWN                                                                                             | UNKNOWN                                             | UNKNOWN                                |
+
+[1]: https://people.eecs.berkeley.edu/~russell/research-bo.html
+[2]: https://arxiv.org/pdf/2410.05563
+[3]: https://arxiv.org/abs/cs/9505103
+[4]: https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-119.pdf
+[7]: https://learnprompting.org/docs/retrieval_augmented_generation/self-rag
+[8]: https://arxiv.org/abs/2310.11511
+[9]: https://arxiv.org/abs/2504.13171
+[10]: https://arxiv.org/abs/2512.23675
+[11]: https://arxiv.org/abs/2601.16175
+
+---
+
+## Open Gaps and Contradictions
+
+- **Hay & Russell (MCTS metareasoning)**: The specific stopping strategies are not detailed due to lack of access to the primary source.
+- **FLARE**: No accessible information on its mechanisms or stopping criteria.
+
+## Conclusion
+
+Rational metareasoning and bounded optimality provide a principled foundation for controlling computation in AI agents, including LLMs. Modern LLM retrieval and compute mechanisms operationalize these principles by adaptively deciding when to stop searching, often using self-assessment, reward thresholds, or sufficiency criteria. However, some areas (notably FLARE and detailed MCTS metareasoning policies) remain open for further exploration.
+
+**Coverage gaps flagged by self-critique:**
+- Horvitz's reasoning under bounded resources (no explicit summary or citation of Horvitz's frameworks or papers, e.g., 'Reasoning Under Varying and Uncertain Resource Constraints'), 'FLARE' (no details or sources), explicit discussion of 'adaptive and just-in-time retrieval' as a general class (only Self-RAG is detailed), confidence calibration (no concrete frameworks, methods, or papers cited), MaAS (arXiv:2502.04180) (if relevant to adaptive retrieval/compute)
+
+---
+
+## privacy-preserving retrieval and search for AI agents and RAG systems: private information retrieval for retrieval-augmented generation, latency-tolerant anonymous communication suited to autonomous background agents, query obfuscation and cover traffic for automated search, and the privacy threat model of agentic web browsing including query-log deanonymization and the differential fingerprint of programmatic versus human query traffic
+
+_Run: `20260530-204623-privacy-preserving-retrieval-and-search-for.json` · grounding 4/5_
+
+# Privacy-Preserving Retrieval and Search for AI Agents and RAG Systems
+
+## 1. Private Information Retrieval (PIR) in RAG Systems
+
+**Current Approaches:**
+- **Differential Privacy (DP) Protocols:**  
+  DP-based RAG protocols inject noise at both the retrieval (document selection) and generation (token output) stages, ensuring that the presence or absence of any single document or query cannot be inferred. These protocols provide formal (ε,δ)-DP guarantees but introduce a privacy–utility tradeoff: as privacy increases (lower ε), accuracy and fluency, especially for rare facts, decline. For moderate privacy budgets (e.g., ε ≈ 2), accuracy for common facts remains high (>80%) and fluency degrades gradually. DP protocols are compatible with modern vector search infrastructure and support parallelization, but always incur some utility loss due to noise [Privacy-Preserving Cloud RAG Protocol, EmergentMind](https://www.emergentmind.com/topics/privacy-preserving-cloud-rag-protocol).
+
+- **Cryptographic/ORAM-based Protocols:**  
+  Systems like Compass use encrypted embeddings and Oblivious RAM (ORAM) to protect both query and document content and access patterns. These provide strong, information-theoretic privacy—servers learn nothing about queries or data, even if compromised. While computational and latency overheads are higher than plaintext search, advances such as cryptography-friendly HNSW traversal have made these approaches practical (seconds per query) and maintain high semantic accuracy [Compass (UC Berkeley, Simons Institute)](https://www.classcentral.com/course/youtube-private-retrieval-augmented-generation-354952).
+
+- **Standard RAG:**  
+  Most mainstream RAG systems do not implement PIR, leaving queries and retrieved documents exposed [RAG Survey, arXiv:2312.10997](https://arxiv.org/pdf/2312.10997).
+
+**Summary Table:**
+
+| Approach/Protocol         | Privacy Guarantee | Efficiency Impact | Accuracy Impact | Source |
+|--------------------------|------------------|------------------|----------------|--------|
+| DP-based Cloud RAG       | Formal (ε,δ)-DP  | Moderate (noise) | Degrades as ε↓ | [EmergentMind](https://www.emergentmind.com/topics/privacy-preserving-cloud-rag-protocol) |
+| Cryptographic/ORAM (Compass) | Strong (server learns nothing) | Higher (seconds/query) | Comparable to plaintext | [Simons Institute](https://www.classcentral.com/course/youtube-private-retrieval-augmented-generation-354952) |
+| Standard RAG             | None             | Fastest          | Highest        | [arXiv:2312.10997](https://arxiv.org/pdf/2312.10997) |
+
+## 2. Latency-Tolerant Anonymous Communication for Autonomous Agents
+
+**Best-Suited Protocols:**
+- **Delay-Tolerant Network (DTN) Protocols:**  
+  - *Random Walk Forwarding*: Enhances anonymity by not listing intermediate nodes and using opportunistic mixing. Highly tolerant of latency and robust to network partitions, making it ideal for autonomous background agents [sbakiras.github.io/papers/access-dtn.pdf](https://sbakiras.github.io/papers/access-dtn.pdf).
+  - *Threshold Pivot Scheme (TPS)*: Uses secret sharing to balance anonymity and efficiency, providing resistance to traffic analysis and sender-receiver unlinkability. Suitable for partitioned/delayed networks [www.cmand.org/papers/tps-milcom10.pdf](https://www.cmand.org/papers/tps-milcom10.pdf).
+
+- **Onion Routing (Tor):**  
+  Provides layered encryption and unlinkability but is less suitable for high-latency or partitioned environments and is vulnerable to route compromise [sbakiras.github.io/papers/access-dtn.pdf](https://sbakiras.github.io/papers/access-dtn.pdf).
+
+- **Mixnets:**  
+  Offer strong privacy via batching and mixing but are less practical for dynamic/disconnected agent environments due to synchronization requirements.
+
+**Conclusion:**  
+DTN-specific protocols offer the strongest privacy and latency tolerance for autonomous AI agents performing background retrieval [sbakiras.github.io/papers/access-dtn.pdf][ieeexplore.ieee.org/document/9089287][www.cmand.org/papers/tps-milcom10.pdf].
+
+## 3. Query Obfuscation and Cover Traffic
+
+**Effectiveness:**
+- Techniques such as packet padding, fake traffic injection, and protocol mimicry can partially reduce the risk of traffic analysis, especially against less sophisticated adversaries or in real-time environments (e.g., smart home devices) [preprints.org/manuscript/202507.0772](https://www.preprints.org/manuscript/202507.0772).
+- However, advanced adversaries can use deep packet inspection, protocol-agnostic fingerprinting (e.g., detecting encapsulated TLS handshakes), and behavioral analysis to reliably detect obfuscated or proxied traffic, even with multiple obfuscation layers [arXiv:2503.02018](https://arxiv.org/pdf/2503.02018)[usenix.org/system/files/sec24summer-prepub-465-xue.pdf](https://www.usenix.org/system/files/sec24summer-prepub-465-xue.pdf).
+- Dynamic, context-aware systems like MUFFLER can significantly reduce correlation attack success with low overhead, but are complex and may not generalize to all AI agent scenarios [pure.kaist.ac.kr](https://pure.kaist.ac.kr/en/publications/muffler-secure-tor-traffic-obfuscation-with-dynamic-connection-sh-2/).
+
+**Limitations:**  
+Obfuscation and cover traffic are not foolproof and should be combined with other privacy measures (e.g., DP, batching, trusted execution environments). Their effectiveness is context-dependent and limited by adversary capabilities.
+
+## 4. Privacy Threat Model for Agentic Web Browsing
+
+| Threat Vector                    | Description/Mechanism | Mitigation Strategies | Source |
+|----------------------------------|----------------------|----------------------|--------|
+| Query-log deanonymization        | LLMs and cross-referencing can deanonymize users from logs with >85% accuracy, even without direct identifiers | Limit data retention, apply DP, obfuscate queries, restrict LLM access | [jakeinsight.com](https://jakeinsight.com/tech/2026-02-26-llm-deanonymization-privacy-risk-real-identities-e/) |
+| Network-level deanonymization    | ISPs can link activity to user IPs via metadata, even if content is encrypted | Use VPNs/Tor, privacy-preserving proxies | [factually.co](https://factually.co/fact-checks/technology/can-duckduckgo-be-deanonymized-by-isps-and-network-observers-b216ff) |
+| TLS/JA3 fingerprinting           | Automated agents have distinct handshake patterns, enabling detection/blocking | Use browser automation frameworks, TLS spoofing, proxies | [capsolver.com](https://www.capsolver.com/blog/Cloudflare/cloudflare-tls) |
+| Behavioral/timing analysis       | Bots exhibit non-human timing/navigation patterns | Randomize timing, simulate human-like behavior | [capsolver.com](https://www.capsolver.com/blog/Cloudflare/cloudflare-tls) |
+| Exposed LLM infrastructure       | Insecure endpoints can be abused for deanonymization or data extraction | Secure endpoints, rate limiting, prompt injection defenses | [jakeinsight.com](https://jakeinsight.com/tech/2026-02-26-llm-deanonymization-privacy-risk-real-identities-e/) |
+
+**Key Takeaways:**
+- Query-log deanonymization is a production-scale threat due to LLMs’ aggregation and correlation capabilities.
+- Network-level adversaries can deanonymize users via metadata; only routing changes (VPN, Tor) can break this link.
+- Programmatic traffic is detectable via technical and behavioral fingerprints.
+- Mitigation requires a layered approach—technical, architectural, and operational.
+
+## 5. Integrated Recommendations
+
+- **Combine multiple privacy-preserving techniques:** Use DP or cryptographic PIR for RAG, DTN protocols for background agent communication, and advanced obfuscation with behavioral randomization for web browsing/search.
+- **Understand the threat model:** Tailor defenses to adversary capabilities—no single technique suffices.
+- **Monitor advances in fingerprinting and deanonymization:** Regularly update obfuscation and privacy protocols to counter evolving attacks.
+
+## References
+
+- [Privacy-Preserving Cloud RAG Protocol, EmergentMind](https://www.emergentmind.com/topics/privacy-preserving-cloud-rag-protocol)
+- [Compass (UC Berkeley, Simons Institute)](https://www.classcentral.com/course/youtube-private-retrieval-augmented-generation-354952)
+- [RAG Survey, arXiv:2312.10997](https://arxiv.org/pdf/2312.10997)
+- [sbakiras.github.io/papers/access-dtn.pdf](https://sbakiras.github.io/papers/access-dtn.pdf)
+- [ieeexplore.ieee.org/document/9089287](https://ieeexplore.ieee.org/document/9089287)
+- [www.cmand.org/papers/tps-milcom10.pdf](https://www.cmand.org/papers/tps-milcom10.pdf)
+- [preprints.org/manuscript/202507.0772](https://www.preprints.org/manuscript/202507.0772)
+- [arXiv:2503.02018](https://arxiv.org/pdf/2503.02018)
+- [pure.kaist.ac.kr](https://pure.kaist.ac.kr/en/publications/muffler-secure-tor-traffic-obfuscation-with-dynamic-connection-sh-2/)
+- [usenix.org/system/files/sec24summer-prepub-465-xue.pdf](https://www.usenix.org/system/files/sec24summer-prepub-465-xue.pdf)
+- [jakeinsight.com](https://jakeinsight.com/tech/2026-02-26-llm-deanonymization-privacy-risk-real-identities-e/)
+- [factually.co](https://factually.co/fact-checks/technology/can-duckduckgo-be-deanonymized-by-isps-and-network-observers-b216ff)
+- [capsolver.com](https://www.capsolver.com/blog/Cloudflare/cloudflare-tls)
+
+**Coverage gaps flagged by self-critique:**
+- MaAS (arXiv:2502.04180)
+- PrivateGPT (arXiv:2404.12345)
+- Formal threat modeling frameworks for agentic web browsing (e.g., STRIDE, LINDDUN adaptations for AI agents)
+- Recent advances in trusted execution environments (e.g., SGX-based RAG privacy)
+- Federated retrieval approaches for privacy-preserving RAG
+
+---
+
 ## Cited sources not stored as a local page
 
 (arXiv IDs, PDFs, or pages served from cache — resolve via the URL)
@@ -1586,3 +1860,10 @@ While retrieval-augmented and agentic LLMs have advanced factuality, adaptabilit
 - `https://arxiv.org/abs/2504.05181`
 - `https://arxiv.org/abs/2604.23396`
 - `https://arxiv.org/abs/2310.07815`
+- `https://www.econometricsociety.org/publications/econometrica/1979/05/01/optimal-search-best-alternative`
+- `https://www.osti.gov/servlets/purl/6795538`
+- `arXiv:math/0411212v1`
+- `https://www.academia.edu/111731059/The_postdoc_variant_of_the_secretary_problem`
+- `https://arxiv.org/pdf/2410.05563`
+- `https://theses.hal.science/tel-00927252v1/document`
+- `https://arxiv.org/abs/2310.11511`

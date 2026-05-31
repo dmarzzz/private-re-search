@@ -1,10 +1,10 @@
 # Index — IP Anonymization for Search
 
-Corpus pulled from the research-swarm archive (last built 2026-05-30).
+Corpus pulled from the research-swarm archive (last built 2026-05-31).
 
-- **197** raw pages across **137** domains (13 marked ⚠️ blocked/empty)
-- **14** agent research runs (see [`traces/`](traces/) and [`SYNTHESIS.md`](SYNTHESIS.md))
-- **50** sources cited but not stored as a page (arXiv IDs / cache) — listed in [`SYNTHESIS.md`](SYNTHESIS.md)
+- **234** raw pages across **160** domains (18 marked ⚠️ blocked/empty)
+- **17** agent research runs (see [`traces/`](traces/) and [`SYNTHESIS.md`](SYNTHESIS.md))
+- **57** sources cited but not stored as a page (arXiv IDs / cache) — listed in [`SYNTHESIS.md`](SYNTHESIS.md)
 
 See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](manifest.json) for the machine-readable index.
 
@@ -42,6 +42,10 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 ## arxiv.org
 
+- [2312.10997v5.pdf](https://arxiv.org/pdf/2312.10997)
+  - raw: [`sources/arxiv.org/2026-05-30-2312-10997v5-pdf-pdf-2312-10997.md`](sources/arxiv.org/2026-05-30-2312-10997v5-pdf-pdf-2312-10997.md)
+- [2503.02018v1.pdf](https://arxiv.org/pdf/2503.02018)
+  - raw: [`sources/arxiv.org/2026-05-30-2503-02018v1-pdf-pdf-2503-02018.md`](sources/arxiv.org/2026-05-30-2503-02018v1-pdf-pdf-2503-02018.md)
 - [Abstraction of Trusted Execution Environments as the Missing Layer for Broad Confidential Computing Adoption: A Systematization of Knowledge](https://arxiv.org/html/2512.22090v1)
   - raw: [`sources/arxiv.org/2026-05-30-abstraction-of-trusted-execution-environments-as-html-2512-22090v1.md`](sources/arxiv.org/2026-05-30-abstraction-of-trusted-execution-environments-as-html-2512-22090v1.md)
 - [An Empirical Study on Reinforcement Learning for Reasoning-Search Interleaved LLM Agents](https://arxiv.org/abs/2505.15117)
@@ -50,6 +54,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
   - raw: [`sources/arxiv.org/2026-05-30-are-we-collaborative-yet-a-usability-perspective-abs-2601-17845.md`](sources/arxiv.org/2026-05-30-are-we-collaborative-yet-a-usability-perspective-abs-2601-17845.md)
 - [Atlas: Few-shot Learning with Retrieval Augmented Language Models](https://arxiv.org/abs/2208.03299)
   - raw: [`sources/arxiv.org/2026-05-30-atlas-few-shot-learning-with-retrieval-augmented-abs-2208-03299.md`](sources/arxiv.org/2026-05-30-atlas-few-shot-learning-with-retrieval-augmented-abs-2208-03299.md)
+- [Bounded Conditioning: Flexible Inference for Decisions under Scarce Resources](https://arxiv.org/abs/1304.1512)
+  - raw: [`sources/arxiv.org/2026-05-30-bounded-conditioning-flexible-inference-for-deci-abs-1304-1512.md`](sources/arxiv.org/2026-05-30-bounded-conditioning-flexible-inference-for-deci-abs-1304-1512.md)
 - [Chain-of-Retrieval Augmented Generation](https://arxiv.org/html/2501.14342v3)
   - raw: [`sources/arxiv.org/2026-05-30-chain-of-retrieval-augmented-generation-html-2501-14342v3.md`](sources/arxiv.org/2026-05-30-chain-of-retrieval-augmented-generation-html-2501-14342v3.md)
 - [Counter-RAPTOR: Safeguarding Tor Against Active Routing Attacks](https://arxiv.org/abs/1704.00843)
@@ -62,22 +68,30 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
   - raw: [`sources/arxiv.org/2026-05-30-discovering-the-curriculum-with-ai-a-proof-of-co-html-2406-04082v2.md`](sources/arxiv.org/2026-05-30-discovering-the-curriculum-with-ai-a-proof-of-co-html-2406-04082v2.md)
 - [DNS Query Forgery: A Client-Side Defense Against Mobile App Traffic Profiling](https://arxiv.org/pdf/2505.09374)
   - raw: [`sources/arxiv.org/2026-05-30-dns-query-forgery-a-client-side-defense-against--pdf-2505-09374.md`](sources/arxiv.org/2026-05-30-dns-query-forgery-a-client-side-defense-against--pdf-2505-09374.md)
+- [End-to-End Test-Time Training for Long Context](https://arxiv.org/abs/2512.23675)
+  - raw: [`sources/arxiv.org/2026-05-30-end-to-end-test-time-training-for-long-context-abs-2512-23675.md`](sources/arxiv.org/2026-05-30-end-to-end-test-time-training-for-long-context-abs-2512-23675.md)
 - [Ideal Partition of Resources for Metareasoning](https://arxiv.org/abs/2110.09624)
   - raw: [`sources/arxiv.org/2026-05-30-ideal-partition-of-resources-for-metareasoning-abs-2110-09624.md`](sources/arxiv.org/2026-05-30-ideal-partition-of-resources-for-metareasoning-abs-2110-09624.md)
 - [IM-PIR: In-Memory Private Information Retrieval](https://arxiv.org/pdf/2509.06514v1)
   - raw: [`sources/arxiv.org/2026-05-30-im-pir-in-memory-private-information-retrieval-pdf-2509-06514v1.md`](sources/arxiv.org/2026-05-30-im-pir-in-memory-private-information-retrieval-pdf-2509-06514v1.md)
 - [InfoDeepSeek: Benchmarking Agentic Information Seeking for Retrieval-Augmented Generation](https://arxiv.org/abs/2505.15872)
   - raw: [`sources/arxiv.org/2026-05-30-infodeepseek-benchmarking-agentic-information-se-abs-2505-15872.md`](sources/arxiv.org/2026-05-30-infodeepseek-benchmarking-agentic-information-se-abs-2505-15872.md)
+- [Learning to Discover at Test Time](https://arxiv.org/abs/2601.16175)
+  - raw: [`sources/arxiv.org/2026-05-30-learning-to-discover-at-test-time-abs-2601-16175.md`](sources/arxiv.org/2026-05-30-learning-to-discover-at-test-time-abs-2601-16175.md)
 - [Meet the Family of Statistical Disclosure Attacks](https://arxiv.org/abs/1910.07603)
   - raw: [`sources/arxiv.org/2026-05-30-meet-the-family-of-statistical-disclosure-attack-abs-1910-07603.md`](sources/arxiv.org/2026-05-30-meet-the-family-of-statistical-disclosure-attack-abs-1910-07603.md)
 - [On the Information Leakage in Private Information Retrieval Systems](https://arxiv.org/abs/1909.11605)
   - raw: [`sources/arxiv.org/2026-05-30-on-the-information-leakage-in-private-informatio-abs-1909-11605.md`](sources/arxiv.org/2026-05-30-on-the-information-leakage-in-private-informatio-abs-1909-11605.md)
+- [Optimal sequential fingerprinting: Wald vs. Tardos](https://arxiv.org/abs/1502.03722)
+  - raw: [`sources/arxiv.org/2026-05-30-optimal-sequential-fingerprinting-wald-vs-tardos-abs-1502-03722.md`](sources/arxiv.org/2026-05-30-optimal-sequential-fingerprinting-wald-vs-tardos-abs-1502-03722.md)
 - [Pandora's Box Problem with Order Constraints](https://arxiv.org/abs/2002.06968)
   - raw: [`sources/arxiv.org/2026-05-30-pandora-s-box-problem-with-order-constraints-abs-2002-06968.md`](sources/arxiv.org/2026-05-30-pandora-s-box-problem-with-order-constraints-abs-2002-06968.md)
 - [Private Information Retrieval from MDS Coded Databases with Colluding Servers under Several Variant Models](https://arxiv.org/abs/1705.03186)
   - raw: [`sources/arxiv.org/2026-05-30-private-information-retrieval-from-mds-coded-dat-abs-1705-03186.md`](sources/arxiv.org/2026-05-30-private-information-retrieval-from-mds-coded-dat-abs-1705-03186.md)
 - [Provable Security for the Onion Routing and Mix Network Packet Format Sphinx](https://arxiv.org/abs/2312.08028)
   - raw: [`sources/arxiv.org/2026-05-30-provable-security-for-the-onion-routing-and-mix--abs-2312-08028.md`](sources/arxiv.org/2026-05-30-provable-security-for-the-onion-routing-and-mix--abs-2312-08028.md)
+- [Provably Bounded-Optimal Agents](https://arxiv.org/abs/cs/9505103)
+  - raw: [`sources/arxiv.org/2026-05-30-provably-bounded-optimal-agents-abs-cs-9505103.md`](sources/arxiv.org/2026-05-30-provably-bounded-optimal-agents-abs-cs-9505103.md)
 - [RAPTOR: Routing Attacks on Privacy in Tor](https://arxiv.org/abs/1503.03940)
   - raw: [`sources/arxiv.org/2026-05-30-raptor-routing-attacks-on-privacy-in-tor-abs-1503-03940.md`](sources/arxiv.org/2026-05-30-raptor-routing-attacks-on-privacy-in-tor-abs-1503-03940.md)
 - [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
@@ -88,6 +102,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
   - raw: [`sources/arxiv.org/2026-05-30-scalable-differential-privacy-with-certified-rob-abs-1903-09822.md`](sources/arxiv.org/2026-05-30-scalable-differential-privacy-with-certified-rob-abs-1903-09822.md)
 - [Scalable Private Search with Wally](https://arxiv.org/html/2406.06761v4)
   - raw: [`sources/arxiv.org/2026-05-30-scalable-private-search-with-wally-html-2406-06761v4.md`](sources/arxiv.org/2026-05-30-scalable-private-search-with-wally-html-2406-06761v4.md)
+- [Sleep-time Compute: Beyond Inference Scaling at Test-time](https://arxiv.org/abs/2504.13171)
+  - raw: [`sources/arxiv.org/2026-05-30-sleep-time-compute-beyond-inference-scaling-at-t-abs-2504-13171.md`](sources/arxiv.org/2026-05-30-sleep-time-compute-beyond-inference-scaling-at-t-abs-2504-13171.md)
 - [The Loopix Anonymity System](https://arxiv.org/abs/1703.00536)
   - raw: [`sources/arxiv.org/2026-05-30-the-loopix-anonymity-system-abs-1703-00536.md`](sources/arxiv.org/2026-05-30-the-loopix-anonymity-system-abs-1703-00536.md)
 - [Traceable mixnets](https://arxiv.org/abs/2305.08138)
@@ -256,6 +272,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
   - raw: [`sources/en.wikipedia.org/2026-05-30-satisficing-wikipedia-wiki-satisficing.md`](sources/en.wikipedia.org/2026-05-30-satisficing-wikipedia-wiki-satisficing.md)
 - [Sequential analysis - Wikipedia](https://en.wikipedia.org/wiki/Sequential_analysis)
   - raw: [`sources/en.wikipedia.org/2026-05-30-sequential-analysis-wikipedia-wiki-sequential-anal.md`](sources/en.wikipedia.org/2026-05-30-sequential-analysis-wikipedia-wiki-sequential-anal.md)
+- [Vector space model - Wikipedia](https://en.wikipedia.org/wiki/Vector_space_model)
+  - raw: [`sources/en.wikipedia.org/2026-05-30-vector-space-model-wikipedia-wiki-vector-space-mo.md`](sources/en.wikipedia.org/2026-05-30-vector-space-model-wikipedia-wiki-vector-space-mo.md)
 
 ## en.wikiversity.org
 
@@ -274,6 +292,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 ## factually.co
 
+- [Can DuckDuckGo be deanonymized by network-level observ...](https://factually.co/fact-checks/technology/can-duckduckgo-be-deanonymized-by-isps-and-network-observers-b216ff)
+  - raw: [`sources/factually.co/2026-05-30-can-duckduckgo-be-deanonymized-by-network-level--fact-checks-technolo.md`](sources/factually.co/2026-05-30-can-duckduckgo-be-deanonymized-by-network-level--fact-checks-technolo.md)
 - [Does DuckDuckGo store or log IP addresses or search qu...](https://factually.co/fact-checks/technology/duckduckgo-ip-logs-encryption-protections-1d9dd7)
   - raw: [`sources/factually.co/2026-05-30-does-duckduckgo-store-or-log-ip-addresses-or-sea-fact-checks-technolo.md`](sources/factually.co/2026-05-30-does-duckduckgo-store-or-log-ip-addresses-or-sea-fact-checks-technolo.md)
 - [What are the main differences between Tor, I2P, and Fr... | Factually](https://factually.co/product-reviews/technology/tor-i2p-freenet-dark-web-differences-7b5b37)
@@ -283,6 +303,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [404 Not Found](https://faculty.georgetown.edu/albrecht/SJE+Survey.pdf) ⚠️ _(fetch blocked / empty)_
   - raw: [`sources/faculty.georgetown.edu/2026-05-30-404-not-found-albrecht-sje-survey-.md`](sources/faculty.georgetown.edu/2026-05-30-404-not-found-albrecht-sje-survey-.md)
+
+## fastercapital.com
+
+- [Just a moment...](https://fastercapital.com/content/Deanonymization--Uncovering-Patterns-in-the-Vast-Sea-of-Big-Data.html) ⚠️ _(fetch blocked / empty)_
+  - raw: [`sources/fastercapital.com/2026-05-30-just-a-moment-content-deanonymizat.md`](sources/fastercapital.com/2026-05-30-just-a-moment-content-deanonymizat.md)
 
 ## fastly.quic.co
 
@@ -325,6 +350,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [Residential proxies make a mockery of IP-based defenses - Help Net Security](https://helpnetsecurity.com/2026/04/06/residential-proxy-attack-traffic-ip-reputation-enterprise-security)
   - raw: [`sources/helpnetsecurity.com/2026-05-30-residential-proxies-make-a-mockery-of-ip-based-d-2026-04-06-residenti.md`](sources/helpnetsecurity.com/2026-05-30-residential-proxies-make-a-mockery-of-ip-based-d-2026-04-06-residenti.md)
 
+## ieeexplore.ieee.org
+
+- [Secure and Anonymous Communications Over Delay Tolerant Networks](https://ieeexplore.ieee.org/document/9089287)
+  - raw: [`sources/ieeexplore.ieee.org/2026-05-30-secure-and-anonymous-communications-over-delay-t-document-9089287.md`](sources/ieeexplore.ieee.org/2026-05-30-secure-and-anonymous-communications-over-delay-t-document-9089287.md)
+
 ## ietf-wg-masque.github.io
 
 - [Proxying IP in HTTP](https://ietf-wg-masque.github.io/draft-ietf-masque-connect-ip/fix180/draft-ietf-masque-connect-ip.html)
@@ -335,10 +365,35 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [Buy Premium Proxies (Full Pricing) | IPRoyal](https://iproyal.com/pricing)
   - raw: [`sources/iproyal.com/2026-05-30-buy-premium-proxies-full-pricing-iproyal-pricing.md`](sources/iproyal.com/2026-05-30-buy-premium-proxies-full-pricing-iproyal-pricing.md)
 
+## jakeinsight.com
+
+- ["LLM Deanonymization Is Exposing Real Identities Online"](https://jakeinsight.com/tech/2026-02-26-llm-deanonymization-privacy-risk-real-identities-e)
+  - raw: [`sources/jakeinsight.com/2026-05-30-llm-deanonymization-is-exposing-real-identities--tech-2026-02-26-llm-.md`](sources/jakeinsight.com/2026-05-30-llm-deanonymization-is-exposing-real-identities--tech-2026-02-26-llm-.md)
+
+## jalon.org
+
+- [The Secretary Problem](http://jalon.org/MAES/SECRETARYv204.pdf)
+  - raw: [`sources/jalon.org/2026-05-30-the-secretary-problem-maes-secretaryv204-p.md`](sources/jalon.org/2026-05-30-the-secretary-problem-maes-secretaryv204-p.md)
+
+## jamesmccaffreyblog.com
+
+- [The Secretary Problem - James D. McCaffrey](https://jamesmccaffreyblog.com/2016/09/07/the-secretary-problem-2)
+  - raw: [`sources/jamesmccaffreyblog.com/2026-05-30-the-secretary-problem-james-d-mccaffrey-2016-09-07-the-secre.md`](sources/jamesmccaffreyblog.com/2026-05-30-the-secretary-problem-james-d-mccaffrey-2016-09-07-the-secre.md)
+
 ## jonbaer.com
 
 - [[1507.05724v1] HORNET: High-speed Onion Routing at the Network Layer](https://jonbaer.com/post/124807890541/150705724v1-hornet-high-speed-onion-routing-at)
   - raw: [`sources/jonbaer.com/2026-05-30-1507-05724v1-hornet-high-speed-onion-routing-at--post-124807890541-15.md`](sources/jonbaer.com/2026-05-30-1507-05724v1-hornet-high-speed-onion-routing-at--post-124807890541-15.md)
+
+## julia.quantecon.org
+
+- [A Problem that Stumped Milton Friedman](https://julia.quantecon.org/dynamic_programming/wald_friedman.html)
+  - raw: [`sources/julia.quantecon.org/2026-05-30-a-problem-that-stumped-milton-friedman-dynamic-programming-.md`](sources/julia.quantecon.org/2026-05-30-a-problem-that-stumped-milton-friedman-dynamic-programming-.md)
+
+## learnprompting.org
+
+- [Self-RAG](https://learnprompting.org/docs/retrieval_augmented_generation/self-rag)
+  - raw: [`sources/learnprompting.org/2026-05-30-self-rag-docs-retrieval-augme.md`](sources/learnprompting.org/2026-05-30-self-rag-docs-retrieval-augme.md)
 
 ## lfaidata.foundation
 
@@ -347,6 +402,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 ## link.springer.com
 
+- [Anonymous Communications over Delay Tolerant Networks](https://link.springer.com/rwe/10.1007/978-3-030-71522-9_1747)
+  - raw: [`sources/link.springer.com/2026-05-30-anonymous-communications-over-delay-tolerant-net-rwe-10-1007-978-3-03.md`](sources/link.springer.com/2026-05-30-anonymous-communications-over-delay-tolerant-net-rwe-10-1007-978-3-03.md)
 - [Differential privacy and artificial intelligence: potentials, challenges, and future avenues - Journal on Information Security](https://link.springer.com/article/10.1186/s13635-025-00203-9)
   - raw: [`sources/link.springer.com/2026-05-30-differential-privacy-and-artificial-intelligence-article-10-1186-s136.md`](sources/link.springer.com/2026-05-30-differential-privacy-and-artificial-intelligence-article-10-1186-s136.md)
 - [FlashPIR: low-latency FHE-based single-server PIR with low client overhead - Cybersecurity](https://link.springer.com/article/10.1186/s42400-026-00601-7)
@@ -360,6 +417,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [Information behavior theories - LISWiki](https://liswiki.org/wiki/Information_behavior_theories)
   - raw: [`sources/liswiki.org/2026-05-30-information-behavior-theories-liswiki-wiki-information-beh.md`](sources/liswiki.org/2026-05-30-information-behavior-theories-liswiki-wiki-information-beh.md)
+
+## lrc.perdanauniversity.edu.my
+
+- [This page doesn't seem to exist.](https://lrc.perdanauniversity.edu.my/sdi/pir-rag-a-system-for-private-information-retrieval-in-retrieval-augmented-generation)
+  - raw: [`sources/lrc.perdanauniversity.edu.my/2026-05-30-this-page-doesn-t-seem-to-exist-sdi-pir-rag-a-system.md`](sources/lrc.perdanauniversity.edu.my/2026-05-30-this-page-doesn-t-seem-to-exist-sdi-pir-rag-a-system.md)
 
 ## mangoproxy.com
 
@@ -376,6 +438,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [Zou.pdf](https://math--mit--edu.proxy.hfzk.net.cn/research/highschool/primes/materials/2023/Zou.pdf)
   - raw: [`sources/math--mit--edu.proxy.hfzk.net.cn/2026-05-30-zou-pdf-research-highschool-.md`](sources/math--mit--edu.proxy.hfzk.net.cn/2026-05-30-zou-pdf-research-highschool-.md)
 
+## maxwelljon.es
+
+- [Secretary Problem Variant Deep Dive](https://maxwelljon.es/blog/2024/secretaryproblem)
+  - raw: [`sources/maxwelljon.es/2026-05-30-secretary-problem-variant-deep-dive-blog-2024-secretaryp.md`](sources/maxwelljon.es/2026-05-30-secretary-problem-variant-deep-dive-blog-2024-secretaryp.md)
+
 ## mbrenndoerfer.com
 
 - [Retrieval-Augmented Training: RETRO Architecture and Context Integration - Interactive | Michael Brenndoerfer](https://mbrenndoerfer.com/writing/retrieval-augmented-training-retro-architecture-context-integration)
@@ -383,6 +450,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 ## medium.com
 
+- [Just a moment...](https://medium.com/@datajournal/puppeteer-fingerprinting-guide-4bfb5335e440) ⚠️ _(fetch blocked / empty)_
+  - raw: [`sources/medium.com/2026-05-30-just-a-moment-datajournal-puppetee.md`](sources/medium.com/2026-05-30-just-a-moment-datajournal-puppetee.md)
 - [Just a moment...](https://medium.com/syncedreview/deepminds-retro-retrieval-enhanced-transformer-retrieves-from-trillions-of-tokens-achieving-c54313fec51d) ⚠️ _(fetch blocked / empty)_
   - raw: [`sources/medium.com/2026-05-30-just-a-moment-syncedreview-deepmin.md`](sources/medium.com/2026-05-30-just-a-moment-syncedreview-deepmin.md)
 
@@ -411,6 +480,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [Page not found - netnut.io](https://netnut.io/pricing) ⚠️ _(fetch blocked / empty)_
   - raw: [`sources/netnut.io/2026-05-30-page-not-found-netnut-io-pricing.md`](sources/netnut.io/2026-05-30-page-not-found-netnut-io-pricing.md)
 
+## news.smol.ai
+
+- [Redirecting to: /frozen-issues/24-04-05-ainews-mixture-of-depths-dynamically-allocating-compute-in-transformer-based-language-models.html](https://news.smol.ai/issues/24-04-05-ainews-mixture-of-depths-dynamically-allocating-compute-in-transformer-based-language-models) ⚠️ _(fetch blocked / empty)_
+  - raw: [`sources/news.smol.ai/2026-05-30-redirecting-to-frozen-issues-24-04-05-ainews-mix-issues-24-04-05-aine.md`](sources/news.smol.ai/2026-05-30-redirecting-to-frozen-issues-24-04-05-ainews-mix-issues-24-04-05-aine.md)
+
 ## nlp.stanford.edu
 
 - [Language models for information retrieval](https://nlp.stanford.edu/IR-book/html/htmledition/language-models-for-information-retrieval-1.html)
@@ -430,6 +504,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [OB-PWS: Obfuscation-Based Private Web Search](https://oaklandsok.github.io/papers/balsa2012.pdf)
   - raw: [`sources/oaklandsok.github.io/2026-05-30-ob-pws-obfuscation-based-private-web-search-papers-balsa2012-pdf.md`](sources/oaklandsok.github.io/2026-05-30-ob-pws-obfuscation-based-private-web-search-papers-balsa2012-pdf.md)
 
+## ocw.mit.edu
+
+- [14.271 Lecture 20: Bounded Rationality, Part 1](https://ocw.mit.edu/courses/14-271-industrial-organization-i-fall-2022/mit14_271_f22_lec20slides.pdf)
+  - raw: [`sources/ocw.mit.edu/2026-05-30-14-271-lecture-20-bounded-rationality-part-1-courses-14-271-indus.md`](sources/ocw.mit.edu/2026-05-30-14-271-lecture-20-bounded-rationality-part-1-courses-14-271-indus.md)
+
 ## oxylabs.io
 
 - [Buy Premium Proxies and Web Scraper API - Pricing Plans](https://oxylabs.io/pricing)
@@ -439,6 +518,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [The Design of Browsing and Berrypicking Techniques](https://pages.gseis.ucla.edu/faculty/bates/berrypicking.html)
   - raw: [`sources/pages.gseis.ucla.edu/2026-05-30-the-design-of-browsing-and-berrypicking-techniqu-faculty-bates-berryp.md`](sources/pages.gseis.ucla.edu/2026-05-30-the-design-of-browsing-and-berrypicking-techniqu-faculty-bates-berryp.md)
+
+## pdfs.semanticscholar.org
+
+- [001 SAJLIS 72(3)01 Ikoja-Odongo & MostertFM.fm](https://pdfs.semanticscholar.org/0df5/92175b7ff0f302cadfaefb644de72f66d733.pdf)
+  - raw: [`sources/pdfs.semanticscholar.org/2026-05-30-001-sajlis-72-3-01-ikoja-odongo-mostertfm-fm-0df5-92175b7ff0f302c.md`](sources/pdfs.semanticscholar.org/2026-05-30-001-sajlis-72-3-01-ikoja-odongo-mostertfm-fm-0df5-92175b7ff0f302c.md)
 
 ## people.eecs.berkeley.edu
 
@@ -490,6 +574,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [The Best China Proxy Providers](https://proxyway.com/proxy-locations/china-proxy)
   - raw: [`sources/proxyway.com/2026-05-30-the-best-china-proxy-providers-proxy-locations-chin.md`](sources/proxyway.com/2026-05-30-the-best-china-proxy-providers-proxy-locations-chin.md)
 
+## pure.kaist.ac.kr
+
+- [MUFFLER: Secure Tor Traffic Obfuscation with Dynamic Connection Shuffling and Splitting](https://pure.kaist.ac.kr/en/publications/muffler-secure-tor-traffic-obfuscation-with-dynamic-connection-sh-2)
+  - raw: [`sources/pure.kaist.ac.kr/2026-05-30-muffler-secure-tor-traffic-obfuscation-with-dyna-en-publications-muff.md`](sources/pure.kaist.ac.kr/2026-05-30-muffler-secure-tor-traffic-obfuscation-with-dyna-en-publications-muff.md)
+
 ## python.elitedev.in
 
 - [How to Build Multi-Agent LLM Systems with Tool Integration and Memory in Python](https://python.elitedev.in/large_language_model/how-to-build-multi-agent-llm-systems-with-tool-integration-and-memory-in-python-b538abb1)
@@ -509,6 +598,16 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [Residential Proxy Ethics | How Rayobyte Sets The Standard](https://rayobyte.com/products/rotating-residential-ips/ethics)
   - raw: [`sources/rayobyte.com/2026-05-30-residential-proxy-ethics-how-rayobyte-sets-the-s-products-rotating-re.md`](sources/rayobyte.com/2026-05-30-residential-proxy-ethics-how-rayobyte-sets-the-s-products-rotating-re.md)
+
+## sbakiras.github.io
+
+- [Secure and Anonymous Communications Over Delay Tolerant Networks](https://sbakiras.github.io/papers/access-dtn.pdf)
+  - raw: [`sources/sbakiras.github.io/2026-05-30-secure-and-anonymous-communications-over-delay-t-papers-access-dtn-pd.md`](sources/sbakiras.github.io/2026-05-30-secure-and-anonymous-communications-over-delay-t-papers-access-dtn-pd.md)
+
+## scholar.harvard.edu
+
+- [Error](https://scholar.harvard.edu/files/weitzman/files/optimalsearchbestalternative.pdf) ⚠️ _(fetch blocked / empty)_
+  - raw: [`sources/scholar.harvard.edu/2026-05-30-error-files-weitzman-files.md`](sources/scholar.harvard.edu/2026-05-30-error-files-weitzman-files.md)
 
 ## scispace.com
 
@@ -623,10 +722,20 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [Act Against Geopiracy with Enhanced Proxy Detection](https://www.akamai.com/blog/performance/act-against-geopiracy-with-enhanced-proxy-detection)
   - raw: [`sources/www.akamai.com/2026-05-30-act-against-geopiracy-with-enhanced-proxy-detect-blog-performance-act.md`](sources/www.akamai.com/2026-05-30-act-against-geopiracy-with-enhanced-proxy-detect-blog-performance-act.md)
 
+## www.analyticsvidhya.com
+
+- [Self-RAG: AI That Knows When to Double Check](https://www.analyticsvidhya.com/blog/2025/01/self-rag)
+  - raw: [`sources/www.analyticsvidhya.com/2026-05-30-self-rag-ai-that-knows-when-to-double-check-blog-2025-01-self-ra.md`](sources/www.analyticsvidhya.com/2026-05-30-self-rag-ai-that-knows-when-to-double-check-blog-2025-01-self-ra.md)
+
 ## www.apple.com
 
 - [iCloud Private Relay Overview](https://www.apple.com/icloud/docs/iCloud_Private_Relay_Overview_Dec2021.pdf)
   - raw: [`sources/www.apple.com/2026-05-30-icloud-private-relay-overview-icloud-docs-icloud-p.md`](sources/www.apple.com/2026-05-30-icloud-private-relay-overview-icloud-docs-icloud-p.md)
+
+## www.capsolver.com
+
+- [Cloudflare TLS Fingerprinting: What It Is and How to Solve It](https://www.capsolver.com/blog/Cloudflare/cloudflare-tls)
+  - raw: [`sources/www.capsolver.com/2026-05-30-cloudflare-tls-fingerprinting-what-it-is-and-how-blog-cloudflare-clou.md`](sources/www.capsolver.com/2026-05-30-cloudflare-tls-fingerprinting-what-it-is-and-how-blog-cloudflare-clou.md)
 
 ## www.cis.upenn.edu
 
@@ -634,6 +743,16 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
   - raw: [`sources/www.cis.upenn.edu/2026-05-30-diss-pdf-sga001-papers-diss-p.md`](sources/www.cis.upenn.edu/2026-05-30-diss-pdf-sga001-papers-diss-p.md)
 - [Page not found | Computer and Information Science](https://www.cis.upenn.edu/~yipingma/pir-slides-long-version.pdf) ⚠️ _(fetch blocked / empty)_
   - raw: [`sources/www.cis.upenn.edu/2026-05-30-page-not-found-computer-and-information-science-yipingma-pir-slides-.md`](sources/www.cis.upenn.edu/2026-05-30-page-not-found-computer-and-information-science-yipingma-pir-slides-.md)
+
+## www.classcentral.com
+
+- [Free Video: Private Retrieval-Augmented Generation: Secure Search Systems for LLMs from Simons Institute | Class Central](https://www.classcentral.com/course/youtube-private-retrieval-augmented-generation-354952)
+  - raw: [`sources/www.classcentral.com/2026-05-30-free-video-private-retrieval-augmented-generatio-course-youtube-priva.md`](sources/www.classcentral.com/2026-05-30-free-video-private-retrieval-augmented-generatio-course-youtube-priva.md)
+
+## www.cmand.org
+
+- [Toward Anonymity in Delay Tolerant Networks: Threshold Pivot Scheme](https://www.cmand.org/papers/tps-milcom10.pdf)
+  - raw: [`sources/www.cmand.org/2026-05-30-toward-anonymity-in-delay-tolerant-networks-thre-papers-tps-milcom10-.md`](sources/www.cmand.org/2026-05-30-toward-anonymity-in-delay-tolerant-networks-thre-papers-tps-milcom10-.md)
 
 ## www.cs.cmu.edu
 
@@ -660,6 +779,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [The invisible threat: understanding DNS leaks and their impact](https://www.drivelock.com/en/blog/dns-leaks)
   - raw: [`sources/www.drivelock.com/2026-05-30-the-invisible-threat-understanding-dns-leaks-and-en-blog-dns-leaks.md`](sources/www.drivelock.com/2026-05-30-the-invisible-threat-understanding-dns-leaks-and-en-blog-dns-leaks.md)
 
+## www.emergentmind.com
+
+- [Privacy-Preserving Cloud RAG Protocol](https://www.emergentmind.com/topics/privacy-preserving-cloud-rag-protocol)
+  - raw: [`sources/www.emergentmind.com/2026-05-30-privacy-preserving-cloud-rag-protocol-topics-privacy-prese.md`](sources/www.emergentmind.com/2026-05-30-privacy-preserving-cloud-rag-protocol-topics-privacy-prese.md)
+
 ## www.freecardsort.com
 
 - [Information Foraging](https://www.freecardsort.com/glossary/information-foraging)
@@ -681,6 +805,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [gpi-research-agenda](https://www.globalprioritiesinstitute.org/wp-content/uploads/gpi-research-agenda.pdf)
   - raw: [`sources/www.globalprioritiesinstitute.org/2026-05-30-gpi-research-agenda-wp-content-uploads-g.md`](sources/www.globalprioritiesinstitute.org/2026-05-30-gpi-research-agenda-wp-content-uploads-g.md)
+
+## www.ideals.illinois.edu
+
+- [The Most Influential Paper Gerard Salton Never Wrote](https://www.ideals.illinois.edu/items/1790)
+  - raw: [`sources/www.ideals.illinois.edu/2026-05-30-the-most-influential-paper-gerard-salton-never-w-items-1790.md`](sources/www.ideals.illinois.edu/2026-05-30-the-most-influential-paper-gerard-salton-never-w-items-1790.md)
 
 ## www.ietf.org
 
@@ -707,6 +836,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [14 types of RAG (Retrieval-Augmented Generation)](https://www.meilisearch.com/blog/rag-types)
   - raw: [`sources/www.meilisearch.com/2026-05-30-14-types-of-rag-retrieval-augmented-generation-blog-rag-types.md`](sources/www.meilisearch.com/2026-05-30-14-types-of-rag-retrieval-augmented-generation-blog-rag-types.md)
 
+## www.preprints.org
+
+- [Online Traffic Obfuscation Experimental Framework for the Smart Home Privacy Protection](https://www.preprints.org/manuscript/202507.0772)
+  - raw: [`sources/www.preprints.org/2026-05-30-online-traffic-obfuscation-experimental-framewor-manuscript-202507-07.md`](sources/www.preprints.org/2026-05-30-online-traffic-obfuscation-experimental-framewor-manuscript-202507-07.md)
+
 ## www.proxies.sx
 
 - [Best Proxies for Web Scraping in 2026](https://www.proxies.sx/blog/best-proxies-web-scraping-2026)
@@ -725,6 +859,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
   - raw: [`sources/www.researchgate.net/2026-05-30-pdf-marchionini-g-exploratory-search-from-findin-publication-22042232.md`](sources/www.researchgate.net/2026-05-30-pdf-marchionini-g-exploratory-search-from-findin-publication-22042232.md)
 - [(PDF) SimAttack: private web search under fire](https://www.researchgate.net/publication/301509514_SimAttack_private_web_search_under_fire)
   - raw: [`sources/www.researchgate.net/2026-05-30-pdf-simattack-private-web-search-under-fire-publication-30150951.md`](sources/www.researchgate.net/2026-05-30-pdf-simattack-private-web-search-under-fire-publication-30150951.md)
+- [Just a moment...](https://www.researchgate.net/publication/264846903_Metareasoning_for_Monte_Carlo_Tree_Search) ⚠️ _(fetch blocked / empty)_
+  - raw: [`sources/www.researchgate.net/2026-05-30-just-a-moment-publication-26484690.md`](sources/www.researchgate.net/2026-05-30-just-a-moment-publication-26484690.md)
 - [Just a moment...](https://www.researchgate.net/publication/357952605_Relax_the_Non-Collusion_Assumption_for_Multi-Server_PIR) ⚠️ _(fetch blocked / empty)_
   - raw: [`sources/www.researchgate.net/2026-05-30-just-a-moment-publication-35795260.md`](sources/www.researchgate.net/2026-05-30-just-a-moment-publication-35795260.md)
 - [Smart Noise Detection for Statistical Disclosure Attacks | Request PDF](https://www.researchgate.net/publication/375488015_Smart_Noise_Detection_for_Statistical_Disclosure_Attacks)
@@ -751,7 +887,7 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 ## www.sciencedirect.com
 
-- [Just a moment...](https://www.sciencedirect.com/science/article/pii/S1319157823004573) ⚠️ _(fetch blocked / empty)_
+- [Just a moment...](https://www.sciencedirect.com/science/article/pii/S1570870511002150) ⚠️ _(fetch blocked / empty)_
   - raw: [`sources/www.sciencedirect.com/2026-05-30-just-a-moment-science-article-pii-.md`](sources/www.sciencedirect.com/2026-05-30-just-a-moment-science-article-pii-.md)
 
 ## www.scispace.com
@@ -799,6 +935,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
   - raw: [`sources/www.usenix.org/2026-05-30-sec22-albab-pdf-system-files-sec22-a.md`](sources/www.usenix.org/2026-05-30-sec22-albab-pdf-system-files-sec22-a.md)
 - [sec24fall-prepub-150-lazzaretti.pdf](https://www.usenix.org/system/files/sec24fall-prepub-150-lazzaretti.pdf)
   - raw: [`sources/www.usenix.org/2026-05-30-sec24fall-prepub-150-lazzaretti-pdf-system-files-sec24fa.md`](sources/www.usenix.org/2026-05-30-sec24fall-prepub-150-lazzaretti-pdf-system-files-sec24fa.md)
+- [sec24summer-prepub-465-xue.pdf](https://www.usenix.org/system/files/sec24summer-prepub-465-xue.pdf)
+  - raw: [`sources/www.usenix.org/2026-05-30-sec24summer-prepub-465-xue-pdf-system-files-sec24su.md`](sources/www.usenix.org/2026-05-30-sec24summer-prepub-465-xue-pdf-system-files-sec24su.md)
 
 ## www.vpnmentor.com
 
@@ -809,6 +947,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [Just a moment...](https://www.worldscientific.com/doi/abs/10.1142/S1793843011000686) ⚠️ _(fetch blocked / empty)_
   - raw: [`sources/www.worldscientific.com/2026-05-30-just-a-moment-doi-abs-10-1142-s179.md`](sources/www.worldscientific.com/2026-05-30-just-a-moment-doi-abs-10-1142-s179.md)
+
+## www2.eecs.berkeley.edu
+
+- [500 Internal Server Error](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-119.pdf)
+  - raw: [`sources/www2.eecs.berkeley.edu/2026-05-30-500-internal-server-error-pubs-techrpts-2011-e.md`](sources/www2.eecs.berkeley.edu/2026-05-30-500-internal-server-error-pubs-techrpts-2011-e.md)
 
 ## yunus.hacettepe.edu.tr
 
