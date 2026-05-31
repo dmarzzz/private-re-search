@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private search in the age of agents</title>
+<meta name="description" content="A research agenda: private search when the searcher is an agent.">
+<style>
+  :root {
+    --bg: #0e0e10;
+    --fg: #e8e6e1;
+    --dim: #8a877f;
+    --faint: #56554f;
+    --line: #26262a;
+    --panel: #15151a;
+    --accent: #c89b3c;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: var(--sans); -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  .deck { height: 100vh; width: 100vw; }
+  .slide {
+    position: absolute; inset: 0; display: none;
+    flex-direction: column; justify-content: center;
+    padding: clamp(2rem, 6.5vw, 7.5rem) clamp(2rem, 7vw, 9rem);
+    opacity: 0; transition: opacity .4s ease;
+  }
+  .slide.active { display: flex; opacity: 1; }
+  .slide.title { justify-content: center; }
+
+  .kicker {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 6.2vw, 5rem); font-weight: 600;
+    line-height: 1.0; letter-spacing: -.025em; max-width: 17ch;
+  }
+  .sub { color: var(--dim); margin-top: 1.6rem; font-size: clamp(1.05rem, 1.8vw, 1.5rem); max-width: 46ch; line-height: 1.4; }
+  h2 {
+    font-size: clamp(1.55rem, 3.4vw, 2.9rem); font-weight: 600;
+    line-height: 1.08; letter-spacing: -.02em; max-width: 010ch; max-width: 21ch;
+    margin-bottom: 1.5rem;
+  }
+  p { font-size: clamp(1rem, 1.5vw, 1.3rem); line-height: 1.55; max-width: 58ch; }
+  p + p { margin-top: .9rem; }
+  .lead { color: var(--dim); max-width: 60ch; font-size: clamp(1.02rem, 1.6vw, 1.38rem); margin-top: .3rem; }
+  .dim { color: var(--dim); }
+  em.h { color: var(--accent); font-style: normal; }
+
+  ul { list-style: none; max-width: 64ch; margin-top: .4rem; }
+  li {
+    font-size: clamp(.98rem, 1.45vw, 1.25rem); line-height: 1.5;
+    padding: .6rem 0 .6rem 1.7rem; position: relative; border-bottom: 1px solid var(--line);
+  }
+  li:before { content: ""; position: absolute; left: 0; top: 1.2rem; width: .55rem; height: 1px; background: var(--accent); }
+  li b { font-weight: 600; }
+  li .t { color: var(--dim); }
+
+  .stats { display: flex; flex-wrap: wrap; gap: clamp(1.4rem, 4.5vw, 4rem); margin-top: .6rem; }
+  .stat .n { font-family: var(--mono); font-size: clamp(2.2rem, 6vw, 4.4rem); font-weight: 600; letter-spacing: -.03em; color: var(--accent); }
+  .stat .l { font-family: var(--mono); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-top: .35rem; }
+
+  .formula {
+    font-family: var(--mono); font-size: clamp(1.05rem, 2.2vw, 1.7rem); color: var(--fg);
+    margin: 1.5rem 0; padding: 1.1rem 1.4rem; border-left: 2px solid var(--accent);
+    background: var(--panel); max-width: max-content; line-height: 1.4;
+  }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem, 4vw, 3.5rem); margin-top: .5rem; max-width: 74ch; }
+  .col h3 { font-family: var(--mono); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .7rem; }
+  .col p { font-size: clamp(.94rem, 1.4vw, 1.14rem); color: var(--dim); }
+  .col p b { color: var(--fg); font-weight: 500; }
+
+  .cta { margin-top: 1.8rem; }
+  .cta a {
+    display: inline-flex; align-items: center; gap: .7rem; text-decoration: none;
+    font-family: var(--mono); font-size: clamp(.95rem, 1.5vw, 1.15rem); letter-spacing: .02em;
+    color: var(--bg); background: var(--accent); padding: .85rem 1.5rem; border-radius: 4px;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .cta a:hover { transform: translateY(-1px); background: #d8ab48; }
+  .cta .arrow { font-size: 1.1em; }
+
+  footer {
+    position: fixed; bottom: 0; left: 0; right: 0; display: flex;
+    justify-content: space-between; align-items: center;
+    padding: .9rem clamp(2rem, 7vw, 9rem);
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; color: var(--faint);
+    border-top: 1px solid var(--line); background: var(--bg);
+  }
+  footer .nav { display: flex; gap: 1.2rem; }
+  footer button { background: none; border: none; color: var(--faint); cursor: pointer; font: inherit; padding: 0; }
+  footer button:hover { color: var(--accent); }
+  .count em { color: var(--fg); font-style: normal; }
+  .prog { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); transition: width .4s ease; z-index: 10; }
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="deck" id="deck"></div>
+<footer>
+  <span class="count" id="label"></span>
+  <span class="nav"><button id="prev">&larr; prev</button><button id="next">next &rarr;</button></span>
+</footer>
+
+<script id="data" type="application/json">
+{"title": "One Objective, Three Coupled Holes", "subtitle": "J'(pi, sigma) as the contract for private agentic search", "slides": [{"kicker": "01 · the thesis", "heading": "Search is being re-platformed onto agents. The objective never changed.", "blocks": [{"type": "formula", "text": "(pi*, sigma*) = argmax over (pi in Pi, sigma in Sigma) of  E[ U(b_tau, T) - sum_t c(b_{t-1}, a_t) ]"}, {"type": "lead", "text": "Human and agentic search are one decision-theoretic argmax. The policy chooses reads from a posterior b_t over the latent need T; the stopping rule halts at tau. Only the cost vector c differs."}, {"type": "p", "text": "The privacy and stopping guarantees built for human search were never general results. They were the argmax of J pinned by one accident of the human cost vector: attention, impatience, self-censoring sparsity. Substitute the agent cost vector and the objective stays fixed while its entire solution set is recomputed. The contribution is not that privacy is a term (it always was). It is which term, and that the stopping rule is itself a privacy control."}]}, {"kicker": "02 · the secret", "heading": "Two secrets, not one: separate the channels before pricing them", "blocks": [{"type": "lead", "text": "Let the secret be S = (ID, T): identity and intent. Leakage ell is leakage about S, but the two channels are different functionals on the trace and do not compose the same way."}, {"type": "cols", "items": [{"title": "The ID channel (unlinkability)", "text": "Linking the trace to identity. A confidentiality-of-who problem. PIR, mixnets, and OHTTP attack this channel."}, {"title": "The T channel (intent)", "text": "Reconstructing the latent need from the content of the trace. Transport privacy does nothing here. Almost the only lever on this channel is sigma: a query never issued is intent never revealed."}]}, {"type": "p", "text": "This is why the stopping rule is load-bearing and not a footnote. PIR kills the ID channel and leaves the T channel untouched. Stating S per claim is the discipline the rest of the deck depends on; the rhetorical 'same quantity, opposite signs' only holds once you fix which channel you mean."}]}, {"kicker": "03 · why now", "heading": "The cost vector flipped under the theory, and all three terms moved", "blocks": [{"type": "stats", "items": [{"n": "14.44M", "label": "real agentic search requests measured (Ning et al. 2026)"}, {"n": "3.97M", "label": "sessions across that corpus"}, {"n": "~85%", "label": "semantic alignment of reconstructed intent from semi-honest tool-call logs"}]}, {"type": "bullets", "items": [{"lead": "Cost vector flipped empirically.", "text": "Agentic search is now measured at population scale, not hypothesized. The 14.44M figure establishes that agentic search is measured; it does not yet measure the flip."}, {"lead": "Attack term reached the agent.", "text": "Intent inversion attains ~85% semantic alignment to sensitive intent from tool-call logs without the prompt. Note: alignment is weaker than exact recovery, and far weaker than identity linkage. This makes the defender-side estimator a well-posed target, not a solved one."}, {"lead": "Defense term crossed buildability.", "text": "Cryptography-only private web search over 360M pages at single-digit-second online latency. OHTTP is RFC 9458, in production."}]}, {"type": "p", "text": "The human-search privacy stack was an equilibrium pinned by human impatience. That constraint is being removed, and the window to set transport, retrieval, and credential defaults is open only while the agent stacks have not yet calcified."}]}, {"kicker": "04 · the hook", "heading": "The stopping rule is the first and cheapest privacy primitive", "blocks": [{"type": "lead", "text": "sigma and the leakage term ell are coupled terms of one objective, not two stacks to bolt together."}, {"type": "bullets", "items": [{"lead": "Optimal stopping is already leakage control.", "text": "Every query whose value-of-computation falls below its cost is never issued, never logged, never joins the cumulative budget. On the T channel, the un-issued query is the only free defense."}, {"lead": "The leakage term is the adversary's own problem.", "text": "The cost you would add to J is exactly the attacker's inference. Intent inversion shows that inference is feasible for the attacker on a population. That makes a defender-side estimator a well-posed target."}]}, {"type": "p", "text": "Caution where the inference is fast: attacker-feasible does not imply defender-can-bound. The attacker needs ell recoverable on average over a population; a budget needs a conservative per-trajectory online upper bound with no second sample. Different statistical regimes. The hook is that the estimator is well-posed, not that it is built. Retire the tired claim that private search = add more crypto; spend the cryptographic budget only where metareasoning cannot pre-empt the leak."}]}, {"kicker": "05 · goals", "heading": "Five checkable deliverables against one claim", "blocks": [{"type": "bullets", "items": [{"lead": "Pin the frame.", "text": "Exhibit state-space search (f = g + h), Weitzman / Wald / Bruss stopping, and Robertson's PRP each as a parameter setting of J under its own stated assumptions. The shift human-to-agent must preserve the search-theoretic structure and move only c. PRP is a theorem under independence and utility-linearity; we say so rather than claim it falls out for free."}, {"lead": "Build the ledger.", "text": "Every mechanism and attack resolves to transfers / breaks / newly-feasible, with the deciding term of J' named and the channel (ID or T) it touches."}, {"lead": "Measure the leakage term online.", "text": "An estimator whose per-step value ranks high-leakage steps and tracks realized reconstruction risk, with a one-sided conservative bound."}, {"lead": "Ship the benchmark.", "text": "Score U, c, and leakage jointly on the same trajectories. Until this exists, every quantitative claim is provisional, including the flip."}]}]}, {"kicker": "06 · covered ground", "heading": "The latency-tolerance flip: same mechanisms, inverted verdict", "blocks": [{"type": "p", "text": "The centerpiece. Re-pricing the same corpus-side mechanisms against the agent cost vector inverts their viability, not because they got cheaper but because the agent's cost function stopped charging for the exact resource each one consumes. Each verdict below is a sign change in d(viability)/dc, keyed to the channel it defends."}, {"type": "cols", "items": [{"title": "Mixnet delay (knob 1/mu up): ID channel", "text": "Human: unusable. Agent: deployable default."}, {"title": "PIR, single-digit-second online: ID channel", "text": "Human: unusable. Agent: deployable default."}, {"title": "Agent-generated decoys: T channel", "text": "In-distribution because the agent controls the generative process; defeats the ML classifier that re-separated TrackMeNot's human decoys."}, {"title": "Residential proxies: neither", "text": "Flips nothing. A trust-shift, not a privacy gain: one billing-linked observer holds identity AND content. The textbook non-anonymity, kept here as the common-mistake correction."}]}, {"type": "p", "text": "Run the substitution backward and the trace gets worse on both channels: the denser, jitter-free, functionally-decomposed trajectory is a cleaner fingerprint (ID) and supports intent inversion on the live reformulation chain (T). The flip is so far an argument from mechanism costs, not a measured operating point; that gap is owned in the open problems."}]}, {"kicker": "06 · covered ground", "heading": "One tuple, one objective, two privacy channels", "blocks": [{"type": "formula", "text": "P = \u003c B, b0, T, A, RESULT, U, c, pi, sigma >"}, {"type": "bullets", "items": [{"lead": "Three literatures, one argmax.", "text": "State-space search, decision-theoretic stopping, and IR ranking are parameter settings of J under their own assumptions. Who is searching becomes the value of c, not a different problem."}, {"lead": "Human vs agent is a cost-vector swap.", "text": "Attention / impatience / sparsity becomes tokens / compute / money / near-zero latency-intolerance / machine-regular density."}, {"lead": "Privacy enters as a term or a constraint.", "text": "Either a leakage cost on S = (ID, T) added to c, or a hard unlinkability constraint I(O(tau); ID) \u003c= epsilon on the live stream. Accounting is cumulative under continual-observation DP."}]}]}, {"kicker": "07 · roadblocks", "heading": "Each roadblock is a structural breakage of one term", "blocks": [{"type": "bullets", "items": [{"lead": "PIR compute does not yet close at web scale.", "text": "Patience hides latency, not the per-query linear-scan dollar cost, and a live index fights the precompute amortization the flip relies on. A fleet sharing precomputed hints reintroduces a linkage surface on the ID channel: the amortization and the unlinkability pull against each other."}, {"lead": "Agent stopping has no grounded sigma.", "text": "Every closed-form rule dies on four breakages at once: correlated options with unknown F_i (Pandora NP-hard), non-stationary U, an unbounded combinatorial action space, and an uncertain need T."}, {"lead": "Budgeting over a correlated stream.", "text": "Per-query bounds do not compose. The leakage term has no closed online estimator, and repeats invite averaging-out attacks."}, {"lead": "No benchmark scores J directly.", "text": "IR scores relevance, stopping scores steps, privacy lives on separate testbeds. Nothing scores U, c, and leakage on one trace."}]}, {"type": "p", "text": "The hardest roadblocks live where two terms meet: sigma times leakage, and U times verifiability."}]}, {"kicker": "08 · the open problems", "heading": "Q1 · Does private optimal stopping remain an index policy?", "blocks": [{"type": "formula", "text": "ell(a_t, O_\u003ct) = I( O_t ; T | O_\u003ct ),   with   sum_t I(O_t; T | O_\u003ct) \u003c= epsilon"}, {"type": "p", "text": "Does a Weitzman reservation-value rule survive when the cost of opening a box includes its marginal leakage to an adversary whose posterior is updated by every prior open? The climax, and the thesis in miniature: if the index survives, sigma and ell separate; if not, adding crypto to a stopping rule is provably the wrong decomposition."}, {"type": "cols", "items": [{"title": "Why hard", "text": "Weitzman's index is optimal because each box's option value is independent. Path-dependent leakage breaks that independence: the reservation value becomes indexed by the adversary's posterior, which the policy's own history updates. A fixed point. This is the locus that is new: decomposability broken by the observer's posterior, not by the searcher's correlated valuations (the Chawla et al. NP-hardness route)."}, {"title": "The conjecture to disprove", "text": "The index survives iff ell is path-independent given the current belief, i.e., a Markov adversary posterior; otherwise it is a genuinely coupled DP. Attackable tonight on the two-box linear-Gaussian instance: check whether the optimal opening order depends on history."}]}]}, {"kicker": "08 · the open problems", "heading": "Q2 · Can the defender measure ell online with a one-sided bound?", "blocks": [{"type": "p", "text": "The leakage term has no closed-form online estimator. Construct a defender-side ell-hat that runs the best deanonymizer forward over the candidate next action and the trace, with a conservative lower bound on the true leakage, which is what a budget needs. The empirical hinge, not the climax: an estimation and robustness problem, less likely than Q1 to yield a clean theorem."}, {"type": "cols", "items": [{"title": "Why hard", "text": "Estimating mutual information to a latent need from a single online trajectory, with no second sample, is the hard regime. The plug-in treats the attacker's posterior as ground truth, but the attacker is a learned, miscalibrated model. A defender optimizing against the estimate induces a distribution shift the attacker retrains on: an adversarial fixed point, not a static bound."}, {"title": "Why it matters", "text": "Attacker feasibility makes intent inversion a well-posed estimator target for the defender; it does not hand over the per-trajectory bound. With the estimator, the leakage penalty becomes a real cost the planner can price. Without it, J' has an unmeasurable term."}]}]}, {"kicker": "08 · the open problems", "heading": "Q3 · Lower-bound the leakage that stopping suppresses for free", "blocks": [{"type": "p", "text": "Operationalizes the thesis as a bound, not a curve. Prove a lower bound on the free-suppression fraction: the cumulative leakage eliminated by the optimal sigma alone, as a function of the need's entropy H(T) and the per-query informativeness. A bound makes this a problem rather than a measurement."}, {"type": "cols", "items": [{"title": "Why hard", "text": "It couples a metareasoning object (sigma as a value-of-computation threshold) with a cryptographic one (leakage as mutual information to an adversary) that have never shared units. It consumes the policy structure from Q1 and the estimator from Q2. Shortening the search both raises stopping regret and lowers cumulative leakage; the tradeoff is not obviously convex."}, {"title": "Why it matters", "text": "A nontrivial free-suppression bound makes a good stopping rule the cheapest privacy primitive in the stack, and shrinks the cryptographic budget by exactly that fraction. The measured frontier is then the evaluation deliverable, downstream of the bound."}]}]}, {"kicker": "08 · the open problems", "heading": "Q4 · Compose a budget under secret-dependent adaptivity", "blocks": [{"type": "formula", "text": "sum_t ell_t \u003c= g( n, correlation structure, epsilon_per )   (not the naive sum)"}, {"type": "p", "text": "A functionally-decomposed chain of individually low-leakage sub-queries can jointly reconstruct the need. The narrow novel object: composition where adaptivity is entangled with the secret itself. The next query is a function of the latent T being protected, via the read, not merely a function of past answers."}, {"type": "cols", "items": [{"title": "Why hard", "text": "Adaptive composition is well-trodden: the queries-chosen-from-past-answers model is fifteen years of DP literature, including continual observation (Dwork et al. 2010). The new twist is secret-dependent adaptivity: the choice of the next query leaks T directly, so the correlation that makes the agent dangerous is exactly what breaks clean composition. Repeats still need memoized noise to block averaging-out."}, {"title": "Why it matters", "text": "Without an accountant for secret-dependent adaptivity, every privacy claim is per-query, hence false at the session level, which is the level the AOL deanonymization lesson operates at. This is the accounting layer beneath Q1 through Q3."}]}]}, {"kicker": "08 · the open problems", "heading": "Q5 · Verifiable faithful search on a single ZK statement", "blocks": [{"type": "p", "text": "Because reading rewrites U, outcome-optimality is unprovable. The relaxation is process-faithfulness: prove the agent ran its declared policy honestly over a committed, uncorrupted corpus snapshot, verifiable by a principal who never sees the query, the trajectory, or re-runs the search."}, {"type": "cols", "items": [{"title": "Why hard", "text": "The statement must hide the query while proving a property of what it returned against the full corpus, including a negative: no matching document omitted. Proving completeness of retrieval privately means proving something about un-returned documents without revealing the selecting predicate. A genuine ZK-over-committed-corpus problem; verifier work cheaper than re-running is the standard succinctness requirement, not the novelty."}, {"title": "Why it matters", "text": "The wrapper that turns a single private searcher into a trustworthy delegated one. It is the precondition for Q6, and the soundness side that Q6(b) will deliberately have to undermine to a third party."}]}]}, {"kicker": "08 · the open problems", "heading": "Q6 · Pay without identifying; make compliance unprovable to a briber", "blocks": [{"type": "lead", "text": "The mechanism-design climax of the wrapper. Can soundness of faithful retrieval and query-privacy coexist without credential issuance becoming the new linkage choke point, and can compliance be made verifiable to the principal yet unprovable to anyone else?"}, {"type": "bullets", "items": [{"lead": "(a) The credential is the inverse failure of the proxy.", "text": "Blind-issued, rate-limited, one-per-principal anti-Sybil credentials must not re-attach identity at issuance. Sybil-resistance wants strong identity at issuance, unlinkability wants none at spend, rate-limiting wants to count across spends without joining them."}, {"lead": "(b) Designated-verifier faithfulness as collusion-resistance.", "text": "Construct a proof of process-faithfulness such that no transcript convinces a third party of compliance-or-deviation. The principal verifies; a content-producer coalition cannot, so a bribed agent's compliance is unprovable and the bribe is unenforceable. This deliberately destroys the third-party verifiability of Q5's soundness while preserving it to the principal: the explicit tension to state, not hide."}]}, {"type": "p", "text": "Close (b) and delegated search becomes collusion-resistant by construction. If U is becoming a fleet-shared public good, this is what stops retrieval from calcifying into an unaccountable epistemic choke point: not a slogan, but a designated-verifier proof backing it."}]}, {"kicker": "09 · phases", "heading": "Sequenced so each phase produces an artifact the next consumes", "blocks": [{"type": "bullets", "items": [{"lead": "0 · Formalize the contract (done).", "text": "The tuple, the parameter-setting reductions, the human-vs-agent cost contrast, the ID/T channel split."}, {"lead": "1 · Comparative statics on J'.", "text": "The transfer / break / newly-feasible table, each row keyed to a cost term and the channel it touches."}, {"lead": "2 · Locate the breakages.", "text": "Which assumption each classical solver needs, and which term of J' removes it."}, {"lead": "3 · Build the primitive.", "text": "Online leakage estimator first (self-contained), then leakage-bounded planning stacked behind it, with sigma as the first leakage control."}, {"lead": "4 · Evaluate the flip and the frontier.", "text": "Joint U / c / leakage scoring on real trajectories; the index-policy verdict and the measured frontier."}, {"lead": "5 · The wrapper.", "text": "Verifiable, designated-verifier, collusion-resistant, fleet-shared U without a linkage choke point."}]}]}, {"kicker": "10 · read the full argument", "heading": "The deck persuades. The post proves.", "blocks": [{"type": "cta", "text": "The full write-up pins the tuple, derives every transfer-break-feasible verdict from a named term of J', and states each open problem precisely. Start with the two-box Gaussian instance of the stopping question and the conjecture that the index survives iff the adversary posterior is Markov, or write the conservative leakage estimator, and the rest of the objective tells you what your answer constrains. Read the full post."}]}], "kicker": "a research agenda"}
+</script>
+<script>
+  const DATA = JSON.parse(document.getElementById('data').textContent);
+  const deck = document.getElementById('deck');
+
+  const esc = (s) => (s == null ? '' : String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+  // light inline markdown: **bold**, *italic*, `code`
+  const inl = (s) => esc(s)
+    .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+    .replace(/`(.+?)`/g, '<span style="font-family:var(--mono);color:var(--fg)">$1</span>')
+    .replace(/\*(.+?)\*/g, '<em style="font-style:normal;color:var(--accent)">$1</em>');
+
+  function block(b) {
+    switch (b.type) {
+      case 'p': return `<p>${inl(b.text)}</p>`;
+      case 'lead': return `<p class="lead">${inl(b.text)}</p>`;
+      case 'formula': return `<div class="formula">${esc(b.text)}</div>`;
+      case 'bullets':
+        return `<ul>${(b.items || []).map(it =>
+          `<li>${it.lead ? `<b>${inl(it.lead)}</b> ` : ''}${inl(it.text || '')}</li>`).join('')}</ul>`;
+      case 'stats':
+        return `<div class="stats">${(b.items || []).map(it =>
+          `<div class="stat"><div class="n">${esc(it.n)}</div><div class="l">${esc(it.label)}</div></div>`).join('')}</div>`;
+      case 'cols':
+        return `<div class="cols">${(b.items || []).map(it =>
+          `<div class="col"><h3>${inl(it.title || '')}</h3><p>${inl(it.text || '')}</p></div>`).join('')}</div>`;
+      case 'cta':
+        return `<div class="cta"><a href="/post">${inl(b.text || 'Read the full post')} <span class="arrow">&rarr;</span></a></div>`;
+      default: return '';
+    }
+  }
+
+  const slides = [];
+  // title slide
+  slides.push(`<section class="slide title">
+    <div class="kicker">${esc(DATA.kicker || 'a research agenda')}</div>
+    <h1>${inl(DATA.title)}</h1>
+    ${DATA.subtitle ? `<p class="sub">${inl(DATA.subtitle)}</p>` : ''}
+  </section>`);
+  // content slides
+  (DATA.slides || []).forEach(s => {
+    slides.push(`<section class="slide">
+      <div class="kicker">${esc(s.kicker)}</div>
+      <h2>${inl(s.heading)}</h2>
+      ${(s.blocks || []).map(block).join('\n')}
+    </section>`);
+  });
+  deck.innerHTML = slides.join('\n');
+
+  const els = [...document.querySelectorAll('.slide')];
+  const prog = document.getElementById('prog');
+  const label = document.getElementById('label');
+  let i = 0;
+  function show(n) {
+    i = Math.max(0, Math.min(els.length - 1, n));
+    els.forEach((s, k) => s.classList.toggle('active', k === i));
+    prog.style.width = ((i + 1) / els.length * 100) + '%';
+    label.innerHTML = `private search · <em>${i + 1}</em>/${els.length}`;
+    location.hash = i + 1;
+  }
+  const next = () => show(i + 1), prev = () => show(i - 1);
+  document.getElementById('next').onclick = next;
+  document.getElementById('prev').onclick = prev;
+  addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(els.length - 1);
+  });
+  addEventListener('click', e => { if (!e.target.closest('a,button')) next(); });
+  show(parseInt(location.hash.slice(1)) - 1 || 0);
+</script>
+</body>
+</html>
