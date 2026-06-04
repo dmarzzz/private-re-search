@@ -1,4 +1,4 @@
-// The client shim: a local HTTP CONNECT proxy that adds a zk-human proof and
+// The client shim: a local HTTP CONNECT proxy that adds a reputation proof and
 // routes to the gateway onion over Tor.
 //
 // Point any tool at it:  http_proxy=http://127.0.0.1:8888  https_proxy=...
@@ -13,7 +13,7 @@
 //
 // The shim never sees plaintext either: it just bridges the local socket to the
 // Tor stream. Tor handles the anonymity and the addressing; this shim is the
-// thin app-layer protocol that carries the human-proof, which Tor itself has no
+// thin app-layer protocol that carries the reputation proof, which Tor itself has no
 // place to carry.
 
 import http from "node:http";
@@ -24,23 +24,23 @@ import { SocksClient } from "socks";
 import { proveMembership, currentEpoch } from "../lib/semaphore.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const LISTEN_PORT = Number(process.env.HGOE_SHIM_PORT || 8888);
-const TOR_SOCKS_HOST = process.env.HGOE_TOR_HOST || "127.0.0.1";
-const TOR_SOCKS_PORT = Number(process.env.HGOE_TOR_PORT || 9250);
+const LISTEN_PORT = Number(process.env.RGOE_SHIM_PORT || 8888);
+const TOR_SOCKS_HOST = process.env.RGOE_TOR_HOST || "127.0.0.1";
+const TOR_SOCKS_PORT = Number(process.env.RGOE_TOR_PORT || 9250);
 
-const SECRET = process.env.HGOE_SECRET;
+const SECRET = process.env.RGOE_SECRET;
 if (!SECRET) {
-  console.error("set HGOE_SECRET (from `npm run enroll`) before starting the shim");
+  console.error("set RGOE_SECRET (from `npm run enroll`) before starting the shim");
   process.exit(1);
 }
 
 async function gatewayOnion() {
-  if (process.env.HGOE_ONION) return process.env.HGOE_ONION.replace(/\.onion$/, "");
+  if (process.env.RGOE_ONION) return process.env.RGOE_ONION.replace(/\.onion$/, "");
   const host = (await readFile(join(HERE, "..", "tor", "hs", "hostname"), "utf8")).trim();
   return host.replace(/\.onion$/, "");
 }
 
-// Cache one proof per epoch. Within an epoch a human's nullifier is constant, so
+// Cache one proof per epoch. Within an epoch a member's nullifier is constant, so
 // the same proof is valid for every request and the gateway counts each
 // redemption against the rate budget. Proving is the only slow step (~1-2s); we
 // pay it once per hour, not per request.

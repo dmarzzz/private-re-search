@@ -1,11 +1,11 @@
 // Shared Semaphore helpers used by the enroll tool, the client shim, and the gateway.
 //
-// The "human set" is a Semaphore group: a Merkle tree of identity commitments.
+// The "reputation set" is a Semaphore group: a Merkle tree of identity commitments.
 // A client proves, in zero knowledge, that it owns the secret behind *some* leaf
 // in that tree, without revealing which one. The proof carries a `nullifier`
 // derived from (secret, scope). We use scope = the current epoch, so:
-//   - within an epoch a given human always produces the SAME nullifier
-//     => the gateway can rate-limit per human without knowing who they are,
+//   - within an epoch a given member always produces the SAME nullifier
+//     => the gateway can rate-limit per member without knowing who they are,
 //   - across epochs the nullifier changes => requests are unlinkable over time.
 // That is the RLN (rate-limiting nullifier) idea at PoC fidelity.
 
@@ -19,7 +19,7 @@ import { generateProof, verifyProof } from "@semaphore-protocol/proof";
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const MEMBERS_PATH = join(HERE, "..", "group", "members.json");
 
-// One epoch = one rate-limit window. 3600s = a human gets a fresh budget hourly.
+// One epoch = one rate-limit window. 3600s = a member gets a fresh budget hourly.
 export const EPOCH_SECONDS = 3600;
 
 // A constant signal. In production you would bind this to the request so a proof
@@ -31,7 +31,7 @@ export function currentEpoch(nowMs = Date.now()) {
   return BigInt(Math.floor(nowMs / 1000 / EPOCH_SECONDS));
 }
 
-// Load the published human set. Returns { group, root, count }.
+// Load the published reputation set. Returns { group, root, count }.
 export async function loadGroup() {
   const raw = JSON.parse(await readFile(MEMBERS_PATH, "utf8"));
   const commitments = raw.members.map((m) => BigInt(m));
@@ -61,7 +61,7 @@ export async function checkProof(proof, trustedRoot, nowMs = Date.now()) {
   }
   if (!valid) return { ok: false, reason: "invalid-proof" };
 
-  // 2. It must be a proof against OUR human set, not a set the client invented.
+  // 2. It must be a proof against OUR reputation set, not a set the client invented.
   if (String(proof.merkleTreeRoot) !== String(trustedRoot)) {
     return { ok: false, reason: "wrong-group-root" };
   }

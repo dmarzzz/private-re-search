@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Bring the whole PoC up: tor (onion service) + gateway + client shim.
-# Requires HGOE_SECRET in the environment or in a .secret file (from `npm run enroll`).
+# Requires RGOE_SECRET in the environment or in a .secret file (from `npm run enroll`).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-if [ -z "${HGOE_SECRET:-}" ] && [ -f .secret ]; then export HGOE_SECRET="$(cat .secret)"; fi
-if [ -z "${HGOE_SECRET:-}" ]; then
-  echo "no HGOE_SECRET. Run:  node group/enroll.mjs   then   export HGOE_SECRET=..." >&2
+if [ -z "${RGOE_SECRET:-}" ] && [ -f .secret ]; then export RGOE_SECRET="$(cat .secret)"; fi
+if [ -z "${RGOE_SECRET:-}" ]; then
+  echo "no RGOE_SECRET. Run:  node group/enroll.mjs   then   export RGOE_SECRET=..." >&2
   exit 1
 fi
 

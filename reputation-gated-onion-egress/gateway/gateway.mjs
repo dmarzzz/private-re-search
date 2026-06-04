@@ -1,9 +1,9 @@
-// The gateway: a human-gated egress proxy, published as a Tor onion service.
+// The gateway: a reputation-gated egress proxy, published as a Tor onion service.
 //
 // It listens on 127.0.0.1:8443 (Tor maps <addr>.onion:80 -> here). For each
 // incoming connection it:
 //   1. reads a single newline-terminated JSON envelope { v, target, proof },
-//   2. verifies the zk proof: valid + against OUR human set + current epoch,
+//   2. verifies the zk proof: valid + against OUR reputation set + current epoch,
 //   3. enforces a per-nullifier rate budget for the epoch (the RLN rate limit),
 //   4. on success: opens a raw TCP tunnel to `target` from THIS host's IP and
 //      pipes bytes both ways (TLS stays end-to-end client<->target; the gateway
@@ -11,9 +11,9 @@
 //   5. on any failure: writes a short error envelope and drops the connection.
 //
 // The destination site sees the gateway's IP, not a Tor exit and not the client.
-// Because only rate-limited, in-set humans can egress, the gateway's IP stays
+// Because only rate-limited, in-set members can egress, the gateway's IP stays
 // clean instead of degrading into a blocklisted open proxy. That is the whole
-// point: the zk-human gate is what manufactures the scarcity that keeps an IP
+// point: the reputation gate is what manufactures the scarcity that keeps an IP
 // reputable, without ever identifying the user.
 
 import net from "node:net";
@@ -21,10 +21,10 @@ import { loadGroup, checkProof, currentEpoch, EPOCH_SECONDS } from "../lib/semap
 
 const LISTEN_HOST = "127.0.0.1";
 const LISTEN_PORT = 8443;
-const RATE_LIMIT = Number(process.env.HGOE_RATE_LIMIT || 30); // redemptions / human / epoch
+const RATE_LIMIT = Number(process.env.RGOE_RATE_LIMIT || 30); // redemptions / member / epoch
 const MAX_ENVELOPE = 64 * 1024;
 
-// Per-epoch nullifier -> count. Anonymous: we never learn which human a
+// Per-epoch nullifier -> count. Anonymous: we never learn which member a
 // nullifier belongs to, only that "this anonymous member has spent N this hour".
 // Old epochs are swept so memory stays bounded.
 const budget = new Map(); // scope(string) -> Map<nullifier, count>
@@ -149,8 +149,8 @@ async function main() {
   const server = net.createServer(handle);
   server.listen(LISTEN_PORT, LISTEN_HOST, () => {
     console.log(`gateway up on ${LISTEN_HOST}:${LISTEN_PORT}`);
-    console.log(`human set: ${count} members, root ${root.slice(0, 18)}..`);
-    console.log(`rate budget: ${RATE_LIMIT} redemptions / human / ${EPOCH_SECONDS}s epoch`);
+    console.log(`reputation set: ${count} members, root ${root.slice(0, 18)}..`);
+    console.log(`rate budget: ${RATE_LIMIT} redemptions / member / ${EPOCH_SECONDS}s epoch`);
     console.log(`egress policy: :443 only (metadata-only TLS tunnel)`);
   });
 }
