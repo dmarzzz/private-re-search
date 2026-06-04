@@ -1,5 +1,5 @@
 // Adversary probe: connect straight to the gateway onion over Tor and try to
-// egress with a bad/forged/missing proof. Confirms the gate drops non-humans.
+// egress with a bad/forged/missing proof. Confirms the gate drops non-members.
 //
 //   node scripts/probe.mjs noproof      -> envelope with no proof
 //   node scripts/probe.mjs garbage      -> structurally bogus proof

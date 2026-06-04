@@ -1,8 +1,9 @@
-# human-gated onion egress
+# reputation-gated onion egress
 
 A working proof of concept: a Tor onion service that egresses to the clearnet
-**only for clients that prove, in zero knowledge, that they belong to a set of
-humans.** Everyone else is dropped before a single byte leaves.
+**only for clients that prove, in zero knowledge, that they hold reputation, that
+is, that they belong to a curated set of members in good standing.** Everyone
+else is dropped before a single byte leaves.
 
 You use Tor with this as your destination. The gateway address is a `.onion`, so
 your Tor client routes to it natively, with no exit node in the path. The gateway
@@ -25,22 +26,23 @@ proxy market is just the commercial version of that gate, paid for by
 surrendering anonymity.
 
 This PoC gates the egress with a proof instead of an identity. The zero-knowledge
-human proof is the mechanism that lets a clean-IP egress stay clean **without
-ever learning who its users are.** Sybil and rate resistance, decoupled from
-identity and from IP.
+reputation proof is the mechanism that lets a clean-IP egress stay clean
+**without ever learning who its users are.** It swaps the thing the whole problem
+turns on, per-IP reputation, for per-member reputation that is anonymous and
+portable: sybil and rate resistance decoupled from identity and from IP.
 
 ## Can Tor do this natively? No, and that turns out to be fine.
 
 Worth being precise, because it shaped the design.
 
-There is no slot in the Tor protocol to carry "a proof that you are human." Tor
-cells are opaque; the exit speaks no application semantics. You cannot make stock
-`torify curl` emit a proof, and you cannot teach an exit to demand one without
-forking Tor and getting your fork adopted by relay operators. The one native hook
-(onion-service v3 client authorization) is a static per-client keypair allowlist:
-linkable and identity-bearing, the opposite of what we want.
+There is no slot in the Tor protocol to carry "a proof that you hold reputation."
+Tor cells are opaque; the exit speaks no application semantics. You cannot make
+stock `torify curl` emit a proof, and you cannot teach an exit to demand one
+without forking Tor and getting your fork adopted by relay operators. The one
+native hook (onion-service v3 client authorization) is a static per-client
+keypair allowlist: linkable and identity-bearing, the opposite of what we want.
 
-So the human gate **rides on top of Tor as a thin application-layer protocol,**
+So the reputation gate **rides on top of Tor as a thin application-layer protocol,**
 it does not modify Tor. What Tor does give us for free is the part that makes
 "use Tor as my destination" literally true: onion services. The gateway is
 published as a `.onion`, reached by rendezvous, so:
@@ -49,7 +51,7 @@ published as a `.onion`, reached by rendezvous, so:
 - the gateway **never learns the client IP** (rendezvous routing),
 - the gateway is addressed the way every other Tor destination is.
 
-The architecture is not "Tor plus a bolted-on hop." It is a human-gated egress
+The architecture is not "Tor plus a bolted-on hop." It is a reputation-gated egress
 proxy published as an onion service, with a small proof-carrying protocol on top.
 
 ## Architecture
@@ -68,7 +70,7 @@ proxy published as an onion service, with a small proof-carrying protocol on top
         v
   gateway.onion  ->  gateway (gateway/gateway.mjs)        the egress box
         |   1. verify the zk proof  (valid?)
-        |   2. is the proof against OUR human set?  (root match)
+        |   2. is the proof against OUR reputation set?  (root match)
         |   3. is it this epoch?  (freshness)
         |   4. is this anonymous member within its rate budget?  (RLN-style)
         |   drop on any failure
@@ -82,13 +84,13 @@ nothing else. It cannot read your traffic.
 
 ## What is zero-knowledge here
 
-The human set is a [Semaphore](https://semaphore.pse.dev/) group: a Merkle tree of
+The reputation set is a [Semaphore](https://semaphore.pse.dev/) group: a Merkle tree of
 identity commitments. The client proves it owns the secret behind *some* leaf,
 without revealing which leaf. The proof carries a **nullifier** derived from
 `(secret, scope)`, and we set `scope = current epoch`:
 
-- within an epoch, one human always produces the **same** nullifier, so the
-  gateway can rate-limit per human without knowing who they are,
+- within an epoch, one member always produces the **same** nullifier, so the
+  gateway can rate-limit per member without knowing who they are,
 - across epochs the nullifier changes, so requests are **unlinkable over time.**
 
 That is the [RLN](https://rate-limiting-nullifier.github.io/rln-docs/) (rate-limiting
@@ -100,8 +102,8 @@ Requires `tor` (`brew install tor`) and Node 18+.
 
 ```bash
 npm install
-node group/enroll.mjs alice          # enrolls a human, prints a client secret
-export HGOE_SECRET=...               # the secret it printed
+node group/enroll.mjs alice          # adds a member to the set, prints a client secret
+export RGOE_SECRET=...               # the secret it printed
 bash scripts/run-all.sh              # starts tor + gateway + shim
 curl -x http://127.0.0.1:8888 'https://api.ipify.org?format=json'
 ```
@@ -129,7 +131,7 @@ outgoing:
     http:  http://127.0.0.1:8888
 ```
 
-### See the gate drop non-humans
+### See the gate drop non-members
 
 ```bash
 node scripts/probe.mjs noproof       # -> gate:no-proof
@@ -146,7 +148,7 @@ gateway and tor on a VPS:
 1. On the VPS: install tor + node, `npm install`, `bash scripts/start-tor.sh`,
    `node gateway/gateway.mjs`. Copy out `tor/hs/hostname` and `group/members.json`.
 2. On your machine: run only the shim, pointing at the VPS onion and set:
-   `export HGOE_ONION=<hostname>` and run the shim against your local tor.
+   `export RGOE_ONION=<hostname>` and run the shim against your local tor.
 
 The gateway is portable: it is just a TCP server behind an onion address. Nothing
 about it is tied to this machine.
@@ -165,12 +167,15 @@ What this gets right:
 
 What it does not solve, stated plainly:
 
-- **The human set is the trust root.** The proof gates on membership in a set; it
-  does not create humanity. Whatever ceremony adds a leaf in `group/enroll.mjs` is
-  what "human" means. In production that leaf is added only after a
-  proof-of-personhood check (World ID, which is itself Semaphore-based; an
-  in-person ceremony; a social-graph attestation). The PoC ceremony is a local
-  command. This **moves** the sybil problem to the issuer, it does not dissolve it.
+- **The reputation set is the trust root.** The proof gates on membership in a
+  set; it does not create reputation. Whatever ceremony adds a leaf in
+  `group/enroll.mjs` is what "reputable" means. In production that leaf is added
+  only after whatever the admission policy requires: a stake, an invite, accrued
+  good standing, or a proof-of-personhood check (World ID, which is itself
+  Semaphore-based). The PoC ceremony is a local command. This **moves** the sybil
+  problem to the admission policy, it does not dissolve it. The win is that the
+  policy can be as strict as you like while the gate still reveals nothing about
+  which member is at the door.
 - **One clean IP at high volume still looks like a bot.** Clean reputation needs
   low per-IP volume, which fights with serving many users from one gateway. The
   PoC proves the mechanism. Scaling it is a fleet-of-clean-IPs plus incentive
@@ -193,8 +198,8 @@ What it does not solve, stated plainly:
 | Path | What it is |
 |------|------------|
 | `lib/semaphore.mjs` | Shared: load the group, prove, verify, epoch math |
-| `group/enroll.mjs` | Add a human to the set (the trust boundary) |
-| `group/members.json` | The published human set (identity commitments only) |
+| `group/enroll.mjs` | Add a member to the reputation set (the trust boundary) |
+| `group/members.json` | The published reputation set (identity commitments only) |
 | `gateway/gateway.mjs` | Onion-side egress proxy: verify, rate-limit, tunnel, drop |
 | `client/shim.mjs` | Local CONNECT proxy: prove, dial onion over Tor, tunnel |
 | `scripts/probe.mjs` | Adversary probe (no-proof / garbage / forged-group) |

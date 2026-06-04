@@ -1,7 +1,7 @@
 {
-  "name": "human-gated-onion-egress",
+  "name": "reputation-gated-onion-egress",
   "version": "0.1.0",
-  "description": "A Tor onion-service egress proxy gated by a zero-knowledge proof of membership in a human set (Semaphore + epoch-scoped nullifiers = RLN-style anonymous rate limiting).",
+  "description": "A Tor onion-service egress proxy gated by a zero-knowledge proof of membership in a reputation set (Semaphore + epoch-scoped nullifiers = RLN-style anonymous rate limiting).",
   "type": "module",
   "private": true,
   "scripts": {
