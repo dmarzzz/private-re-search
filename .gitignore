@@ -18,3 +18,8 @@ venv/
 
 # Node
 node_modules/
+.harvest_seen.json
+
+# periscope-poc is now its own repo (github.com/dmarzzz/periscope). Kept in place
+# so the agent-devops periscope_shard role + desktop daemon paths still resolve.
+periscope-poc/

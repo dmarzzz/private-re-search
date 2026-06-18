@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>One leak, three rooms — PIG</title>
+<style>
+:root{--bg:#0a0e13;--ink:#e8edf2;--ink-dim:#9fb0bd;--ink-faint:#647683;--glass:rgba(255,255,255,.045);
+--edge:rgba(255,255,255,.10);--edge-soft:rgba(255,255,255,.06);--teal:#5bc8d6;--ember:#e3a56b;--green:#7bd6a0;
+--serif:"Iowan Old Style",Palatino,Georgia,ui-serif,serif;--sans:ui-sans-serif,system-ui,-apple-system,sans-serif;--mono:ui-monospace,Menlo,monospace}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{background:radial-gradient(1100px 700px at 78% -10%,#11202b 0,transparent 60%),radial-gradient(900px 600px at 10% 110%,#0e1822 0,transparent 55%),var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+.deck{height:100vh;width:100vw;position:relative}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,5vw,80px);opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s;pointer-events:none;overflow:auto}
+.slide.active{opacity:1;transform:none;pointer-events:auto}
+.wrap{max-width:1000px;margin:auto;width:100%}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
+.kicker::before{content:"";width:18px;height:1px;background:var(--teal);opacity:.7}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,4vw,3rem);line-height:1.06;letter-spacing:-.01em;margin-bottom:1.1rem}
+.lede{font-size:clamp(1.02rem,1.6vw,1.25rem);color:var(--ink-dim);line-height:1.55;max-width:64ch}
+strong{color:var(--ink);font-weight:600}.teal{color:var(--teal)}.ember{color:var(--ember)}.green{color:var(--green)}
+ul.clean{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-top:1.4rem;max-width:70ch}
+ul.clean li{position:relative;padding-left:1.4rem;line-height:1.5;color:var(--ink-dim);font-size:clamp(1rem,1.5vw,1.12rem)}
+ul.clean li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+ul.clean li.ember::before{background:var(--ember)}
+ul.clean li b{color:var(--ink);font-weight:600}
+.viz{margin-top:1.6rem}
+.foot{font-family:var(--sans);font-size:.82rem;color:var(--ink-faint);margin-top:1.2rem;line-height:1.5}
+.mono{font-family:var(--mono);font-size:.8rem;color:var(--ink-faint);margin-top:1rem;letter-spacing:.02em}
+.chrome{position:fixed;bottom:20px;left:0;right:0;display:flex;justify-content:center;z-index:20}
+.dots{display:flex;gap:8px}.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.16);cursor:pointer;border:0;transition:all .25s}.dot.on{background:var(--teal);transform:scale(1.25)}
+.count{position:fixed;top:24px;right:28px;font-family:var(--mono);font-size:.74rem;color:var(--ink-faint);z-index:20}
+.brand{position:fixed;top:22px;left:28px;font-family:var(--serif);color:var(--ink-dim);z-index:20}.brand b{color:var(--teal)}
+.cap{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);letter-spacing:.04em;margin-top:.8rem}
+</style></head><body>
+<div class="brand"><b>&#10022;</b> one leak, three rooms</div><div class="count"><span id="cur">1</span> / 5</div>
+<div class="deck" id="deck">
+
+<!-- 1 THESIS -->
+<section class="slide active"><div class="wrap"><div class="kicker">flashbots privacy information group</div>
+<h2>One leak, three rooms</h2>
+<p class="lede">One network-layer leak sits under three application-layer fixes. The transport to close it already exists. Unlinkability, not confidentiality.</p>
+<ul class="clean">
+<li><b>BuilderNet.</b> Orderflow is encrypted to the TEE; the connection still leaks the counterparty IP.</li>
+<li><b>TEE inference.</b> The enclave protects the prompt; the last mile still carries the user's IP.</li>
+<li><b>Search.</b> PIR hides the query; the connection still leaks IP, timing, and count.</li>
+</ul>
+<p class="cap">dmarz &#183; June 2026</p></div></section>
+
+<!-- 2 BUILT: EGRESS + THREAT DIAGRAM -->
+<section class="slide"><div class="wrap"><div class="kicker">built + live</div><h2>Reputation-gated egress</h2>
+<p class="lede">zk membership, a Tor onion with no exit, one clean egress IP. Per-epoch nullifier, gateway-side rate limit. p50 1.9s.</p>
+<div class="viz"><svg viewBox="0 0 700 360" width="100%" preserveAspectRatio="xMidYMid meet" font-family="ui-monospace,monospace">
+<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5bc8d6"/></marker><marker id="ahf" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#647683"/></marker><marker id="ahr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#e3a56b"/></marker></defs>
+<rect x="30" y="28" width="180" height="56" rx="8" fill="rgba(255,255,255,.03)" stroke="#647683" stroke-opacity=".5"/><text x="120" y="56" fill="#9fb0bd" font-size="12" text-anchor="middle">ENROLLMENT ISSUER</text><text x="120" y="73" fill="#647683" font-size="9" text-anchor="middle">sees "one new member"</text>
+<rect x="400" y="28" width="220" height="56" rx="8" fill="rgba(91,200,214,.06)" stroke="#5bc8d6" stroke-opacity=".4"/><text x="510" y="56" fill="#5bc8d6" font-size="12" text-anchor="middle">REPUTATION SET</text><text x="510" y="73" fill="#647683" font-size="9" text-anchor="middle">Semaphore Merkle root</text>
+<line x1="210" y1="56" x2="398" y2="56" stroke="#647683" stroke-width="1.1" marker-end="url(#ahf)"/><text x="304" y="48" fill="#647683" font-size="9" text-anchor="middle">adds leaf</text>
+<rect x="30" y="232" width="130" height="78" rx="8" fill="rgba(255,255,255,.03)" stroke="#9fb0bd" stroke-opacity=".5"/><text x="95" y="265" fill="#e8edf2" font-size="12" text-anchor="middle">CLIENT</text><text x="95" y="283" fill="#647683" font-size="9" text-anchor="middle">home IP</text><text x="95" y="296" fill="#647683" font-size="9" text-anchor="middle">proof + nullifier</text>
+<text x="250" y="244" fill="#9fb0bd" font-size="9.5" text-anchor="middle">Tor onion &#183; no exit</text>
+<line x1="218" y1="271" x2="237" y2="271" stroke="#647683" stroke-width="1"/><line x1="261" y1="271" x2="280" y2="271" stroke="#647683" stroke-width="1"/>
+<circle cx="206" cy="271" r="12" fill="rgba(255,255,255,.03)" stroke="#647683" stroke-opacity=".6"/><text x="206" y="275" fill="#9fb0bd" font-size="9" text-anchor="middle">G</text>
+<circle cx="249" cy="271" r="12" fill="rgba(255,255,255,.03)" stroke="#647683" stroke-opacity=".6"/><text x="249" y="275" fill="#9fb0bd" font-size="9" text-anchor="middle">M</text>
+<circle cx="292" cy="271" r="12" fill="rgba(255,255,255,.03)" stroke="#647683" stroke-opacity=".6"/><text x="292" y="275" fill="#9fb0bd" font-size="9" text-anchor="middle">R</text>
+<text x="250" y="303" fill="#647683" font-size="8" text-anchor="middle">guard &#183; middle &#183; rendezvous</text>
+<rect x="360" y="216" width="182" height="108" rx="12" fill="none" stroke="#e3a56b" stroke-opacity=".5" stroke-dasharray="5 4"/>
+<rect x="380" y="232" width="142" height="62" rx="8" fill="rgba(255,255,255,.04)" stroke="#9fb0bd" stroke-opacity=".5"/><text x="451" y="258" fill="#e8edf2" font-size="12" text-anchor="middle">GATEWAY</text><text x="451" y="276" fill="#647683" font-size="9" text-anchor="middle">sees nullifier + timing</text><text x="451" y="288" fill="#647683" font-size="9" text-anchor="middle">not home IP</text>
+<text x="451" y="340" fill="#e3a56b" font-size="9" text-anchor="middle">HBC for unlinkability, trusted for availability</text>
+<rect x="560" y="232" width="120" height="62" rx="8" fill="rgba(255,255,255,.03)" stroke="#647683" stroke-opacity=".5"/><text x="620" y="258" fill="#9fb0bd" font-size="12" text-anchor="middle">TARGET</text><text x="620" y="276" fill="#647683" font-size="9" text-anchor="middle">can block or</text><text x="620" y="288" fill="#647683" font-size="9" text-anchor="middle">poison the egress</text>
+<line x1="160" y1="271" x2="192" y2="271" stroke="#5bc8d6" stroke-width="1.3" marker-end="url(#ah)"/>
+<line x1="306" y1="271" x2="378" y2="263" stroke="#5bc8d6" stroke-width="1.3" marker-end="url(#ah)"/>
+<line x1="95" y1="232" x2="466" y2="86" stroke="#5bc8d6" stroke-width="1.1" opacity=".7" marker-end="url(#ah)"/><text x="250" y="150" fill="#5bc8d6" font-size="9" text-anchor="middle">proves membership (zk)</text>
+<line x1="522" y1="256" x2="558" y2="256" stroke="#5bc8d6" stroke-width="1.3" marker-end="url(#ah)"/><text x="540" y="248" fill="#5bc8d6" font-size="8.5" text-anchor="middle">clean IP</text>
+<line x1="558" y1="278" x2="524" y2="278" stroke="#e3a56b" stroke-width="1.1" stroke-dasharray="4 3" marker-end="url(#ahr)"/><text x="540" y="293" fill="#e3a56b" font-size="8.5" text-anchor="middle">response</text>
+</svg></div></div></section>
+
+<!-- 3 BUILT: PERISCOPE -->
+<section class="slide"><div class="wrap"><div class="kicker">built + live</div><h2>Periscope: oblivious search</h2>
+<p class="lede">Even with the IP hidden, the engine reads a plaintext query. Periscope ranks over LWE ciphertext; the server never sees the query, or which record is fetched.</p>
+<p class="mono">Regev LWE (n=1024, q=2&#179;&#178;, &#963;=6.4) &#183; 49ms median &#183; 20/20 correct &#183; ~29 KiB / query &#183; 3 nodes, ~$18/mo</p></div></section>
+
+<!-- 4 TECH TREE -->
+<section class="slide"><div class="wrap"><div class="kicker">the map</div><h2>The tech tree</h2>
+<div class="viz"><svg viewBox="0 0 1000 660" width="100%" preserveAspectRatio="xMidYMid meet" font-family="ui-monospace,monospace">
+<defs><marker id="gt" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5bc8d6"/></marker><marker id="gg" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#7bd6a0"/></marker><marker id="ge" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#e3a56b"/></marker></defs>
+<text x="20" y="16" fill="#647683" font-size="10" letter-spacing="2">WHAT EACH USE CASE REQUIRES</text>
+<g text-anchor="middle">
+<rect x="40" y="30" width="270" height="76" rx="9" fill="rgba(91,200,214,.07)" stroke="#5bc8d6" stroke-opacity=".7"/><text x="175" y="54" fill="#647683" font-size="9.5">Agentic Anonymous</text><text x="175" y="76" fill="#5bc8d6" font-size="14">Txn Submission</text><text x="175" y="95" fill="#647683" font-size="8">fire-and-forget</text>
+<rect x="365" y="30" width="270" height="76" rx="9" fill="rgba(91,200,214,.07)" stroke="#5bc8d6" stroke-opacity=".7"/><text x="500" y="54" fill="#647683" font-size="9.5">Agentic Anonymous</text><text x="500" y="76" fill="#5bc8d6" font-size="14">LLM Inference</text><text x="500" y="95" fill="#647683" font-size="8">origin-anonymous only</text>
+<rect x="690" y="30" width="270" height="76" rx="9" fill="rgba(91,200,214,.07)" stroke="#5bc8d6" stroke-opacity=".7"/><text x="825" y="54" fill="#647683" font-size="9.5">Agentic Anonymous</text><text x="825" y="76" fill="#5bc8d6" font-size="14">ClearNet Search</text><text x="825" y="95" fill="#647683" font-size="8">request/response</text>
+</g>
+<rect x="40" y="150" width="300" height="52" rx="8" fill="rgba(91,200,214,.10)" stroke="#5bc8d6" stroke-opacity=".7"/><text x="190" y="174" fill="#5bc8d6" font-size="12" text-anchor="middle">COMMON STACK</text><text x="190" y="190" fill="#647683" font-size="8" text-anchor="middle">metadata + gateway + payment + issuance + portability</text>
+<rect x="400" y="150" width="180" height="52" rx="8" fill="rgba(227,165,107,.07)" stroke="#e3a56b" stroke-opacity=".6" stroke-dasharray="5 4"/><text x="490" y="174" fill="#e3a56b" font-size="11.5" text-anchor="middle">A &#183; return path</text><text x="490" y="190" fill="#647683" font-size="8" text-anchor="middle">request/response only</text>
+<rect x="640" y="150" width="190" height="52" rx="8" fill="rgba(123,214,160,.10)" stroke="#7bd6a0" stroke-opacity=".6"/><text x="735" y="174" fill="#7bd6a0" font-size="11.5" text-anchor="middle">PERISCOPE</text><text x="735" y="190" fill="#647683" font-size="8" text-anchor="middle">oblivious search &#183; BUILT</text>
+<line x1="170" y1="150" x2="175" y2="108" stroke="#5bc8d6" stroke-width="1.2" opacity=".7" marker-end="url(#gt)"/>
+<line x1="255" y1="150" x2="455" y2="108" stroke="#5bc8d6" stroke-width="1.2" opacity=".7" marker-end="url(#gt)"/>
+<line x1="312" y1="150" x2="700" y2="108" stroke="#5bc8d6" stroke-width="1.2" opacity=".7" marker-end="url(#gt)"/>
+<line x1="475" y1="150" x2="520" y2="108" stroke="#e3a56b" stroke-width="1.2" marker-end="url(#ge)"/>
+<line x1="545" y1="150" x2="772" y2="108" stroke="#e3a56b" stroke-width="1.2" marker-end="url(#ge)"/>
+<line x1="772" y1="150" x2="822" y2="108" stroke="#7bd6a0" stroke-width="1.2" opacity=".8" marker-end="url(#gg)"/>
+<text x="500" y="224" fill="#647683" font-size="8" text-anchor="middle">teal = all three require &#183; amber = return path (inference + search) &#183; green = oblivious search (search only)</text>
+<line x1="190" y1="202" x2="190" y2="244" stroke="#5bc8d6" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+<rect x="28" y="248" width="946" height="372" rx="10" fill="none" stroke="#647683" stroke-opacity=".22"/>
+<text x="44" y="268" fill="#647683" font-size="9" letter-spacing="1">COMMON STACK, EXPANDED</text>
+<g text-anchor="middle">
+<rect x="70" y="284" width="180" height="48" rx="8" fill="rgba(227,165,107,.06)" stroke="#e3a56b" stroke-opacity=".55" stroke-dasharray="5 4"/><text x="160" y="306" fill="#e3a56b" font-size="10.5">B &#183; payment</text><text x="160" y="322" fill="#647683" font-size="7.5">value without the graph</text>
+<rect x="280" y="284" width="180" height="48" rx="8" fill="rgba(227,165,107,.06)" stroke="#e3a56b" stroke-opacity=".55" stroke-dasharray="5 4"/><text x="370" y="306" fill="#e3a56b" font-size="10.5">C &#183; issuance cost</text><text x="370" y="322" fill="#647683" font-size="7.5">the Sybil root</text>
+<rect x="490" y="284" width="200" height="48" rx="8" fill="rgba(227,165,107,.12)" stroke="#e3a56b" stroke-opacity=".9" stroke-dasharray="5 4"/><text x="590" y="306" fill="#e3a56b" font-size="10.5">D &#183; portability vs linkage &#9733;</text><text x="590" y="322" fill="#647683" font-size="7.5">flagship</text>
+</g>
+<rect x="70" y="362" width="200" height="54" rx="8" fill="rgba(227,165,107,.12)" stroke="#e3a56b" stroke-opacity=".75"/><text x="170" y="386" fill="#e3a56b" font-size="11.5" text-anchor="middle">IP POISONING</text><text x="170" y="402" fill="#647683" font-size="8.5" text-anchor="middle">spam &#183; Sybil &#183; no IP meter</text>
+<rect x="320" y="362" width="250" height="54" rx="8" fill="rgba(123,214,160,.10)" stroke="#7bd6a0" stroke-opacity=".6"/><text x="445" y="386" fill="#7bd6a0" font-size="11.5" text-anchor="middle">REPUTATION GATEWAY</text><text x="445" y="402" fill="#647683" font-size="8.5" text-anchor="middle">mitigates &#183; BUILT</text>
+<line x1="270" y1="389" x2="318" y2="389" stroke="#e3a56b" stroke-width="1.1" marker-end="url(#ge)"/><text x="294" y="382" fill="#647683" font-size="7.5" text-anchor="middle">mitigates</text>
+<line x1="585" y1="332" x2="475" y2="362" stroke="#e3a56b" stroke-width="1.1" stroke-dasharray="4 3" marker-end="url(#ge)"/><text x="545" y="346" fill="#e3a56b" font-size="7.5" text-anchor="middle">conjectured-blocks at scale</text>
+<rect x="60" y="448" width="210" height="54" rx="8" fill="rgba(91,200,214,.05)" stroke="#5bc8d6" stroke-opacity=".35"/><text x="165" y="471" fill="#9fb0bd" font-size="11" text-anchor="middle">Semaphore + RLN</text><text x="165" y="487" fill="#647683" font-size="8" text-anchor="middle">membership + nullifier</text>
+<rect x="320" y="448" width="360" height="54" rx="9" fill="rgba(91,200,214,.06)" stroke="#5bc8d6" stroke-opacity=".5"/><text x="500" y="472" fill="#5bc8d6" font-size="12.5" text-anchor="middle">ANONYMOUS METADATA</text><text x="500" y="489" fill="#647683" font-size="9" text-anchor="middle">hide who-sent-what</text>
+<line x1="165" y1="448" x2="400" y2="416" stroke="#5bc8d6" stroke-width="1.1" opacity=".55" marker-end="url(#gt)"/><text x="270" y="445" fill="#647683" font-size="7.5" text-anchor="middle">powers</text>
+<line x1="455" y1="448" x2="450" y2="418" stroke="#5bc8d6" stroke-width="1.1" opacity=".55" marker-end="url(#gt)"/>
+<g text-anchor="middle" opacity="0.45">
+<rect x="320" y="548" width="100" height="44" rx="8" fill="rgba(91,200,214,.05)" stroke="#647683" stroke-opacity=".4"/><text x="370" y="568" fill="#9fb0bd" font-size="11">Tor</text><text x="370" y="582" fill="#647683" font-size="7.5">alternative</text>
+<rect x="435" y="548" width="100" height="44" rx="8" fill="rgba(91,200,214,.05)" stroke="#647683" stroke-opacity=".4"/><text x="485" y="568" fill="#9fb0bd" font-size="11">Nym</text><text x="485" y="582" fill="#647683" font-size="7.5">alternative</text>
+</g>
+<rect x="550" y="548" width="120" height="44" rx="8" fill="rgba(91,200,214,.06)" stroke="#5bc8d6" stroke-opacity=".5"/><text x="610" y="568" fill="#9fb0bd" font-size="11" text-anchor="middle">DC-Nets</text><text x="610" y="582" fill="#5bc8d6" font-size="7.5" text-anchor="middle">chosen</text>
+<g text-anchor="middle">
+<rect x="690" y="552" width="66" height="36" rx="6" fill="rgba(91,200,214,.05)" stroke="#5bc8d6" stroke-opacity=".35"/><text x="723" y="574" fill="#9fb0bd" font-size="9">ZipNet</text>
+<rect x="762" y="552" width="80" height="36" rx="6" fill="rgba(123,214,160,.10)" stroke="#7bd6a0" stroke-opacity=".55"/><text x="802" y="574" fill="#7bd6a0" font-size="9">ADCNet &#10003;</text>
+<rect x="848" y="552" width="74" height="36" rx="6" fill="rgba(91,200,214,.05)" stroke="#5bc8d6" stroke-opacity=".35"/><text x="885" y="574" fill="#9fb0bd" font-size="9">Flashnet</text>
+<rect x="928" y="552" width="60" height="36" rx="6" fill="rgba(91,200,214,.05)" stroke="#5bc8d6" stroke-opacity=".35"/><text x="958" y="574" fill="#9fb0bd" font-size="9">NAMP</text>
+</g>
+<line x1="670" y1="570" x2="688" y2="570" stroke="#647683" stroke-width="1" marker-end="url(#gt)"/>
+<line x1="756" y1="570" x2="760" y2="570" stroke="#647683" stroke-width="1" marker-end="url(#gt)"/>
+<line x1="842" y1="570" x2="846" y2="570" stroke="#647683" stroke-width="1" marker-end="url(#gt)"/>
+<line x1="922" y1="570" x2="926" y2="570" stroke="#647683" stroke-width="1" marker-end="url(#gt)"/>
+<line x1="610" y1="548" x2="545" y2="504" stroke="#5bc8d6" stroke-width="1.1" opacity=".55" marker-end="url(#gt)"/><text x="595" y="528" fill="#647683" font-size="7.5" text-anchor="middle">provides (chosen)</text>
+<line x1="380" y1="548" x2="445" y2="504" stroke="#647683" stroke-width="1" opacity=".4" stroke-dasharray="3 3" marker-end="url(#gt)"/>
+<line x1="485" y1="548" x2="475" y2="504" stroke="#647683" stroke-width="1" opacity=".4" stroke-dasharray="3 3" marker-end="url(#gt)"/>
+<g font-size="9" fill="#9fb0bd">
+<rect x="30" y="636" width="12" height="12" rx="2" fill="rgba(123,214,160,.5)"/><text x="48" y="646">built</text>
+<rect x="115" y="636" width="12" height="12" rx="2" fill="rgba(91,200,214,.45)"/><text x="133" y="646">primitive</text>
+<rect x="225" y="636" width="12" height="12" rx="2" fill="rgba(227,165,107,.4)" stroke="#e3a56b"/><text x="243" y="646">problem</text>
+<rect x="330" y="636" width="12" height="12" rx="2" fill="none" stroke="#e3a56b" stroke-dasharray="3 2"/><text x="348" y="646">open frontier</text>
+<rect x="465" y="636" width="12" height="12" rx="2" fill="none" stroke="#5bc8d6"/><text x="483" y="646">goal</text>
+<rect x="540" y="636" width="12" height="12" rx="2" fill="rgba(91,200,214,.05)" stroke="#647683" stroke-opacity=".4"/><text x="558" y="646" opacity=".6">alternative (not used)</text>
+</g>
+</svg></div></div></section>
+
+<!-- 5 THE SEAMS / ASK -->
+<section class="slide"><div class="wrap"><div class="kicker">the research</div><h2>Four open seams</h2>
+<ul class="clean">
+<li><b>A &#183; return path.</b> The async return path is a private mailbox (known). Open: PIR-read at search scale.</li>
+<li><b>B &#183; payment.</b> Value-carrying credentials exist (ACT). Open: composition, binding, the funding event.</li>
+<li><b>C &#183; issuance cost.</b> RLN meters; it does not mint. Open: a cost superlinear in identities, cheap for one, anonymous at issuance.</li>
+<li class="ember"><b>D &#183; portability vs linkage. &#9733;</b> Conjecture: global metering and cross-egress unlinkability are mutually exclusive under any shared-nullifier construction.</li>
+</ul>
+<p class="foot">Smallest step: connect to the live egress. The gist and keys are the homework.</p></div></section>
+
+</div><div class="chrome"><div class="dots" id="dots"></div></div>
+<script>
+const sl=[...document.querySelectorAll('.slide')],dw=document.getElementById('dots'),cu=document.getElementById('cur');let i=0;
+sl.forEach((_,n)=>{const b=document.createElement('button');b.className='dot'+(n===0?' on':'');b.onclick=()=>go(n);dw.appendChild(b)});
+const dt=[...dw.children];function go(n){i=Math.max(0,Math.min(sl.length-1,n));sl.forEach((s,k)=>s.classList.toggle('active',k===i));dt.forEach((d,k)=>d.classList.toggle('on',k===i));cu.textContent=i+1}
+addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(i+1)}if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(i-1)}});
+addEventListener('click',e=>{if(e.target.closest('.dot,a,button'))return;go(e.clientX>innerWidth*0.5?i+1:i-1)});
+</script></body></html>

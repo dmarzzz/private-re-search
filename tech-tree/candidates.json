@@ -1,0 +1,191 @@
+{
+ "nodes": [
+  {
+   "id": "cap_corpus_ownership",
+   "label": "Private-corpus\nsearch (SSE)",
+   "cls": "capability",
+   "desc": "The axis the corpus never enters: search over a PRIVATE corpus the client owns, not a public shared web index. You encrypt your documents, ship them to an untrusted server, and search via an encrypted index, accepting a NAMED leakage profile (access pattern, search pattern, volume) in exchange for near-plaintext, sublinear speed. The inverse bet to Periscope (public corpus, secret query, zero leakage, linear scan). This is the dominant academic paradigm for private search and the natural model for private-RAG-over-your-own-files, which the corpus flags as an open frontier but never staffs. Imports the leakage-tier vocabulary (L1/L2, response-revealing vs response-hiding) as the grading rubric for the whole map.",
+   "actors": "SSE academia; Bost (Sophos); Cash-Grubbs-Perry-Ristenpart",
+   "open": "Entirely unexplored in the corpus: SSE forward/backward privacy as a peer axis to public-index PIR."
+  },
+  {
+   "id": "fam_sse",
+   "label": "Searchable\nSymmetric Enc (family)",
+   "cls": "family",
+   "desc": "Family realizing private-corpus search via an encrypted keyword index. Forward privacy hides which past searches a new update matches; backward privacy hides deleted documents. Members trade leakage tier against speed: response-revealing vs response-hiding, conjunctive vs single-keyword. Near-twin distributed-trust point is DORY (DPF over multiple servers, 1M docs ~862ms across 8 servers, eprint 2020/1280). The whole family is uncited in the corpus.",
+   "actors": "Bost (Sophos, forward-private); Sun et al. (backward-private); DORY (Dauterman, Popa et al.)"
+  },
+  {
+   "id": "fam_oram_index",
+   "label": "ORAM\noblivious index",
+   "cls": "family",
+   "desc": "The third access-pattern-hiding mechanism beside PIR and SSE: an ORAM over an encrypted index hides which records are touched. Oblix's doubly-oblivious structures hide BOTH the server's view AND the in-enclave client's own memory accesses (12.7ms latency, tens of millions of records). Directly relevant to the TEE build plane: if an index ever runs inside an enclave, the enclave's memory accesses leak, and Oblix exists to close exactly that. Compass (Ring-ORAM walk of HNSW) is the one corpus citation; Oblix and Path ORAM are named once and deferred.",
+   "actors": "Oblix (Mishra, Poddar, Popa, UC Berkeley); Compass (Zhu, Patel, Zaharia, Popa, OSDI'25)"
+  },
+  {
+   "id": "opt_labeled_psi",
+   "label": "Labeled PSI\n(keyword PIR)",
+   "cls": "option",
+   "desc": "The keyword/exact-match private-lookup interface the corpus flags as absent ('keyword/KV PIR is entirely absent') but never staffs with a primitive. Labeled PSI from FHE: the client privately learns whether its term is in the server's huge set and pulls the associated label (document/posting), with the unbalanced case (tiny client set, huge server set) being exactly the search query shape. Malicious-secure constructions exist (Microsoft APSI); recent work reaches O(sqrt|X|) homomorphic mults and sublinear comm. The PSI-as-symmetric-PIR equivalence connects it to sub-query sharding across non-colluding engines.",
+   "actors": "Chen-Laine-Rindal (labeled PSI from FHE); Microsoft APSI"
+  },
+  {
+   "id": "fr_private_rerank",
+   "label": "Private\nlate-interaction \u2605",
+   "cls": "flagship",
+   "desc": "The only path to closing the quality tax past Tiptoe's single-dot-product ceiling. Every private-retrieval system in the corpus leans on one fact: dense scoring is a linear inner-product, exactly what LHE/PIR needs, which confines the field to a single nearest-neighbor stage. Periscope pays for it: top-10 overlap 0.56. Modern retrieval is multi-stage (ColBERT late-interaction MaxSim, cross-encoder rerank) and whether linearity survives is unknown. External search confirms NO published work on private ColBERT/MaxSim over encrypted embeddings; CKKS homomorphic top-k/sort exists but is brutal (Mazzone USENIX'25: argmax ~12.8s, sort ~78.6s for 128 elements). Genuinely greenfield. The agent re-prices it: seconds of HE-rerank that kill it for humans are an ordinary step for a patient agent.",
+   "actors": "(open) dmarz; cf. ColBERTv2 (Khattab); Mazzone et al. (CKKS sort)",
+   "open": "Does retrieval linearity survive ColBERT MaxSim or a cross-encoder rerank under HE, and is the CKKS-for-similarity + BFV/BGV-for-record-PIR split usable?",
+   "flagship": true
+  },
+  {
+   "id": "fr_depir_gpu",
+   "label": "Sublinear / GPU\nPIR",
+   "cls": "frontier",
+   "desc": "Two whole families that attack the per-node linear-scan complexity, both absent from the corpus, which escapes the single-node wall ONLY by adding nodes. DEPIR (doubly-efficient PIR) changes the complexity class: sublinear server compute after preprocessing (Okada/Player/Pohmann/Weinert EUROCRYPT'25 algebraic HE), but a fresh 2026 paper (eprint 2026/243) shows it still needs 733TB server state and 2^37 reads at N=2^23, so the wall is under attack but NOT beaten. GPU/in-memory PIR changes the constant by an order of magnitude (VIPIR ~163-233 qps with tensor cores, IM-PIR in-memory) and directly contradicts the corpus's 'compute is the wall, only add nodes' framing. Cheap to test against the live Periscope numbers.",
+   "actors": "Okada/Player/Pohmann/Weinert (DEPIR); VIPIR; IM-PIR; PSE LeanPIR",
+   "open": "Can GPU/in-memory PIR collapse the add-nodes-only scaling story on one box, or is per-node linear scan effectively fixed until DEPIR becomes practical?"
+  },
+  {
+   "id": "fr_traj_loop",
+   "label": "Trajectory\nprivacy loop \u2605",
+   "cls": "flagship",
+   "desc": "The deepest original synthesis: for an agent the privacy unit is the trajectory, not the packet, accounted cumulatively (DP under continual observation), AND a bounded-optimal stopping rule is INCIDENTALLY a privacy mechanism (every query whose value-of-computation falls below cost never enters a log). Three pieces of the loop are unbuilt: (1) no online estimator for the marginal leakage l of the next query given the trace (it is the adversary's inference run by the defender); (2) no agent plans its query SEQUENCE to minimize cumulative leakage under a budget; (3) the stopping/footprint coupling is named as a clean open intersection and never quantified. No external work frames the stopping-as-privacy coupling. IntentMiner (~85% intent reconstruction from tool-call logs) is the adversary an l-estimator would run.",
+   "actors": "(open) dmarz; cf. Dwork continual-observation DP; IntentMiner (Yao et al.)",
+   "open": "Can the agent estimate l online and plan a leakage-minimizing trajectory under a budget, and how much privacy does the stopping rule buy as a function of query footprint?",
+   "flagship": true
+  },
+  {
+   "id": "front_fleet_pir",
+   "label": "Fleet-scale PIR\nvs re-linkage",
+   "cls": "frontier",
+   "desc": "Named the genuine crypto research problem to fund. The hint bargain that makes hint-based PIR cheap (Periscope's hint amortizing over a long-lived client) is backwards for agents: a shared offline hint is keyed to one DB snapshot, so sharing it across a fleet re-links every agent into one anonymity set (the hint epoch), and batching online queries makes them jointly correlatable. Per-agent hint = no linkage but no amortization; shared hint = amortization but linkage. The corpus's own patient-agent move (amortize the offline phase) may reintroduce the ID-channel leak it eliminated. Directly-relevant multi-client-PIR literature is uncited (Hafiz-Henry FC15 sublinear multi-client PIR; Zelda eprint 2025/1340; client-independent preprocessing PIR).",
+   "actors": "(open); Hafiz-Henry (multi-client PIR); Zelda",
+   "open": "Does client-independent or per-client-rerandomized preprocessing break the amortization=linkage coupling, or is the tension fundamental?"
+  },
+  {
+   "id": "prob_adversary_plane",
+   "label": "Adversary\ncoordinate plane",
+   "cls": "problem",
+   "desc": "The single biggest hole, flagged in the corpus's own ledger and getting worse where agents live. The corpus is defense-heavy and has almost no attack material; without the adversary plotted against each defense you cannot say WHEN any defense fails, so every 'this protects X' claim is unfalsified. Two empty halves: NETWORK attacks (website fingerprinting Deep Fingerprinting 98%/93.5% on defended Tor, flow correlation DeepCorr ~96% DeepCoFFEA ~93%, AS/BGP RAPTOR, statistical disclosure, SimAttack ~37%) and CRYPTO-SEARCH attacks (leakage-abuse Cash-Grubbs CCS'15, access-pattern recovery, volume/range full-DB reconstruction Kellaris/Grubbs, embedding inversion vec2text/ALGEN). Worse for agents: machine-regular jitter-free trajectories are a cleaner fingerprint, and agent-browser traffic grew 7,851% YoY.",
+   "actors": "Sirinam (Deep Fingerprinting); Nasr (DeepCorr); Cash-Grubbs-Perry-Ristenpart (leakage-abuse); Morris (vec2text)",
+   "open": "Build the cross matrix: each attack x each defense x deployability x agent-latency-tolerance; the most novel sub-region is timing-channel WF against a constant-cadence agent."
+  },
+  {
+   "id": "prob_joint_benchmark",
+   "label": "Joint J' benchmark\n(U, c, \u2113)",
+   "cls": "problem",
+   "desc": "The corpus's most load-bearing UNMEASURED claim. The whole latency-tolerance flip is, by the corpus's own admission, an argument from mechanism cost sheets, not a measured operating point. No benchmark scores all three terms of the objective on one trajectory set: Cranfield/TREC scores relevance only; GAIA/BrowseComp/DeepResearch Bench score answer correctness only; none price leakage or cost. Until it exists the flip and the agent-reprices-the-map thesis are conjecture. Buildable now: take a real agent trajectory set (Ning et al. 2026, 14.44M requests / 3.97M sessions), run three adversaries as scorers (IntentMiner-style intent alignment, WF accuracy, IP-linkage), plot the operating point.",
+   "actors": "(open) dmarz; cf. DeepResearch Bench (Du et al.); Ning et al. 2026 (Agentic Search in the Wild)",
+   "open": "What is the actual measured operating point of the latency flip when U, c, and \u2113 are scored jointly on real agent trajectories?"
+  },
+  {
+   "id": "prim_leakage_abuse",
+   "label": "Leakage-abuse\n/ access-pattern",
+   "cls": "primitive",
+   "desc": "The crypto-search half of the adversary plane and the reason SSE needs forward/backward privacy at all. Canonical proofs that schemes hiding content but leaking access/search/volume pattern get broken: Cash-Grubbs-Perry-Ristenpart (CCS 2015), Islam-Kuzu-Kantarcioglu query recovery, Kellaris/Grubbs volume-based full-database reconstruction from range queries (succeeds past ~N^2/2 records), 2025 wave (VIOLIN volumetric injection, Peekaboo passive DSSE). Directly prices Periscope's two residual leaks (public centroid leaks coarse topic; contacted-shard set leaks topic) by analogy to volume-reconstruction bounds.",
+   "actors": "Cash-Grubbs-Perry-Ristenpart; Kellaris-Kollios-Nissim-O'Neill; Grubbs-Lacharite"
+  },
+  {
+   "id": "l_hebtor",
+   "label": "HebTor",
+   "cls": "lineage",
+   "desc": "Near-exact uncited prior art for the reputation-gated onion egress (CCS 2020, 'Bypassing Tor Exit Blocking with Exit Bridge Onion Services'). Built short-lived exit bridges run AS Tor onion services (any device with outbound TCP, NAT/firewall-agnostic), a MICRO-PAYMENT system compensating operators, AND a PRIVACY-PRESERVING REPUTATION scheme preventing freeloading. Our egress + planned payment channel + DAppNode operators reinvents this lineage. Positioning against it isolates what is genuinely new (Semaphore+RLN epoch-nullifier anonymous rate-limiting; the uniform-exit-profile fingerprint normalization) from what HebTor already did.",
+   "actors": "Zhang, Zhou, Sherr (Georgetown, ACM CCS 2020)"
+  },
+  {
+   "id": "alt_confidential_vecdb",
+   "label": "Confidential-\ncompute vector DB",
+   "cls": "alternative",
+   "desc": "The industry's actually-shipping bet on private retrieval for agents, the direct commercial competitor to Periscope's TEE-build-plane bet, dismissed in the corpus in one line. Periscope uses a TEE only for BUILD-integrity and argues query privacy needs no TEE. The confidential-vector-DB camp makes the opposite bet: put the whole index AND the query inside the enclave and trust the chip for confidentiality (TDX-resident Qdrant/Milvus + cosine in-enclave, CyborgDB encrypted-vector ANN, OPAQUE confidential agentic RAG). The four-direction taxonomy (crypto / TEE / anonymization / split-learning) is the clean top-level partition of private retrieval the corpus lacks.",
+   "actors": "CyborgDB; OPAQUE; TDX-resident vector DBs"
+  }
+ ],
+ "edges": [
+  {
+   "source": "cap_corpus_ownership",
+   "target": "g_search",
+   "type": "alt"
+  },
+  {
+   "source": "fam_sse",
+   "target": "cap_corpus_ownership",
+   "type": "realizes"
+  },
+  {
+   "source": "fam_oram_index",
+   "target": "cap_corpus_ownership",
+   "type": "member"
+  },
+  {
+   "source": "prim_leakage_abuse",
+   "target": "fam_sse",
+   "type": "creates"
+  },
+  {
+   "source": "opt_labeled_psi",
+   "target": "fam_pir",
+   "type": "alt"
+  },
+  {
+   "source": "fr_private_rerank",
+   "target": "b_periscope",
+   "type": "blocks"
+  },
+  {
+   "source": "pr_pir_lb",
+   "target": "fr_depir_gpu",
+   "type": "creates"
+  },
+  {
+   "source": "fr_depir_gpu",
+   "target": "fam_pir",
+   "type": "alt"
+  },
+  {
+   "source": "fr_traj_loop",
+   "target": "g_search",
+   "type": "requires"
+  },
+  {
+   "source": "front_fleet_pir",
+   "target": "b_periscope",
+   "type": "blocks"
+  },
+  {
+   "source": "front_fleet_pir",
+   "target": "cap_meta",
+   "type": "requires"
+  },
+  {
+   "source": "prob_adversary_plane",
+   "target": "cap_meta",
+   "type": "blocks"
+  },
+  {
+   "source": "prim_leakage_abuse",
+   "target": "prob_adversary_plane",
+   "type": "member"
+  },
+  {
+   "source": "prob_adversary_plane",
+   "target": "b_periscope",
+   "type": "blocks"
+  },
+  {
+   "source": "prob_joint_benchmark",
+   "target": "fr_traj_loop",
+   "type": "blocks"
+  },
+  {
+   "source": "l_hebtor",
+   "target": "sol_gateway",
+   "type": "alt"
+  },
+  {
+   "source": "alt_confidential_vecdb",
+   "target": "cap_oblsearch",
+   "type": "alt"
+  }
+ ]
+}

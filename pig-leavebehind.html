@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One leak, three rooms &#8212; private search on anonymous broadcast</title>
+<style>
+:root{--ink:#1a1f24;--dim:#55606a;--faint:#8b96a0;--paper:#fbfaf7;--rule:#e4e0d8;--teal:#1f8a99;--ember:#b6712f;--green:#3f8f63;
+--serif:"Iowan Old Style",Palatino,Georgia,"Times New Roman",serif;--sans:ui-sans-serif,system-ui,-apple-system,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,monospace}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.62;margin:0;padding:56px 22px 100px}
+.doc{max-width:740px;margin:0 auto}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
+h1{font-weight:600;font-size:2.1rem;line-height:1.1;letter-spacing:-.01em;margin:.5rem 0 .4rem}
+.sub{font-family:var(--sans);color:var(--dim);font-size:1.02rem;line-height:1.5;margin-bottom:.4rem}
+.byline{font-family:var(--mono);font-size:.78rem;color:var(--faint);letter-spacing:.03em}
+h2{font-weight:600;font-size:1.32rem;letter-spacing:-.01em;margin:2.4rem 0 .3rem;padding-top:1.1rem;border-top:1px solid var(--rule)}
+h3{font-family:var(--sans);font-weight:650;font-size:.94rem;color:var(--ink);margin:1.4rem 0 .2rem;letter-spacing:.01em}
+p{margin:.55rem 0}.lead{font-size:1.08rem;color:var(--dim)}
+strong{font-weight:650}.teal{color:var(--teal)}.ember{color:var(--ember)}.green{color:var(--green)}
+em{font-style:italic}
+ul{margin:.5rem 0;padding-left:1.15rem}li{margin:.32rem 0}
+code,.mono{font-family:var(--mono);font-size:.86em}
+.fig{font-family:var(--mono);font-size:.72rem;line-height:1.5;white-space:pre;overflow-x:auto;background:#f4f1ea;border:1px solid var(--rule);border-radius:8px;padding:16px 18px;margin:1rem 0;color:var(--ink)}
+.figcap{font-family:var(--sans);font-size:.8rem;color:var(--faint);margin-top:-.4rem;margin-bottom:1.2rem}
+.ledger{font-family:var(--sans);font-size:.92rem;border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:1rem 0}
+.ledger div{padding:.6rem .85rem;border-bottom:1px solid var(--rule)}.ledger div:last-child{border-bottom:0}
+.lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;padding:.1rem .4rem;border-radius:4px;border:1px solid var(--rule)}
+.lbl.b{color:var(--green)}.lbl.d{color:var(--ember)}.lbl.o{color:var(--teal)}
+.seam{border-left:3px solid var(--rule);padding-left:1rem;margin:1.4rem 0}
+.seam.flag{border-left-color:var(--ember)}
+.seam .who{font-family:var(--mono);font-size:.74rem;color:var(--faint);letter-spacing:.04em}
+.refs{font-family:var(--sans);font-size:.84rem;color:var(--dim);line-height:1.5}.refs li{margin:.28rem 0}
+.refs a,.refs span.u{color:var(--teal);word-break:break-all}
+.note{font-family:var(--sans);font-size:.84rem;color:var(--faint);font-style:italic}
+hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+@media print{body{padding:0;font-size:11.5pt;background:#fff}.doc{max-width:none}h2{page-break-after:avoid}.seam,.fig,.ledger{page-break-inside:avoid}a{color:var(--ink)}@page{margin:18mm}}
+</style></head><body><div class="doc">
+
+<div class="eyebrow">Flashbots Privacy Information Group &#183; leave-behind</div>
+<h1>One leak, three rooms</h1>
+<p class="sub">Private search as the application layer on top of anonymous broadcast. The shared last-mile IP leak, the two layers I have built, and the four open seams between the Flashbots transport and a usable system.</p>
+<p class="byline">dmarz, with Claude &#183; June 2026 &#183; companion to the talk; all numbers computed or measured locally</p>
+
+<h2>1. The thesis</h2>
+<p class="lead">You can win at the application layer and still lose at the network layer.</p>
+<p>I am not building private inference. For search the content of a query is rarely the sensitive thing. The fact that <strong>I</strong> asked it is. So this is an unlinkability story, not a confidentiality one.</p>
+<p>A network observer or the receiving endpoint learns source IP, destination, timing, volume, and packet shape, bound to a stable identity, regardless of payload encryption. TLS protects content, not shape. The application-layer primitive in each use case hides a different thing and leaves this one network-layer leak untouched. That orthogonality is the whole argument, and Flashbots already named it: <em>"even when infrastructure runs in TEEs, operators are still able to learn metadata opening up surface area for selective censorship and adversarial MEV strategies."</em> [1]</p>
+
+<h2>2. Three rooms, one leak</h2>
+<h3>Room 1 &#183; BuilderNet</h3>
+<p>An orderflow provider sends bundles to a builder instance. Orderflow is encrypted to the TEE, so content is safe. The connection is plain mTLS, and the operator at the endpoint learns sender IP, timing, and volume: selective censorship by network identity, latency discrimination, traffic-blocking of a known counterparty. This is the <strong>partial</strong> case: attestation and the attested-peer orderflow-proxy [2] blunt some of it, which is exactly why it is the easy leg and the next two are the hard ones. The proxy authenticates and signs; it does not anonymize the sender.</p>
+<h3>Room 2 &#183; the last mile to a TEE</h3>
+<p>A journalist or researcher queries an attested inference enclave, where the query pattern, not the content, is sensitive; or an agent whose query volume fingerprints its operator. The TEE protects prompt content and does nothing for the last mile; the connection still carries the user's IP. Secure inference is not anonymous inference. Confidential Prompting [3] secures prompt content in a CVM and is silent on client IP, which is the gap, not a claim it makes.</p>
+<h3>Room 3 &#183; search</h3>
+<p>Against a normal engine you leak IP and raw query. Against an oblivious (PIR) engine the content is hidden but you still open a connection that leaks IP, timing, and query count. Credit Wally [5], not Tiptoe, for stacking PIR on an anonymous transport: Tiptoe states it <em>"does not hide when a client makes a query, or how many queries the client makes"</em> [4]; Wally assumes an anonymous network plus fake queries (and relaxes to differential privacy, not PIR). That two-layer stack, PIR for content over an anonymous transport for origin, is mine.</p>
+<p class="note">The escape that fails: a residential proxy does not anonymize you, it relocates the all-seeing observer to a commercial party bound to your billing identity (see the 911 S5 takedown, over 19M IPs across 190 countries [6]). Real anonymity is unlinkability split across non-colluding parties.</p>
+
+<h2>3. The pipe, and what it forces</h2>
+<p>Real anonymity needs anonymous broadcast, and Flashbots already built the pipe. I do not rebuild it. I sit on top of it.</p>
+<div class="fig">  THE ANONYMITY TRILEMMA  (buy anonymity with latency OR bandwidth: a frontier, not pick-2-of-3)
+
+   Tor / onion          Nym / mixnet           DC-net (Chaum 1988)
+   weak anon            strong anon            strong anon, the live branch
+                                                      |
+                                               ZipNet  (eprint 2024/1227)
+                                                      |
+                                               ADCNet  (flashbots/adcnet)
+                                                      |
+                                               Flashnet  (auction scheduling)
+                                                      |
+                                               NAMP            <- transport (Flashbots)
+   ----------------------------------------------------------------------------
+   MY LAYERS (on top):
+     access:       reputation-gated egress   Semaphore + gateway-counter nullifier   [BUILT+LIVE]
+     application:  Periscope                  oblivious search (LWE)                  [BUILT]
+
+   FOUR SEAMS = THE RESEARCH:
+     A return path     B payment     C issuance cost     D portability vs linkage (FLAGSHIP)</div>
+<p class="figcap">Two facts kept separate: anonymity = anytrust (one honest server hides everyone); liveness = the separate honest-majority axis. TEEs buy liveness and bandwidth, not anonymity. ZipNet, verbatim: <em>"anonymity does not rely on the security of TEEs."</em> NAMP staking integration is my own extrapolation, not in the writeup.</p>
+<p>The trilemma is a lower-bound frontier, not a clean pick-two-of-three [7]: against a global passive adversary you buy strong anonymity by spending added latency or added bandwidth. The Flashbots line spends bandwidth to keep latency low.</p>
+<p><strong>What you inherit the moment you turn it on: spam.</strong> Anonymity removes the one free rate-limit the internet gave you, the IP. This is transport-independent, true for Tor and DC-net alike. So the first thing on top of the pipe is not the application. It is an access layer.</p>
+
+<h2>4. What is built</h2>
+<p><strong>Reputation-gated egress</strong> (the access layer), deployed 2026-06-08, p50 1.9s against real Google. A client proves zk membership in a Semaphore v4 set, dials a Tor onion service with no exit node, and the gateway tunnels out from one clean IP. Home IP and Tor exit never touch the target. Anti-spam is a per-epoch nullifier rate-limited by a <strong>gateway-side budget counter</strong>, not in-circuit Shamir reconstruction; the gateway counts, and full RLN slashing is designed, not built. The gateway is trusted for availability and honest-but-curious for unlinkability: it sees the nullifier and outbound timing, not the home IP. The live anonymity set is 1 leaf today, a proof of mechanism that grows as members join; the numbers live in the weak-anonymity, no-cover-traffic corner (Tor) by design, and ride Flashnet later.</p>
+<p><strong>Periscope</strong> (the application): oblivious search, Tiptoe/SimplePIR style, secret-key Regev LWE (n=1024, q=2&#179;&#178;, &#963;=6.4). The client embeds and encrypts locally; the server ranks over ciphertext and never sees the query or which record. Per-query bandwidth is ~29 KiB up / ~8 KiB down at this corpus size (6143 chunks), scaling ~&#8730;N; 20/20 correctness, 49ms median, live on 3 nodes at ~$18/mo. Raw SimplePIR is 242 KB/query at a 1 GB database [8]; Periscope is smaller only because the index is smaller. Two honest error sources: 0.56 top-10 overlap (quantization, on the built thing) and 0.81 router accuracy (~19% of queries hit the wrong shard). The TEE belongs in the build plane, attesting honest index construction; confidentiality is LWE, not hardware.</p>
+<div class="ledger">
+<div><span class="lbl b">BUILT + LIVE</span> ADCNet (anonymizes broadcast metadata) &#183; reputation-gated egress &#183; per-epoch nullifier (gateway counter) &#183; synchronous rendezvous return path (Tor) &#183; Periscope</div>
+<div><span class="lbl d">DESIGNED</span> full RLN v2 slashing &#183; ACT value credential &#183; broadcast return path (DPF-write + PIR-read) &#183; incremental hint refresh &#183; DAppNode distribution &#183; return-reads in the IBLT auction</div>
+<div><span class="lbl o">OPEN</span> the four seams below</div>
+<div><span class="lbl">BUILDS ON</span> ZipNet, Flashnet, NAMP</div>
+</div>
+<p class="note">I hold my PoCs to ADCNet's own standard: <em>"a lot of it is vibe-coded, a lot of the cryptography is hand-rolled. Do not use for any production use cases!"</em> [9]</p>
+
+<h2>5. The four seams (research questions)</h2>
+<p>The leak is shared across all three rooms; the fix surface is not. Two seams the mempool use case hid because mempool broadcast is fire-and-forget. Two it shares but never centered because they are transport-independent. On each I name the prior art up front and scope the open part narrowly.</p>
+
+<div class="seam"><h3>Seam A &#183; the broadcast return path</h3><p class="who">mempool HID it</p>
+<p>Search and inference are request/response, so I must get an answer back to a sender with no address. The general async return path <strong>is</strong> a private mailbox: authorized DPF-write to deliver (Express [10], Sabre) and PIR-read to collect (Talek [11]). That is known. The store-and-handle trick is the synchronous special case; the fetch is itself a PIR. <strong>Open:</strong> (a) can the PIR-read be sharded or centroid-routed the way Periscope shards its index, so a client scans only its shard, not a linear scan over all mailboxes at search scale; (b) does folding the collect-read into Flashnet's IBLT auction as a second message class leak via its different size and shape, given the allocator currently models one class.</p></div>
+
+<div class="seam"><h3>Seam B &#183; anonymous payment without rebuilding the graph</h3><p class="who">mempool HID it</p>
+<p>RLN gives anonymous metering, not anonymous payment. Carrying value in one anonymous credential is <strong>solved</strong>: ACT [12] is a KVAC/BBS credential carrying a balance, spent via range proof, revealing a fresh nullifier and returning signed anonymous change; Nym zk-nyms [13] are a deployed cousin. I adopt it, I am not reinventing a coin. <strong>Open, in my setting:</strong> (1) one gateway-issued KVAC running dual-mode (an ARC [14] presentation limit for the free tier, an ACT balance for paid egress) on one nullifier store without the two tiers re-linking; (2) collapsing the funding event, where money meets identity, to one padded batched top-up so the residual leak is a single infrequent event; (3) binding the spend nullifier, the RLN nullifier, and the return-path reply credential to one query without re-linking all three. The double-spend check is online and must be atomic with insertion.</p></div>
+
+<div class="seam"><h3>Seam C &#183; issuance cost as the Sybil root</h3><p class="who">mempool SHARES it, transport-independent</p>
+<p>RLN is a meter, not a mint: it bounds throughput per credential, not the number of credentials. Let C(N) be the cost for one adversary to control N valid leaves. The known frontier: pure stake is linear and splittable; proof-of-personhood caps near one per human (World ID already uses Semaphore); pluralistic composition is the realistic path toward Vitalik's N&#178; ideal [15]. <strong>Open:</strong> find an issuance mechanism whose C(N) is at least linear and ideally superlinear, cheap at N=1, and anonymous at issuance (the issuer learns only "one new member"). Can RLN's slashable stake double as the issuance cost, or does the stake-splitting linearity result [16] force a personhood gate on top? Does anonymous issuance preclude social-graph methods, since those read graph position?</p></div>
+
+<div class="seam flag"><h3>Seam D &#183; portability vs linkage &#160;&#9733; flagship</h3><p class="who">mempool SHARES it, transport-independent</p>
+<p>My RLN credentials are spendable across egress points. Good for the user. But two egresses in the same epoch see the same nullifier for the same user, which is exactly what lets each rate-limit and exactly what correlates them. Privacy Pass RFC 9576 [17] names the linkage hazard; ARC bounds cross-context use; neither resolves the tension. <strong>Falsifiable conjecture:</strong> for a user spending one credential at egress points {E&#8321;..E&#8342;} in epoch t, a global aggregate rate limit across all E&#7522; and unlinkability against any coalition of up-to-threshold egresses are mutually exclusive under any shared-nullifier construction, because the object that lets two egresses sum your usage is the object that lets them correlate you. <strong>Open:</strong> does a re-randomizable token-bucket carried in an ARC-style credential, with the global counter reconciled out of band, escape the tradeoff, or is it fundamental? This is the most defensible "no one has solved this" claim I have.</p></div>
+
+<p class="note">There are four seams, matching the talk. "Where does the work belong" is positioning, not a question. A genuine fifth candidate, if wanted: the agent-era query-cost blowup. A human types one short query; an agent expands it into a fan-out of long, multi-vector sub-queries, each a full PIR pass forcing its own return delivery. Tiptoe and Periscope economics assume the human; the cost model for the agent is unstudied, and it reconnects seam A's scheduling to the PIR.</p>
+
+<h2>References</h2>
+<ol class="refs">
+<li>[1] Network Anonymized Mempools (NAMP). <span class="u">writings.flashbots.net/network-anonymized-mempools</span></li>
+<li>[2] BuilderNet orderflow proxy. <span class="u">github.com/flashbots/buildernet-orderflow-proxy</span></li>
+<li>[3] Confidential Prompting: Privacy-preserving LLM Inference on Cloud (Li, Gim, Zhong). <span class="u">arxiv.org/abs/2409.19134</span></li>
+<li>[4] Private Web Search with Tiptoe, SOSP 2023. <span class="u">eprint.iacr.org/2023/1438</span></li>
+<li>[5] Scalable Private Search with Wally. <span class="u">arxiv.org/abs/2406.06761</span></li>
+<li>[6] 911 S5 botnet takedown, DOJ, May 2024. <span class="u">justice.gov</span> (911 S5 dismantled)</li>
+<li>[7] Anonymity trilemma (Das, Meiser, Mohammadi, Kate), IEEE S&amp;P 2018. <span class="u">eprint.iacr.org/2017/954</span></li>
+<li>[8] SimplePIR / DoublePIR, USENIX Security 2023. <span class="u">eprint.iacr.org/2022/949</span></li>
+<li>[9] ADCNet. <span class="u">github.com/flashbots/adcnet</span> &#183; ZipNet, PoPETs 2025, <span class="u">eprint.iacr.org/2024/1227</span></li>
+<li>[10] Express, USENIX Security 2021. <span class="u">people.eecs.berkeley.edu/~henrycg/files/academic/papers/sec21express.pdf</span></li>
+<li>[11] Talek, ACSAC 2020. <span class="u">eprint.iacr.org/2020/066</span></li>
+<li>[12] Anonymous Credit Tokens (Schlesinger &amp; Katz), draft-schlesinger-cfrg-act + reference Rust. <span class="u">github.com/SamuelSchlesinger/anonymous-credit-tokens</span></li>
+<li>[13] Nym zk-nyms. <span class="u">nym.com/zk-nyms</span> &#183; Coconut, <span class="u">arxiv.org/pdf/1802.07344</span></li>
+<li>[14] Anonymous Rate-Limited Credentials (ARC), Privacy Pass WG. <span class="u">datatracker.ietf.org/doc/draft-ietf-privacypass-arc-protocol</span></li>
+<li>[15] V. Buterin, on biometric / pluralistic identity, 2023. <span class="u">vitalik.eth.limo/general/2023/07/24/biometric.html</span></li>
+<li>[16] Stake-splitting linearity. <span class="u">arxiv.org/pdf/2509.18338</span></li>
+<li>[17] Privacy Pass architecture, RFC 9576. <span class="u">rfc-editor.org/rfc/rfc9576.html</span> &#183; OHTTP, RFC 9458</li>
+</ol>
+<hr>
+<p class="note">Companion artifacts: the live PoC (reputation-gated-onion-egress), Periscope (periscope-poc), and a connect-and-send gist. Citations marked still-to-verify before any verbatim use: the trilemma theorem wording [7], the decentralized-building sentence, and RLN v2 field ordering.</p>
+
+</div></body></html>

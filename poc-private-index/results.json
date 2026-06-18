@@ -1,0 +1,80 @@
+{
+  "config": {
+    "d": 128,
+    "n_lwe": 1024,
+    "k": 10,
+    "n_docs_real": 963,
+    "q_bits": 32,
+    "embed_bits": 4
+  },
+  "rows": [
+    {
+      "N": 1000,
+      "build_hint_ms": 232.05504199999893,
+      "hint_bytes": 4096000,
+      "query_up_bytes": 512,
+      "response_down_bytes": 4000,
+      "server_ms": 0.08183400000305596,
+      "online_ms": 1.5457920000017111
+    },
+    {
+      "N": 5000,
+      "build_hint_ms": 1145.287666999998,
+      "hint_bytes": 20480000,
+      "query_up_bytes": 512,
+      "response_down_bytes": 20000,
+      "server_ms": 0.7383330000010346,
+      "online_ms": 8.325625000001224
+    },
+    {
+      "N": 20000,
+      "build_hint_ms": 4611.183625000002,
+      "hint_bytes": 81920000,
+      "query_up_bytes": 512,
+      "response_down_bytes": 80000,
+      "server_ms": 3.9560409999950252,
+      "online_ms": 33.03933399999437
+    },
+    {
+      "N": 50000,
+      "build_hint_ms": 11306.502250000001,
+      "hint_bytes": 204800000,
+      "query_up_bytes": 512,
+      "response_down_bytes": 200000,
+      "server_ms": 9.98602049999775,
+      "online_ms": 86.22104149999998
+    }
+  ],
+  "fidelity": {
+    "crypto": 1.0,
+    "quant": 0.862,
+    "recall": 0.7
+  },
+  "cluster": {
+    "n_clusters": 31,
+    "full_ms": 2.670999999999424,
+    "sweep": [
+      {
+        "n_probe": 1,
+        "online_ms": 0.2716669999998089,
+        "speedup": 9.831889776827154,
+        "recall_vs_full": 0.54,
+        "leak_bits": 4.954196310386875
+      },
+      {
+        "n_probe": 2,
+        "online_ms": 0.3346669999970686,
+        "speedup": 7.981067748008676,
+        "recall_vs_full": 0.6925000000000001,
+        "leak_bits": 3.9068905956085187
+      },
+      {
+        "n_probe": 4,
+        "online_ms": 0.49937499999685997,
+        "speedup": 5.3486858573541305,
+        "recall_vs_full": 0.8350000000000002,
+        "leak_bits": 2.807354922057604
+      }
+    ]
+  }
+}

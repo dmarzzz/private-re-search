@@ -1,0 +1,1252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PIG jam — anonymous and secure agentic search</title>
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --ink: #ececee;
+    --dim: #6c6c72;
+    --faint: #38383d;
+    --mark: #e5484d;            /* editor's correction red / the leak */
+    --ok: #3fb950;              /* clear / unblocked */
+    --warn: #e3b341;            /* medium risk */
+    --rule: #1c1c20;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow: hidden;
+  }
+
+  .deck { height: 100vh; width: 100vw; position: relative; }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8vh 9vw;
+  }
+  .slide.active { display: flex; }
+
+  /* ---- Slide 1: title card ---- */
+  .kicker {
+    font-family: var(--mono);
+    font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 7vh;
+  }
+
+  .session {
+    font-family: var(--mono);
+    font-size: clamp(13px, 1.3vw, 16px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 3.2vh;
+  }
+
+  .title {
+    font-size: clamp(38px, 6.4vw, 104px);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+  .title .lead { display: block; color: var(--ink); }
+
+  /* the proofreader's correction */
+  .correction {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 0.18em;
+  }
+  .replacement {
+    color: var(--mark);
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .caret {
+    color: var(--mark);
+    font-family: var(--mono);
+    font-size: 0.5em;
+    line-height: 0.4;
+    margin-top: 0.04em;
+  }
+  .struck {
+    position: relative;
+    color: var(--dim);
+    font-weight: 500;
+  }
+  .struck::after {
+    content: "";
+    position: absolute;
+    left: -0.04em; right: -0.04em;
+    top: 52%;
+    height: 0.055em;
+    background: var(--mark);
+    transform: rotate(-1.2deg);
+    border-radius: 2px;
+  }
+
+  .byline {
+    margin-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4vh;
+  }
+  .byline .rule {
+    width: 56px; height: 1px; background: var(--rule);
+  }
+  .byline .who {
+    font-size: clamp(15px, 1.5vw, 19px);
+    color: var(--dim);
+    letter-spacing: 0.01em;
+  }
+  .byline .who b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ---- Slide 2: overview / agenda ---- */
+  .slide.agenda-slide {
+    justify-content: center;
+    align-items: stretch;
+    padding: 10vh 12vw;
+  }
+  .agenda-head {
+    font-family: var(--mono);
+    font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 6vh;
+  }
+  .agenda { width: 100%; }
+  .arow {
+    display: grid;
+    grid-template-columns: 2.6em 1fr;
+    align-items: baseline;
+    column-gap: 1.4em;
+    padding: 3.4vh 0;
+    border-top: 1px solid var(--rule);
+  }
+  .arow:last-child { border-bottom: 1px solid var(--rule); }
+  .arow .idx {
+    font-family: var(--mono);
+    font-size: clamp(13px, 1.3vw, 17px);
+    color: var(--dim);
+    letter-spacing: 0.05em;
+  }
+  .arow .name {
+    font-size: clamp(28px, 4.2vw, 60px);
+    font-weight: 600;
+    line-height: 1.0;
+    letter-spacing: -0.015em;
+  }
+  .arow .gloss {
+    display: block;
+    margin-top: 1.1vh;
+    font-size: clamp(13px, 1.25vw, 17px);
+    color: var(--dim);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .arow.tbd .name {
+    color: var(--faint);
+    font-weight: 500;
+  }
+  .arow.tbd .name::after {
+    content: "";
+    display: inline-block;
+    width: 1.1em; height: 0;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    border-bottom: 2px dashed var(--faint);
+  }
+  .arow.tbd .idx { color: var(--faint); }
+
+  /* ---- Section opener: anecdote ---- */
+  .sectiontag {
+    font-family: var(--mono);
+    font-size: clamp(12px, 1.2vw, 15px);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 7vh;
+  }
+  .sectiontag b { color: var(--mark); font-weight: 600; }
+  .setup {
+    font-size: clamp(16px, 1.7vw, 22px);
+    color: var(--dim);
+    font-weight: 400;
+    max-width: 30ch;
+    text-align: center;
+    line-height: 1.45;
+    margin-bottom: 4.2vh;
+  }
+  .quote {
+    font-size: clamp(30px, 4.6vw, 66px);
+    font-weight: 600;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    text-align: center;
+    max-width: 19ch;
+  }
+  .quote .hot { color: var(--mark); }
+
+  /* ---- Slide 4: the measurement + bar chart ---- */
+  .metric-slide {
+    justify-content: center;
+    align-items: stretch;
+    padding: 9vh 10vw;
+  }
+  .chart-head {
+    font-family: var(--mono);
+    font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 3.4vh;
+  }
+  .chart-headline {
+    font-size: clamp(26px, 3.6vw, 50px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.4vh;
+  }
+  .chart-headline .hot { color: var(--mark); }
+  .chart-headline .good { color: var(--ok); }
+  .chart-sub {
+    font-size: clamp(13px, 1.2vw, 16px);
+    color: var(--dim);
+    margin-bottom: 4.6vh;
+  }
+  .bars { width: 100%; display: flex; flex-direction: column; gap: 1.25vh; }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    column-gap: 18px;
+  }
+  .bar-label {
+    font-family: var(--mono);
+    font-size: clamp(12px, 1.15vw, 15px);
+    color: var(--ink);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .bar-track {
+    position: relative;
+    height: clamp(18px, 2.5vh, 28px);
+    background: #131316;
+    border-radius: 4px;
+    background-image: repeating-linear-gradient(90deg,
+      transparent 0, transparent calc(25% - 1px),
+      var(--rule) calc(25% - 1px), var(--rule) 25%);
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #b8313a 0%, #e5484d 100%);
+    border-radius: 4px;
+    min-width: 2px;
+    box-shadow: 0 0 0 1px rgba(229,72,77,0.16), inset 0 1px 0 rgba(255,255,255,0.10);
+    display: flex; align-items: center; justify-content: flex-end;
+    transition: width .55s cubic-bezier(.2,.7,.2,1);
+  }
+  .bar-fill .v {
+    font-family: var(--mono);
+    font-size: clamp(11px, 1.05vw, 14px);
+    font-weight: 600;
+    color: #fff;
+    padding-right: 0.65em;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .bar-track .v-out {
+    position: absolute;
+    left: 0.7em; top: 50%; transform: translateY(-50%);
+    font-family: var(--mono);
+    font-size: clamp(11px, 1.05vw, 14px);
+    font-weight: 600;
+    color: var(--ok);
+  }
+  .bar-row.clear .bar-fill {
+    background: linear-gradient(90deg, #2f9244, #3fb950);
+    box-shadow: none;
+  }
+  .bar-axis {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    column-gap: 18px;
+    margin-top: 1.6vh;
+  }
+  .bar-axis .scale { position: relative; height: 1.25em; }
+  .bar-axis .scale span {
+    position: absolute; top: 0;
+    font-family: var(--mono);
+    font-size: clamp(9px, 0.9vw, 11px);
+    color: var(--dim);
+    transform: translateX(-50%);
+  }
+  .bar-axis .scale span.s0 { left: 0; transform: none; }
+  .bar-axis .scale span.s100 { left: 100%; transform: translateX(-100%); }
+  .bar-divider {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    column-gap: 18px;
+    align-items: center;
+    margin: 1.4vh 0 0.4vh;
+  }
+  .bar-divider .lbl {
+    font-family: var(--mono);
+    font-size: clamp(10px, 0.95vw, 12px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+    text-align: right;
+  }
+  .bar-divider .ln { height: 1px; background: var(--rule); }
+  .chart-note {
+    margin-top: 4.6vh;
+    font-family: var(--mono);
+    font-size: clamp(10px, 0.92vw, 12px);
+    color: var(--faint);
+    letter-spacing: 0.04em;
+  }
+
+  /* ---- Slide 3: the chat exchange ---- */
+  .chat-slide { justify-content: center; align-items: center; padding: 7vh 9vw; }
+  .chat-slide .sectiontag { margin-bottom: 5vh; }
+  .chat { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 2.2vh; }
+  .bubble {
+    max-width: 76%;
+    padding: 1.5vh 1.6vw;
+    border-radius: 18px;
+    font-size: clamp(16px, 1.95vw, 27px);
+    line-height: 1.32;
+  }
+  .bubble.them {
+    align-self: flex-start;
+    background: #161619;
+    color: var(--ink);
+    border-bottom-left-radius: 5px;
+  }
+  .bubble.me {
+    align-self: flex-end;
+    background: #1c2836;
+    color: #dbe7f4;
+    border-bottom-right-radius: 5px;
+  }
+  .bubble.think {
+    font-size: clamp(40px, 6vw, 74px);
+    padding: 0.6vh 1.5vw;
+    line-height: 1;
+  }
+  .bubble .hot { color: var(--mark); }
+
+  /* ---- Slide 4: benchmark statement ---- */
+  .statement-slide { justify-content: center; align-items: center; padding: 10vh 12vw; }
+  .statement-slide .sectiontag { margin-bottom: 6vh; }
+  .statement {
+    font-size: clamp(30px, 4.8vw, 66px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: center;
+    max-width: 19ch;
+  }
+  .statement .hot { color: var(--mark); }
+  .statement-sub {
+    margin-top: 4.4vh;
+    font-family: var(--mono);
+    font-size: clamp(12px, 1.15vw, 15px);
+    letter-spacing: 0.08em;
+    color: var(--dim);
+  }
+
+  /* ---- Slide 4: harness pipeline (stage cards) ---- */
+  .arch-slide { justify-content: center; align-items: stretch; padding: 9vh 8vw; }
+  .arch {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+    margin-top: 5.5vh;
+    flex-wrap: wrap;
+  }
+  .astage {
+    background: #141417;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: clamp(16px, 2vw, 26px) clamp(20px, 2.4vw, 36px);
+    text-align: center;
+    min-width: clamp(150px, 16vw, 220px);
+  }
+  .astage .atop {
+    font-family: var(--mono);
+    font-size: clamp(10px, 0.95vw, 12px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .astage .acnt {
+    font-size: clamp(30px, 4vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--mark);
+    line-height: 1.12;
+    margin: 0.5vh 0;
+  }
+  .astage .asub {
+    font-size: clamp(12px, 1.15vw, 15px);
+    color: var(--ink);
+    opacity: 0.82;
+  }
+  .aflow {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 0 clamp(8px, 1.4vw, 22px);
+    min-width: 70px;
+  }
+  .aarrow { color: var(--mark); font-size: clamp(20px, 2.4vw, 32px); line-height: 1; }
+  .aflab {
+    font-family: var(--mono);
+    font-size: clamp(9px, 0.85vw, 11px);
+    color: var(--dim);
+    margin-top: 0.7vh;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+  @media (max-width: 820px) {
+    .arch { flex-direction: column; align-items: center; }
+    .aflow { flex-direction: row; padding: 8px; }
+    .aarrow { transform: rotate(90deg); }
+  }
+
+  /* ---- stat strip (detailed metric) ---- */
+  .statstrip {
+    display: flex;
+    gap: clamp(22px, 4.4vw, 68px);
+    margin-bottom: 4.4vh;
+    flex-wrap: wrap;
+  }
+  .stat .fig {
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .stat .fig.hot { color: var(--mark); }
+  .stat .lab {
+    font-family: var(--mono);
+    font-size: clamp(10px, 0.95vw, 12px);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: 0.8vh;
+  }
+  .bar-label .vsub {
+    display: block;
+    font-size: 0.78em;
+    color: var(--faint);
+    letter-spacing: 0.03em;
+    margin-top: 2px;
+  }
+
+  /* ---- Slide 7: the turn (comment + points) ---- */
+  .comment-slide { justify-content: center; align-items: flex-start; padding: 10vh 12vw; }
+  .comment-head {
+    font-family: var(--mono);
+    font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 3vh;
+  }
+  .comment-title {
+    font-size: clamp(28px, 4.4vw, 58px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    max-width: 20ch;
+  }
+  .comment-title .hot { color: var(--mark); }
+  .comment-title .ins { color: var(--mark); }
+  .scramble .scram { color: var(--mark); }
+  .points { margin-top: 5.5vh; display: flex; flex-direction: column; gap: 2.4vh; max-width: 48ch; }
+  .point {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+    font-size: clamp(15px, 1.7vw, 21px);
+    color: var(--dim);
+    line-height: 1.42;
+  }
+  .point .mk { color: var(--mark); font-family: var(--mono); }
+  .point b { color: var(--ink); font-weight: 600; }
+
+  /* ---- Slide 8: use-case cards ---- */
+  .uc-slide { justify-content: center; align-items: stretch; padding: 9vh 8vw; }
+  .uc-slide .comment-title { max-width: none; }
+  .ucgrid { display: flex; gap: clamp(16px, 2vw, 28px); margin-top: 5.5vh; flex-wrap: wrap; }
+  .uc {
+    flex: 1 1 0; min-width: 220px;
+    background: #141417;
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: clamp(20px, 2.2vw, 30px);
+    display: flex; flex-direction: column; gap: 1.5vh;
+  }
+  .uc .ucname { font-size: clamp(18px, 2vw, 26px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.1; }
+  .uc .uctarget {
+    font-family: var(--mono);
+    font-size: clamp(11px, 1.05vw, 13px);
+    color: var(--dim);
+    letter-spacing: 0.02em; line-height: 1.5;
+  }
+  .uc .ucnote { font-size: clamp(13px, 1.2vw, 15px); color: var(--dim); opacity: 0.92; line-height: 1.4; }
+  .uc .ucchip {
+    margin-top: auto; align-self: flex-start;
+    font-family: var(--mono);
+    font-size: clamp(10px, 0.95vw, 12px);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.6vh 0.9vw; border-radius: 999px;
+    border: 1px solid var(--rule); color: var(--dim);
+  }
+  .uc.hi { border-color: rgba(229,72,77,0.42); }
+  .uc.hi .ucchip { color: var(--mark); border-color: rgba(229,72,77,0.5); background: rgba(229,72,77,0.08); }
+  .uc.lo .ucchip { color: var(--ok); border-color: rgba(63,185,80,0.38); background: rgba(63,185,80,0.07); }
+  .uc.med { border-color: rgba(227,179,65,0.40); }
+  .uc.med .ucchip { color: var(--warn); border-color: rgba(227,179,65,0.5); background: rgba(227,179,65,0.09); }
+
+  /* ---- Slide 11: reputation-gated egress (flow diagram + triplet) ---- */
+  .rge-slide { justify-content: center; align-items: stretch; padding: 7vh 7vw; }
+  /* the onion circuit: one rail, four stops, never wraps (grid) */
+  .circuit { margin-top: 5.2vh; }
+  .pill-row { position: relative; height: 5.4vh; }
+  .payload {
+    position: absolute; left: 34%; transform: translateX(-50%); bottom: 1.1vh;
+    font-family: var(--mono); font-size: clamp(10px, 1vw, 12.5px);
+    color: var(--mark); white-space: nowrap;
+    border: 1px solid rgba(229,72,77,0.42); background: rgba(229,72,77,0.07);
+    border-radius: 999px; padding: 0.6vh 1.1vw;
+  }
+  .payload .pl { color: var(--dim); }
+  .payload::after {
+    content: ""; position: absolute; left: 50%; top: 100%;
+    width: 1px; height: 1.1vh; background: rgba(229,72,77,0.42);
+  }
+  .rail-row {
+    position: relative; display: grid; grid-template-columns: repeat(4, 1fr);
+    align-items: center; height: 20px;
+  }
+  .rail-dash {
+    position: absolute; top: 50%; left: 12.5%; width: 50%;
+    border-top: 1.5px dashed #2e2e35; transform: translateY(-50%);
+    transform-origin: left center;
+  }
+  .rail-solid {
+    position: absolute; top: 50%; left: 62.5%; width: 25%; height: 2px;
+    transform: translateY(-50%); transform-origin: left center;
+    background: linear-gradient(90deg, #3a3a42, var(--mark));
+  }
+  .dotcell { display: flex; justify-content: center; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; background: #3a3a42; position: relative; z-index: 2; }
+  .dotcell.gate .dot { width: 18px; height: 18px; background: var(--mark); box-shadow: 0 0 0 5px rgba(229,72,77,0.15); }
+  .arrowhead { position: absolute; top: 50%; left: 87.5%; transform: translate(-160%, -42%); color: var(--mark); font-size: 12px; z-index: 2; }
+  .label-row { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 2.4vh; }
+  .lstack { text-align: center; padding: 0 0.8vw; }
+  .lstack .cname { font-family: var(--mono); font-size: clamp(9px, 0.9vw, 11px); letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+  .lstack .ctitle { font-size: clamp(15px, 1.5vw, 21px); font-weight: 600; margin-top: 0.6vh; line-height: 1.1; }
+  .lstack .cdetail { font-size: clamp(11px, 1.05vw, 13px); color: var(--dim); margin-top: 0.7vh; line-height: 1.3; }
+  .lstack.gate .ctitle { color: var(--ink); }
+
+  /* the circuit reveal: rail draws, stops pop, labels rise (replays on slide entry).
+     --spd is the single speed knob: 1 = original, 10 = ten times slower. */
+  .rge-slide { --spd: 10; }
+  @media (prefers-reduced-motion: no-preference) {
+    .run .payload, .run .rail-dash, .run .rail-solid, .run .arrowhead,
+    .run .circuit .dot, .run .label-row .lstack, .run .triplet .tcell, .run .reflink {
+      animation-fill-mode: both; animation-timing-function: ease;
+    }
+    .run .payload    { animation-name: payin; animation-duration: calc(.45s*var(--spd,1)); animation-delay: calc(.15s*var(--spd,1)); }
+    .run .rail-dash  { animation-name: rgrow; animation-duration: calc(.5s*var(--spd,1));  animation-delay: calc(.1s*var(--spd,1)); }
+    .run .rail-solid { animation-name: rgrow; animation-duration: calc(.4s*var(--spd,1));  animation-delay: calc(.6s*var(--spd,1)); }
+    .run .arrowhead  { animation-name: afade; animation-duration: calc(.3s*var(--spd,1));  animation-delay: calc(1s*var(--spd,1)); }
+    .run .circuit .dot      { animation-name: dpop; animation-timing-function: cubic-bezier(.2,.8,.3,1.4); animation-duration: calc(.34s*var(--spd,1)); animation-delay: calc(var(--d,0s)*var(--spd,1)); }
+    .run .label-row .lstack { animation-name: lrise; animation-duration: calc(.45s*var(--spd,1)); animation-delay: calc(var(--d,0s)*var(--spd,1)); }
+    .run .triplet .tcell    { animation-name: lrise; animation-duration: calc(.5s*var(--spd,1));  animation-delay: calc(var(--d,0s)*var(--spd,1)); }
+    .run .reflink           { animation-name: afade; animation-duration: calc(.5s*var(--spd,1));  animation-delay: calc(1.35s*var(--spd,1)); }
+    @keyframes rgrow { from { transform: translateY(-50%) scaleX(0); } to { transform: translateY(-50%) scaleX(1); } }
+    @keyframes dpop  { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+    @keyframes lrise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes payin { from { opacity: 0; transform: translateX(-50%) translateY(-6px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+    @keyframes afade { from { opacity: 0; } to { opacity: 1; } }
+  }
+  .triplet { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 36px); margin-top: 5vh; }
+  .tcell .th { font-size: clamp(14px, 1.45vw, 19px); font-weight: 600; margin-bottom: 1.1vh; }
+  .tcell .th .n { font-family: var(--mono); color: var(--mark); margin-right: 0.5em; font-size: 0.82em; }
+  .tcell .tp { font-size: clamp(12px, 1.2vw, 15px); color: var(--dim); line-height: 1.42; }
+  .reflink { margin-top: 4vh; font-family: var(--mono); font-size: clamp(11px, 1vw, 13px); color: var(--faint); }
+
+  /* ---- open-problems lead point ---- */
+  .point.lead { font-size: clamp(18px, 2.1vw, 26px); color: var(--ink); align-items: baseline; }
+  .point .tag {
+    font-family: var(--mono); font-size: 0.6em; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mark); border: 1px solid rgba(229,72,77,0.45); border-radius: 999px;
+    padding: 0.2em 0.7em; margin-left: 0.6em; white-space: nowrap;
+  }
+
+  /* ---- big-number (distribution) ---- */
+  .bignum { margin-top: 5.5vh; }
+  .bignum .bn { font-size: clamp(52px, 9vw, 124px); font-weight: 700; letter-spacing: -0.03em; color: var(--mark); line-height: 1; }
+  .bignum .bl {
+    font-family: var(--mono); font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-top: 1.6vh;
+  }
+
+  /* ---- Slide 12: two-sided crypto cost ---- */
+  .duo { display: grid; grid-template-columns: 1fr 1px 1fr; margin-top: 4.5vh; align-items: stretch; }
+  .duo .vline { background: var(--rule); }
+  .pane { padding: 0 clamp(22px, 3.4vw, 54px); }
+  .pane .pside { font-family: var(--mono); font-size: clamp(10px, 1vw, 12px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+  .pane .pcost { font-size: clamp(18px, 2.1vw, 28px); font-weight: 600; margin-top: 1.2vh; letter-spacing: -0.01em; }
+  .pane .pwhen { font-family: var(--mono); font-size: clamp(11px, 1.1vw, 14px); color: var(--mark); margin-top: 0.7vh; letter-spacing: 0.02em; }
+  .pane .pbig { font-size: clamp(42px, 6.2vw, 82px); font-weight: 700; letter-spacing: -0.03em; margin-top: 2.6vh; line-height: 1; }
+  .pane .pbig .u { font-size: 0.36em; font-weight: 600; color: var(--dim); margin-left: 0.15em; letter-spacing: 0; }
+  .pane .psub { font-family: var(--mono); font-size: clamp(10px, 1vw, 12.5px); color: var(--dim); margin-top: 1.4vh; line-height: 1.4; }
+  .pane.good .pbig { color: var(--ok); }
+
+  /* ---- Slide 12: p50/p99 bench table ---- */
+  .btable { width: 100%; margin-top: 4.6vh; }
+  .btrow { display: grid; grid-template-columns: 1fr 132px 132px; align-items: baseline; padding: 2.7vh 0; border-top: 1px solid var(--rule); }
+  .btrow:last-of-type { border-bottom: 1px solid var(--rule); }
+  .btrow.bthead { border-top: 0; padding: 0 0 1.5vh; }
+  .bthead .h { font-family: var(--mono); font-size: clamp(10px, 1vw, 12px); text-transform: uppercase; letter-spacing: 0.16em; color: var(--dim); text-align: right; }
+  .btname { font-size: clamp(17px, 1.9vw, 24px); font-weight: 600; letter-spacing: -0.01em; }
+  .btmeta { font-family: var(--mono); font-size: clamp(10px, 1vw, 12.5px); color: var(--dim); margin-top: 0.6vh; }
+  .btmeta .when { color: var(--mark); }
+  .btval { font-family: var(--mono); font-size: clamp(19px, 2.3vw, 31px); text-align: right; color: var(--ink); }
+  .btval .uu { font-size: 0.5em; color: var(--dim); margin-left: 0.12em; }
+  .btrow.good .p50 { color: var(--ok); }
+  .btcontext { margin-top: 4.2vh; font-family: var(--mono); font-size: clamp(12px, 1.25vw, 15px); color: var(--dim); letter-spacing: 0.03em; }
+
+  /* ---- Section divider ---- */
+  .section-slide { justify-content: center; align-items: center; text-align: center; }
+  .secnum { font-family: var(--mono); font-size: clamp(13px, 1.4vw, 18px); letter-spacing: 0.3em; text-transform: uppercase; color: var(--mark); margin-bottom: 3vh; }
+  .sectitle { font-size: clamp(48px, 9vw, 120px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+
+  /* ---- directions grid ---- */
+  .dirgrid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 26px); margin-top: 5vh; }
+  .dir { background: #141417; border: 1px solid var(--rule); border-radius: 16px; padding: clamp(18px, 2.2vw, 28px); }
+  .dir .dh { display: flex; align-items: baseline; gap: 0.7em; }
+  .dir .dn { font-family: var(--mono); color: var(--mark); font-size: clamp(11px, 1.1vw, 13px); }
+  .dir .dt { font-size: clamp(18px, 2vw, 26px); font-weight: 600; letter-spacing: -0.01em; }
+  .dir .dd { font-size: clamp(12px, 1.2vw, 15px); color: var(--dim); margin-top: 1.1vh; line-height: 1.42; }
+  .dir .dtag { margin-top: 1.6vh; font-family: var(--mono); font-size: clamp(10px, 0.95vw, 12px); color: var(--dim); }
+  .dir.built { border-color: rgba(63,185,80,0.32); }
+  .dir.built .dtag { color: var(--ok); }
+
+  /* ---- Slide: two trends ---- */
+  .trendgrid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 2.4vw, 36px); margin-top: 5vh; }
+  .trend { background: #141417; border: 1px solid var(--rule); border-radius: 18px; padding: clamp(22px, 2.6vw, 36px); display: flex; flex-direction: column; }
+  .trend .tk { font-family: var(--mono); font-size: clamp(10px, 1vw, 12px); letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+  .trend .tbig { font-size: clamp(40px, 5.5vw, 76px); font-weight: 700; letter-spacing: -0.03em; color: var(--mark); line-height: 1; margin: 2.2vh 0; }
+  .trend .ttitle { font-size: clamp(18px, 1.9vw, 24px); font-weight: 600; letter-spacing: -0.01em; }
+  .trend .tline { font-size: clamp(13px, 1.3vw, 16px); color: var(--dim); margin-top: 1.4vh; line-height: 1.45; }
+
+  /* ---- Slide: the dilution gap chart ---- */
+  .gapwrap { display: flex; justify-content: center; margin-top: 4.5vh; }
+  .gapwrap svg { width: 100%; max-width: 780px; height: auto; }
+  .lengrid { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(24px, 3.5vw, 56px); align-items: center; margin-top: 4vh; }
+  .lenchart svg { width: 100%; max-width: 580px; height: auto; }
+  .lencap { font-size: clamp(11px, 1.1vw, 13px); color: var(--dim); line-height: 1.42; margin-top: 1.8vh; max-width: 50ch; }
+  .lenpoints { display: flex; flex-direction: column; gap: 2vh; }
+  .lenpoints p { font-size: clamp(13px, 1.3vw, 16px); color: var(--dim); line-height: 1.5; margin: 0; }
+  .lenpoints p b { color: var(--ink); font-weight: 600; }
+  .lenpoints p .hot { color: var(--mark); font-weight: 600; }
+
+  /* ---- Slide: parallel fan-out (green flat bars) ---- */
+  .pbars .bar-fill { background: linear-gradient(90deg, #2f9244, #3fb950); box-shadow: none; }
+
+  /* ---- Slide: the research question (cost = N x P) ---- */
+  .rqline { font-size: clamp(14px, 1.5vw, 19px); color: var(--dim); line-height: 1.45; max-width: 62ch; margin-top: 2.2vh; }
+  .rqline .hot { color: var(--mark); font-weight: 600; }
+  .rqeq { display: flex; align-items: baseline; justify-content: center; gap: clamp(16px, 2.4vw, 40px); flex-wrap: wrap; margin: 3.6vh 0 0.5vh; }
+  .rqeq .eqbig { font-family: var(--mono); font-size: clamp(24px, 3.6vw, 48px); font-weight: 700; letter-spacing: 0.02em; }
+  .rqeq .eqbig .hot { color: var(--mark); }
+  .rqeq .eqgloss { font-family: var(--mono); font-size: clamp(10px, 1vw, 13px); color: var(--dim); line-height: 1.5; max-width: 34ch; }
+  .rqeq .eqgloss b { color: var(--mark); }
+
+  /* ---- Slide: open problems, two columns ---- */
+  .opgrid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); margin-top: 5vh; }
+  .opcol .oph { font-family: var(--mono); font-size: clamp(11px, 1.1vw, 13px); letter-spacing: 0.16em; text-transform: uppercase; color: var(--mark); margin-bottom: 2.6vh; }
+  .opcol .points { margin-top: 0; }
+  .opcol .point { font-size: clamp(14px, 1.45vw, 18px); }
+
+  /* ---- chrome ---- */
+  .counter {
+    position: fixed;
+    bottom: 22px; right: 26px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--faint);
+  }
+</style>
+</head>
+<body>
+  <div class="deck">
+
+    <!-- Slide 1 -->
+    <section class="slide active" data-slide="1">
+      <div class="kicker">Flashbots · Privacy Information Group</div>
+      <div class="session">PIG jam</div>
+      <h1 class="title">
+        <span class="lead">anonymous and secure</span>
+        <span class="correction">
+          <span class="replacement">agentic search</span>
+          <span class="caret">▲</span>
+          <span class="struck">LLM inference</span>
+        </span>
+      </h1>
+      <div class="byline">
+        <div class="rule"></div>
+        <div class="who">w/ special guest <b>DMarz</b></div>
+      </div>
+    </section>
+
+    <!-- Slide 2 -->
+    <section class="slide agenda-slide" data-slide="2">
+      <div class="agenda-head">Overview · three sections</div>
+      <div class="agenda">
+        <div class="arow">
+          <div class="idx">01</div>
+          <div class="name">IP poisoning</div>
+        </div>
+        <div class="arow">
+          <div class="idx">02</div>
+          <div class="name">Agentic search</div>
+        </div>
+        <div class="arow tbd">
+          <div class="idx">03</div>
+          <div class="name">TBD</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3 — Section 1 opener: the exchange -->
+    <section class="slide chat-slide" data-slide="3">
+      <div class="sectiontag"><b>01</b> &nbsp;·&nbsp; IP poisoning</div>
+      <div class="chat">
+        <div class="bubble them">&ldquo;hey btw all my queries get <span class="hot">blocked</span> when i go through Tor&rdquo;</div>
+        <div class="bubble me">but DC-nets&rsquo; info-theoretic privacy is better than Tor&rsquo;s weakness to a global passive adversary</div>
+        <div class="bubble them">ya but won&rsquo;t those exit points get blocked once it gets adoption?</div>
+        <div class="bubble me think">🤔</div>
+      </div>
+    </section>
+
+    <!-- Slide 4 — Section 1: the harness -->
+    <section class="slide arch-slide" data-slide="4">
+      <div class="chart-head">01 · IP poisoning — the harness</div>
+      <div class="chart-headline">So I ran a benchmark.</div>
+      <div class="chart-sub">Stock client, real engines and sites, every fetch forced through Tor</div>
+      <div class="arch">
+        <div class="astage"><div class="atop">Metasearch</div><div class="acnt">1</div><div class="asub">SearXNG node</div></div>
+        <div class="aflow"><div class="aarrow">&rarr;</div><div class="aflab">routes via</div></div>
+        <div class="astage"><div class="atop">Tor</div><div class="acnt">51</div><div class="asub">exit IPs, rotated</div></div>
+        <div class="aflow"><div class="aarrow">&rarr;</div><div class="aflab">fans out to</div></div>
+        <div class="astage"><div class="atop">Targets</div><div class="acnt">60</div><div class="asub">24 engines + 36 sites</div></div>
+      </div>
+    </section>
+
+    <!-- Slide 5 — Section 1: the result (search engines) -->
+    <section class="slide metric-slide" data-slide="5">
+      <div class="chart-head">01 · IP poisoning — the result</div>
+      <div class="chart-headline">Tor wasn&rsquo;t the problem. The <span class="hot">engine</span> was.</div>
+      <div class="chart-sub">Queries blocked by search engine, pooled across every exit</div>
+
+      <div class="statstrip">
+        <div class="stat"><div class="fig">51</div><div class="lab">Tor exit nodes</div></div>
+        <div class="stat"><div class="fig">6,024</div><div class="lab">queries</div></div>
+        <div class="stat"><div class="fig">24</div><div class="lab">search engines</div></div>
+        <div class="stat"><div class="fig hot">37%</div><div class="lab">blocked overall</div></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><div class="bar-label">Quark</div><div class="bar-track"><div class="bar-fill" style="width:97%"><span class="v">97%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Brave</div><div class="bar-track"><div class="bar-fill" style="width:83%"><span class="v">83%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Google</div><div class="bar-track"><div class="bar-fill" style="width:83%"><span class="v">83%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Qwant</div><div class="bar-track"><div class="bar-fill" style="width:83%"><span class="v">83%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">DuckDuckGo</div><div class="bar-track"><div class="bar-fill" style="width:81%"><span class="v">81%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Baidu</div><div class="bar-track"><div class="bar-fill" style="width:69%"><span class="v">69%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Mojeek</div><div class="bar-track"><div class="bar-fill" style="width:64%"><span class="v">64%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Yandex</div><div class="bar-track"><div class="bar-fill" style="width:51%"><span class="v">51%</span></div></div></div>
+
+        <div class="bar-divider"><div class="lbl">independent</div><div class="ln"></div></div>
+
+        <div class="bar-row clear"><div class="bar-label">Mwmbl</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div><span class="v-out">0%</span></div></div>
+        <div class="bar-row clear"><div class="bar-label">wiby</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div><span class="v-out">0%</span></div></div>
+        <div class="bar-row clear"><div class="bar-label">searchmysite</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div><span class="v-out">0%</span></div></div>
+      </div>
+      <div class="bar-axis"><div></div><div class="scale"><span class="s0">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span class="s100">100%</span></div></div>
+
+      <div class="chart-note">2,217 / 6,024 queries blocked · 51 distinct exits · independent block classifier · Jun 2026</div>
+    </section>
+
+    <!-- Slide 6 — Section 1: where the wall actually is (web) -->
+    <section class="slide metric-slide" data-slide="6">
+      <div class="chart-head">01 · IP poisoning — where the wall is</div>
+      <div class="chart-headline">It&rsquo;s not the web. It&rsquo;s a few <span class="hot">anti-bot walls</span>.</div>
+      <div class="chart-sub">Same Tor exits, web destinations. Blocking concentrates on commercial bot-walls</div>
+
+      <div class="bars">
+        <div class="bar-row"><div class="bar-label">Nike<span class="vsub">Akamai</span></div><div class="bar-track"><div class="bar-fill" style="width:100%"><span class="v">100%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Indeed<span class="vsub">Cloudflare</span></div><div class="bar-track"><div class="bar-fill" style="width:100%"><span class="v">100%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">G2<span class="vsub">DataDome</span></div><div class="bar-track"><div class="bar-fill" style="width:100%"><span class="v">100%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Best Buy<span class="vsub">commercial</span></div><div class="bar-track"><div class="bar-fill" style="width:100%"><span class="v">100%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Expedia<span class="vsub">Akamai</span></div><div class="bar-track"><div class="bar-fill" style="width:98%"><span class="v">98%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Google<span class="vsub">in-house</span></div><div class="bar-track"><div class="bar-fill" style="width:90%"><span class="v">90%</span></div></div></div>
+
+        <div class="bar-divider"><div class="lbl">rest of the web</div><div class="ln"></div></div>
+
+        <div class="bar-row clear"><div class="bar-label">Amazon</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div><span class="v-out">0%</span></div></div>
+        <div class="bar-row clear"><div class="bar-label">Reddit</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div><span class="v-out">0%</span></div></div>
+        <div class="bar-row clear"><div class="bar-label">GitHub</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div><span class="v-out">0%</span></div></div>
+        <div class="bar-row clear"><div class="bar-label">Wikipedia</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div><span class="v-out">0%</span></div></div>
+        <div class="bar-row clear"><div class="bar-label">Hacker News</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div><span class="v-out">0%</span></div></div>
+      </div>
+      <div class="bar-axis"><div></div><div class="scale"><span class="s0">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span class="s100">100%</span></div></div>
+
+      <div class="chart-note">vendor via response-header fingerprint · ~50 fetches / site · 51 exits · StackOverflow (also Cloudflare) blocked 4%</div>
+    </section>
+
+    <!-- Slide 7 — Section 1: the turn -->
+    <section class="slide comment-slide" data-slide="7">
+      <div class="comment-head">01 · IP poisoning</div>
+      <div class="comment-title"><span class="ins">Insight:</span> build the real thing, and <span class="hot">IP poisoning</span> becomes ours to solve.</div>
+      <div class="points">
+        <div class="point"><span class="mk">&rarr;</span><div>A protocol that truly hides metadata runs on <b>shared egress nodes</b>.</div></div>
+        <div class="point"><span class="mk">&rarr;</span><div>Anonymity strips the one free rate-limit, the <b>IP</b>. One abuser can get a node blocklisted for everyone.</div></div>
+      </div>
+    </section>
+
+    <!-- Slide 8 — Section 1: does it matter? the three use cases -->
+    <section class="slide uc-slide" data-slide="8">
+      <div class="comment-head">01 · IP poisoning</div>
+      <div class="comment-title"><span class="ins">Nuance:</span> the risk may depend on the <span class="hot">use case</span>.</div>
+      <div class="ucgrid">
+        <div class="uc med">
+          <div class="ucname">Private tx submission</div>
+          <div class="uctarget">egress &rarr; block builders you submit to</div>
+          <div class="ucnote">Spam them and they drop you. Bounded, but real.</div>
+          <div class="ucchip">poisoning · medium</div>
+        </div>
+        <div class="uc hi">
+          <div class="ucname">Private ClearNet search</div>
+          <div class="uctarget">egress &rarr; engines that block shared IPs</div>
+          <div class="ucnote">Exactly what we just measured. This is where it bites.</div>
+          <div class="ucchip">poisoning · central</div>
+        </div>
+        <div class="uc lo">
+          <div class="ucname">Private LLM inference</div>
+          <div class="uctarget">egress &rarr; a metered inference endpoint</div>
+          <div class="ucnote">Inference costs money. The price is the rate-limit.</div>
+          <div class="ucchip">poisoning · low</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9 — bridge: the thought exercise -->
+    <section class="slide comment-slide" data-slide="9">
+      <div class="comment-head">01 · IP poisoning — toward a fix</div>
+      <div class="comment-title"><span class="ins">Thought exercise:</span> how might we solve this on Tor today, so it&rsquo;s <span class="hot">portable</span> to our future Flashnet deployment?</div>
+    </section>
+
+    <!-- Slide 10 — the requirements -->
+    <section class="slide statement-slide" data-slide="10">
+      <div class="sectiontag"><b>01</b> &nbsp;·&nbsp; the requirements</div>
+      <div class="statement">Rate limits and Sybil resistance.</div>
+    </section>
+
+    <!-- Slide 11 — reputation-gated onion egress: diagram + 3 bullets -->
+    <section class="slide rge-slide" data-slide="11">
+      <div class="comment-head">01 · the fix</div>
+      <div class="comment-title">Reputation-gated onion egress.</div>
+
+      <div class="circuit">
+        <div class="pill-row"><div class="payload"><span class="pl">on the wire&nbsp;&nbsp;</span>Semaphore proof + RLN nullifier</div></div>
+        <div class="rail-row">
+          <div class="rail-dash"></div>
+          <div class="rail-solid"></div>
+          <div class="dotcell" style="--d:.12s"><span class="dot"></span></div>
+          <div class="dotcell" style="--d:.42s"><span class="dot"></span></div>
+          <div class="dotcell gate" style="--d:.66s"><span class="dot"></span></div>
+          <div class="dotcell" style="--d:.92s"><span class="dot"></span></div>
+          <span class="arrowhead">&#9654;</span>
+        </div>
+        <div class="label-row">
+          <div class="lstack" style="--d:.3s"><div class="cname">User</div><div class="ctitle">client + shim</div><div class="cdetail">proves membership</div></div>
+          <div class="lstack" style="--d:.5s"><div class="cname">Tor</div><div class="ctitle">rendezvous</div><div class="cdetail">6 hops · client IP hidden</div></div>
+          <div class="lstack gate" style="--d:.72s"><div class="cname">Gateway</div><div class="ctitle">onion service</div><div class="cdetail">&isin; set · epoch · RLN budget</div></div>
+          <div class="lstack" style="--d:.98s"><div class="cname">Clearnet</div><div class="ctitle">target</div><div class="cdetail">sees one clean IP</div></div>
+        </div>
+      </div>
+
+      <div class="triplet">
+        <div class="tcell" style="--d:.9s"><div class="th"><span class="n">1</span>Onion service</div><div class="tp">Tor rendezvous, no exit node. 6 hops, and the client IP never reaches the gateway.</div></div>
+        <div class="tcell" style="--d:1.05s"><div class="th"><span class="n">2</span>ZK + RLN</div><div class="tp">Semaphore proves membership. A per-epoch nullifier rate-limits anonymously: same within an epoch, unlinkable across them.</div></div>
+        <div class="tcell" style="--d:1.2s"><div class="th"><span class="n">3</span>Security model</div><div class="tp">No identity, ever. The reputation set is the trust root. The gateway is one honest-but-curious observer at the exit, unless it runs in a TEE.</div></div>
+      </div>
+
+      <div class="reflink">github.com/dmarzzz/reputation-gated-onion-egress</div>
+    </section>
+
+    <!-- Slide 12 — benchmark -->
+    <section class="slide metric-slide" data-slide="12">
+      <div class="chart-head">01 · reputation-gated egress — benchmark</div>
+      <div class="chart-headline">The cost is <span class="hot">backwards</span>, on purpose.</div>
+
+      <div class="btable">
+        <div class="btrow bthead"><div></div><div class="h">p50</div><div class="h">p99</div></div>
+        <div class="btrow">
+          <div><div class="btname">Proof generation</div><div class="btmeta"><span class="when">once per epoch</span> · client, M1 Max</div></div>
+          <div class="btval p50">243<span class="uu">ms</span></div>
+          <div class="btval">277<span class="uu">ms</span></div>
+        </div>
+        <div class="btrow good">
+          <div><div class="btname">Verification</div><div class="btmeta"><span class="when">every request</span> · gateway, 2 vCPU</div></div>
+          <div class="btval p50">32<span class="uu">ms</span></div>
+          <div class="btval">97<span class="uu">ms</span></div>
+        </div>
+        <div class="btrow">
+          <div><div class="btname">Round trip</div><div class="btmeta">per request · 6 Tor hops</div></div>
+          <div class="btval p50">1.9<span class="uu">s</span></div>
+          <div class="btval">~9<span class="uu">s</span></div>
+        </div>
+      </div>
+
+      <div class="btcontext">8-member set · Merkle depth 3 · Semaphore v4, groth16</div>
+    </section>
+
+    <!-- Slide 13 — open problems -->
+    <section class="slide comment-slide" data-slide="13">
+      <div class="comment-head">01 · reputation-gated egress</div>
+      <div class="comment-title"><span class="ins">Open problems.</span></div>
+      <div class="points">
+        <div class="point lead"><span class="mk">&rarr;</span><div>RLN metering doesn&rsquo;t compose across nodes.<span class="tag">the hard one</span></div></div>
+        <div class="point"><span class="mk">&rarr;</span><div>A payment introduces <b>reorg risk</b>.</div></div>
+        <div class="point"><span class="mk">&rarr;</span><div>Payments are <b>hard to coordinate</b> across nodes.</div></div>
+        <div class="point"><span class="mk">&rarr;</span><div>A payment channel forces you to talk to <b>one peer only</b>, which kills portability.</div></div>
+      </div>
+    </section>
+
+    <!-- Slide 14 — distribution: DappNode sidecar -->
+    <section class="slide comment-slide" data-slide="14">
+      <div class="comment-head">01 · distribution</div>
+      <div class="comment-title"><span class="ins">Latest distribution idea:</span> ship it as a sidecar for home stakers.</div>
+      <div class="points">
+        <div class="point"><span class="mk">&rarr;</span><div>Run the egress <b>next to a validator</b>. Each home staker becomes an egress point.</div></div>
+        <div class="point"><span class="mk">&rarr;</span><div>Ride the installed base instead of <b>cold-starting</b> a node set.</div></div>
+      </div>
+      <div class="bignum">
+        <div class="bn">&asymp;4,000</div>
+        <div class="bl">DappNode home stakers to tap into</div>
+      </div>
+    </section>
+
+    <!-- Slide 15 — Section 2 divider -->
+    <section class="slide section-slide" data-slide="15">
+      <div class="secnum">Section 02</div>
+      <div class="sectitle">Agentic search</div>
+    </section>
+
+    <!-- Slide 16 — the frame: hide the query + return path -->
+    <section class="slide comment-slide" data-slide="16">
+      <div class="comment-head">02 · agentic search</div>
+      <div class="comment-title">Agents search constantly.</div>
+      <div class="points">
+        <div class="point"><span class="mk">&rarr;</span><div>The reputation gateway already hides <b>who</b> is asking.</div></div>
+        <div class="point"><span class="mk">&rarr;</span><div>The next frontier: hide <b>what</b> you ask, from the engine itself.</div></div>
+        <div class="point"><span class="mk">&rarr;</span><div>Search also needs a <b>return path</b>. Tor rendezvous and the gateway give us one; our DC-net prototypes don&rsquo;t yet.</div></div>
+      </div>
+    </section>
+
+    <!-- Slide 17 — the four directions to a private search engine -->
+    <section class="slide metric-slide" data-slide="17">
+      <div class="comment-head">02 · agentic search</div>
+      <div class="comment-title">Four directions to a private search engine.</div>
+      <div class="dirgrid">
+        <div class="dir built">
+          <div class="dh"><span class="dn">01</span><span class="dt">Cryptographic</span></div>
+          <div class="dd">The server computes over your ciphertext and never sees the query.</div>
+          <div class="dtag">ours · Periscope (LWE-PIR)</div>
+        </div>
+        <div class="dir">
+          <div class="dh"><span class="dn">02</span><span class="dt">Trusted hardware</span></div>
+          <div class="dd">Search runs inside an attested enclave; confidentiality comes from the chip.</div>
+          <div class="dtag">we use it for build integrity only</div>
+        </div>
+        <div class="dir built">
+          <div class="dh"><span class="dn">03</span><span class="dt">Anonymization</span></div>
+          <div class="dd">Hide who is asking, and that a search happened, at the network layer.</div>
+          <div class="dtag">ours · reputation gateway</div>
+        </div>
+        <div class="dir">
+          <div class="dh"><span class="dn">04</span><span class="dt">Split trust</span></div>
+          <div class="dd">Divide the computation so no single party ever sees the whole query.</div>
+          <div class="dtag">open</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 18 — Periscope (title only, to build out) -->
+    <section class="slide comment-slide" data-slide="18">
+      <div class="comment-head">02 · the POC</div>
+      <div class="comment-title">Periscope.</div>
+    </section>
+
+    <!-- Slide 19 — Periscope benchmark -->
+    <section class="slide metric-slide" data-slide="19">
+      <div class="chart-head">02 · periscope — benchmark</div>
+      <div class="chart-headline">Periscope, measured.</div>
+
+      <div class="statstrip">
+        <div class="stat"><div class="fig">49<span style="font-size:.5em;color:var(--dim)">ms</span></div><div class="lab">median query</div></div>
+        <div class="stat"><div class="fig">29 / 8<span style="font-size:.5em;color:var(--dim)"> KiB</span></div><div class="lab">up / down, constant</div></div>
+        <div class="stat"><div class="fig good" style="color:var(--ok)">20/20</div><div class="lab">encrypted = plaintext scores</div></div>
+        <div class="stat"><div class="fig">~$18<span style="font-size:.5em;color:var(--dim)">/mo</span></div><div class="lab">3 DigitalOcean nodes</div></div>
+      </div>
+
+      <div class="btable">
+        <div class="btrow bthead"><div></div><div class="h">p50</div><div class="h">p90</div></div>
+        <div class="btrow"><div><div class="btname">Encrypt query</div><div class="btmeta">client</div></div><div class="btval">1.7<span class="uu">ms</span></div><div class="btval">2.4<span class="uu">ms</span></div></div>
+        <div class="btrow"><div><div class="btname">Rank round-trip</div><div class="btmeta">oblivious matvec over the index</div></div><div class="btval">5.0<span class="uu">ms</span></div><div class="btval">10.8<span class="uu">ms</span></div></div>
+        <div class="btrow"><div><div class="btname">Fetch URL</div><div class="btmeta">PIR read of the result row</div></div><div class="btval">36.8<span class="uu">ms</span></div><div class="btval">58.2<span class="uu">ms</span></div></div>
+        <div class="btrow"><div><div class="btname">Total</div><div class="btmeta">embed &rarr; answer</div></div><div class="btval">48.6<span class="uu">ms</span></div><div class="btval">79.0<span class="uu">ms</span></div></div>
+      </div>
+
+      <div class="btcontext">234 pages · 6,143 chunks · 8.2 MiB query-independent download · scales ~linearly: 0.69 core-s/query at 1M docs</div>
+    </section>
+
+    <!-- Slide 20 — the two trends -->
+    <section class="slide metric-slide" data-slide="20">
+      <div class="comment-head">02 · why now</div>
+      <div class="comment-title">Two trends point straight at agentic search.</div>
+      <div class="trendgrid">
+        <div class="trend">
+          <div class="tk">query anatomy</div>
+          <div class="tbig">3&times; longer</div>
+          <div class="ttitle">What length does to meaning</div>
+          <div class="tline">A long query collapses into one pooled vector and dilutes. Decompose, late-interaction, or rerank to fix it, and on an oblivious engine each is another full pass over the index. Length is not free.</div>
+        </div>
+        <div class="trend">
+          <div class="tk">the click is dying</div>
+          <div class="tbig">56% &rarr; 69%</div>
+          <div class="ttitle">The answer replaces the click</div>
+          <div class="tline">Zero-click search rose 56 to 69% in a year. Agent traffic now exceeds human web traffic. Value is moving from the pageview to the synthesized answer.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 21 — the dilution gap (longer queries, blurrier vectors) -->
+    <section class="slide metric-slide" data-slide="21">
+      <div class="chart-head">02 · query anatomy</div>
+      <div class="chart-headline">What length does to meaning</div>
+      <div class="lengrid">
+        <div class="lenchart">
+        <svg viewBox="0 0 640 304" width="100%" preserveAspectRatio="xMidYMid meet" font-family="ui-monospace,monospace">
+          <line x1="56" y1="250" x2="612" y2="250" stroke="#38383d" stroke-width="1"/>
+          <line x1="56" y1="56" x2="56" y2="250" stroke="#38383d" stroke-width="1"/>
+          <text x="56" y="44" fill="#6c6c72" font-size="11">retrieval precision</text>
+          <polygon points="465,140 590,182 590,84 465,78" fill="#e5484d" opacity="0.12"/>
+          <polyline fill="none" stroke="#3fb950" stroke-width="2.4" stroke-dasharray="5 4" points="90,70 215,70 340,72 465,78 590,84"/>
+          <polyline fill="none" stroke="#e5484d" stroke-width="2.6" points="90,70 215,74 340,90 465,140 590,182"/>
+          <circle cx="90" cy="70" r="3.2" fill="#e5484d"/><circle cx="215" cy="74" r="3.2" fill="#e5484d"/><circle cx="340" cy="90" r="3.2" fill="#e5484d"/><circle cx="465" cy="140" r="3.2" fill="#e5484d"/><circle cx="590" cy="182" r="3.2" fill="#e5484d"/>
+          <circle cx="465" cy="78" r="3" fill="#3fb950"/><circle cx="590" cy="84" r="3" fill="#3fb950"/>
+          <text x="585" y="126" fill="#e5484d" font-size="11" text-anchor="end">the dilution gap</text>
+          <text x="90" y="44" fill="#6c6c72" font-size="10" text-anchor="middle">nav</text>
+          <text x="277" y="44" fill="#6c6c72" font-size="10" text-anchor="middle">human</text>
+          <text x="528" y="44" fill="#6c6c72" font-size="10" text-anchor="middle">agent</text>
+          <text x="90" y="270" fill="#6c6c72" font-size="11" text-anchor="middle">1w</text>
+          <text x="215" y="270" fill="#6c6c72" font-size="11" text-anchor="middle">3w</text>
+          <text x="340" y="270" fill="#6c6c72" font-size="11" text-anchor="middle">8w</text>
+          <text x="465" y="270" fill="#6c6c72" font-size="11" text-anchor="middle">&para;</text>
+          <text x="590" y="270" fill="#6c6c72" font-size="11" text-anchor="middle">spec</text>
+          <text x="612" y="266" fill="#6c6c72" font-size="10" text-anchor="end">query length &rarr;</text>
+          <line x1="56" y1="292" x2="76" y2="292" stroke="#e5484d" stroke-width="2.6"/>
+          <text x="82" y="296" fill="#6c6c72" font-size="11">one pooled vector</text>
+          <line x1="300" y1="292" x2="320" y2="292" stroke="#3fb950" stroke-width="2.4" stroke-dasharray="5 4"/>
+          <text x="326" y="296" fill="#6c6c72" font-size="11">decompose / multi-vector</text>
+        </svg>
+          <div class="lencap">Conceptual, not measured: a single query embedding loses precision as the query lengthens; decomposition and late interaction hold the line.</div>
+        </div>
+        <div class="lenpoints">
+          <p>A long query collapses into <b>one pooled vector</b>: every constraint averaged into a single point that drifts toward the center of the corpus. The more an agent specifies, the less it discriminates.</p>
+          <p>The fixes trade compute for fidelity: decompose, keep token-level vectors with late interaction (ColBERT MaxSim), or over-retrieve and rerank. Each <b>multiplies the work</b> per query.</p>
+          <p>On an oblivious engine this bites harder: every sub-query and every extra vector is another full linear pass over the index. <span class="hot">Length is not free.</span></p>
+          <p>Or the agent fires <b>many short queries</b> instead. Then it is not dilution, it is volume. Either way the private engine pays, just on a different axis.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 22 — the research question (breaking the vector up) -->
+    <section class="slide metric-slide" data-slide="22">
+      <div class="chart-head">02 · the open problem</div>
+      <div class="chart-headline">The research question.</div>
+      <div class="rqline">Can an oblivious engine answer agent-grade queries, decomposed or multi-vector, without the cost collapsing to <span class="hot">privacy&rsquo;s linear scan times passes per query</span>?</div>
+
+      <div class="rqeq">
+        <span class="eqbig">cost &asymp; <span class="hot">N</span> &times; <span class="hot">P</span></span>
+        <span class="eqgloss"><b>N</b> &nbsp;index size; privacy forces a full scan<br><b>P</b> &nbsp;passes / query; 1 &rarr; k (decompose) &rarr; m (multi-vector)</span>
+      </div>
+
+      <div class="dirgrid">
+        <div class="dir">
+          <div class="dh"><span class="dn">01</span><span class="dt">Pin the cost</span></div>
+          <div class="dd">One oblivious matvec is O(N) per query. Decomposition multiplies by k, late interaction by m. Is the true cost N&middot;k, N&middot;m, or can structure beat the product?</div>
+        </div>
+        <div class="dir">
+          <div class="dh"><span class="dn">02</span><span class="dt">Batched PIR</span></div>
+          <div class="dd">One agent query&rsquo;s sub-queries are correlated: one client, one epoch, one intent. Can a batch share a single linear pass instead of k independent ones?</div>
+        </div>
+        <div class="dir">
+          <div class="dh"><span class="dn">03</span><span class="dt">Oblivious late interaction</span></div>
+          <div class="dd">ColBERT scores by MaxSim, an argmax over the index. Can MaxSim run under LWE without revealing which tokens or documents matched, below N&middot;m cost?</div>
+        </div>
+        <div class="dir">
+          <div class="dh"><span class="dn">04</span><span class="dt">Leak-free decomposition</span></div>
+          <div class="dd">Splitting a query leaks its structure, the count, order, and routing, even when each part is individually private.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 23 — parallel search swarm benchmark -->
+    <section class="slide metric-slide" data-slide="22">
+      <div class="chart-head">02 · parallel search</div>
+      <div class="chart-headline">A search swarm fans out in <span class="good">parallel</span>.</div>
+
+      <div class="statstrip">
+        <div class="stat"><div class="fig">0.28&times;</div><div class="lab">fan-out vs engines run serially</div></div>
+        <div class="stat"><div class="fig">~0.5<span style="font-size:.5em;color:var(--dim)">ms</span></div><div class="lab">added per extra engine</div></div>
+        <div class="stat"><div class="fig">403<span style="font-size:.5em;color:var(--dim)">ms</span></div><div class="lab">p50, live real engines</div></div>
+      </div>
+
+      <div class="bars pbars">
+        <div class="bar-row"><div class="bar-label">1 engine</div><div class="bar-track"><div class="bar-fill" style="width:47%"><span class="v">205ms</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">8 engines</div><div class="bar-track"><div class="bar-fill" style="width:48%"><span class="v">210ms</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">16 engines</div><div class="bar-track"><div class="bar-fill" style="width:49%"><span class="v">215ms</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">32 engines</div><div class="bar-track"><div class="bar-fill" style="width:50%"><span class="v">220ms</span></div></div></div>
+      </div>
+
+      <div class="btcontext">SearXNG fan-out · latency stays flat 1&rarr;32 engines, so the swarm is parallel, not serialized</div>
+      <div class="reflink">live · 3 agentic-search runs · asw-dashboard.vercel.app</div>
+    </section>
+
+    <!-- Slide 23 — open problems (50% the deck, 50% the corpus) -->
+    <section class="slide metric-slide" data-slide="23">
+      <div class="comment-head">02 · periscope</div>
+      <div class="comment-title"><span class="ins">Open problems.</span></div>
+      <div class="opgrid">
+        <div class="opcol">
+          <div class="oph">the agent regime</div>
+          <div class="points">
+            <div class="point"><span class="mk">&rarr;</span><div><b>Long or many?</b> One long query or many short ones is a different oblivious-search cost model.</div></div>
+            <div class="point"><span class="mk">&rarr;</span><div><b>Length is not free.</b> Decompose, late-interaction, and rerank each multiply the per-query linear scan.</div></div>
+            <div class="point"><span class="mk">&rarr;</span><div><b>The unit of value.</b> Zero-click moves value to the answer. What does a private engine charge for, and attribute?</div></div>
+          </div>
+        </div>
+        <div class="opcol">
+          <div class="oph">the engine</div>
+          <div class="points">
+            <div class="point"><span class="mk">&rarr;</span><div><b>Freshness vs the hint.</b> The precomputed hint dies on every index rebuild; incremental refresh is unbuilt.</div></div>
+            <div class="point"><span class="mk">&rarr;</span><div><b>Web-scale PIR.</b> Every query is a full linear pass over the index. That is the scaling wall.</div></div>
+            <div class="point"><span class="mk">&rarr;</span><div><b>Residual leaks.</b> The public centroid leaks coarse topic, and the set of shards you contact leaks topic.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="counter"><span id="cur">1</span> / <span id="tot">1</span></div>
+
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  let i = 0;
+  document.getElementById('tot').textContent = slides.length;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%*+=~?/";
+  const HEADLINES = ".comment-title, .statement, .chart-headline, .sectitle";
+  const esc = c => c === "&" ? "&amp;" : c === "<" ? "&lt;" : c === ">" ? "&gt;" : c;
+
+  function scramble(el) {
+    // capture the rich markup once so we can restore the colored spans at the end
+    if (el._html === undefined) { el._html = el.innerHTML; el._text = el.textContent; }
+    if (reduceMotion) { el.innerHTML = el._html; return; }
+    const text = el._text;
+    const start = performance.now();
+    const dur = 280;
+    function tick(now) {
+      const p = Math.min(1, (now - start) / dur);
+      const revealed = p * text.length;
+      let out = "";
+      for (let k = 0; k < text.length; k++) {
+        const c = text[k];
+        if (c === " ") { out += " "; continue; }
+        if (k < revealed - 0.5) { out += esc(c); }
+        else { out += '<span class="scram">' + GLYPHS[(Math.random() * GLYPHS.length) | 0] + '</span>'; }
+      }
+      el.innerHTML = out;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.innerHTML = el._html;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function show(n) {
+    const ni = Math.max(0, Math.min(slides.length - 1, n));
+    // don't re-trigger when we're already on this slide (e.g. pressing past the ends)
+    if (ni === i && slides[ni].classList.contains('active')) return;
+    i = ni;
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    document.getElementById('cur').textContent = i + 1;
+    const cur = slides[i];
+    // restart CSS entrance animations (e.g. the circuit diagram) on every entry
+    cur.classList.remove('run');
+    void cur.offsetWidth;
+    cur.classList.add('run');
+    cur.querySelectorAll(HEADLINES).forEach(scramble);
+  }
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { show(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp') { show(i - 1); e.preventDefault(); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+  });
+</script>
+</body>
+</html>

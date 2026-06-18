@@ -1,8 +1,8 @@
 # Index — IP Anonymization for Search
 
-Corpus pulled from the research-swarm archive (last built 2026-05-31).
+Corpus pulled from the research-swarm archive (last built 2026-06-16).
 
-- **234** raw pages across **160** domains (18 marked ⚠️ blocked/empty)
+- **246** raw pages across **171** domains (19 marked ⚠️ blocked/empty)
 - **17** agent research runs (see [`traces/`](traces/) and [`SYNTHESIS.md`](SYNTHESIS.md))
 - **57** sources cited but not stored as a page (arXiv IDs / cache) — listed in [`SYNTHESIS.md`](SYNTHESIS.md)
 
@@ -29,6 +29,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [Hot storage tradeoffs when launching Mainnet and Bitizen user onboarding security steps](https://acudame.org/hot-storage-tradeoffs-when-launching-mainnet-and-bitizen-user-onboarding-security-steps)
   - raw: [`sources/acudame.org/2026-05-30-hot-storage-tradeoffs-when-launching-mainnet-and-hot-storage-tradeoff.md`](sources/acudame.org/2026-05-30-hot-storage-tradeoffs-when-launching-mainnet-and-hot-storage-tradeoff.md)
+
+## addrom.com
+
+- [AutoGPT: From Hacky Script to Full-Stack Ecosystem for Autonomous AI Agents - addROM](https://addrom.com/autogpt-from-hacky-script-to-full-stack-ecosystem-for-autonomous-ai-agents)
+  - raw: [`sources/addrom.com/2026-06-16-autogpt-from-hacky-script-to-full-stack-ecosyste-autogpt-from-hacky-s.md`](sources/addrom.com/2026-06-16-autogpt-from-hacky-script-to-full-stack-ecosyste-autogpt-from-hacky-s.md)
 
 ## aima.cs.berkeley.edu
 
@@ -111,6 +116,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [X-Search: Revisiting Private Web Search using Intel SGX](https://arxiv.org/pdf/1805.01742)
   - raw: [`sources/arxiv.org/2026-05-30-x-search-revisiting-private-web-search-using-int-pdf-1805-01742.md`](sources/arxiv.org/2026-05-30-x-search-revisiting-private-web-search-using-int-pdf-1805-01742.md)
 
+## axis-intelligence.com
+
+- [AutoGPT: Deep Dive, Use Cases & Best Practices in 2025 - Axis Intelligence](https://axis-intelligence.com/autogpt-deep-dive-use-cases-best-practices)
+  - raw: [`sources/axis-intelligence.com/2026-06-16-autogpt-deep-dive-use-cases-best-practices-in-20-autogpt-deep-dive-us.md`](sources/axis-intelligence.com/2026-06-16-autogpt-deep-dive-use-cases-best-practices-in-20-autogpt-deep-dive-us.md)
+
 ## bford.info
 
 - [Dissent: Accountable Anonymous Group Messaging](https://bford.info/pub/net/dissent-abs)
@@ -137,6 +147,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [Introducing Privacy Pass authentication for Kagi Search](https://blog.kagi.com/kagi-privacy-pass)
   - raw: [`sources/blog.kagi.com/2026-05-30-introducing-privacy-pass-authentication-for-kagi-kagi-privacy-pass.md`](sources/blog.kagi.com/2026-05-30-introducing-privacy-pass-authentication-for-kagi-kagi-privacy-pass.md)
+
+## blog.langchain.com
+
+- [The rise of "context engineering"](https://blog.langchain.com/the-rise-of-context-engineering)
+  - raw: [`sources/blog.langchain.com/2026-06-16-the-rise-of-context-engineering-the-rise-of-context-.md`](sources/blog.langchain.com/2026-06-16-the-rise-of-context-engineering-the-rise-of-context-.md)
 
 ## blogs.nvidia.com
 
@@ -331,6 +346,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
   - raw: [`sources/github.com/2026-05-30-github-microsoft-sealpir-example-implementation--microsoft-sealpir.md`](sources/github.com/2026-05-30-github-microsoft-sealpir-example-implementation--microsoft-sealpir.md)
 - [GitHub - searxng/searxng: SearXNG is a free internet metasearch engine which aggregates results from various search services and databases. Users are neither tracked nor profiled.](https://github.com/searxng/searxng)
   - raw: [`sources/github.com/2026-05-30-github-searxng-searxng-searxng-is-a-free-interne-searxng-searxng.md`](sources/github.com/2026-05-30-github-searxng-searxng-searxng-is-a-free-interne-searxng-searxng.md)
+- [GitHub - Significant-Gravitas/AutoGPT: AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.](https://github.com/Significant-Gravitas/AutoGPT)
+  - raw: [`sources/github.com/2026-06-16-github-significant-gravitas-autogpt-autogpt-is-t-significant-gravitas.md`](sources/github.com/2026-06-16-github-significant-gravitas-autogpt-autogpt-is-t-significant-gravitas.md)
 - [GitHub - turanzv/pir-comparison: Single-server PIR scheme analysis for Ethereum hot-state access: benchmark data, comparative analysis, and visualizations](https://github.com/turanzv/pir-comparison)
   - raw: [`sources/github.com/2026-05-30-github-turanzv-pir-comparison-single-server-pir--turanzv-pir-comparis.md`](sources/github.com/2026-05-30-github-turanzv-pir-comparison-single-server-pir--turanzv-pir-comparis.md)
 - [GitHub - ucbrise/snoopy: A high-throughput oblivious storage system](https://github.com/ucbrise/snoopy)
@@ -384,6 +401,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [[1507.05724v1] HORNET: High-speed Onion Routing at the Network Layer](https://jonbaer.com/post/124807890541/150705724v1-hornet-high-speed-onion-routing-at)
   - raw: [`sources/jonbaer.com/2026-05-30-1507-05724v1-hornet-high-speed-onion-routing-at--post-124807890541-15.md`](sources/jonbaer.com/2026-05-30-1507-05724v1-hornet-high-speed-onion-routing-at--post-124807890541-15.md)
+
+## juancolamendy.hashnode.dev
+
+- [Vercel Security Checkpoint](https://juancolamendy.hashnode.dev/context-engineering-in-agno-the-definitive-guide-to-building-reliable-ai-agents) ⚠️ _(fetch blocked / empty)_
+  - raw: [`sources/juancolamendy.hashnode.dev/2026-06-16-vercel-security-checkpoint-context-engineering-.md`](sources/juancolamendy.hashnode.dev/2026-06-16-vercel-security-checkpoint-context-engineering-.md)
 
 ## julia.quantecon.org
 
@@ -599,6 +621,16 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [Residential Proxy Ethics | How Rayobyte Sets The Standard](https://rayobyte.com/products/rotating-residential-ips/ethics)
   - raw: [`sources/rayobyte.com/2026-05-30-residential-proxy-ethics-how-rayobyte-sets-the-s-products-rotating-re.md`](sources/rayobyte.com/2026-05-30-residential-proxy-ethics-how-rayobyte-sets-the-s-products-rotating-re.md)
 
+## rlancemartin.github.io
+
+- [Context Engineering for Agents](https://rlancemartin.github.io/2025/06/23/context_engineering)
+  - raw: [`sources/rlancemartin.github.io/2026-06-16-context-engineering-for-agents-2025-06-23-context-e.md`](sources/rlancemartin.github.io/2026-06-16-context-engineering-for-agents-2025-06-23-context-e.md)
+
+## saptak.in
+
+- [Long-Term Agentic Memory with LangGraph](https://saptak.in/writing/2025/03/23/mastering-long-term-agentic-memory-with-langgraph)
+  - raw: [`sources/saptak.in/2026-06-16-long-term-agentic-memory-with-langgraph-writing-2025-03-23-m.md`](sources/saptak.in/2026-06-16-long-term-agentic-memory-with-langgraph-writing-2025-03-23-m.md)
+
 ## sbakiras.github.io
 
 - [Secure and Anonymous Communications Over Delay Tolerant Networks](https://sbakiras.github.io/papers/access-dtn.pdf)
@@ -613,6 +645,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [Search-Theoretic Models of the Labor Market: A Survey](https://scispace.com/pdf/search-theoretic-models-of-the-labor-market-a-survey-1vd8x5tbbs.pdf)
   - raw: [`sources/scispace.com/2026-05-30-search-theoretic-models-of-the-labor-market-a-su-pdf-search-theoretic.md`](sources/scispace.com/2026-05-30-search-theoretic-models-of-the-labor-market-a-su-pdf-search-theoretic.md)
+
+## simonwillison.net
+
+- [Context engineering](https://simonwillison.net/2025/Jun/27/context-engineering)
+  - raw: [`sources/simonwillison.net/2026-06-16-context-engineering-2025-jun-27-context-.md`](sources/simonwillison.net/2026-06-16-context-engineering-2025-jun-27-context-.md)
 
 ## smartproxy.com
 
@@ -643,6 +680,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [Tor Browser best practices](https://support.torproject.org/faq/staying-anonymous)
   - raw: [`sources/support.torproject.org/2026-05-30-tor-browser-best-practices-faq-staying-anonymou.md`](sources/support.torproject.org/2026-05-30-tor-browser-best-practices-faq-staying-anonymou.md)
+
+## tokrepo.com
+
+- [LangMem — LangChain-Native Memory SDK](https://tokrepo.com/en/ai-memory/langmem)
+  - raw: [`sources/tokrepo.com/2026-06-16-langmem-langchain-native-memory-sdk-en-ai-memory-langmem.md`](sources/tokrepo.com/2026-06-16-langmem-langchain-native-memory-sdk-en-ai-memory-langmem.md)
 
 ## tornmarketing.com.au
 
@@ -826,6 +868,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 - [Detect Fraud and Cyber Threats With Unmatched Accuracy](https://www.ipqualityscore.com/)
   - raw: [`sources/www.ipqualityscore.com/2026-05-30-detect-fraud-and-cyber-threats-with-unmatched-ac-page.md`](sources/www.ipqualityscore.com/2026-05-30-detect-fraud-and-cyber-threats-with-unmatched-ac-page.md)
 
+## www.marc0.dev
+
+- [Context Engineering for AI Agents: Why Bare Metal Wins](https://www.marc0.dev/en/blog/ai-agents/context-engineering-bare-metal-agents-why-less-abstraction-wins-1772633100000)
+  - raw: [`sources/www.marc0.dev/2026-06-16-context-engineering-for-ai-agents-why-bare-metal-en-blog-ai-agents-co.md`](sources/www.marc0.dev/2026-06-16-context-engineering-for-ai-agents-why-bare-metal-en-blog-ai-agents-co.md)
+
 ## www.mdpi.com
 
 - [Faster Spiral: Low-Communication, High-Rate Private Information Retrieval](https://www.mdpi.com/2410-387X/9/1/13)
@@ -835,6 +882,11 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [14 types of RAG (Retrieval-Augmented Generation)](https://www.meilisearch.com/blog/rag-types)
   - raw: [`sources/www.meilisearch.com/2026-05-30-14-types-of-rag-retrieval-augmented-generation-blog-rag-types.md`](sources/www.meilisearch.com/2026-05-30-14-types-of-rag-retrieval-augmented-generation-blog-rag-types.md)
+
+## www.philschmid.de
+
+- [The New Skill in AI is Not Prompting, It's Context Engineering](https://www.philschmid.de/context-engineering)
+  - raw: [`sources/www.philschmid.de/2026-06-16-the-new-skill-in-ai-is-not-prompting-it-s-contex-context-engineering.md`](sources/www.philschmid.de/2026-06-16-the-new-skill-in-ai-is-not-prompting-it-s-contex-context-engineering.md)
 
 ## www.preprints.org
 
@@ -957,3 +1009,8 @@ See also [`GAPS.md`](GAPS.md) for what the swarm missed, and [`manifest.json`](m
 
 - [doi:10.1016/j.ipm.2007.10.002](https://yunus.hacettepe.edu.tr/~tonta/courses/spring2008/bby703/thompson-probabilistic-IR-maron-1960.pdf)
   - raw: [`sources/yunus.hacettepe.edu.tr/2026-05-30-doi-10-1016-j-ipm-2007-10-002-tonta-courses-spring.md`](sources/yunus.hacettepe.edu.tr/2026-05-30-doi-10-1016-j-ipm-2007-10-002-tonta-courses-spring.md)
+
+## zylos.ai
+
+- [AI Agent Memory Architectures: From Context Windows to Persistent Knowledge | Zylos Research](https://zylos.ai/research/2026-04-05-ai-agent-memory-architectures-persistent-knowledge)
+  - raw: [`sources/zylos.ai/2026-06-16-ai-agent-memory-architectures-from-context-windo-research-2026-04-05-.md`](sources/zylos.ai/2026-06-16-ai-agent-memory-architectures-from-context-windo-research-2026-04-05-.md)
